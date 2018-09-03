@@ -1,0 +1,45 @@
+---
+name: 'MIGVIEW'
+version: '2.3'
+release: 1
+summary: 'MIG and MIF image viewers.'
+author: 'Louthrax'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'GPL-3.0'
+category: 'Graphics'
+system: 'MSX'
+requirements:
+  - 'MSX-DOS2'
+url: 'https://www.louthrax.net/mgr/'
+description: |
+   MIF is a set of tools to convert images to MSX format.
+   This package only includes the mifview and migview tools.
+   
+   It consists out of:
+
+   * The command line Windows version of the tool: mif.exe.
+   * The GUI version of the tools, with real-time preview of conversion settings: mifui.exe.
+   * The MSX-DOS viewers: mifview.com (.MIF files) and migview.com (.MIG files)
+   
+   Features:
+
+   * Support for all MSX 1 up to MSX 2+ graphical screen modes.
+   * Interlaced mode support.
+   * Real-time preview of parameter changes (using MIFui).
+   * Error diffusion (dithering).
+   * Optimized palette generation.
+   * Control on details level when generating palette ("Details enhancement" parameter).
+   * Horizontal shift to reduce artefacts in screen 2, 10 and 12.
+   * Optimized RGB to YJKJ conversion, allowing to "reconstruct" SCC images from PNG snapshots.
+   * Manual palette optimization.
+installdir: '\MIGVIEW'
+files:
+  - mifpackage.zip: 'https://www.louthrax.net/mgr/downloads/download.php?file=mifpackage.zip'
+build: |
+  mkdir -p package/
+  unzip mifpackage.zip
+  mv mifview/MIFVIEW.COM package/
+  mv migview/MIGVIEW.COM package/
+changelog: |
+  - 2.3-1 2018-09-02
+    - First release

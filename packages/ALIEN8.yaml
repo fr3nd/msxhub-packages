@@ -1,0 +1,28 @@
+---
+name: 'ALIEN8'
+version: '1.0.0'
+release: 1
+summary: 'Alien 8 remake'
+author: 'Manuel Pazos & Daniel Celemín'
+package_author: 'Carles Amigó (fr3nd)'
+category: 'Games'
+system: 'MSX2'
+requirements:
+  - 'ROM'
+url: 'http://computeremuzone.com/ficha.php?id=751'
+description: |
+  MSX2 remake of the classic game Alien 8.
+installdir: '\ALIEN8'
+files:
+  - alien8.zip: 'http://computeremuzone.com/contador.php?f_ad=alien8_msx2.zip&f=751&sis=msx2'
+build: |
+  mkdir -p package/
+  unzip alien8.zip
+  mv Alien8msx2.rom package/alien8.rom
+  cat > package/alien8.bat << EOF
+  srom alien8.rom
+  EOF
+  unix2dos package/alien8.bat
+changelog: |
+  - 1.0.0-1 2018-09-02
+    - First release

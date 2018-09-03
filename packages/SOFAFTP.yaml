@@ -1,0 +1,30 @@
+---
+name: 'SOFAFTP'
+version: '1.0'
+release: 1
+summary: 'FTP client for GR8NET and UNAPI devices (DenYoNet and ObsoNet)'
+author: 'Louthrax'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'BSD-2-Clause'
+category: 'Internet'
+system: 'MSX'
+requirements:
+  - 'MSX-DOS2'
+url: 'https://www.louthrax.net/mgr/'
+description: |
+  SofaFTP is an MSX-DOS 2 FTP client for GR8NET and UNAPI devices (DenYoNet and ObsoNet).
+  
+  It supports recursive and "update-only" transfers in both directions.
+  
+  FTP server has to support STAT command and passive mode. It must also list directories in UNIX mode.
+installdir: '\SOFAFTP'
+files:
+  - sftp.zip: 'https://www.louthrax.net/mgr/downloads/download.php?file=sftp.zip'
+build: |
+  mkdir -p package/
+  unzip sftp.zip
+  mv SFTP.COM package/
+  mv SFTP.TXT package/
+changelog: |
+  - 1.0-1 2018-09-02
+    - First release

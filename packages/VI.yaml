@@ -1,0 +1,26 @@
+---
+name: 'VI'
+version: '0.1.0'
+release: 1
+summary: 'vi text editor clone'
+author: 'Carles Amigó (fr3nd)'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'GPL-3.0'
+category: 'Editors'
+system: 'MSX2'
+requirements:
+  - 'MSX-DOS2'
+url: 'https://github.com/fr3nd/msx-vi'
+description: |
+  A vi text editor clone for the MSX 8-bit home computer.
+installdir: '\VI'
+files:
+  - vi.zip: 'https://github.com/fr3nd/msx-vi/releases/download/v%VERSION%/vi.zip'
+build: |
+  mkdir -p package/
+  unzip vi.zip
+  mv vi.com package/
+  mv README.md package/
+changelog: |
+  - 0.1.0-1 2018-09-02
+    - First release

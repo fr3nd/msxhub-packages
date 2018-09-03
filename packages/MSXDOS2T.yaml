@@ -1,0 +1,56 @@
+---
+name: 'MSXDOS2T'
+version: '1.0'
+release: 1
+summary: 'MSX-DOS2 Tools'
+author: 'ASCII Corporation'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Proprietary'
+category: 'System'
+system: 'MSX2'
+requirements:
+  - 'MSX-DOS2'
+url: 'https://www.generation-msx.nl/software/ascii-corporation/msx-dos2-tools/1350/'
+description: |
+  Several MSX-DOS2 utilities, some of them implementing popular unix commands:
+
+    * ADDAUX.COM
+    * BEEP.COM
+    * BIO.COM
+    * BODY.COM
+    * BSAVE.COM
+    * CAL.COM
+    * CALC.COM
+    * DUMP.COM
+    * EXPAND.COM
+    * GREP.COM
+    * HEAD.COM
+    * KEY.COM
+    * LIST.COM
+    * LS.COM
+    * MENU.COM
+    * MORE.COM
+    * PATCH.COM
+    * SLEEP.COM
+    * SORT.COM
+    * SPEED.COM
+    * TAIL.COM
+    * TR.COM
+    * UNIQ.COM
+    * VIEW.COM
+    * WC.COM
+  
+  The rest of the programs included in the official MSX-DOS2 Tools are in two separate packages:
+
+    * AKID
+    * MACRO80
+installdir: '\TOOLS'
+files:
+  - MSXDOS2T.DSK: 'http://www.msxarchive.nl/pub/msx/utils/MSX-DOS%202.2/MSXDOS2T.DSK'
+build: |
+  mkdir -p package/
+  mcopy -s -i MSXDOS2T.DSK :: .
+  cp TOOLS/* package/
+changelog: |
+  - 1.0-1 2018-09-02
+    - First release
