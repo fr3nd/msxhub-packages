@@ -6,7 +6,7 @@ summary: 'AKID and KID text editors'
 author: 'ASCII Corporation'
 package_author: 'Carles Amigó (fr3nd)'
 license: 'Proprietary'
-category: 'System'
+category: 'Editors'
 system: 'MSX2'
 requirements:
   - 'MSX-DOS2'
