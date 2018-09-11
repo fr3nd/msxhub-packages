@@ -1,0 +1,33 @@
+---
+name: 'KIDS'
+version: '1.0'
+release: 1
+summary: 'AKID and KID text editors'
+author: 'ASCII Corporation'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Proprietary'
+category: 'System'
+system: 'MSX2'
+requirements:
+  - 'MSX-DOS2'
+url: 'https://www.generation-msx.nl/software/ascii-corporation/msx-dos2-tools/1350/'
+description: |
+  AKID and KID are editors released with the MSX-DOS2 tools by ASCII.
+  
+  Differences between them (extracted from [Relearning MSX](https://www.lavandeira.net/2015/01/relearning-msx-10-the-kid-akid-text-editor-part-1/):
+  
+  * KID supports editing text in Japanese, AKID supports only western characters
+  * KID can edit up to around 60 KB in size, AKID up to 110 KB
+  * All operations are generally faster in AKID, because KID runs in a graphics mode and has to move around more data
+  * AKID doesn't support Japanese characters in file names
+  * AKID's menus an status messages are all in English, KID’s are all in Japanese
+installdir: '\KIDS'
+files:
+  - MSXDOS2T.DSK: 'http://www.msxarchive.nl/pub/msx/utils/MSX-DOS%202.2/MSXDOS2T.DSK'
+build: |
+  mkdir -p package/
+  mcopy -s -i MSXDOS2T.DSK :: .
+  cp KIDS/* package/
+changelog: |
+  - 1.0-1 2018-09-11
+    - First release
