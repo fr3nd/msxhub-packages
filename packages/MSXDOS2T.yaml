@@ -42,7 +42,7 @@ description: |
   
   The rest of the programs included in the official MSX-DOS2 Tools are in two separate packages:
 
-    * AKID
+    * KIDS
     * MACRO80
 installdir: '\TOOLS'
 files:
