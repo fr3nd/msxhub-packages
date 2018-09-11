@@ -5,6 +5,7 @@ release: 1
 summary: 'Alien 8 remake'
 author: 'Manuel Pazos & Daniel Celemín'
 package_author: 'Carles Amigó (fr3nd)'
+license: 'Unknown'
 category: 'Games'
 system: 'MSX2'
 requirements:
