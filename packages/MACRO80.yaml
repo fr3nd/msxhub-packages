@@ -1,0 +1,41 @@
+---
+name: 'MACRO80'
+version: '2.0'
+release: 1
+summary: 'Macro-80 assembler by Microsoft'
+author: 'Microsoft'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Proprietary'
+category: 'Programming'
+system: 'MSX2'
+requirements:
+  - 'MSX-DOS2'
+url: 'https://archive.org/details/Macro-80_Assembler_1979_Microsoft'
+description: |
+  This assembler/linker/library package was made by Microsoft for CP/M. It was later ported to MSX.
+  
+  Included in the package:
+  
+  – CREF80.COM: Cross reference facility. Used to generate special listing that can be used for diagnostic.
+  – L80.COM: Linking loader. Used to load the relocatable modules compiled with Macro-80 Assembler.
+  – LIB80.COM: Library manager. Used to create and modify libraries later linked to compiled programs.
+  – M80.COM: Assembler with complete facilities for macro development.
+  
+  Note that ASCIIC also includes MACRO80
+  
+  Documentation:
+  
+  * [link-80](http://msx.hansotten.com/uploads/xfiles/link-80.pdf)
+  * [lib-80](http://msx.hansotten.com/uploads/xfiles/lib-80.pdf)
+  * [cref-80](http://msx.hansotten.com/uploads/xfiles/cref-80.pdf)
+  * [macro-80](http://msx.hansotten.com/uploads/xfiles/macro-80.pdf)
+installdir: '\MACRO80'
+files:
+  - MSXDOS2T.DSK: 'http://www.msxarchive.nl/pub/msx/utils/MSX-DOS%202.2/MSXDOS2T.DSK'
+build: |
+  mkdir -p package/
+  mcopy -s -i MSXDOS2T.DSK :: .
+  cp UTILITY/* package/
+changelog: |
+  - 1.0-1 2018-09-12
+    - First release
