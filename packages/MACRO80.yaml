@@ -16,10 +16,10 @@ description: |
   
   Included in the package:
   
-  – CREF80.COM: Cross reference facility. Used to generate special listing that can be used for diagnostic.
-  – L80.COM: Linking loader. Used to load the relocatable modules compiled with Macro-80 Assembler.
-  – LIB80.COM: Library manager. Used to create and modify libraries later linked to compiled programs.
-  – M80.COM: Assembler with complete facilities for macro development.
+  * CREF80.COM: Cross reference facility. Used to generate special listing that can be used for diagnostic.
+  * L80.COM: Linking loader. Used to load the relocatable modules compiled with Macro-80 Assembler.
+  * LIB80.COM: Library manager. Used to create and modify libraries later linked to compiled programs.
+  * M80.COM: Assembler with complete facilities for macro development.
   
   Note that ASCIIC also includes MACRO80
   
