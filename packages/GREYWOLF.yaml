@@ -1,0 +1,32 @@
+---
+name: 'GREYWOLF'
+version: '1.0.0'
+release: 1
+summary: 'Grey Wolf '
+author: 'Oniric Factor'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Unknown'
+category: 'Games'
+system: 'MSX2'
+requirements:
+  - 'MSX-MUSIC'
+url: 'http://www.oniric-factor.com/?page_id=1968'
+description: |
+  Nimbos 4 was a place full of life... it's been thousands of cycles since you walk alone on the surface of a dead and sealed world with no possibility of escape.
+  
+  However, a distress call issued from an illegal freighter can change your destiny. Will you be able to cross 50 miles of radioactive hell, crammed with killer Biodroids, clean up the harbor of hostiles and board the freighter before it's too late to escape?
+installdir: '\GREYWOLF'
+files:
+  - greyfinal.rar: 'http://www.oniric-factor.com/msx/greyfinal.rar'
+build: |
+  mkdir -p package/
+  ls -l greyfinal.rar
+  7z x greyfinal.rar
+  mv archivos/* package/
+  cat > package/GREYWOLF.BAT << EOF
+  basic LOADER.BAS
+  EOF
+  unix2dos package/GREYWOLF.BAT
+changelog: |
+  - 1.0.0-1 2018-09-26
+    - First release
