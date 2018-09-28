@@ -1,11 +1,13 @@
 .PHONY: clean
 DOCKER = docker run -it --rm -u $$(id -u) -v $$(pwd):/usr/src fr3nd/msxhub-packages
 
-ALL = $(wildcard packages/*.yaml)
+ALL = $(subst .yaml,,$(subst packages/,,$(wildcard packages/*.yaml)))
+
+all: $(ALL)
 
 %:
-	mkdir -p files
-	$(DOCKER) build packages/$(@).yaml files/$(@)
+	test -d files/$(@) && exit 0 || true
+	$(DOCKER) build packages/$(@).yaml $(@)
 	rm -rf package
 
 
