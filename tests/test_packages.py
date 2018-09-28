@@ -106,7 +106,7 @@ def test_package(package):
         assert isinstance(package_info['release'], int)
 
         # Package should have summary and be 80 characters or less
-        assert len(package_info['version']) <= 80
+        assert len(package_info['summary']) <= 80
 
         # Package should have author and be 128 characters or less
         assert len(package_info['author']) <= 128
