@@ -21,7 +21,7 @@ files:
 build: |
   mkdir -p package/
   ls -l greyfinal.rar
-  7z x greyfinal.rar
+  unrar x greyfinal.rar
   mv archivos/* package/
   cat > package/GREYWOLF.BAT << EOF
   basic LOADER.BAS
