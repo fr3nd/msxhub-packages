@@ -1,4 +1,4 @@
-FROM debian:jessie
+FROM ubuntu:18.04
 
 MAINTAINER Carles Amigó, fr3nd@fr3nd.net
 
@@ -19,15 +19,16 @@ RUN apt-get update && apt-get install -y \
       python3-yaml \
       rsync \
       ruby \
+      unrar \
       unzip \
       && rm -rf /usr/share/doc/* && \
       rm -rf /usr/share/info/* && \
       rm -rf /tmp/* && \
       rm -rf /var/tmp/*
 
-ENV LANG C.UTF-8
-ENV LC_ALL C.UTF-8
-RUN locale-gen C.UTF-8
+RUN locale-gen en_US.UTF-8
+ENV LANG en_US.UTF-8
+ENV LC_ALL en_US.UTF-8
 
 COPY tools/build /usr/bin
 
