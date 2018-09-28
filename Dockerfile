@@ -2,7 +2,6 @@ FROM ubuntu:18.04
 
 MAINTAINER Carles Amigó, fr3nd@fr3nd.net
 
-
 RUN apt-get update && apt-get install -y \
       arj \
       bzip2 \
@@ -15,6 +14,7 @@ RUN apt-get update && apt-get install -y \
       mtools \
       p7zip-full \
       python3 \
+      python3-pytest \
       python3-requests \
       python3-yaml \
       rsync \

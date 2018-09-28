@@ -6,13 +6,13 @@ ALL = $(subst .yaml,,$(subst packages/,,$(wildcard packages/*.yaml)))
 all: $(ALL)
 
 %:
-	test -d files/$(@) && exit 0 || true
+	pytest -k packages/$(@).yaml
 	$(DOCKER) build packages/$(@).yaml $(@)
 	rm -rf package
 
 
 clean:
-	rm -rf files package
+	rm -rf package $(ALL)
 
 # vim:ft=make
 #
