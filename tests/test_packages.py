@@ -149,6 +149,11 @@ def test_package(package):
             key = list(f.keys())[0]
             assert uri_validator(f[key])
 
-        # TODO
-        # test build
-        # test changelog
+        # First line of build should be mkdir -p package/
+        assert 'mkdir -p package/' == package_info['build'].splitlines()[0]
+
+        # Build needs at least two lines to be valid
+        assert len(package_info['build'].splitlines()) >= 2
+
+        # Changelog needs at least two lines
+        assert len(package_info['changelog'].splitlines()) >= 2
