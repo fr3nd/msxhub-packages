@@ -3,7 +3,9 @@ DOCKER = docker run -it --rm -u $$(id -u) -v $$(pwd):/usr/src fr3nd/msxhub-packa
 
 ALL = $(subst .yaml,,$(subst packages/,,$(wildcard packages/*.yaml)))
 
-all: $(ALL)
+all:
+	@echo "Please, specify one package to build:"
+	@echo $(ALL)
 
 %:
 	$(DOCKER) pytest-3 -k packages/$(@).yaml
