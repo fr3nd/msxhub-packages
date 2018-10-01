@@ -186,3 +186,11 @@ changelog: |
 ```
 
 ## How to build a package
+
+Once the PACKAGE.yaml file has been created, run `make PACKAGE` to build it in your own computer. [GNU Make](https://www.gnu.org/software/make/) and [Docker](https://www.docker.com/) are required.
+
+### make targets
+
+* `make PACKAGE` (replace PACKAGE by your package name in capital letters): Test and build the specified package.
+* `make clean`: Clean all generated files.
+* `make emulator`: Run OpenMSX with the generated packages under the `\FILES` directory for testing.
