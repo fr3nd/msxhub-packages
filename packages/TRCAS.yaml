@@ -1,0 +1,33 @@
+---
+name: 'TRCAS'
+version: '1'
+release: 1
+summary: 'Load tapes in Turbo-R computers through PCM input.'
+author: 'Martos'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Unknown'
+category: 'Tools'
+system: 'MSX Turbo-R'
+requirements: {}
+url: 'https://www.msx.org/es/downloads/utilities/tape/trcas'
+description: |
+  A vi text editor clone for the MSX 8-bit home computer.
+installdir: '\TRCAS'
+files:
+  - TRCAS.LZH: 'https://www.msx.org/download/downloads/utils/tape/TRCAS.LZH'
+build: |
+  mkdir -p package/
+  lha x TRCAS.LZH
+  mv trcas package/
+  mv readme package/
+  cat > package/TRCAS.BAS << EOF
+  10 BLOAD "TRCAS",R
+  EOF
+  unix2dos package/TRCAS.BAS
+  cat > package/TRCAS.BAT << EOF
+  BASIC TRCAS.BAS
+  EOF
+  unix2dos package/TRCAS.BAT
+changelog: |
+  - 1-1 2018-10-01
+    - First release
