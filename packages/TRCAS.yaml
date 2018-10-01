@@ -20,6 +20,14 @@ build: |
   lha x TRCAS.LZH
   mv trcas package/
   mv readme package/
+  cat > package/TRCAS.BAS << EOF
+  10 BLOAD "TRCAS",R
+  EOF
+  unix2dos package/TRCAS.BAS
+  cat > package/TRCAS.BAT << EOF
+  BASIC TRCAS.BAS
+  EOF
+  unix2dos package/TRCAS.BAT
 changelog: |
   - 1-1 2018-10-01
     - First release
