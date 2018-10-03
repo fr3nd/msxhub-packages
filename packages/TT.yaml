@@ -2,7 +2,7 @@
 name: 'TT'
 version: '0.9.2'
 release: 1
-summary: 'TriloTracker'
+summary: 'TriloTracker music tracker'
 author: 'Trilobyte Soft'
 package_author: 'Carles Amigó (fr3nd)'
 license: 'Unknown'
