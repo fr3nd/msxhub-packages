@@ -36,6 +36,7 @@ build: |
   unzip -n TT_0_9_1.zip
   mv music package/
   mv wave package/
+  mv instr package/
 changelog: |
   - 0.1.0-1 2018-09-03
     - First release
