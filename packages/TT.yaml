@@ -38,5 +38,5 @@ build: |
   mv wave package/
   mv instr package/
 changelog: |
-  - 0.1.0-1 2018-09-03
+  - 0.1.0-1 2018-10-03
     - First release
