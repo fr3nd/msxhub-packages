@@ -1,0 +1,55 @@
+---
+name: 'TURBO'
+version: '2.1'
+release: 1
+summary: 'Universal turbo changer'
+author: 'Amusement Factory Software'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'GPL-2.0'
+category: 'System'
+system: 'MSX2'
+requirements:
+  - 'MSX-DOS'
+url: 'http://www.amusementfactory.com.br'
+description: |
+  Formerly known as Fudeba Turbo Changer, this program was created to fulfill the need for a "turbo" utility  that was able to switch turbo state on any MSX computer with a simple command.
+  
+  Actually it supports all known MSX computers with soft-operated turbo (see below for more info); I'll try to update this software as new machines are built.
+  
+  Supported systems are:
+  
+  - ASCII One Chip MSX
+  - CIEL MSX 2.0 Turbo
+  - CIEL MSX 2+ Turbo
+  - Panasonic MSX Turbo R GT
+  - Panasonic MSX Turbo R ST
+  - Panasonic MSX FS A1 WSX
+  - Panasonic MSX FS A1 WX
+  - Panasonic MSX FS A1 FX
+  - Zemmix Neo
+  - Zemmix Neo BR
+  
+  Features:
+  
+  - Support CIEL, WSX, WX, FX, Turbo R and OCM turbos.
+  - Support Turbo R R800 ROM and DRAM modes
+  - Support OCM slow and fast VDP Blitter modes
+  - Quiet Mode (fast!)
+  - Reverse mode
+  - Backward compatible with A&L Software Turbo.Com
+  
+  Source code included
+installdir: '\TURBO'
+files:
+  - msxtc21.zip: 'http://www.amusementfactory.com.br/msx/getfile.php?fn=msxtc21.zip'
+build: |
+  mkdir -p package/
+  unzip msxtc21.zip
+  mv turbo.com package/
+  mv turbocore.mac package/
+  mv turbo.hlp package/
+  mv turbo.mac package/
+  mv turbo.txt package/
+changelog: |
+  - 2.1-1 2018-10-04
+    - First release
