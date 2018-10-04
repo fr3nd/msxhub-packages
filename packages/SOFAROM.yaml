@@ -27,5 +27,5 @@ build: |
   mv SROM.INI package/
   mv SROM.TXT package/
 changelog: |
-  - 1.0-1 2018-10-03
+  - 2.6-1 2018-10-03
     - First release
