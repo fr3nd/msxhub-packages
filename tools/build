@@ -14,6 +14,8 @@ import tempfile
 import requests
 import subprocess
 import shutil
+import glob
+import re
 
 if len(sys.argv) <= 1:
     print("*** ERROR: Pass the yaml file to import as parameter")
@@ -52,5 +54,15 @@ with open(sys.argv[1], 'r') as stream:
             p = subprocess.Popen(['bash', '-l', script_file.name],
                                  cwd=tmpdirname)
             p.wait()
+        print("- Checking generated package...")
+        p = re.compile('^.{1,8}\.{0,1}.{0,3}$')
+        for filename in glob.iglob(tmpdirname + '/package/**', recursive=True):
+            basename = os.path.basename(filename)
+            if basename == "":
+                basename = os.path.basename(os.path.dirname(filename))
+            if not p.match(basename):
+                print("ERROR: File " + filename + " is not a valid DOS file.")
+                sys.exit(1)
+
         print("- Moving package to destination directory...")
         shutil.move(tmpdirname + "/package", sys.argv[2])
