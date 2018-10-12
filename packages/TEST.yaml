@@ -1,6 +1,6 @@
 ---
 name: 'TEST'
-version: '1'
+version: '2'
 release: 1
 summary: 'Test package'
 author: 'Carles Amigó (fr3nd)'
@@ -19,7 +19,7 @@ files:
 build: |
   mkdir -p package/
   echo "test" > package/test.txt
-  echo "1" > package/version.txt
+  echo "2-1" > package/version.txt
 changelog: |
   - 2.1-1 2018-10-04
     - First release
