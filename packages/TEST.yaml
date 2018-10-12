@@ -1,0 +1,25 @@
+---
+name: 'TEST'
+version: '1'
+release: 1
+summary: 'Test package'
+author: 'Carles Amigó (fr3nd)'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'GPL-2.0'
+category: 'System'
+system: 'MSX2'
+requirements:
+  - 'MSX-DOS'
+url: 'http://fr3nd.net'
+description: |
+  Package for testing
+installdir: '\TEST'
+files:
+  - vi.zip: 'https://github.com/fr3nd/msx-vi/releases/download/v%VERSION%/vi.zip'
+build: |
+  mkdir -p package/
+  echo "test" > package/test.txt
+  echo "1" > package/version.txt
+changelog: |
+  - 2.1-1 2018-10-04
+    - First release
