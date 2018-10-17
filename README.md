@@ -27,7 +27,7 @@ A package file contains several mandatory fields defining the package itself.
 
 #### name
 
-The name of the package itself.
+The name of the package to be created.
 
 Restrictions:
 * Capital letters
