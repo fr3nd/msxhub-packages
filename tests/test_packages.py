@@ -53,7 +53,7 @@ allowed_licenses = [
 
 allowed_categories = [
     "Editors",
-    "File",
+    "Files",
     "Games",
     "Graphics",
     "Internet",
