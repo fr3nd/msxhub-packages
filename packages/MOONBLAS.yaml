@@ -1,0 +1,51 @@
+---
+name: 'MOONBLAS'
+version: '1.4'
+release: 1
+summary: 'MoonBlaster music tracker'
+author: 'Moonsoft'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Public domain'
+category: 'Sound'
+system: 'MSX2'
+requirements:
+  - 'MSX-MUSIC'
+  - 'MSX-AUDIO'
+url: 'https://www.msx.org/downloads/music/trackers/moonblaster-14'
+description: |
+  Moonblaster 1.4 is a music tracker for MSX2 or higher that supports the MSX-MUSIC and MSX-AUDIO chips. They can be combined to create a stereo effect. Moonblaster was used in a lot of games, demos and music disks made by the MSX scene.
+  
+  Moonblaster is one of the most popular music trackers around for MSX. With its capability to support MSX-MUSIC and MSX-AUDIO at the same time to create a stereo effect, it saw heavy usage in the games, demos and music disks produced by the MSX scene.
+installdir: '\MOONBLAS'
+files:
+  - moonblaster-1.4.zip: 'https://www.msx.org/download/download/2012/06/moonblaster-%VERSION%.zip'
+build: |
+  mkdir -p package/
+  unzip moonblaster-1.4.zip
+  mcopy -s -i moonblaster-1.4.dsk :: package/
+  
+  cat > package/moonblas.bat << EOF
+  REM Look for MAP.COM in default dir
+  IFF EXIST %_DISK%:\MAP\MAP.COM
+    %_DISK%:\MAP\MAP.COM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST MAP.COM
+      MAP.COM
+    ELSE
+      echo "MAP.COM not found. Install it with: 'HUB install MAP'"
+      exit 1
+    ENDIFF
+  ENDIFF
+
+  IFF NOT %_DISK% == A
+    ASSIGN A: %_DISK%
+  ENDIFF
+
+  BASIC AUTOEXEC.BAS
+  EOF
+  
+  unix2dos package/moonblas.bat
+changelog: |
+  - 1.4-1 2018-10-21
+    - First release
