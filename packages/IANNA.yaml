@@ -1,0 +1,46 @@
+---
+name: 'IANNA'
+version: '1.2'
+release: 1
+summary: 'Sword of Ianna game'
+author: 'Retroworks'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Apache-2.0'
+category: 'Games'
+system: 'MSX2'
+requirements:
+  - 'ROM'
+url: 'http://www.theswordofianna.es'
+description: |
+  Evil has awoken.
+  
+  After centuries of calm, peace has abandoned the steppes of Dasht-e Kavir and Dashr-e Lut. Orcs, dark knights and other evil creatures ambush and attack travelers in the roads, and they even dare to get close to undefended villages. It is rumored that the chimneys from Dal Gurak's tower are smoking again, and the shamans are sharing the news with bated breath, as if they were afraid of making the bad omen come true.
+  
+  You are Jarkum, a barbarian from the lineage of Arram. Your ancestor Tukaram was chosen by the goddess Ianna to end the darkness created by Asherat, the Lord of Chaos. Now, everything poitnts to a return of the same evil, although you do not dare to say it aloud to avoid attracting bad luck. However, when an old shaman came to your tent, you knew something was going wrong.
+  
+  *You must leave immediately and go to Kashgar. Evil does not rest, and you are our only hope. Our people, once proud and powerful, has become fearful after all these years of peace, and it won't resist the attack from the forces of Chaos. You must go to Kashgar and listen to your ancestors.*
+installdir: '\IANNA'
+files:
+  - ianna-msx2-1_2.zip: 'http://www.retroworks.es/php/download.php?file=ianna-msx2-1_2.zip'
+build: |
+  mkdir -p package/
+  unzip ianna-msx2-1_2.zip -d package/
+  mv package/changelog.txt package/changelo.txt
+  cat > package/IANNA.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM IANNA.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM IANNA.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/IANNA.BAT
+changelog: |
+  - 2018-10-21 1.2-1
+    - First release
