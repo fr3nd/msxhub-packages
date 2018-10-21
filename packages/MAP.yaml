@@ -1,0 +1,26 @@
+---
+name: 'MAP'
+version: '1.0'
+release: 1
+summary: "Dos 2 Mapper Organizer GS'93"
+author: "GS'93"
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Unknown'
+category: 'System'
+system: 'MSX2'
+requirements:
+  - 'MSX-DOS2'
+url: 'http://www.msxarchive.nl'
+description: |
+  Change the DOS2 mapper routines to run DOS1 programs.
+installdir: '\MAP'
+files:
+  - map.pma: 'http://www.msxarchive.nl/pub/msx/utils/dos2/map.pma'
+build: |
+  mkdir -p package/
+  lha x map.pma
+  mv map.com package/
+  mv map.bin package/
+changelog: |
+  - 2018-10-21 1.0-1
+    - First release
