@@ -1,0 +1,26 @@
+---
+name: 'M'
+version: '2.6'
+release: 1
+summary: 'M File Manager for DOS2'
+author: 'Seo Young Man'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'CC BY-SA'
+category: 'Files'
+system: 'MSX2'
+requirements:
+  - 'MSX-DOS2'
+url: 'http://sharksym.egloos.com/'
+description: |
+  M is a file manager similar to Mdir, which was widely used in MS-DOS.
+  
+  It works in Norton Commander's two-panel fashion, helps to manage various files, directories and execute programs.
+installdir: '\M'
+files:
+  - M_v2.6_20171126.zip: 'http://pds21.egloos.com/pds/201711/26/40/M_v2.6_20171126.zip'
+build: |
+  mkdir -p package/
+  unzip M_v2.6_20171126.zip -d package/
+changelog: |
+  - 2018-10-21 2.6-1
+    - First release
