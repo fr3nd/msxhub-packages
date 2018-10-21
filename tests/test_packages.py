@@ -43,7 +43,7 @@ allowed_licenses = [
     "OSL-3.0",
     "PostgreSQL",
     "Proprietary",
-    "Public",
+    "Public domain",
     "Unknown",
     "Unlicense",
     "UPL-1.0",
@@ -76,6 +76,7 @@ allowed_requirements = [
     "SCC",
     "ROM",
     "MSX-MUSIC",
+    "MSX-AUDIO",
 ]
 
 
