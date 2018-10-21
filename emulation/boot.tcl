@@ -8,6 +8,10 @@ proc wait_until_boot {} {
   }
 }
 
+diskmanipulator create DSK.dsk 32m 32m 32m 32m
+hda DSK.dsk
+diskmanipulator import hda1 ./dsk/
+
 set save_settings_on_exit off
 set speed 9999
 set fullspeedwhenloading on

@@ -18,10 +18,10 @@ test:
 	$(DOCKER) pytest-3 -v
 
 emulator:
-	openmsx -machine "Boosted_MSXturboR_with_IDE" -ext msxdos2 -diska dsk/ -script emulation/boot.tcl
+	openmsx -machine "Boosted_MSXturboR_with_IDE" -ext msxdos2 -script emulation/boot.tcl
 
 clean:
-	rm -rf package dsk/files $(ALL)
+	rm -rf package DSK.dsk dsk/files $(ALL)
 
 # vim:ft=make
 #
