@@ -1,7 +1,7 @@
 ---
 name: 'ALIEN8'
 version: '1.0.0'
-release: 1
+release: 2
 summary: 'Alien 8 remake'
 author: 'Manuel Pazos & Daniel Celemín'
 package_author: 'Carles Amigó (fr3nd)'
@@ -21,9 +21,22 @@ build: |
   unzip alien8.zip
   mv Alien8msx2.rom package/alien8.rom
   cat > package/alien8.bat << EOF
-  srom alien8.rom
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM ALIEN8.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM ALIEN8.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
   EOF
   unix2dos package/alien8.bat
 changelog: |
   - 1.0.0-1 2018-09-02
     - First release
+  - 1.0.0-2 2018-10-22
+    - Improved bat script to look for srom.com
