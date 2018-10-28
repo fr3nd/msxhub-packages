@@ -1,0 +1,41 @@
+---
+name: 'BUDDHAGI'
+version: '1.10'
+release: 1
+summary: 'Buddhagillie - 佛陀斬 game (MSXdev’18)'
+author: 'Nobuaki Washio, GW’s-Workshop'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Unknown'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2018/04/23/msxdev18-2nd-entry-buddhagillie/'
+description: |
+  Take on the role of the Buddha while travelling through 6 realms: Hell, Hunger, Animals, Asuras, Humans, Gods and Nirvana. In each realm we will encounter enemies like Birth, Aging, Sickness, Death and Karma and, at the end, a big boss we will have to defeat.
+installdir: '\BUDDHAGI'
+files:
+  - msxdev18_buddhagillie.zip: 'http://www.msxdev.org/wp-content/uploads/2018/04/msxdev18_buddhagillie_v%VERSION%.zip'
+build: |
+  mkdir -p package/
+  unzip msxdev18_buddhagillie.zip
+  mv bdg110.rom package/
+  mv history.txt package/
+  cat > package/BDG110.bat << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM BDG110.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM BDG110.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/BDG110.bat
+changelog: |
+  - 1.0-1 2018-10-28
+    - First release
