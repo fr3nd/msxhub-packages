@@ -20,6 +20,14 @@ build: |
   7z x chibiaku.7z
   mv "V1666/Readme and EULA.txt" package/README.txt
   mcopy -s -i V1666/MSX/Disk1.dsk :: package/
+  cat > package/CHIBIAKU.BAT << EOF
+  BASIC DISK.BAS
+  EOF
+  unix2dos package/CHIBIAKU.BAT
+  cat > package/V9990.BAT << EOF
+  BASIC V9990.BAS
+  EOF
+  unix2dos package/V9990.BAT
 changelog: |
   - 1.0-1 2018-10-28
     - First release
