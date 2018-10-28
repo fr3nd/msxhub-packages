@@ -1,0 +1,43 @@
+---
+name: 'VLQP79'
+version: '1.0'
+release: 1
+summary: 'Virus LQP-79 game (MSXdev’18)'
+author: 'Pentacour'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Unknown'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2018/05/10/msxdev18-3rd-entry-virus-lqp-79/'
+description: |
+  Amy lived her happy life in a pretty normal town... until that fateful accident at the nearby research facility. Officials denied the incident at first, until the entire facility was abandoned. Neighbours started acting weird. Amy didn’t feel safe anymore. While trying to leave town, she found herself running from a hoard of zombies. What Amy didn't expect, was to find other survivors. Help her escape and rescue the ones not infected by the LQP-79 virus. Hurry!
+  
+  Port to MSX of the Arduboy game of Team Arg. ( https://github.com/TEAMarg/ID-40-VIRUS-LQP-79 )
+installdir: '\LQP79'
+files:
+  - VLQP79.zip: 'http://www.msxdev.org/wp-content/uploads/2018/05/VLQP79.zip'
+build: |
+  mkdir -p package/
+  unzip VLQP79.zip
+  mv lqp79.rom package/
+  mv readme.txt package/
+  cat > package/VLQP79.bat << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM VLQP79.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM VLQP79.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/VLQP79.bat
+changelog: |
+  - 1.0-1 2018-10-28
+    - First release
