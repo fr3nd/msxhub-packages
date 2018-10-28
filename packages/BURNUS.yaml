@@ -1,0 +1,43 @@
+---
+name: 'BURNUS'
+version: '2.0'
+release: 1
+summary: 'Burn Us game (MSXdev’18)'
+author: 'CARANMBALAN Studios'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Unknown'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2018/03/30/msxdev18-1st-entry-burn-us/'
+description: |
+  This game gives you the experience what it’s like to be a member of a weird, masochistic sect. Make your wishes come true by burning yourself in the altar. Avoid the snakes, kill them if you need to, and navigate your way in the dungeons to find the lighter and the gasoline.
+  
+  With its ladders, walls, enemies and puzzles to resolve, Burn Us reminds of Konami’s classic “King’s Valley” games. In order to add to the excitement, it features a catchy piece of music by chiptune composer Evgeny Shvaryov, a.k.a. “Royal”.
+installdir: '\BURNUS'
+files:
+  - msxdev18_burn_us.zip: 'http://www.msxdev.org/wp-content/uploads/2018/03/msxdev18_burn_us.zip'
+build: |
+  mkdir -p package/
+  unzip msxdev18_burn_us.zip
+  mv BURNUS.rom package/
+  mv readme.txt package/
+  cat > package/BURNUS.bat << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM BURNUS.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM BURNUS.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/BURNUS.bat
+changelog: |
+  - 1.0-1 2018-10-28
+    - First release
