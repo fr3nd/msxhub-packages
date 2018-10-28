@@ -1,0 +1,25 @@
+---
+name: 'CHIBIAKU'
+version: '1.666'
+release: 1
+summary: 'ChibiAkumas game'
+author: 'Akuyou'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Unknown'
+category: 'Games'
+system: 'MSX2'
+requirements: []
+url: 'http://www.chibiakumas.com/'
+description: |
+  Chibiko is not having a good afterlife! Being killed by divine intervention, and banished from the underworld is all par for the course, but now a hoard of noisy, ugly, cliché, and badly drawn monsters are invading her land, and causing a ruckus in her castle! Chibiko is not the kind of vampire who takes this kind of thing lying down! Its time to "Rise from your grave", and use unholy magic to annihilate the monsters, and wipe out this invasion at its source!
+installdir: '\CHIBIAKU'
+files:
+  - chibiaku.7z: 'http://www.chibiakumas.com/download/V1666.7z'
+build: |
+  mkdir -p package/
+  7z x chibiaku.7z
+  mv "V1666/Readme and EULA.txt" package/README.txt
+  mcopy -s -i V1666/MSX/Disk1.dsk :: package/
+changelog: |
+  - 1.0-1 2018-10-28
+    - First release
