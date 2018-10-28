@@ -1,0 +1,26 @@
+---
+name: 'TESTRAM'
+version: '1.0'
+release: 1
+summary: 'Test RAM memory, mapper, VRAM and MegaRAM'
+author: 'A&L Software'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Unknown'
+category: 'System'
+system: 'MSX'
+requirements:
+  - 'MSX-DOS'
+url: 'http://www.msxpro.com/aplicativos.html'
+description: |
+  TestRAM is an utility for testing all memory devices of your MSX, byte by byte, and report you if any error was found.
+installdir: '\TESTRAM'
+files:
+  - testram.zip: 'http://www.msxpro.com/download/testram.zip'
+build: |
+  mkdir -p package/
+  unzip testram.zip
+  mv TESTRAM.COM package/
+  mv TESTRAM.TXT package/
+changelog: |
+  - 1.0-1 2018-10-28
+    - First release
