@@ -1,0 +1,48 @@
+---
+name: 'DPUZZLE'
+version: '1.0'
+release: 1
+summary: 'Dreams Puzzle game (MSXdev''18)'
+author: 'Mapax'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Unknown'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+  - 'MSX-MUSIC'
+  - 'V9990'
+url: 'https://www.msxdev.org/2018/07/26/msxdev18-5th-entry-dreams-puzzle/'
+description: |
+  Dreams Puzzle follows the classic mechanics of sliding puzzles but in this case the pictures look awesome thanks to the artwork made by [Josephine Wall](http://www.josephinewall.co.uk/) who granted her  kind permission to use it in this game.
+  
+  Dreams Puzzle uses the screen mode B3/512x424/16bpp and 32768 colors and features music by MSX chiptune veteran Meits.
+installdir: '\DPUZZLE'
+files:
+  - msxdev18_dream_puzzle.zip: 'http://www.msxdev.org/wp-content/uploads/2018/07/msxdev18_dream_puzzle.zip'
+build: |
+  mkdir -p package/
+  unzip msxdev18_dream_puzzle.zip
+  mv DPUZZLE.ROM package/
+  mv README.TXT package/
+  mv LEEME.TXT package/
+  cat > package/DPUZZLE.bat << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM DPUZZLE.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM DPUZZLE.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/DPUZZLE.bat
+  unix2dos package/README.TXT
+  unix2dos package/LEEME.TXT
+changelog: |
+  - 1.0-1 2018-10-28
+    - First release
