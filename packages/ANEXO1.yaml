@@ -1,0 +1,42 @@
+---
+name: 'ANEXO1'
+version: '1.2'
+release: 1
+summary: 'Anexo 1, El Algoritmo (ES) game (MSXdev''18)'
+author: 'José Soto Gándara (joesg)'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Unknown'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2018/06/27/msxdev18-4th-entry-c-c-r-anexo-1-el-algoritmo/'
+description: |
+  This game is a graphical adventure where you play the role of a programmer who wants to jump off a building. Try to find out why he is doing that, what’s happening and who this mysterious character is. In the game, you can choose different options and they will change how the adventure develops.
+  
+  This is the original Spanish version of the game. For the English translation: [ANEXO1EN](https://msxhub.com/ANEXO1EN)
+installdir: '\ANEXO1'
+files:
+  - anexo1.zip: 'http://www.msxdev.org/wp-content/uploads/2018/06/msxdev18_ccr_anexo_1_el_algoritmo_v%VERSION%.zip'
+build: |
+  mkdir -p package/
+  unzip anexo1.zip
+  mv anexo01_6.rom package/ANEXO1.ROM
+  cat > package/ANEXO1.bat << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM ANEXO1.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM ANEXO1.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/ANEXO1.bat
+changelog: |
+  - 1.0-1 2018-11-03
+    - First release
