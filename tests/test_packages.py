@@ -77,6 +77,7 @@ allowed_requirements = [
     "ROM",
     "MSX-MUSIC",
     "MSX-AUDIO",
+    "V9990",
 ]
 
 
