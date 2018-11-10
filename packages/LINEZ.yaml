@@ -1,0 +1,42 @@
+---
+name: 'LINEZ'
+version: '1.1'
+release: 1
+summary: 'Linez game (MSXdev''18)'
+author: 'Wim Dewijngaert'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Unknown'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2018/10/24/msxdev18-6th-entry-linez/'
+description: |
+  Linez is a game based on Numberlink logic puzzles. Here, you have to connect faces of the same colours and avoid to make them cross trails with eachother.
+  
+  Each stage has a time limit. In case of game over, a password is given to you to allow to continue playing later. Those passwords will be needed, as the first 20 levels are kind of easy but things turn more difficult from that point until level 59, the final one. Will be you smart enough to solve all the puzzles?
+installdir: '\LINEZ'
+files:
+  - msxdev18_linez.zip: 'http://www.msxdev.org/wp-content/uploads/2018/10/msxdev18_linez_v%VERSION%.zip'
+build: |
+  mkdir -p package/
+  unzip msxdev18_linez.zip
+  mv LINEZv1.1.ROM package/LINEZ.ROM
+  cat > package/LINEZ.bat << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM LINEZ.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM LINEZ.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/LINEZ.bat
+changelog: |
+  - 1.0-1 2018-11-10
+    - First release
