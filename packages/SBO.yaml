@@ -1,0 +1,40 @@
+---
+name: 'SBO'
+version: '1.0'
+release: 1
+summary: 'Shoulder Blade OVERDRIVE game (MSXdev''18)'
+author: 'Nobuaki Washio, GW’s-Workshop'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Unknown'
+category: 'Games'
+system: 'MSX2'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2018/11/01/msxdev18-9th-entry-shoulder-blade-overdrive/'
+description: |
+  Shoulder Blade OVERDRIVE is a very fast arcade where you control a mech destroying all the enemies approaching you. The scrolling effect is very engaging as it makes you feel the high speed action.
+installdir: '\SBO'
+files:
+  - ShoulderBladeOVERDRIVE_MSXdev18.zip: 'http://www.msxdev.org/wp-content/uploads/2018/11/ShoulderBladeOVERDRIVE_MSXdev18.zip'
+build: |
+  mkdir -p package/
+  unzip ShoulderBladeOVERDRIVE_MSXdev18.zip
+  mv sbo100dev.rom package/SBO.ROM
+  cat > package/SBO.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM SBO.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM SBO.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/SBO.BAT
+changelog: |
+  - 1.0-1 2018-10-10
+    - First release
