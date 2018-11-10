@@ -1,0 +1,48 @@
+---
+name: 'ATD'
+version: '1.0'
+release: 1
+summary: 'Any Treasure Day game (MSXdev''18)'
+author: 'Timmy'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Unknown'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2018/10/29/msxdev18-8th-entry-any-treasure-day/'
+description: |
+  Any Treasure Day is the 8th entry for MSXdev’18. It is a text adventure. This game was made a while ago, and now it is released as an engine test compatible with the Graphical Adventure Creator. The author recommends not to play this adventure using C-BIOS at this point.
+  
+  > While exploring the countryside, you find a sign.
+  > It says: “Any Treasure Day! Bring any treasures here! You will be
+  > rewarded with Fame, Money, Food! Anything!”
+  
+  Are you able to find treasure here?
+installdir: '\ATD'
+files:
+  - msxdev18_any_treasure_day.zip: 'http://www.msxdev.org/wp-content/uploads/2018/10/msxdev18_any_treasure_day_v1.0.zip'
+build: |
+  mkdir -p package/
+  unzip msxdev18_any_treasure_day.zip
+  mv atd.rom package/ATD.ROM
+  mv instructions_atd.txt package/README.TXT
+  cat > package/ATD.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM ATD.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM ATD.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/ATD.BAT
+  unix2dos package/README.TXT
+changelog: |
+  - 1.0-1 2018-10-10
+    - First release
