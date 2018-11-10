@@ -1,0 +1,44 @@
+---
+name: 'BSRACING'
+version: '1.0'
+release: 1
+summary: 'Bumper Ship Racing game (MSXdev''18)'
+author: 'Uninteresting'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Unknown'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2018/10/28/msxdev18-7th-entry-bumper-ship-racing/'
+description: |
+  Bumper Ship Racing is a racing game, just as simple as that. Try to cross the finish line before your opponents do. There are three different modes: Cup Race, Single Race, and Time Trial. All tracks are raced for four laps except in Time Trial mode. The player can choose from three ship models which all have different features.
+  
+  As the name says, bumping is the secret to become the best racer, as your ship tends to bump into all the walls, setting the stage for a learning curve considering the control at the first few plays.
+installdir: '\BSRACING'
+files:
+  - msxdev18_bumper_ship_racing.zip: 'http://www.msxdev.org/wp-content/uploads/2018/10/msxdev18_bumper_ship_racing_v1.0-2.zip'
+build: |
+  mkdir -p package/
+  unzip msxdev18_bumper_ship_racing.zip
+  mv racing.rom package/BSRACING.ROM
+  mv readme_bsr.txt package/README.TXT
+  cat > package/BSRACING.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM BSRACING.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM BSRACING.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/BSRACING.BAT
+  unix2dos package/README.TXT
+changelog: |
+  - 1.0-1 2018-10-10
+    - First release
