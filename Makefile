@@ -10,9 +10,9 @@ all:
 
 %:
 	$(DOCKER) pytest-3 -k packages/$(@).yaml
-	$(DOCKER) build packages/$(@).yaml $(@)
-	mkdir -p dsk/files/
-	ln -rs $(@) dsk/files/
+	$(DOCKER) build packages/$(@).yaml files
+	mkdir -p dsk/
+	ln -rs files/ dsk/
 	rm -rf package
 
 test:
@@ -22,9 +22,7 @@ emulator:
 	openmsx -machine "Boosted_MSXturboR_with_IDE" -ext msxdos2 -script emulation/boot.tcl
 
 clean:
-	rm -rf package DSK.dsk dsk/files
-	rm -rf $(ALL)
-	rm -rf $(ALL_ZIP)
+	rm -rf package DSK.dsk dsk/files files
 
 # vim:ft=make
 #
