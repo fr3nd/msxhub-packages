@@ -1,6 +1,6 @@
 ---
 name: 'BSRACING'
-version: '1.0'
+version: '1.1'
 release: 1
 summary: 'Bumper Ship Racing game (MSXdev''18)'
 author: 'Uninteresting'
@@ -17,7 +17,7 @@ description: |
   As the name says, bumping is the secret to become the best racer, as your ship tends to bump into all the walls, setting the stage for a learning curve considering the control at the first few plays.
 installdir: '\BSRACING'
 files:
-  - msxdev18_bumper_ship_racing.zip: 'http://www.msxdev.org/wp-content/uploads/2018/10/msxdev18_bumper_ship_racing_v1.0-2.zip'
+  - msxdev18_bumper_ship_racing.zip: 'http://www.msxdev.org/wp-content/uploads/2018/11/msxdev18_bumper_ship_racing_v1.1.zip'
 build: |
   mkdir -p package/
   unzip msxdev18_bumper_ship_racing.zip
