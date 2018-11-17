@@ -2,6 +2,7 @@
 DOCKER = docker run -it --rm -u $$(id -u) -v $$(pwd):/usr/src fr3nd/msxhub-packages:2
 
 ALL = $(subst .yaml,,$(subst packages/,,$(wildcard packages/*.yaml)))
+ALL_ZIP = $(subst .yaml,.zip,$(subst packages/,,$(wildcard packages/*.yaml)))
 
 all:
 	@echo "Please, specify one package to build:"
@@ -21,7 +22,9 @@ emulator:
 	openmsx -machine "Boosted_MSXturboR_with_IDE" -ext msxdos2 -script emulation/boot.tcl
 
 clean:
-	rm -rf package DSK.dsk dsk/files $(ALL)
+	rm -rf package DSK.dsk dsk/files
+	rm -rf $(ALL)
+	rm -rf $(ALL_ZIP)
 
 # vim:ft=make
 #
