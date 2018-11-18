@@ -16,16 +16,6 @@ import subprocess
 import shutil
 import glob
 import re
-import zipfile
-
-
-# Taken from:
-# https://stackoverflow.com/questions/1855095/how-to-create-a-zip-archive-of-a-directory
-def zipdir(path, ziph):
-    # ziph is zipfile handle
-    for root, dirs, files in os.walk(path):
-        for file in files:
-            ziph.write(os.path.join(root, file))
 
 
 if len(sys.argv) <= 1:
@@ -76,12 +66,10 @@ with open(sys.argv[1], 'r') as stream:
                 sys.exit(1)
 
         print("- Generating ZIP file")
-        zipf = zipfile.ZipFile(
-            tmpdirname + "/" + package_info['name'] + '.zip',
-            'w',
-            zipfile.ZIP_DEFLATED)
-        zipdir(tmpdirname + "/package", zipf)
-        zipf.close()
+        shutil.make_archive(
+            tmpdirname + '/' + package_info['name'],
+            'zip',
+            tmpdirname + "/package")
 
         print("- Moving package to destination directory...")
         os.mkdir(sys.argv[2])
