@@ -1,0 +1,24 @@
+---
+name: 'HUB'
+version: '1.0.0'
+release: 1
+summary: 'Application to download and install software from the internet'
+author: 'Carles Amigó (fr3nd)'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'GPL-3.0'
+category: 'Internet'
+system: 'MSX2'
+requirements:
+  - 'MSX-DOS2'
+url: 'https://msxhub.com'
+description: |
+    MSXHub is a MSX software installer. It can download and install packaged software from the internet directly into your MSX.
+installdir: '\HUB'
+files:
+  - hub.com: 'https://github.com/fr3nd/msxhub/releases/download/%VERSION%/hub.com'
+build: |
+  mkdir -p package/
+  mv hub.com package/
+changelog: |
+  - 1.0.0-1 2018-10-18
+    - First release
