@@ -76,11 +76,12 @@ with open(sys.argv[1], 'r') as stream:
                 sys.exit(1)
 
         print("- Generating ZIP file")
-        z = zipfile.ZipFile(tmpdirname + "/" + package_info['name'] + '.zip',
-                            'w',
-                            zipfile.ZIP_DEFLATED)
-        zipdir(tmpdirname + "/package", z)
-        z.close()
+        zipf = zipfile.ZipFile(
+            tmpdirname + "/" + package_info['name'] + '.zip',
+            'w',
+            zipfile.ZIP_DEFLATED)
+        zipdir(tmpdirname + "/package", zipf)
+        zipf.close()
 
         print("- Moving package to destination directory...")
         os.mkdir(sys.argv[2])
