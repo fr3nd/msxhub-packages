@@ -1,5 +1,5 @@
 .PHONY: clean test emulator
-DOCKER = docker run -it --rm -u $$(id -u) -v $$(pwd):/usr/src fr3nd/msxhub-packages:2
+DOCKER = docker run -it --rm -u $$(id -u) -v $$(pwd):/usr/src fr3nd/msxhub-packages:4
 
 ALL = $(subst .yaml,,$(subst packages/,,$(wildcard packages/*.yaml)))
 ALL_ZIP = $(subst .yaml,.zip,$(subst packages/,,$(wildcard packages/*.yaml)))
