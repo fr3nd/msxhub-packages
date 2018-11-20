@@ -42,9 +42,5 @@ build: |
   mv remix.sid package/
   mv yie.sid package/
 changelog: |
-  20160723 Version 1.5
-   - Initial version
-  20170221 Version 1.7
-   - New in this version are a number of command line options
-  20180819 Version 1.18a
-   - Bugfix to make it run on Philips MSX machines
+  - 1.18a-1 2018-11-20
+    - First release
