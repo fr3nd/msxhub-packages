@@ -15,12 +15,14 @@ description: |
   MemMan is a advanced Memory Manager for MSX2 with at least 128kB memory mapper. It reserves 80kB for the 'standard' working of the computer. Since version 2.0, it has support for handling of TSR (Terminate and Stay Resident) programs .
   
   This utility is provided in 2 versions: the binary MEMMAN.BIN and the MSX-DOS file MEMMAN.COM. Since version 2.3, MemMan adds several instructions to Basic (see MemManTSR BASIC). Latest version is v.2.42. 
-
+  
   MemMan's documentation can be found in:
-  * http://map.grauw.nl/resources/tsrdev_en.php 
-  * https://www.msx.org/wiki/MemMan
+  
+  * [http://map.grauw.nl/resources/tsrdev_en.php](http://map.grauw.nl/resources/tsrdev_en.php)
+  * [https://www.msx.org/wiki/MemMan](https://www.msx.org/wiki/MemMan)
   
   This package includes the main MemMan and several TSR programs under the \MEMMAN\TSR directory:
+  
   * 5060hz
   * alarm
   * barcode
