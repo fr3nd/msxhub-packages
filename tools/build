@@ -26,10 +26,6 @@ if len(sys.argv) <= 2:
     print("*** ERROR: Pass the destination directory as parameter")
     sys.exit(1)
 
-if os.path.isdir(sys.argv[2]):
-    print("*** ERROR: Destination directory already exists: %s" % sys.argv[2])
-    sys.exit(1)
-
 with open(sys.argv[1], 'r') as stream:
     package_info = yaml.load(stream)
     try:
@@ -72,7 +68,10 @@ with open(sys.argv[1], 'r') as stream:
             tmpdirname + "/package")
 
         print("- Moving package to destination directory...")
-        os.mkdir(sys.argv[2])
+        try:
+            os.mkdir(sys.argv[2])
+        except FileExistsError:
+            pass
         shutil.move(tmpdirname + "/package",
                     sys.argv[2] + "/" + package_info['name'])
         shutil.copy(tmpdirname + "/" + package_info['name'] + ".zip",
