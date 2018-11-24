@@ -1,5 +1,5 @@
 .PHONY: clean test emulator
-DOCKER = docker run -it --rm -u $$(id -u) -v $$(pwd):/usr/src fr3nd/msxhub-packages:4
+DOCKER = docker run -it --rm -u $$(id -u) -v $$(pwd):/usr/src fr3nd/msxhub-packages:5
 
 ALL = $(subst .yaml,,$(subst packages/,,$(wildcard packages/*.yaml)))
 ALL_ZIP = $(subst .yaml,.zip,$(subst packages/,,$(wildcard packages/*.yaml)))
@@ -12,7 +12,7 @@ all:
 	$(DOCKER) pytest-3 -k packages/$(@).yaml
 	$(DOCKER) build packages/$(@).yaml files
 	mkdir -p dsk/
-	ln -rs files/ dsk/
+	ln -rfs files/ dsk/
 	rm -rf package
 
 test:
