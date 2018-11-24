@@ -1,6 +1,6 @@
 ---
 name: 'HUB'
-version: '1.0.0'
+version: '1.0.1'
 release: 1
 summary: 'Application to download and install software from the internet'
 author: 'Carles Amigó (fr3nd)'
@@ -20,5 +20,7 @@ build: |
   mkdir -p package/
   mv hub.com package/
 changelog: |
+  - 1.0.1-1 2018-11-24
+    - Upgrading to latest release
   - 1.0.0-1 2018-10-18
     - First release
