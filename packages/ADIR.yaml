@@ -1,0 +1,24 @@
+---
+name: 'ADIR'
+version: '1.3'
+release: 1
+summary: "ANSI DOS2 dir command (with colors)"
+author: "nyyrikki"
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Public domain'
+category: 'System'
+system: 'MSX2'
+requirements:
+  - 'MSX-DOS2'
+url: 'http://msx.fi/nyyrikki/software.html'
+description: |
+  The ADIR program is an almost exact copy of the normal DIR command. The ADIR  program only	runs when an ANSI screen is activated. When you use the ADIR  command to  list the  contents of a directory, different file types  will be printed each in its own color. Determining the file type is done by the file's extension.
+installdir: '\ADIR'
+files:
+  - adir.lzh: 'http://msx.fi/nyyrikki/files/adir13.lzh'
+build: |
+  mkdir -p package/
+  lha xw=package adir.lzh
+changelog: |
+  - 2018-11-25 1.3-1
+    - First release
