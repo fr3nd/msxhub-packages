@@ -1,0 +1,170 @@
+---
+name: 'MEMMAN'
+version: '2.4'
+release: 1
+summary: "MSX Memory Manager MemMan"
+author: "MSX Software Team"
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Public domain'
+category: 'System'
+system: 'MSX2'
+requirements:
+  - 'MSX-DOS2'
+url: 'http://map.grauw.nl/resources/tsrdev_en.php'
+description: |
+  MemMan is a advanced Memory Manager for MSX2 with at least 128kB memory mapper. It reserves 80kB for the 'standard' working of the computer. Since version 2.0, it has support for handling of TSR (Terminate and Stay Resident) programs .
+  
+  This utility is provided in 2 versions: the binary MEMMAN.BIN and the MSX-DOS file MEMMAN.COM. Since version 2.3, MemMan adds several instructions to Basic (see MemManTSR BASIC). Latest version is v.2.42. 
+  
+  MemMan's documentation can be found in:
+  
+  * [http://map.grauw.nl/resources/tsrdev_en.php](http://map.grauw.nl/resources/tsrdev_en.php)
+  * [https://www.msx.org/wiki/MemMan](https://www.msx.org/wiki/MemMan)
+  
+  This package includes the main MemMan and several TSR programs under the \MEMMAN\TSR directory:
+  
+  * 5060hz
+  * alarm
+  * barcode
+  * basicbrk
+  * bekslesj
+  * blink
+  * calc
+  * caps
+  * chgcpu
+  * chrcode
+  * color
+  * coordin
+  * curblink
+  * elvis
+  * et
+  * european
+  * flash
+  * fonts
+  * icp7
+  * improve
+  * insert
+  * jansi
+  * joysor
+  * klokje
+  * kwiek
+  * lcur
+  * memview
+  * midiklav
+  * mousor
+  * msxalt
+  * numdiv
+  * pb
+  * quickey
+  * savscr
+  * scrfade
+  * sd
+  * sftreset
+  * shift
+  * shift
+  * strace
+  * teaser
+  * tracer
+  * tsr
+  * tyd
+  * var
+  * yz
+installdir: '\MEMMAN'
+files:
+  - memman.zip: 'http://msx.hansotten.com/uploads/ffiles/memman24tsr.zip'
+  - msttracer.zip: 'http://msx.hansotten.com/uploads/ffiles/msttracer.zip'
+  - mstimprove.zip: 'http://msx.hansotten.com/uploads/ffiles/mstimprove.zip'
+  - mstjansi.zip: 'http://msx.hansotten.com/uploads/ffiles/mstjansi.zip'
+  - msttsrcol.zip: 'http://msx.hansotten.com/uploads/ffiles/msttsrcol.zip'
+  - 5060hz.tsr: 'http://www.msxarchive.nl/pub/msx/utils/memman/5060hz.tsr'
+  - barcode.tsr: 'http://www.msxarchive.nl/pub/msx/utils/memman/barcode.tsr'
+  - basicbrk.tsr: 'http://www.msxarchive.nl/pub/msx/utils/memman/basicbrk.tsr'
+  - chgcpu.tsr: 'http://www.msxarchive.nl/pub/msx/utils/memman/chgcpu.tsr'
+  - et.tsr: 'http://www.msxarchive.nl/pub/msx/utils/memman/et.tsr'
+  - fonts.tsr: 'http://www.msxarchive.nl/pub/msx/utils/memman/fonts.tsr'
+  - insert.tsr: 'http://www.msxarchive.nl/pub/msx/utils/memman/insert.tsr'
+  - kwiek.tsr: 'http://www.msxarchive.nl/pub/msx/utils/memman/kwiek.tsr'
+  - lcur.tsr: 'http://www.msxarchive.nl/pub/msx/utils/memman/lcur.tsr'
+  - memview.tsr: 'http://www.msxarchive.nl/pub/msx/utils/memman/memview.tsr'
+  - midiklav.tsr: 'http://www.msxarchive.nl/pub/msx/utils/memman/midiklav.tsr'
+  - mousor.tsr: 'http://www.msxarchive.nl/pub/msx/utils/memman/mousor.tsr'
+  - numdiv.tsr: 'http://www.msxarchive.nl/pub/msx/utils/memman/numdiv.tsr'
+  - sftreset.tsr: 'http://www.msxarchive.nl/pub/msx/utils/memman/sftreset.tsr'
+  - shift.tsr: 'http://www.msxarchive.nl/pub/msx/utils/memman/shift.tsr'
+  - strace.tsr: 'http://www.msxarchive.nl/pub/msx/utils/memman/strace.tsr'
+  - teaser.tsr: 'http://www.msxarchive.nl/pub/msx/utils/memman/teaser.tsr'
+  - tsr.tsr: 'http://www.msxarchive.nl/pub/msx/utils/memman/tsr.tsr'
+  - yz.tsr: 'http://www.msxarchive.nl/pub/msx/utils/memman/yz.tsr'
+build: |
+  mkdir -p package/
+  # memman
+  mkdir -p package/tsr
+  unzip memman.zip
+  lha xw=package MEMMAN24.PMA
+  mv package/*.tsr package/tsr
+  lha xw=package/tsr/alarm ALARM.PMA
+  lha xw=package/tsr/bekslesj BEKSLESJ.PMA
+  lha xw=package/tsr/blink1-1 BLINK1-1.PMA
+  lha xw=package/tsr/calc CALC.PMA
+  lha xw=package/tsr/coordin COORDIN.PMA
+  lha xw=package/tsr/curblink CURBLINK.PMA
+  lha xw=package/tsr/elvis ELVIS.PMA
+  lha xw=package/tsr/european EUROPEAN.PMA
+  lha xw=package/tsr/flash FLASH.PMA
+  lha xw=package/tsr/joysor JOYSOR.PMA
+  lha xw=package/tsr/klokje KLOKJE.PMA
+  lha xw=package/tsr/pb PB.PMA
+  lha xw=package/tsr/quickey QUICKEY.PMA
+  lha xw=package/tsr/savscr SAVSCR.PMA
+  lha xw=package/tsr/sd SD.PMA
+  lha xw=package/tsr/tyd TYD.PMA
+  lha xw=package/tsr/var VAR.PMA
+  # msttracer
+  unzip msttracer.zip
+  mcopy -s -i msttracer.dsk :: tracer
+  mkdir -p package/tsr/tracer
+  mv tracer/DEMO.BAS package/tsr/tracer
+  mv tracer/TRACER.TSR package/tsr/tracer
+  # mstimprove
+  unzip mstimprove.zip
+  mcopy -s -i IMPROVE.DSK :: improve
+  mkdir -p package/tsr/improve
+  mv improve/IMPROVE.COM package/tsr/improve
+  # mstjansi
+  unzip mstjansi.zip
+  mcopy -s -i JANSI.DSK :: jansi
+  mkdir -p package/tsr/jansi
+  mv jansi/*.ANS package/tsr/jansi
+  mv jansi/JANSI.TSR package/tsr/jansi
+  mv jansi/JDUMP.COM package/tsr/jansi
+  # msttsrcol
+  unzip msttsrcol.zip
+  mcopy -s -i TSR-VERZ.DSK :: tsrcol
+  mv tsrcol/CHRCODE.TSR package/tsr
+  mv tsrcol/ICP7.TSR package/tsr
+  mv tsrcol/MSXALT.TSR package/tsr
+  mv tsrcol/SCRFADE.TSR package/tsr
+  mv tsrcol/SHIFT.TSR package/tsr
+  # other
+  mv 5060hz.tsr package/tsr
+  mv barcode.tsr package/tsr
+  mv basicbrk.tsr package/tsr
+  mv chgcpu.tsr package/tsr
+  mv et.tsr package/tsr
+  mv fonts.tsr package/tsr
+  mv insert.tsr package/tsr
+  mv kwiek.tsr package/tsr
+  mv lcur.tsr package/tsr
+  mv memview.tsr package/tsr
+  mv midiklav.tsr package/tsr
+  mv mousor.tsr package/tsr
+  mv numdiv.tsr package/tsr
+  mv sftreset.tsr package/tsr
+  mv shift.tsr package/tsr
+  mv strace.tsr package/tsr
+  mv teaser.tsr package/tsr
+  mv tsr.tsr package/tsr
+  mv yz.tsr package/tsr
+changelog: |
+  - 2018-11-24 2.4-1
+    - First release
