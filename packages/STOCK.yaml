@@ -1,0 +1,29 @@
+---
+name: 'STOCK'
+version: '1.0'
+release: 1
+summary: 'Play with up to 3 players or against your MSX on the stock market'
+author: 'ToriHino'
+package_author: 'ToriHino'
+license: 'Public domain'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'MSX-DOS2'
+url: 'https://www.msx.org/forum/msx-talk/development/stock-exchange-game-in-msx-c'
+description: |
+  Roll the dice, make strategic choices and try to beat the other players by being the first to earn a $100 in cash.
+  
+  You can play against your MSX or up to two other human players.
+  
+  The game is totally written in ASCII MSX-C v1.2 and based on an old basic listing published in the dutch MSX Computer Magazine.
+installdir: '\STOCK'
+files:
+  - stock.zip: 'http://torihino.nl/msx/stock.zip'
+build: |
+  mkdir -p package/
+  unzip stock.zip
+  mv STOCK.COM package/
+changelog: |
+  - 1.0-1 2018-11-26
+      - First release
