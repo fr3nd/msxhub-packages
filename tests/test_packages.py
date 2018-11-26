@@ -74,6 +74,7 @@ allowed_requirements = [
     "MSX-DOS2",
     "MSX-DOS",
     "SCC",
+    "OPL4",
     "ROM",
     "MSX-MUSIC",
     "MSX-AUDIO",
