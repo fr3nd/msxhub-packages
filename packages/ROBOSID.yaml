@@ -1,7 +1,7 @@
 ---
 name: 'ROBOSID'
 version: '1.8a'
-release: 2
+release: 1
 summary: 'Plays SID music files using OPL4 and/or Playsoniq'
 author: 'Marco Blom (ToriHino)'
 package_author: 'ToriHino'
