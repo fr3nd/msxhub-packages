@@ -1,15 +1,16 @@
 ---
 name: 'ROBOSID'
-version: '1.18a'
+version: '1.8a'
 release: 1
 summary: 'Plays SID music files using OPL4 and/or Playsoniq'
 author: 'Marco Blom (ToriHino)'
 package_author: 'ToriHino'
-license: 'BSD-2-Clause'
+license: 'Public domain'
 category: 'Sound'
 system: 'MSX2'
 requirements:
   - 'MSX-DOS2'
+  - 'OPL4'
 url: 'https://www.msx.org/downloads/robosid'
 description: |
   RoboSID plays SID music files using the OPL4 (for example MoonSound) or Playsoniq, emulating both the 6510 cpu and SID chip used in the C64. It is limited to PSID files for both PAL and NTSC, RSID files are not supported. An MSX2 with DOS2 and 128KB at least is needed. Note that some songs are too much for the regular MSX2 and for those a faster MSX is required. 
@@ -44,3 +45,5 @@ build: |
 changelog: |
   - 1.18a-1 2018-11-20
     - First release
+  - 1.8a-2 2018-11-20
+    - Fixed version number, license type and added OPL4 requirement
