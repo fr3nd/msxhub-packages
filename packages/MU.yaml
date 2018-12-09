@@ -35,8 +35,8 @@ files:
 build: |
   mkdir -p package/
   unzip MU105-E.zip
-  mv MU* package/
-  mv SAMPLE.CNF package/
+  rm -f MU105-E.zip
+  mv * package/
 changelog: |
   - 1.05-1 2018-12-09
     - First release
