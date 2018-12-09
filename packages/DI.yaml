@@ -1,0 +1,41 @@
+---
+name: 'DI'
+version: '0.11'
+release: 1
+summary: 'DIR command for long file names'
+author: 'Victor Martinez'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Unknown'
+category: 'System'
+system: 'MSX'
+requirements:
+  - 'NEXTOR'
+url: 'https://github.com/bladeba/MSX/tree/master/Programs/DI'
+description: |
+  Similar to a "DIR command" that shows **"Long File Name"**
+  
+  - Only for **MSX Nextor** by *Nestor Soriano*
+  - Compatible with *FAT12* and *FAT16* partitions
+  - Put inside a directory in the Path
+  - It's a .COM, so you can change its name: LDIR, DIL, LONGDIR...
+  
+  Usage:
+  
+  DI [Drive:][path][filename]   [/option]
+  
+  Options:
+  
+  /?  Show this Help
+  /H  Show Hidden files
+  /S  Show System files
+  /F  Don't show directories
+  /P  Don't pause
+installdir: '\DI'
+files:
+  - DI.COM: 'https://github.com/bladeba/MSX/raw/master/Programs/DI/DI.COM'
+build: |
+  mkdir -p package/
+  mv DI.COM package/
+changelog: |
+  - 0.11-1 2018-12-09
+    - First release

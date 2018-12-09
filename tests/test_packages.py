@@ -79,6 +79,7 @@ allowed_requirements = [
     "MSX-MUSIC",
     "MSX-AUDIO",
     "V9990",
+    "NEXTOR",
 ]
 
 
