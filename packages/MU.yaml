@@ -2,7 +2,7 @@
 name: 'MU'
 version: '1.05'
 release: 1
-summary: 'μ is a mapper management system with RAM disk driver that runs on DOS 1'
+summary: 'MU is a mapper management system with RAM disk driver that runs on DOS 1'
 author: 'Yoshikazu Yamamoto'
 package_author: 'Carles Amigó (fr3nd)'
 license: 'Unknown'
@@ -12,7 +12,7 @@ requirements:
   - 'MSX-DOS'
 url: 'http://yosh.s602.xrea.com/msx/mu/'
 description: |
-  μ(MU) is a mapper management system with RAM-disk driver for MSX-DOS 1.
+  MU is a mapper management system with RAM-disk driver for MSX-DOS 1.
   Up to two RAM-disks can be used. To use MU, a memory mapper of at least 80K
   is required. MU does not work under MSX-DOS 2. On turboR press the [1] key
   during startup until the "beep" if the disk is formatted under MSX-DOS2 or
@@ -20,7 +20,7 @@ description: |
   
   The memory mapper BIOS can be used with MSX - DOS 1. Since it is compatible
   with DOS 2's, programs created for DOS 2's memory mapper BIOS can be made
-  to work with DOS 1 + μ with some additional code.
+  to work with DOS 1 + MU with some additional code.
   
   Also, since the RAM disk driver is built in, you can use RAM disk with DOS 1.
   You can create up to 2 drives of 1 Mbyte RAM disk.
