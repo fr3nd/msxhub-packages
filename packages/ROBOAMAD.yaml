@@ -1,0 +1,56 @@
+---
+name: 'ROBOAMAD'
+version: '1.0'
+release: 1
+summary: 'Plays ZX Spectrum 128 Amadeus music files'
+author: 'ToriHino'
+package_author: 'ToriHino'
+license: 'Public domain'
+category: 'Sound'
+system: 'MSX2'
+requirements:
+  - 'MSX-DOS2'
+url: 'https://www.msx.org/downloads/amadeus-player'
+description: |
+  RoboAmad is a commandline psg (AY-3-8912) music replayer for ZX Spectrum 128 Amadeus files.
+installdir: '\ROBOAMAD'
+files:
+  - file.zip: 'http://torihino.nl/msx/ROBOAMAD.zip'
+build: |
+  mkdir -p package/
+  unzip file.zip
+  mv roboamad.com package/
+  mv AZTEC.AMA package/
+  mv BELEGOST.AMA package/
+  mv BEVERLY.AMA package/
+  mv CHIMERA.AMA package/
+  mv COMMANDO.AMA package/
+  mv EQUINOX5.AMA package/
+  mv ETFLYING.AMA package/
+  mv EXPLATOM.AMA package/
+  mv FALCON.AMA package/
+  mv FEUD.AMA package/
+  mv FIRE.AMA package/
+  mv FUGA.AMA package/
+  mv GHOSTBUS.AMA package/
+  mv GOLDENTR.AMA package/
+  mv INDIANAJ.AMA package/
+  mv JETSTORY.AMA package/
+  mv LANDOFCO.AMA package/
+  mv LASTV8.AMA package/
+  mv MAGNET4.AMA package/
+  mv MAGNET5.AMA package/
+  mv MASTEROF.AMA package/
+  mv MONTY.AMA package/
+  mv PENETRAT.AMA package/
+  mv POPCORN.AMA package/
+  mv RENDEZ4.AMA package/
+  mv STARDRAG.AMA package/
+  mv TERRACRE.AMA package/
+  mv TETRIS2.AMA package/
+  mv TOPGUN.AMA package/
+  mv WTDD.AMA package/
+  mv ZUB.AMA package/
+changelog: |
+  - 1.0-1 2018-12-16
+    - First release
