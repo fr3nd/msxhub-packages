@@ -1,0 +1,53 @@
+---
+name: 'ROBOAY'
+version: '1.0'
+release: 1
+summary: 'Plays .AY files ripped from ZX Spectrum and Amstrad CPC'
+author: 'ToriHino'
+package_author: 'ToriHino'
+license: 'Public domain'
+category: 'Sound'
+system: 'MSX2'
+requirements:
+  - 'MSX-DOS2'
+url: 'https://www.msx.org/downloads/robo-ay-player'
+description: |
+  This program plays .AY files ripped from ZX-Spectrum and Amstrad CPC. The file format looks a bit like the KSS files 
+  which are ripped from MSX (it contains the song data as well as the player routines) and was originally introduced for 
+  DeliPlayer on the Amiga. .
+
+  RoboAY has a build in Z80 emulator (made by NYYRIKKI) so a fast CPU is needed (read: Turbo-R). The emulator is used to 
+  simulate both ZX-Spectrum and Amstrad CPC. The program is MSX-DOS2 based and needs at least 128KB of memory.
+  Included are a number of demonstration songs, a lot more can be found on the Project AY pages:
+  http://www.worldofspectrum.org/projectay/gdmusic.htm.
+
+  Not playing are 'beeper' songs (old ZX-48) and 'samples' since the emulation is too slow for this.
+installdir: '\ROBOAY'
+files:
+  - file.zip: 'https://www.msx.org/download/download/2013/08/roboay.zip'
+build: |
+  mkdir -p package/
+  unzip file.zip
+  mv ROBOAY.COM package/
+  mv COMET.AY package/
+  mv COMMAND2.AY package/
+  mv DESERT.AY package/
+  mv ELYSEUM.AY package/
+  mv EQUINOX.AY package/
+  mv KILLERS.AY package/
+  mv MAGIC.AY package/
+  mv MOPS2.AY package/
+  mv MORTAL.AY package/
+  mv REDSTORM.AY package/
+  mv ROCK.AY package/
+  mv SABOTEUR2.AY package/SABOTEUR.AY
+  mv SALAMAND.AY package/
+  mv SPACE.AY package/
+  mv SPRING.AY package/
+  mv SWEET.AY package/
+  mv UNREAL2.AY package/
+  mv XENON.AY package/
+  mv YES.AY package/
+changelog: |
+  - 1.0-1 2018-12-16
+    - First release
