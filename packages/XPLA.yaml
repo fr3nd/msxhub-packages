@@ -1,0 +1,32 @@
+---
+name: 'XPLA'
+version: '1.0'
+release: 1
+summary: 'MSX sound performance system Player [XPL-A]'
+author: 'Mstz 80ax'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Unknown'
+category: 'Sound'
+system: 'MSX2'
+requirements:
+  - 'MSX-DOS'
+url: 'https://www.msx.org/downloads/msx-sound-performance-system-player-xpl-a'
+description: |
+  XPL-A is a new music player developed by the Japanese MSX user Mstz80ax who has been very active at Nico Nico Dōga video sharing website the last few years. There you can find many examples of his amazing compositions for our beloved MSX-MUSIC soundchip, most of them arrangements of music from MSX games and anime, created on a Sanyo Wavy７０FD MSX2+ computer. Recently he also opened a [Youtube](https://www.youtube.com/channel/UCkFJYT5DVqNkJpT_7rOCHow) account for your enjoyment.
+  
+  During last months Mstz80ax has been working on a new player for his own music file format and this is the result. A player for MSX-MUSIC and PSG that includes many options and interesting features such as images and lyrics. Minimum specifications are an MSX2 computer and MSX-DOS.
+installdir: '\XPLA'
+files:
+  - XPLA.zip: 'https://www.msx.org/download/download/2018/12/XPLA.zip'
+build: |
+  mkdir -p package/
+  unzip XPLA.zip
+  mv XPLA.COM package/
+  mv "Please Read.txt" package/README.TXT
+  mv *.txt package/READMEJP.TXT
+  mv QUARTET-ALBUM package/QUARTET
+  mv MUSICS1-ALBUM package/MUSICS1
+  mv GRADIUS-ALBUM package/GRADIUS
+changelog: |
+  - 0.1.0-1 2018-12-22
+    - First release
