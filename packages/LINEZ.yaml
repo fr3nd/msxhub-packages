@@ -1,6 +1,6 @@
 ---
 name: 'LINEZ'
-version: '1.1'
+version: '1.2'
 release: 1
 summary: 'Linez game (MSXdev''18)'
 author: 'Wim Dewijngaert'
@@ -17,11 +17,11 @@ description: |
   Each stage has a time limit. In case of game over, a password is given to you to allow to continue playing later. Those passwords will be needed, as the first 20 levels are kind of easy but things turn more difficult from that point until level 59, the final one. Will be you smart enough to solve all the puzzles?
 installdir: '\LINEZ'
 files:
-  - msxdev18_linez.zip: 'http://www.msxdev.org/wp-content/uploads/2018/10/msxdev18_linez_v%VERSION%.zip'
+  - msxdev18_linez.zip: 'http://www.msxdev.org/wp-content/uploads/2018/12/msxdev18_linez_finalversion.zip'
 build: |
   mkdir -p package/
   unzip msxdev18_linez.zip
-  mv LINEZv1.1.ROM package/LINEZ.ROM
+  mv "Linez [Final version].rom" package/LINEZ.ROM
   cat > package/LINEZ.bat << EOF
   REM Look for SROM.COM in default dir
   IFF EXIST %_DISK%:\SOFAROM\SROM.COM
@@ -38,5 +38,7 @@ build: |
   EOF
   unix2dos package/LINEZ.bat
 changelog: |
+  - 1.0-1 2018-12-22
+    - Linez final version
   - 1.0-1 2018-11-10
     - First release
