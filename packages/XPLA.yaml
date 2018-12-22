@@ -12,7 +12,7 @@ requirements:
   - 'MSX-DOS'
 url: 'https://www.msx.org/downloads/msx-sound-performance-system-player-xpl-a'
 description: |
-  XPL-A is a new music player developed by the Japanese MSX user Mstz80ax who has been very active at Nico Nico Doga video sharing website the last few years. There you can find many examples of his amazing compositions for our beloved MSX-MUSIC soundchip, most of them arrangements of music from MSX games and anime, created on a Sanyo Wavy７０FD MSX2+ computer. Recently he also opened a [Youtube](https://www.youtube.com/channel/UCkFJYT5DVqNkJpT_7rOCHow) account for your enjoyment.
+  XPL-A is a new music player developed by the Japanese MSX user Mstz80ax who has been very active at Nico Nico Doga video sharing website the last few years. There you can find many examples of his amazing compositions for our beloved MSX-MUSIC soundchip, most of them arrangements of music from MSX games and anime, created on a Sanyo Wavy70FD MSX2+ computer. Recently he also opened a [Youtube](https://www.youtube.com/channel/UCkFJYT5DVqNkJpT_7rOCHow) account for your enjoyment.
   
   During last months Mstz80ax has been working on a new player for his own music file format and this is the result. A player for MSX-MUSIC and PSG that includes many options and interesting features such as images and lyrics. Minimum specifications are an MSX2 computer and MSX-DOS.
 installdir: '\XPLA'
