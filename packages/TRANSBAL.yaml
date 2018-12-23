@@ -1,0 +1,41 @@
+---
+name: 'TRANSBAL'
+version: '1.3.2'
+release: 1
+summary: 'Transball game for MSX by Santi Ontañón'
+author: 'Santi Ontañón'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'GPL-3.0'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://github.com/santiontanon/transballmsx'
+description: |
+  In the distant future the sun around your planet has died off... The only energy source are the "energy spheres". Each of these spheres contains enough energy for a planet to survive for a whole decade, since they are charged with the energy of other stars.
+  
+  An opportunist civilization has stolen all the charged spheres from your home planet, preparing for a future invasion. As a last chance, the last remaining sources of energy have been transfered to a scout ship and sent to recover the spheres... this is your last chance of survival!
+installdir: '\TRANSBAL'
+files:
+  - transbal.rom: 'https://github.com/santiontanon/transballmsx/releases/download/1.3.2/transball-en.rom'
+build: |
+  mkdir -p package/
+  mv transbal.rom package/
+  cat > package/transbal.bat << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM TRANSBAL.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM TRANSBAL.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/transbal.bat
+changelog: |
+  - 1.3.2-1 2018-12-23
+    - First release
