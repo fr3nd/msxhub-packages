@@ -1,0 +1,43 @@
+---
+name: 'GRAVITY'
+version: '1.0'
+release: 1
+summary: 'GRAVITICA game (MSXdev''18)'
+author: 'Yusuke Miyauchi'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Unknown'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'http://www.msxdev.org/2018/12/26/msxdev18-10th-entry-gravitica/'
+description: |
+  Yusuke Miyauchi brings us an original game where we control a spaceship which is not able to shoot any bullet. While we travel along the space there will be an annoying lasers chasing us for all the screen and also enemy bullets approach our ship while we can not shoot any bullet.
+  
+  But, how can this be? Well, the only hope to survive is using our ship power to generate a gravity field around itself in order to pass through the lasers but at the same time we are like a magnet for enemy bullets. We have to find the balance between avoid lasers and let bullets come to us… This will not be easy. We have to master this gravity field in order to reach the highest record.
+installdir: '\GRAVITY'
+files:
+  - gravitica.zip: 'http://www.msxdev.org/wp-content/uploads/2018/12/msxdev18_gravitica_v1.0.zip'
+build: |
+  mkdir -p package/
+  unzip gravitica.zip
+  mv gravity.rom package/GRAVITY.ROM
+  mv "How to play.txt" package/README.TXT
+  cat > package/GRAVITY.bat << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM GRAVITY.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM GRAVITY.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/GRAVITY.bat
+changelog: |
+  - 1.0-1 2018-12-26
+    - First release
