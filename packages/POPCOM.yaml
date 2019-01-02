@@ -8,7 +8,8 @@ package_author: 'immetoo'
 license: 'Unknown'
 category: 'Tools'
 system: 'MSX2'
-requirements: {}
+requirements:
+  - 'MSX-DOS'
 url: 'https://www.msx.org/downloads/utilities/msx-dos-2/popcom-10'
 description: |
   Compress COM files. Makes most COM files a lot smaller, yet does not affect functionallity or decrease speed noticeable.
