@@ -1,18 +1,20 @@
 proc wait_until_boot {} {
-  global speed
-
-  if {[string first "BOOT COMPLETED" [get_screen]] >= 0} {
-    set speed 100
-  } else {
+  global throttle
+  set boot_done -1
+  if {[catch {set boot_done [string first "BOOT COMPLETED" [get_screen]]} err_msg]} {
+    puts stderr "warning: $err_msg"
+  }
+  if {$boot_done == -1} {
     after time 5 wait_until_boot
+  } else {
+    set throttle on
   }
 }
 
-diskmanipulator create DSK.dsk 32m 32m 32m 32m
+diskmanipulator create DSK.dsk 32m
 hda DSK.dsk
-diskmanipulator import hda1 ./dsk/
+diskmanipulator import hda ./dsk/
 
 set save_settings_on_exit off
-set speed 9999
-set fullspeedwhenloading on
-wait_until_boot
+set throttle off
+after realtime 1 wait_until_boot
