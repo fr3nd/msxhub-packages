@@ -1,0 +1,25 @@
+---
+name: 'POPCOM'
+version: '1.00'
+release: 1
+summary: 'Compress com files'
+author: 'Yoshihiko Mino'
+package_author: 'immetoo'
+license: 'Unknown'
+category: 'Tools'
+system: 'MSX2'
+requirements: {}
+url: 'https://www.msx.org/downloads/utilities/msx-dos-2/popcom-10'
+description: |
+  Compress COM files. Makes most COM files a lot smaller, yet does not affect functionallity or decrease speed noticeable.
+installdir: '\POPCOM'
+files:
+  - POPCOM10.LZH: 'https://www.msx.org/download/downloads/utils/dos2/POPCOM10.LZH'
+build: |
+  mkdir -p package/
+  lha x POPCOM10.LZH
+  mv popcom.com package/
+  mv popcom.doc package/
+changelog: |
+  - 1.00-1 2019-01-02
+    - First release
