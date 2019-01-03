@@ -131,4 +131,33 @@ pip-selfcheck.json
 
 # End of https://www.gitignore.io/api/python
 
+# Ignore package build files
+/files
+/dsk/files
+
+# Ignore emulation step hdd image.
 DSK.dsk
+
+# Ignore some eclipse files
+.settings
+.project
+
+# Ignore visual studio files
+.vs/
+
+# Ignore intellij files
+*.iml
+.idea
+
+# Ignore netbeans directory
+nbproject
+
+# Ignore mac finder files
+.DS_Store
+
+# Ignore windows files.
+Thumbs.db
+Desktop.ini
+
+# Ignore kde dolphin files
+.directory
