@@ -142,7 +142,7 @@ DSK.dsk
 .settings
 .project
 
-# Ignore visuel studio files
+# Ignore visual studio files
 .vs/
 
 # Ignore intellij files
