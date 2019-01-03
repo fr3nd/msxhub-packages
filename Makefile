@@ -1,6 +1,6 @@
 .PHONY: clean test emulator
 DOCKER = docker run -it --rm -u $$(id -u) -v $$(pwd):/usr/src fr3nd/msxhub-packages:5
-
+OPENMSX_ARGS ?= -machine "Boosted_MSXturboR_with_IDE" -ext msxdos2
 ALL = $(subst .yaml,,$(subst packages/,,$(wildcard packages/*.yaml)))
 ALL_ZIP = $(subst .yaml,.zip,$(subst packages/,,$(wildcard packages/*.yaml)))
 
@@ -19,7 +19,7 @@ test:
 	$(DOCKER) pytest-3 -v
 
 emulator:
-	openmsx -machine "Boosted_MSXturboR_with_IDE" -ext msxdos2 -script emulation/boot.tcl
+	openmsx $(OPENMSX_ARGS) -script emulation/boot.tcl
 
 clean:
 	rm -rf package DSK.dsk dsk/files files
