@@ -5,7 +5,7 @@ release: 1
 summary: 'MSX-DOS2'
 author: 'ASCII Corporation'
 package_author: 'Carles Amigó (fr3nd)'
-license: 'Unknown'
+license: 'Commercial'
 category: 'System'
 system: 'MSX2'
 requirements: []
@@ -27,5 +27,5 @@ build: |
   mkdir -p package/
   mcopy -s -i MSXDOS2E.DSK :: package/
 changelog: |
-  - 2.20-1 2019-01-3
+  - 2.20-1 2019-01-03
     - First release
