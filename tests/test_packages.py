@@ -23,6 +23,7 @@ allowed_licenses = [
     "CC BY-NC-ND",
     "CC BY-NC",
     "CC BY",
+    "Commercial",
     "ECL-2.0",
     "EPL-1.0",
     "EPL-2.0",
