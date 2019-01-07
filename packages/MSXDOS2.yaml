@@ -1,0 +1,31 @@
+---
+name: 'MSXDOS2'
+version: '2.20'
+release: 1
+summary: 'MSX-DOS2'
+author: 'ASCII Corporation'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Commercial'
+category: 'System'
+system: 'MSX2'
+requirements: []
+url: 'https://en.wikipedia.org/wiki/MSX-DOS'
+description: |
+  MSXDOS2 is a disk operating system developed by Microsoft for ASCII Corporation in 1988. It adds several new functionalities over MSXDOS like subdirectories, memory management and environment variables.
+  
+  This package includes all the files distributed with the official disk now that [it's possible to distribute it freely](https://www.msx.org/forum/msx-talk/general-discussion/my-meeting-with-kazuhiko-nishi-the-whole-story):
+  
+  * COMMAND2.COM
+  * MSXDOS2.SYS
+  * BAT files.
+  * HELP directory with HLP files.
+  * UTILS directory with utilities.
+installdir: '\MSXDOS2'
+files:
+  - MSXDOS2E.DSK: 'http://www.msxarchive.nl/pub/msx/utils/MSX-DOS%202.2/MSXDOS2E.DSK'
+build: |
+  mkdir -p package/
+  mcopy -s -i MSXDOS2E.DSK :: package/
+changelog: |
+  - 2.20-1 2019-01-03
+    - First release
