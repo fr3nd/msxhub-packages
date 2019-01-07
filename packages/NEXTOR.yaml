@@ -5,7 +5,7 @@ release: 1
 summary: 'NEXTOR disk operating system for MSX computers'
 author: 'Nestor Soriano (Konamiman)'
 package_author: 'Carles Amigó (fr3nd)'
-license: 'Commercial'
+license: 'Proprietary'
 category: 'System'
 system: 'MSX'
 requirements: []
