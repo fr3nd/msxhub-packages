@@ -1,0 +1,34 @@
+---
+name: 'NEXTOR'
+version: '2.0.5beta1'
+release: 1
+summary: 'NEXTOR disk operating system for MSX computers'
+author: 'Nestor Soriano (Konamiman)'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Commercial'
+category: 'System'
+system: 'MSX'
+requirements: []
+url: 'https://www.konamiman.com/msx/msx-e.html#nextor'
+description: |
+  Nextor is a disk operating system for MSX computers. It is actually an enhanced version of MSX-DOS, with which it is 100% compatible, and it identifies itself as MSX-DOS 2.31 to MSX-DOS aware applications.
+  
+  The main features that Nextor adds to MSX-DOS are:
+  
+  * **Native support for the FAT16 filesystem.** Nextor can handle the FAT16 filesystem without having to install any patch or additional software. This raises the maximum size of usable filesystems from the 32MB supported by FAT12 to 4GB. Also, the system can boot from a FAT16 filesystem.
+  * **New, fully documented device driver system.** Developers of driver software for massive storage devices no longer need to reverse-engineer the operating system kernel ROM (or to follow the steps of someone that has done it in the past) in order to generate a kernel ROM with the custom driver code embedded on it. Nextor provides an enhanced driver system and the steps needed to integrate it within the kernel ROM are fully documented. Furthermore, Nextor drivers have extra extensibility points (for BASIC "CALL" commands or extended BIOS, for instance).
+  * **Device and partition to drive mapping management.** When using the device driver system designed for Nextor, it is the operating system itself who manages the logical drive to physical storage device mapping, including the partition selection. Nextor drivers simply enumerate the available devices and provide access to the raw device sectors.
+  * **Built-in device partitioning tool.** Just go to the BASIC prompt, invoke a CALL FDISK command, and you are ready to create partitions on any device controlled by a Nextor driver.
+  * **Embedded MSX-DOS 1 kernel.** The Nextor kernel will boot in MSX-DOS 1 mode when the computer has no mapped RAM, when the "1" key is pressed at boot time, or when a MSX-DOS 1 boot sector is detected in the boot device. There is no need to have a MSX-DOS 1 kernel in another slot (for example in a floppy disk driver controller), and you can use partitions with a size of up to 16MB contained on any device controlled by a Nextor driver.
+  * **Works on MSX1.** Nextor works on all MSX computers, including MSX1. Of course mapped memory is needed for normal operation, but even without it, MSX1 computers can use Nextor in MSX-DOS 1 mode.
+  * **Support for disk image files.** Starting at version 2.1, Nextor allows to mount disk image files in drive letters, so that its contents can be managed easily. It is also possible to boot in floppy disk emulation mode, where disk image files are used as if they were storage devices; this allows to play old disk games that only work in MSX-DOS 1 mode and/or load data by using direct sector access (there is no filesystem in the game disks).
+installdir: '\NEXTOR'
+files:
+  - nextor-dsk.zip: 'https://www.konamiman.com/msx/nextor/tools/nextor-dsk.zip'
+build: |
+  mkdir -p package/
+  unzip nextor-dsk.zip
+  mcopy -s -i nextor.dsk :: package/
+changelog: |
+  - 2.20-1 2019-01-07
+    - First release
