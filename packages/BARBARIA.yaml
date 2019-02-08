@@ -1,0 +1,44 @@
+---
+name: 'BARBARIA'
+version: '1.0'
+release: 1
+summary: 'Barbarian The Duel (MSXdev''18)'
+author: 'Bitvision Software'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Unknown'
+category: 'Games'
+system: 'MSX2'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2019/02/06/msxdev18-11th-entry-barbarian-the-duel/'
+description: |
+  Thara and Bravos must get ready to face the evil Arcomage, who devastated the Land of Shrikar several years ago.
+  
+  They know it’s no easy task because their first real enemy will be the wicked Dim Knight.
+  
+  Fulfill their destiny, gather your resources and join the battle!
+installdir: '\BARBARIA'
+files:
+  - barbarian.zip: 'https://www.msxdev.org/wp-content/uploads/2019/02/msxdev_18_barbarian_the_duel_v1.0.zip'
+build: |
+  mkdir -p package/
+  unzip barbarian.zip
+  mv Barbarian_The_Duel-msxdev[ASCII16].rom package/BARBARIA.ROM
+  cat > package/BARBARIA.bat << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM BARBARIA.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM BARBARIA.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/BARBARIA.bat
+changelog: |
+  - 1.0-1 2019-02-08
+    - First release
