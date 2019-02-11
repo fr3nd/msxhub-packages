@@ -1,6 +1,6 @@
 ---
 name: 'VLQP79'
-version: '1.0'
+version: '1.1'
 release: 1
 summary: 'Virus LQP-79 game (MSXdev''18)'
 author: 'Pentacour'
@@ -17,20 +17,20 @@ description: |
   Port to MSX of the Arduboy game of Team Arg. ( https://github.com/TEAMarg/ID-40-VIRUS-LQP-79 )
 installdir: '\VLQP79'
 files:
-  - VLQP79.zip: 'http://www.msxdev.org/wp-content/uploads/2018/05/VLQP79.zip'
+  - VLQP79.zip: 'https://www.msxdev.org/wp-content/uploads/2019/02/msxdev18_viruslpq79_v1.1.zip'
 build: |
   mkdir -p package/
   unzip VLQP79.zip
-  mv lqp79.rom package/
+  mv lqp79_v1_1.rom package/VLQP79.ROM
   mv readme.txt package/
   cat > package/VLQP79.bat << EOF
   REM Look for SROM.COM in default dir
   IFF EXIST %_DISK%:\SOFAROM\SROM.COM
-    %_DISK%:\SOFAROM\SROM.COM LQP79.ROM
+    %_DISK%:\SOFAROM\SROM.COM VLQP79.ROM
   ELSE
     REM Try to run it from path
     IFF EXIST SROM.COM
-      SROM.COM LQP79.ROM
+      SROM.COM VLQP79.ROM
     ELSE
       echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
       exit 1
@@ -39,5 +39,10 @@ build: |
   EOF
   unix2dos package/VLQP79.bat
 changelog: |
+  - 1.1-1 2019-02-11
+    - Version 1.1:
+      - Activated the three in-game musics.
+      - In some machines, the first time the intro music sounded toooo slow.
+      - A minor bug with the hearts.
   - 1.0-1 2018-10-28
     - First release
