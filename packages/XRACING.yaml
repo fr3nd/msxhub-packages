@@ -1,6 +1,6 @@
 ---
 name: 'XRACING'
-version: '1.0'
+version: '1.0.2'
 release: 1
 summary: 'XRacing (MSXdev''18)'
 author: 'Santiago Ontañón Villar'
@@ -39,5 +39,7 @@ build: |
   EOF
   unix2dos package/XRACING.bat
 changelog: |
+  - 1.0.2-1 2019-02-22
+    - 1.0.2 release
   - 1.0-1 2019-02-09
     - First release
