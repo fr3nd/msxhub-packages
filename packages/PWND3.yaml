@@ -1,0 +1,48 @@
+---
+name: 'PWND3'
+version: '1.1'
+release: 1
+summary: 'PWND3 (MSXdev''18)'
+author: 'Metal Soft'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Unknown'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2019/02/12/msxdev18-13th-entry-pwnd3/'
+description: |
+  The snake returns! After paying a visit to the MSXdev’08 contest ten years ago, its quite familiar mechanics are here again to twist our minds.
+  
+  This time around, though, apart from eating flowers, our snake is able to pass through certain walls by picking up yellow exclamation marks. Also, arrows limit our movement as we can only pass over them in the designated direction.
+  
+  It’s probably clear by now that it’s wise to plan your path carefully, because the mazes available are a little bit tricky.
+installdir: '\PWND3'
+files:
+  - pwnd3.zip: 'https://www.msxdev.org/wp-content/uploads/2019/02/msxdev18_pwnd_3_v1.1.zip'
+build: |
+  mkdir -p package/
+  unzip pwnd3.zip
+  mv pwnd.rom package/PWND3.rom
+  mv Tools package/
+  unix2dos readme.txt
+  mv readme.txt package/
+  mv src package/
+  cat > package/PWND3.bat << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM PWND3.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM PWND3.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/PWND3.bat
+changelog: |
+  - 1.1-1 2019-02-14
+    - First release

@@ -1,0 +1,46 @@
+---
+name: 'QUARTET'
+version: '1.0'
+release: 1
+summary: 'Quartet (MSXdev''18)'
+author: 'Ilkke & bitsofbas'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Unknown'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2019/02/13/msxdev18-14th-entry-quartet/'
+description: |
+  Quartet, is a puzzle game by Ilkke and bitsofbas for MSX Classic category in MSXdev'18.
+  
+  Aim for the best score trying to complete as many faces as you can. The more complete the face is, the more points you get. If you clear all the faces from the board you will be rewarded with an extra life and bonus points.
+  
+  Think fast, there’s no time to waste! Move the pieces quickly or you lose a life. Can you beat the Highscore?
+installdir: '\QUARTET'
+files:
+  - quartet.zip: 'https://www.msxdev.org/wp-content/uploads/2019/02/msxdev18_quartet.zip'
+build: |
+  mkdir -p package/
+  unzip quartet.zip
+  mv quartet.rom package/QUARTET.rom
+  unix2dos readme.txt
+  mv readme.txt package/
+  cat > package/QUARTET.bat << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM QUARTET.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM QUARTET.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/QUARTET.bat
+changelog: |
+  - 1.0-1 2019-02-14
+    - First release
