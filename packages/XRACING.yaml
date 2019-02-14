@@ -1,6 +1,6 @@
 ---
 name: 'XRACING'
-version: '1.0.2'
+version: '1.0.4'
 release: 1
 summary: 'XRacing (MSXdev''18)'
 author: 'Santiago Ontañón Villar'
@@ -19,7 +19,7 @@ description: |
   XRacing is a tribute to a few of the car racing games I loved as a kid. In particular Super Cars ( https://en.wikipedia.org/wiki/Super_Cars ), but there are references to many other games like F-1 Spirit (MSX), 4D Sports Driving (Amiga/DOS), and others! The one thing that I set out to do was a top-view car racing game with smooth multidirectional scroll, which was quite a challenge! The final solution I adopted limits significantly the amount of graphic variety in the screen (and that's why levels look a bit empty), but it more than makes up for it allowing smooth scroll, which I think adds a lot to the experience.
 installdir: '\XRACING'
 files:
-  - xracing.rom: 'https://github.com/santiontanon/xracing/releases/download/%VERSION%/racing.rom'
+  - xracing.rom: 'https://github.com/santiontanon/xracing/releases/download/%VERSION%/xracing.rom'
 build: |
   mkdir -p package/
   mv xracing.rom package/XRACING.ROM
@@ -39,7 +39,9 @@ build: |
   EOF
   unix2dos package/XRACING.bat
 changelog: |
-  - 1.0.2-1 2019-02-22
+  - 1.0.4-1 2019-02-14
+    - 1.0.2 release
+  - 1.0.2-1 2019-02-12
     - 1.0.2 release
   - 1.0-1 2019-02-09
     - First release
