@@ -28,6 +28,7 @@ allowed_licenses = [
     "EPL-2.0",
     "EUPL-1.1",
     "EUPL-1.2",
+    "Freeware",
     "GPL-2.0",
     "GPL-3.0",
     "ISC",

@@ -1,0 +1,35 @@
+---
+name: 'GOAL'
+version: '1.0'
+release: 1
+summary: 'Goal (MSXdev''18)'
+author: 'G.G.G. Soft'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Freeware'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2019/02/17/msxdev18-15th-entry-goal/'
+description: |
+  Welcome to the world of soccer! This is Goal, a management simulator where you must prove that you can be a true manager of your favourite team.
+  
+  Choose wisely where and how to spend your budget in order to win the League. If you waste your money you will not be able to pay the inscription fee for the championship, which will get you fired!
+  
+  This game is written in MSX-BASIC and was coded back in 1990. It was going to be sent to an Italian MSX magazine in that time but unfortunately that magazine closed its doors. So, the game remained unreleased until now.
+installdir: '\GOAL'
+files:
+  - goal.zip: 'https://www.msxdev.org/wp-content/uploads/2019/02/msxdev18_goal.zip'
+build: |
+  mkdir -p package/
+  unzip goal.zip
+  mv "goal license.txt" package/LICENSE.TXT
+  unix2dos package/LICENSE.TXT
+  mcopy -s -i GOAL.DSK :: package/
+  cat > package/GOAL.BAT << EOF
+  BASIC AUTOEXEC.BAS
+  EOF
+  unix2dos package/GOAL.BAT
+changelog: |
+  - 1.0-1 2019-02-18
+    - First release
