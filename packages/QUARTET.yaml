@@ -1,6 +1,6 @@
 ---
 name: 'QUARTET'
-version: '1.0'
+version: '1.1'
 release: 1
 summary: 'Quartet (MSXdev''18)'
 author: 'Ilkke & bitsofbas'
@@ -19,11 +19,11 @@ description: |
   Think fast, there’s no time to waste! Move the pieces quickly or you lose a life. Can you beat the Highscore?
 installdir: '\QUARTET'
 files:
-  - quartet.zip: 'https://www.msxdev.org/wp-content/uploads/2019/02/msxdev18_quartet.zip'
+  - quartet.zip: 'https://www.msxdev.org/wp-content/uploads/2019/02/msxdev18_quartet_v1.1.zip'
 build: |
   mkdir -p package/
   unzip quartet.zip
-  mv quartet.rom package/QUARTET.rom
+  mv "quartet v1.1.rom" package/QUARTET.rom
   unix2dos readme.txt
   mv readme.txt package/
   cat > package/QUARTET.bat << EOF
@@ -42,5 +42,7 @@ build: |
   EOF
   unix2dos package/QUARTET.bat
 changelog: |
+  - 1.1-1 2019-02-18
+    - 1.1-1 release
   - 1.0-1 2019-02-14
     - First release
