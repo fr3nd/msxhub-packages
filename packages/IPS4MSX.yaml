@@ -1,0 +1,34 @@
+---
+name: 'IPS4MSX'
+version: '1.3'
+release: 1
+summary: 'IPS Patch application tool for MSX'
+author: 'BiFi'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Unknown'
+category: 'Tools'
+system: 'MSX'
+requirements:
+  - 'MSX-DOS'
+url: 'http://ips.tni.nl/tools/'
+description: |
+  IPS for MSX
+  
+  IPS4MSX allows to apply IPS patches directly on MSX-DOS.
+  
+  IPS or "International Patching System", is a file format, originally meant to patch ROM images, but can also be used with Disk image files. Patching image files can be done to fix bugs, but can also be used for other things such as cheats, translations or game enhancements.
+  
+  The advantage of IPS to distributing patched images, is that you do not modify the original, the IPS file is normally very small, and you are unlikely to have copyright issues. A disadvantage to IPS, is that it will only apply if the checksum matches, so you need to have the correct original file. Especially for Disk images this may be problematic, as some games insist on writing to the disk and then the checksum will no longer match.
+installdir: '\IPS4MSX'
+files:
+  - IPS4MSX.LZH: 'http://ips.tni.nl/tools/IPS4MSX.LZH'
+build: |
+  mkdir -p package/
+  mkdir -p package/src/
+  lha x IPS4MSX.LZH
+  mv *.asm package/src/
+  mv *.txt package/
+  mv ips4msx.com package/
+changelog: |
+  - 1.3-1 2019-02-21
+    - First release
