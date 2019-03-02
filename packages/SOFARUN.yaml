@@ -1,0 +1,28 @@
+---
+name: 'SOFARUN'
+version: '4.0'
+release: 1
+summary: 'SofaRun is an MSX tool designed to run disk, cassette and cartridge images.'
+author: 'Louthrax'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'CC BY-NC-ND'
+category: 'Tools'
+system: 'MSX'
+requirements:
+  - 'MSX-DOS2'
+url: 'https://www.louthrax.net/mgr/'
+description: |
+  SofaRun is an MSX tool designed to run disk (.DSK), cassette (.CAS) and cartridge (.ROM) images. Various settings can be set and stored for each game. It can also be used to launch normal MSX-DOS 2 and BASIC programs.
+  
+  It features a joystick controlled file browser, ZIP files support, options to map JoyMega buttons to keyboard and "soft reset", allowing you to play lying on your sofa just like a lazy penguin!
+installdir: '\SOFARUN'
+files:
+  - sofarun.zip: 'https://www.louthrax.net/mgr/downloads/download.php?file=sofarun.zip'
+build: |
+  mkdir -p package/
+  unzip sofarun.zip
+  rm -f sofarun.zip
+  mv * package/
+changelog: |
+  - 4.0 2019-03-02
+    - First release
