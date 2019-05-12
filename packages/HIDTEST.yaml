@@ -1,0 +1,72 @@
+---
+name: 'HIDTEST'
+version: '3.0'
+release: 1
+summary: 'Utility to test a Human Interface Devices.'
+author: 'FRS'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Proprietary'
+category: 'Tools'
+system: 'MSX'
+requirements:
+  - 'MSX-DOS'
+url: 'http://frs.badcoffee.info/tools.html'
+description: |
+  This utility lets you test a lot of Human Interface Devices that can be
+  connected to the MSX, either directly or by using adapters. It was formerly
+  known as *JOYTEST*, but it got renamed since now supports a lot more devices
+  than just joysticks and joypads.
+
+  ## List of fully supported devices that are automatically detected:
+
+  1. Native MSX devices
+     - Joystick (default)
+     - Mouse
+     - Trackball
+     - Touchpad
+     - Keyboard (directional keys, SPACE and GRAPH)
+     - Light gun (Plus-X Terminator Laser protocol)
+     - Light Pen (note: Only the Sanyo interface was tested. The MSX2-BIOS V9938 light pen support is implemented but still require testing)
+     - Micomsoft XE-1AP analog joypad
+       - Micomsoft XE-1AJ analog joypad (has the same protocol as the XE-1AP)
+       - Sharp Cyberstick CZ-8NJ2 (has the same protocol as the XE-1AP)
+     - PWM protocol devices
+       - MSX-Paddle
+       - Yamaha MMP-01
+     - Vaus Arkanoid paddle
+
+  2. Joymega adapter devices
+     - Sega Megadrive 3-button joypad
+     - Sega Megadrive 6-button joypad
+     - Sega Megadrive MK-1654 Multi-tap (and compatibles)
+
+  3. Joysat adapter devices
+     - Sega Saturn digital joypad
+     - Sega Saturn analog joystick
+
+  4. PWM devices via adapters
+     - IBM DA-15 joysticks
+     - Atari 2600's dual-paddles
+
+  Warning: **Never** connect any Megadrive device directly to the MSX as it can
+  damage your computer and/or the device! Always connect them using a joymega
+  adapter. You can buy one in the MSX community, or DIY following the
+  instructions shown here:
+  http://frs.badcoffee.info/hardware/joymega-en.html
+
+  ## Devices that are detected, but have no drivers:
+  - Sega Saturn mouse
+
+  ## Only planned
+  - Panasonic FS-JH1 joywheel (there's no doc available about its protocol yet)
+installdir: '\HIDTEST'
+files:
+  - HIDTEST.ZIP: 'http://frs.badcoffee.info/files/HIDTEST.ZIP'
+build: |
+  mkdir -p package/
+  unzip HIDTEST.ZIP
+  rm -f HIDTEST.ZIP
+  mv * package/
+changelog: |
+  - 3.0 2019-05-12
+    - First release
