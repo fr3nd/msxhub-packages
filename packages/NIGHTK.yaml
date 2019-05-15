@@ -1,0 +1,47 @@
+---
+name: 'NIGHTK'
+version: '1.0'
+release: 1
+summary: 'Night Knight is a single-screen platformer with a strong classic arcade feel'
+author: 'Juan J. Martínez'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Proprietary'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.usebox.net/jjm/night-knight/'
+description: |
+  Sir Bernard is cursed. The only way he can get some sleep at night is by taking a long walk, which is not easy at all when you live in an enchanted castle!
+  
+  Help the old knight to break the curse and get some rest by walking around the castle avoiding all the hostile creatures that inhabit the walls of Scarkeep.
+  
+  Night Knight is a single-screen platformer with a strong classic arcade feel. Race against the clock to step over all the tiles in the room, pick up the key and exit through the door to the next stage.
+  
+  The game has 80 stages and is NTSC and PAL compatible.
+installdir: '\NIGHTK'
+files:
+  - night-knight.zip: 'https://www.usebox.net/jjm/night-knight/night-knight.zip'
+build: |
+  mkdir -p package/
+  unzip night-knight.zip
+  mv night-knight/nightk.rom package/
+  mv night-knight/nightk.cas package/
+  cat > package/NIGHTK.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM NIGHTK.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM NIGHTK.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/NIGHTK.BAT
+changelog: |
+  - 1.0 2019-05-15
+    - First release
