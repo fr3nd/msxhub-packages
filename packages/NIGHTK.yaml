@@ -1,6 +1,6 @@
 ---
 name: 'NIGHTK'
-version: '1.0'
+version: '1.0.3'
 release: 1
 summary: 'Night Knight is a single-screen platformer with a strong classic arcade feel'
 author: 'Juan J. Martínez'
@@ -43,5 +43,7 @@ build: |
   EOF
   unix2dos package/NIGHTK.BAT
 changelog: |
+  - 1.0.3-1 2019-06-05
+    - Latest release: 1.0.3
   - 1.0 2019-05-15
     - First release
