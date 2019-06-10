@@ -1,0 +1,42 @@
+---
+name: 'PSGED'
+version: '0.82b'
+release: 1
+summary: 'Editor of the registers from MSX PSG (AY-3-8910), with a simple sequencer.'
+author: 'aorante'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'GPL-3.0'
+category: 'Sound'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://code.google.com/archive/p/psged/'
+description: |
+  PSGed is a program for MSX computers with the functionality to play with the registers from PSG (AY-3-8910).
+  
+  Is designed with a easy to use graphical user interface.
+installdir: '\PSGED'
+files:
+  - psged.zip: 'https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/psged/PSGed_v%VERSION%(ROM).zip'
+build: |
+  mkdir -p package/
+  unzip psged.zip
+  mv PSGED082.ROM package/
+  cat > package/PSGED.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM PSGED082.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM PSGED082.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/PSGED.BAT
+changelog: |
+  - 0.82b-1 2019-06-10
+    - First release
