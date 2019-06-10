@@ -1,0 +1,43 @@
+---
+name: 'TARP'
+version: '0.9b'
+release: 1
+summary: 'A random generator of rhythm and melody patterns for MSX computers.'
+author: 'aorante'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'GPL-3.0'
+category: 'Sound'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://github.com/mvac7/TARP'
+description: |
+  This software is a random generator of rhythm and melody patterns.
+  
+  for eXperimental Sound Mini-compo 2012 (Karoshi MSX Community)
+  
+  http://karoshi.auic.es/index.php/topic,2294.0.html
+installdir: '\TARP'
+files:
+  - TARP.ROM: 'https://github.com/mvac7/TARP/releases/download/v%VERSION%/tarp.ROM'
+build: |
+  mkdir -p package/
+  mv TARP.ROM package/
+  cat > package/TARP.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM TARP.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM TARP.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/TARP.BAT
+changelog: |
+  - 0.9b-1 2019-06-10
+    - First release
