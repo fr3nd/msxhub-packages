@@ -1,0 +1,31 @@
+---
+name: 'MSXSYNTH'
+version: '0.2'
+release: 1
+summary: 'MSX Synth turns your MSX1 and higher into a synthesizer.'
+author: 'Paxanga Soft'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Proprietary'
+category: 'Sound'
+system: 'MSX'
+requirements:
+  - 'MSX-DOS'
+url: 'http://paxangasoft.retroinvaders.com/oldweb/msxsynth.htm'
+description: |
+  MSX Synth is a test to use your MSX as a 3 oscillator monophonic synth (a very simple one!), included the option to use a MIDI keyboard to play notes (with the use of a Philips Music Module, only MIDI-In plug). Anyway, you can use MSX's keys to play. With a MIDI keyboard controller, you can use pitchwheel and MIDI CC to change some parameters.
+  
+  It uses the excellent Vincent Van Dam's MIDI Framework. Many thanks from here :)
+  
+  The software is still at beta stage, lots of things should be added/fixed... There are some bugs, and some stuff like Arpeggiator don't work yet.
+  
+  Requirements are MSX with 64kb RAM, so it can run MSX-DOS. Philips Music Module for MIDI input is optional. By now it supports PSG and the Playsoniq's SID. PSG version has a bit of SCC support, but quite basic, mostly as a test.
+installdir: '\MSXSYNTH'
+files:
+  - msxsynth-beta.rar: 'http://paxangasoft.retroinvaders.com/oldweb/files/msxsynth-beta.rar'
+build: |
+  mkdir -p package/
+  unrar x msxsynth-beta.rar
+  mv MSXfiles/* package/
+changelog: |
+  - 0.2-1 2019-06-16
+    - First release
