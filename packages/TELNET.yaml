@@ -1,0 +1,50 @@
+---
+name: 'TELNET'
+version: '0.7'
+release: 1
+summary: 'Fast ANSI compatible TELNET client'
+author: 'Oduvaldo Pavan Junior'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'GPL-3.0'
+category: 'Internet'
+system: 'MSX2'
+requirements:
+  - 'MSX-DOS2'
+url: 'https://github.com/ducasp/MSX-Development/tree/master/UNAPI/TELNET'
+description: |
+  It is a TELNET client that allow you to connect to a TELNET server and interact
+  with it. If used along with MEMMAN and JANSI it will be able to receive and
+  show ANSI escape codes / colors. How is it different than TCPCON?
+  
+    - It implement TELNET negotiations, as such, echo is used as the other end
+      requests (no need to turn on or off manually), tell terminal type (Dumb
+      if JANSI is not running or xterm 16 colors otherwise), tell window size
+      as 80x24 if JANSI is not running or 80x25 otherwise). Also will respond
+      to ANSI request to cursor position, some BBS's use this to detect if
+      terminal is ANSI capable (this is done only once or until enter is
+      pressed so performance is not impacted by analyzing it along with other
+      ANSI escape codes)
+    
+    - If using JANSI, ANSI capabilities are automatically detected by most BBSs
+    
+    - It will use MS-DOS character set, which allow seeing ANSI animations and
+      menus as they are.
+    
+    - It accesses JANSI directly instead of using JANSI built in hook into DOS
+      functions, also it will initialize JANSI if it is installed but screen
+      mode is not JANSI
+    
+    - Will send all data to be printed at once once it is received and not do
+      it byte per byte (and in case of JANSI uses DMPSTR function)
+    
+    - It supports receiving files through XMODEM CRC, XMODEM 1K CRC, YMODEM and
+      YMODEM-G, including file batch in YMODEM/YMODEM-G
+installdir: '\TELNET'
+files:
+  - TELNET_AND_JANSI.zip: 'https://github.com/ducasp/MSX-Development/raw/master/UNAPI/TELNET/BINARY_PACK_WITH_JANSI/TELNET_AND_JANSI.zip'
+build: |
+  mkdir -p package/
+  unzip TELNET_AND_JANSI.zip -d package
+changelog: |
+  - 0.7-1 2019-08-06
+    - First release
