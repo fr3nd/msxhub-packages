@@ -1,0 +1,64 @@
+---
+name: 'BRUNILDA'
+version: '1.0'
+release: 1
+summary: 'Brunilda game'
+author: 'Retroworks and BitVision (MSX2 port)'
+package_author: 'Carles Amigó'
+license: 'Unknown'
+category: 'Games'
+system: 'MSX2'
+requirements:
+  - 'SCC'
+  - 'ROM'
+url: 'http://retroworks.es/php/game_en.php?id=11'
+description: |
+  The first time I came to this village and met its inhabitants, I realized that something strange was haunting their minds. That evening, the air was so cold that I could even feel it inside my bones. Everybody began to return to their homes, locking their doors tight for the night, hoping not be surprised defenseless against their most horrifying terrors.
+  
+  It seemed that these people had no soul, that they had turned away from God, abandoned themselves to superstition.
+  
+  I tried hard to forget that feeling, but my partner could not. He was younger and not yet mastered his terrors. However, my main concern was to find a place to spend the night. I wasn't worried about monsters nor demons, but the cold: another night sleeping rough and my bones would be rankling all the way to Santiago.
+  
+  ## Credits
+  
+  * Original script: Benway
+  * Adaptation and game design: Pagantipaco and Benway
+  
+  * Coding: Benway
+  * Graphic art and cover: Pagantipaco
+  * Loading screen: NeilParsons
+  * Music: Benway and Mikomedes
+  
+  * Testing: All RetroWorks team, Traperic and Daniel Canales Llera.
+  
+  * This program uses the following routines: "Wyzplayer" AY Player (Wyz), "Exomizer" decompressor (Metalbrain, A. Villena and Urusergi), and "PenText" text decompressor (Benway and Metalbrain).
+  
+  Story about how the game got converted to MSX2:
+  * https://bitvisionsoftware.com/los-amores-de-brunilda-msx2-english/
+installdir: '\BRUNILDA'
+files:
+  - brunilda.zip: 'http://retroworks.es/upload/RWBrunildaMSX2_v1.zip'
+build: |
+  mkdir -p package/
+  unzip brunilda.zip
+  mv RWBrunildaMSX2_v1/changelog.txt package/changelo.txt
+  mv RWBrunildaMSX2_v1/RWBrunildaMSX2_v1.rom package/brunilda.rom
+  mv RWBrunildaMSX2_v1/*.txt package/
+  cat > package/BRUNILDA.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM BRUNILDA.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM BRUNILDA.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/BRUNILDA.BAT
+changelog: |
+  - 2019-08-23 1.0-1
+    - First release
