@@ -19,7 +19,7 @@ description: |
   
   I tried hard to forget that feeling, but my partner could not. He was younger and not yet mastered his terrors. However, my main concern was to find a place to spend the night. I wasn't worried about monsters nor demons, but the cold: another night sleeping rough and my bones would be rankling all the way to Santiago.
   
-  ## Credits
+  #### Credits
   
   * Original script: Benway
   * Adaptation and game design: Pagantipaco and Benway
@@ -33,8 +33,7 @@ description: |
   
   * This program uses the following routines: "Wyzplayer" AY Player (Wyz), "Exomizer" decompressor (Metalbrain, A. Villena and Urusergi), and "PenText" text decompressor (Benway and Metalbrain).
   
-  Story about how the game got converted to MSX2:
-  * https://bitvisionsoftware.com/los-amores-de-brunilda-msx2-english/
+  [Story about how the game got converted to MSX2](https://bitvisionsoftware.com/los-amores-de-brunilda-msx2-english/)
 installdir: '\BRUNILDA'
 files:
   - brunilda.zip: 'http://retroworks.es/upload/RWBrunildaMSX2_v1.zip'
