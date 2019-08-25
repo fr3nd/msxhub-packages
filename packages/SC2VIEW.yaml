@@ -1,0 +1,32 @@
+---
+name: 'SC2VIEW'
+version: '0.91'
+release: 1
+summary: 'SCREEN 2 Picture Viewer for MSX-DOS'
+author: 'gdx'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Unknown'
+category: 'Graphics'
+system: 'MSX'
+requirements:
+  - 'MSX-DOS'
+url: 'https://www.msx.org/downloads/sc2view-v091'
+description: |
+  SC2VIEW displays pictures saved in SCREEN2 with:
+  ```
+  BSAVE"name.ext",0,&H3800,S
+  ```
+  
+  Some example pictures have also been included.
+installdir: '\SC2VIEW'
+files:
+  - SC2VIEW.zip: 'https://www.msx.org/download/download/2018/02/SC2VIEW-v091.zip'
+  - sc2.zip: 'http://www.msxvillage.fr/upload/sc2.zip'
+build: |
+  mkdir -p package/
+  unzip SC2VIEW.zip -d package
+  unzip -n sc2.zip -d package/PICTURES
+  mv package/PICTURES/kvstage10.sc2 package/PICTURES/kvstage1.sc2
+changelog: |
+  - 0.91-1 2019-08-25
+    - First release
