@@ -7,39 +7,35 @@ author: 'Oduvaldo Pavan Junior'
 package_author: 'Carles Amigó (fr3nd)'
 license: 'GPL-3.0'
 category: 'Internet'
-system: 'MSX1'
+system: 'MSX'
 requirements:
   - 'MSX-DOS2'
 url: 'https://github.com/ducasp/MSX-Development/tree/master/UNAPI/TELNET'
 description: |
-	This is a TELNET client that allow you to connect to a TELNET server / BBSs
-	and	interact with it. If an MSX2 or better is used, it will be able to 
-	receive and show ANSI escape codes / colors. It should be MSX1 friendly as 
-	long as your UNAPI adapter is compatible with MSX1.
+  This is a TELNET client that allow you to connect to a TELNET server / BBSs
+  and interact with it. If an MSX2 or better is used, it will be able to
+  receive and show ANSI escape codes / colors. It should be MSX1 friendly as
+  long as your UNAPI adapter is compatible with MSX1.
   
-	- It implement telnet negotiations, as such, echo is used as the other end
-	  requests (no need to turn on or off manually), tell terminal type (Dumb
-	  if MSX1 or xterm 16 colors otherwise), tell window size as 40x24 (MSX1) 
-	  or 80x24 (MSX1 with external 80 columns adapter and screen set to 80
-	  columns before executing this software) or 80x25 if MSX2 or better.
-	  
-	- If using MSX2 or better, ANSI capabilities are automatically detected by
-      most BBSs either by telnet negotiation of Window Size or responding to 
-	  ANSI request to cursor position (some BBS's use this to detect if 
-	  terminal is ANSI capable)
-	
-	- If using MSX2 or better, it will use MS-DOS character set, which allow 
-	  seeing ANSI animations and menus as they are
-	  
-	- It supports receiving files through XMODEM CRC, XMODEM 1K CRC, YMODEM and
-	  YMODEM-G, including file batch in YMODEM/YMODEM-G	  
-    
+  - It implements telnet negotiations, as such, echo is used as the other end
+    requests (no need to turn on or off manually), tell terminal type (Dumb
+    if MSX1 or xterm 16 colors otherwise), tell window size as 40x24 (MSX1)
+    or 80x24 (MSX1 with external 80 columns adapter and screen set to 80
+    columns before executing this software) or 80x25 if MSX2 or better.
+  - If using MSX2 or better, ANSI capabilities are automatically detected by
+    most BBSs either by telnet negotiation of Window Size or responding to
+    ANSI request to cursor position (some BBS's use this to detect if
+    terminal is ANSI capable)
+  - If using MSX2 or better, it will use MS-DOS character set, which allow
+    seeing ANSI animations and menus as they are
+  - It supports receiving files through XMODEM CRC, XMODEM 1K CRC, YMODEM and
+    YMODEM-G, including file batch in YMODEM/YMODEM-G
 installdir: '\TELNET'
 files:
-  - TELNET_AND_JANSI.zip: 'https://github.com/ducasp/MSX-Development/raw/master/UNAPI/TELNET/BINARY_PACK/TELNET.zip'
+  - TELNET.zip: 'https://github.com/ducasp/MSX-Development/raw/828d6f7ff8e276c32d55fe5e4fb91f23c23a8e91/UNAPI/TELNET/BINARY_PACK/TELNET.zip'
 build: |
   mkdir -p package/
-  unzip TELNET_AND_JANSI.zip -d package
+  unzip TELNET.zip -d package
 changelog: |
   - 1.11.0-1 2019-08-30
     - Version 1.11
