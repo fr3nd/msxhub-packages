@@ -38,7 +38,7 @@ build: |
   unzip TELNET.zip -d package
 changelog: |
   - 1.20.0-1 2019-09-02
-    - Version 1.11
+    - Version 1.20
   - 1.11.0-1 2019-08-30
     - Version 1.11
   - 1.10.0-1 2019-08-29
