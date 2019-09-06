@@ -1,6 +1,6 @@
 ---
 name: 'BRUNILDA'
-version: '1.0'
+version: '1.01'
 release: 1
 summary: 'Brunilda game (AKA Los Amores de Brunilda)'
 author: 'Retroworks and BitVision (MSX2 port)'
@@ -40,7 +40,7 @@ description: |
   [Story about how the game got converted to MSX2](https://bitvisionsoftware.com/los-amores-de-brunilda-msx2-english/)
 installdir: '\BRUNILDA'
 files:
-  - brunilda.zip: 'http://retroworks.es/upload/RWBrunildaMSX2_v1.zip'
+  - brunilda.zip: 'http://retroworks.es/upload/RWBrunildaMSX2_v1_01.zip'
 build: |
   mkdir -p package/
   unzip brunilda.zip
@@ -63,5 +63,7 @@ build: |
   EOF
   unix2dos package/BRUNILDA.BAT
 changelog: |
+  - 2019-08-23 1.01-1
+    - New bugfix release
   - 2019-08-23 1.0-1
     - First release
