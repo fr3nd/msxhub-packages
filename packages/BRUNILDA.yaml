@@ -1,7 +1,7 @@
 ---
 name: 'BRUNILDA'
 version: '1.01'
-release: 1
+release: 2
 summary: 'Brunilda game (AKA Los Amores de Brunilda)'
 author: 'Retroworks and BitVision (MSX2 port)'
 package_author: 'Carles Amigó'
