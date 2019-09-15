@@ -44,9 +44,9 @@ files:
 build: |
   mkdir -p package/
   unzip brunilda.zip
-  mv RWBrunildaMSX2_v1/changelog.txt package/changelo.txt
-  mv RWBrunildaMSX2_v1/RWBrunildaMSX2_v1.rom package/brunilda.rom
-  mv RWBrunildaMSX2_v1/*.txt package/
+  mv RWBrunildaMSX2_v1_01/changelog.txt package/changelo.txt
+  mv RWBrunildaMSX2_v1_01/RWBrunildaMSX2_v1_01.rom package/brunilda.rom
+  mv RWBrunildaMSX2_v1_01/*.txt package/
   cat > package/BRUNILDA.BAT << EOF
   REM Look for SROM.COM in default dir
   IFF EXIST %_DISK%:\SOFAROM\SROM.COM
@@ -63,6 +63,8 @@ build: |
   EOF
   unix2dos package/BRUNILDA.BAT
 changelog: |
+  - 2019-09-15 1.01-2
+    - Fixing wrong package. Only bat file was included 
   - 2019-08-23 1.01-1
     - New bugfix release
   - 2019-08-23 1.0-1
