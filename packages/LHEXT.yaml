@@ -1,0 +1,28 @@
+---
+name: 'LHEXT'
+version: '1.34'
+release: 1
+summary: 'LZH decompression tool'
+author: 'Tomoya Iwata'
+package_author: 'Fubukimaru'
+license: 'Proprietary'
+category: 'Tools'
+system: 'MSX'
+requirements:
+  - 'MSX-DOS'
+url: ''
+description: |
+LHext Version 1.33 Copyright (C) 1995 By Tomoya Iwata.
+All Rights' Reserved.
+
+installdir: '\LHEXT'
+files:
+  - lhext134.lzh: 'http://members.ziggo.nl/the.incantation/dload/lhext134.lzh'
+build: |
+  mkdir -p package/
+  lha x lhext134.lzh
+  mv LHEXT.COM package/lhext.com
+  mv LHEXT.DOC package/lhext.doc
+changelog: |
+  - 1.34 2019-10-13
+    - First release
