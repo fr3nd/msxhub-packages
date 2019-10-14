@@ -21,6 +21,7 @@ description: |
 
   TuNzIp is written by Patriek Lesparre, (c) 2005-2015 by The New Image
 
+installdir: '\TUNZIP'
 files:
   - TuNzIp.zip: 'http://www.tni.nl/products/TuNzIp.zip'
 build: |

@@ -12,8 +12,8 @@ requirements:
   - 'MSX-DOS'
 url: ''
 description: |
-LHext Version 1.33 Copyright (C) 1995 By Tomoya Iwata.
-All Rights' Reserved.
+  LHext Version 1.33 Copyright (C) 1995 By Tomoya Iwata.
+  All Rights' Reserved.
 
 installdir: '\LHEXT'
 files:
