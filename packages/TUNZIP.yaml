@@ -6,7 +6,7 @@ summary: 'TuNzIp, TNIs zip decompression tool decompression tool'
 author: 'Patriek Lesparre'
 package_author: 'Fubukimaru'
 license: 'Freeware'
-category: 'Tools'
+category: 'Files'
 system: 'MSX'
 requirements:
   - 'MSX-DOS'
