@@ -6,7 +6,7 @@ summary: 'LZH decompression tool'
 author: 'Tomoya Iwata'
 package_author: 'Fubukimaru'
 license: 'Proprietary'
-category: 'Tools'
+category: 'Files'
 system: 'MSX'
 requirements:
   - 'MSX-DOS'
