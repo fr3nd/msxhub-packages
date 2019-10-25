@@ -22,15 +22,15 @@ description: |
   ∙ Supports -lh6-, and decompression of -lh5- is faster than PMext.
 
 
-  ● Operating environment
+  Operating environment
 
   Works with MSX-DOS (1).
 
-  -MSX-DOS (1) without mapper BIOS and -Lh6-
-  -lh7- cannot be decompressed. -lh5- can also be decompressed on this system.
+  - MSX-DOS (1) without mapper BIOS and -Lh6-
+     -lh7- cannot be decompressed. -lh5- can also be decompressed on this system.
 
 
-  ● Startup format
+  Startup format
 
   LHEXT [command] [archive name] [member name ..] [{/ |-} option ..]
 
@@ -53,7 +53,7 @@ description: |
   Uppercase and lowercase letters are not distinguished for any element.
 
 
-  ● Instruction
+  # Instruction
 
   [E (Extract) Extraction]
 
@@ -94,7 +94,7 @@ description: |
 
   (Example 6) A> LHEXT X LSIC330 * .EXE * .H / O
   Extract files with extensions EXE and H from LSIC330.LZH with directories
-	To do. At this time, the overwrite mode is set.
+    To do. At this time, the overwrite mode is set.
 
 
   [List of l (List)]
@@ -126,7 +126,7 @@ description: |
   Check all files in TESTPACK.LZH.
 
 
-  ● Option
+  # Option
 
   [/] O [|-] Overwrite mode specification]
 
@@ -157,7 +157,7 @@ description: |
   (Example 10-1) A> LHEXT /O-TEST.LZH
 
 
-  ● Compatible compression format
+  # Compatible compression format
   The following compression formats can be decompressed.
   -lh0- uncompressed format
   -lh1- Compressed with old LHarc.exe (MS-DOS) or LHA.COM (CP / M)
@@ -179,10 +179,10 @@ description: |
   In the above format, the list can be displayed with the l command even if decompression is not supported.
   Noh.
 
-  -Lhd- does not decompress (?) Unless it is an x ​​command.
+  -Lhd- does not decompress (?) Unless it is an x command.
 
 
-  ● Usage conditions
+  # Usage conditions
 
   This software is free software that does not give up copyright. Use freely within the following range
   It is fine to use.
@@ -198,11 +198,11 @@ description: |
   If the above is observed, no permission is required for reprinting.
 
 
-  ● Thanks
+  # Thanks
 
     LHA.EXE LHARC.EXE is free software by Eiyoshi Yoshizaki.
 
-  作成 For the creation of this software, the source of Mr. Eiyoshi Yoshizaki and the source of C language of Mr. D
+  For the creation of this software, the source of Mr. Eiyoshi Yoshizaki and the source of C language of Mr. D
   Did.
 
   Please release useful software for free and release the source for free.
@@ -210,7 +210,7 @@ description: |
   Would like to express my gratitude on this occasion (although it will not reach (^^;)
 
 
-  ● Contact information
+  # Contact information
 
     [e-mail]
 
