@@ -2,7 +2,7 @@
 name: 'TUNZIP'
 version: '0.91'
 release: 1
-summary: 'TuNzIp, TNIs zip decompression tool decompression tool'
+summary: 'TuNzIp, TNIs zip decompression tool'
 author: 'Patriek Lesparre'
 package_author: 'Fubukimaru'
 license: 'Freeware'
