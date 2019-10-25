@@ -1,0 +1,34 @@
+---
+name: 'TUNZIP'
+version: '0.91'
+release: 1
+summary: 'TuNzIp, TNIs zip decompression tool decompression tool'
+author: 'Patriek Lesparre'
+package_author: 'Fubukimaru'
+license: 'Freeware'
+category: 'Files'
+system: 'MSX'
+requirements:
+  - 'MSX-DOS'
+url: 'http://www.tni.nl/products/tunzip.html'
+description: |
+  TuNzIp is the first decompressor on MSX that works with the ubiquitous "deflate" algorithm. This allows you to compress ZIP files anywhere and decompress them on MSX running MSX-DOS2.
+
+  Compared to the LZH decompressor LHext, speed is similar when using a RAM disk, but TuNzIp beats LHext by 1.5 times when working with diskettes. Rather than brute-forcing more speed, it relies on smart algorithms that minimize the memory footprint, in order to facilitate integration in other programs.
+
+  Version 0.91 info:
+  Only supports ZIP files with filenames in 8.3 format (longer filenames will be cut off), and without subdirectory trees. Files are decompressed to the current working directory. Existing files are not overwritten. Broken/partial files are kept. Later versions will add support for longer filenames and subdirectories, as well as various commandline switches.
+
+  TuNzIp is written by Patriek Lesparre, (c) 2005-2015 by The New Image
+
+installdir: '\TUNZIP'
+files:
+  - TuNzIp.zip: 'http://www.tni.nl/products/TuNzIp.zip'
+build: |
+  mkdir -p package/
+  unzip TuNzIp.zip
+  mv tunzip.com package/
+  mv tunzip.txt package/
+changelog: |
+  - 0.91 2019-10-13
+    - First release
