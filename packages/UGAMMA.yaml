@@ -2,7 +2,7 @@
 name: 'UGAMMA'
 version: '1.0.0'
 release: 1
-summary: 'Uchūsen Gamma: Single-player classic shoot’em up with smooth vertical scroll'
+summary: 'Uchusen Gamma: Single-player classic shoot’em up with smooth vertical scroll'
 author: 'Juan J. Martínez'
 package_author: 'Carles Amigó (fr3nd)'
 license: 'Proprietary'
