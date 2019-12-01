@@ -1,0 +1,31 @@
+---
+name: 'BASKOM'
+version: '1.0'
+release: 1
+summary: 'BASKOM: execute BASIC commands under MSX-DOS'
+author: 'Unknown'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Unknown'
+category: 'Tools'
+system: 'MSX'
+requirements:
+  - 'MSX-DOS'
+url: 'http://www.msxarchive.nl/pub/msx/utils/dos2/'
+description: |
+  The program can execute BASIC commands under MSX-DOS. Those commands
+  must be given as an argument.
+
+  Example:
+  `BASKOM PRINT SIN (1)`
+
+installdir: '\BASKOM'
+files:
+  - baskom.pma: 'http://www.msxarchive.nl/pub/msx/utils/dos2/baskom.pma'
+build: |
+  mkdir -p package/
+  lha x baskom.pma
+  mv baskom.com package/
+  mv baskom.txt package/
+changelog: |
+  - 2019-12-01 1.0-1
+    - First release
