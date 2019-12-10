@@ -32,7 +32,7 @@ description: |
     YMODEM-G, including file batch in YMODEM/YMODEM-G
 installdir: '\TELNET'
 files:
-  - TELNET.zip: 'https://github.com/ducasp/MSX-Development/blob/4af024794c611bb0b179658d9560f43c3fd87248/UNAPI/TELNET/BINARY_PACK/TELNET.zip'
+  - TELNET.zip: 'https://github.com/ducasp/MSX-Development/raw/4af024794c611bb0b179658d9560f43c3fd87248/UNAPI/TELNET/BINARY_PACK/TELNET.zip'
 build: |
   mkdir -p package/
   unzip TELNET.zip -d package

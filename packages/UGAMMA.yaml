@@ -1,0 +1,51 @@
+---
+name: 'UGAMMA'
+version: '1.0.1'
+release: 1
+summary: 'Uchusen Gamma: Single-player classic shoot’em up with smooth vertical scroll'
+author: 'Juan J. Martínez'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Proprietary'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.usebox.net/jjm/uchusen-gamma/'
+description: |
+  The Emperor has died without a direct heir and a military junta has taken over the Galactic Empire. Without the strong hand of the old order, the cyborgs of the Mions system have been ruthlessly raiding the Outer Worlds, leaving behind a trail of death and destruction.
+  
+  The Empire has ignored the cry for help for too long. When everything seems lost, only one combat spaceship model GAMMA can stop the advance of the cyborgs and put the imminent war to a halt.
+  
+  This is a single-player classic shoot’em up with smooth vertical scroll.
+  
+  PAL and NTSC compatible, the game requires an MSX computer with 16K of RAM (cartridge, 64K are needed when loading from cassette).
+installdir: '\UGAMMA'
+files:
+  - uchusen-gamma.zip: 'https://www.usebox.net/jjm/uchusen-gamma/uchusen-gamma.zip'
+build: |
+  mkdir -p package/
+  unzip uchusen-gamma.zip
+  mv uchusen-gamma/ugamma.rom package/
+  mv uchusen-gamma/ugamma.cas package/
+  cat > package/UGAMMA.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM /Z1 UGAMMA.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM /Z1 UGAMMA.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/UGAMMA.BAT
+changelog: |
+  - 1.0.1-1 2019-11-30
+    - New release
+  - 1.0.0-2 2019-11-29
+    - Added `/Z1` parameter to SROM to make it compatible with Turbo-R.
+  - 1.0.0-1 2019-11-29
+    - First release

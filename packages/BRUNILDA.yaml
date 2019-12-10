@@ -1,7 +1,7 @@
 ---
 name: 'BRUNILDA'
-version: '1.0'
-release: 1
+version: '1.01'
+release: 2
 summary: 'Brunilda game (AKA Los Amores de Brunilda)'
 author: 'Retroworks and BitVision (MSX2 port)'
 package_author: 'Carles Amigó'
@@ -40,13 +40,13 @@ description: |
   [Story about how the game got converted to MSX2](https://bitvisionsoftware.com/los-amores-de-brunilda-msx2-english/)
 installdir: '\BRUNILDA'
 files:
-  - brunilda.zip: 'http://retroworks.es/upload/RWBrunildaMSX2_v1.zip'
+  - brunilda.zip: 'http://retroworks.es/upload/RWBrunildaMSX2_v1_01.zip'
 build: |
   mkdir -p package/
   unzip brunilda.zip
-  mv RWBrunildaMSX2_v1/changelog.txt package/changelo.txt
-  mv RWBrunildaMSX2_v1/RWBrunildaMSX2_v1.rom package/brunilda.rom
-  mv RWBrunildaMSX2_v1/*.txt package/
+  mv RWBrunildaMSX2_v1_01/changelog.txt package/changelo.txt
+  mv RWBrunildaMSX2_v1_01/RWBrunildaMSX2_v1_01.rom package/brunilda.rom
+  mv RWBrunildaMSX2_v1_01/*.txt package/
   cat > package/BRUNILDA.BAT << EOF
   REM Look for SROM.COM in default dir
   IFF EXIST %_DISK%:\SOFAROM\SROM.COM
@@ -63,5 +63,9 @@ build: |
   EOF
   unix2dos package/BRUNILDA.BAT
 changelog: |
+  - 2019-09-15 1.01-2
+    - Fixing wrong package. Only bat file was included 
+  - 2019-08-23 1.01-1
+    - New bugfix release
   - 2019-08-23 1.0-1
     - First release

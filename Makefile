@@ -1,6 +1,7 @@
 .PHONY: clean test emulator
 DOCKER = docker run -it --rm -u $$(id -u) -v $$(pwd):/usr/src fr3nd/msxhub-packages:5
-OPENMSX_ARGS ?= -machine "Boosted_MSXturboR_with_IDE" -ext msxdos2
+#OPENMSX_ARGS ?= -machine "Boosted_MSXturboR_with_IDE" -ext msxdos2
+OPENMSX_ARGS ?= -machine "Boosted_MSX2+_JP" -ext msxdos2 -ext ide
 ALL = $(subst .yaml,,$(subst packages/,,$(wildcard packages/*.yaml)))
 ALL_ZIP = $(subst .yaml,.zip,$(subst packages/,,$(wildcard packages/*.yaml)))
 
