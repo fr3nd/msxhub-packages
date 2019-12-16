@@ -1,0 +1,43 @@
+---
+name: 'YAZZIE'
+version: '1.1'
+release: 1
+summary: 'Yazzie. Arcade game.'
+author: 'Retrosouls'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Unknown'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'http://www.retrosouls.net/?page_id=957'
+description: |
+  Help the gold seeker collect all the gold from the strange mansion, whilst avoiding the enemies.
+  Collect pickaxes to dig through the brick floors.
+  
+  Good Luck!
+installdir: '\YAZZIE'
+files:
+  - yazzie.zip: 'http://www.retrosouls.net/msx/yazzie.zip'
+build: |
+  mkdir -p package/
+  unzip yazzie.zip
+  mv yazzie/* package/
+  cat > package/YAZZIE.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM YAZZIE.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM YAZZIE.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/YAZZIE.BAT
+changelog: |
+  - 1.0-1 2019-12-16
+    - First release
