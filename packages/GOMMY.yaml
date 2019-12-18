@@ -10,7 +10,7 @@ category: 'Games'
 system: 'MSX'
 requirements:
   - 'ROM'
-url: 'http://retroworks.es/php/game.php?id=2'
+url: 'http://retroworks.es/php/game_en.php?id=2'
 description: |
   In the medieval age wars used to be a routine and in Gommyland castle, everything was ready for the enemy invasion. The kingdom was at stake, and at dawn the enemy armies stood in front of the wall. Gommy took his armor and got ready to defend the place together with his mates... but everything wasn't so easy: his superiors, the king, vassals, servants and soldiers had disappeared.
   
