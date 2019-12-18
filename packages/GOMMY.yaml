@@ -1,0 +1,63 @@
+---
+name: 'GOMMY'
+version: '1.00'
+release: 1
+summary: 'Gommy, Defensor Medieval'
+author: 'Retroworks'
+package_author: 'Fernando García'
+license: 'Unknown'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'http://retroworks.es/php/game.php?id=2'
+description: |
+  In the medieval age wars used to be a routine and in Gommyland castle, everything was ready for the enemy invasion. The kingdom was at stake, and at dawn the enemy armies stood in front of the wall. Gommy took his armor and got ready to defend the place together with his mates... but everything wasn't so easy: his superiors, the king, vassals, servants and soldiers had disappeared.
+  
+  He looked everywhere for them but the battle was about to start. What to do? Finally, he decided to start the battle and beat everyone who dared to climb the high and imposing walls of the castle.
+
+  Will you help him in his mission?  
+  
+  #### GAME OBJECTIVE 
+
+  Your mission is to repel the enemy attack dropping objects from the top of the wall. First you must take an object from one of the sides of the screen, aim and drop. 
+
+  Whatever happens, try at all cost not to let any enemy soldier reach the top of the wall, and don't let any sharp object hit Gommy.   
+  
+  #### Credits
+  
+  * Original concept: Fco. Javier Velasco (Pagantipaco)
+  * Programming: José Vila Cuadrillero (ZilogZ80a)
+  * Graphics: Francisco Javier Wiz Gil (NeneFranz)
+  * Sound engine, music and SFXs: José Vicente Masó (WYZ)
+  * English Translation & Optimizations: Jaime Tejedor (Metalbrain)
+  * Betatesting: Javier Peña (Utopian), Jaime Tejedor (Metalbrain), Manuel Pazos (Guillian), Fran. J. Loscos (Metr), Pablo Pallarés (Pablibiris).
+installdir: '\GOMMY'
+files:
+  - RW005-Gommy-Medieval-Defender-CE-MSX.zip: 'http://retroworks.es/upload/RW005-Gommy-Medieval-Defender-CE-MSX.zip'
+build: |
+  mkdir -p package/
+  unzip RW005-Gommy-Medieval-Defender-CE-MSX.zip
+  mv 'RW005-Gommy-Medieval-Defender-CE-MSX/RW005 - Gommy MD-CE_MSX.rom' package/GOMMY48.rom
+  mv 'RW005-Gommy-Medieval-Defender-CE-MSX/Instrucciones.txt' package/leeme.txt
+  mv 'RW005-Gommy-Medieval-Defender-CE-MSX/Instructions.txt' package/readme.txt
+  cat > package/GOMMY.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM /Z1 GOMMY48.rom
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM /Z1 GOMMY48.rom
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/leeme.txt
+  unix2dos package/readme.txt
+  unix2dos package/GOMMY.BAT
+changelog: |
+  - 1.0.0-1 2019-12-17
+    - First release
