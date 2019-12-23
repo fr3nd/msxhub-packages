@@ -1,0 +1,52 @@
+---
+name: 'STRAYCAT'
+version: '1.00'
+release: 1
+summary: 'Stray Cat game'
+author: 'Imanok'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Unknown'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'http://imanok.msxblue.com/games.html'
+description: |
+  I'm Flash, the fastest cat in the city. I've spent the day wandering around with my friends, looking for some food and having fun... but I've suddenly remembered I have a date with Iris, the cutest kitty at downtown!!
+
+  I'm already late and I have a long way to go... I'll show you why they call me Flash!!
+
+  ## HOW TO PLAY
+
+  Run and jump between the buildings, avoiding the obstacles you may find on your way, until you reach the house where Iris lives.
+
+  Flash has 7 lives, as all cats have, and he will inevitably loose one by receiving an impact or falling from a building. Luckily, he can recover a lost life by getting a can of fish.
+
+  He needs to be really fast if he wants to get to the date on time... so if he hits an obstacle and gets out of the screen, he will have to restart the current stage from the beginning.
+installdir: '\STRAYCAT'
+files:
+  - sc.zip: 'http://imanok.msxblue.com/files/sc.zip'
+build: |
+  mkdir -p package/
+  unzip sc.zip
+  mv straycat.rom package/STRAYCAT.ROM
+  mv straycat_manual.txt package/readme.txt
+  cat > package/STRAYCAT.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM /Z1 STRAYCAT.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM /Z1 STRAYCAT.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/readme.txt
+  unix2dos package/STRAYCAT.BAT
+changelog: |
+  - 1.0.0-1 2019-12-24
+    - First release
