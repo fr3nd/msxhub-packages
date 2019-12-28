@@ -1,0 +1,51 @@
+---
+name: 'TWINLIGH'
+version: '1.0'
+release: 1
+summary: 'Twinlight. Puzzle game.'
+author: 'Retrosouls'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Unknown'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'http://www.retrosouls.net/?page_id=957'
+description: |
+  The idea of each screen is to destroy all enemy pods and direct
+  the laser beam into the receiver. To actually direct the beam
+  you can use a mirrors by draging it over a screen.
+  
+  Good Luck!
+  
+  Game by Denis Grachev inspired on Deflektor game written by Costa Panayi
+  Music by Oleg Nikitin
+  Some tunes based on original theme by Ben Daglish
+  Beta test by Maxim Nikitin
+installdir: '\TWINLIGH'
+files:
+  - twinlight.zip: 'http://www.retrosouls.net/msx/twinlight.zip'
+build: |
+  mkdir -p package/
+  unzip twinlight.zip
+  mv twinlight/* package/
+  mv package/twinlight.rom package/TWINLIGH.ROM
+  cat > package/TWINLIGH.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM TWINLIGH.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM TWINLIGH.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/TWINLIGH.BAT
+  unix2dos package/readme.txt
+changelog: |
+  - 1.0-1 2019-12-28
+    - First release
