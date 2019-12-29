@@ -1,6 +1,6 @@
 ---
 name: 'SOFARUN'
-version: '5.0'
+version: '6.0'
 release: 1
 summary: 'SofaRun is an MSX tool designed to run disk, cassette and cartridge images.'
 author: 'Louthrax'
@@ -24,6 +24,8 @@ build: |
   rm -f sofarun.zip
   mv * package/
 changelog: |
+  - 6.0 2019-12-29
+    - SofaRun v6.0 released
   - 5.0 2019-05-12
     - SofaRun v5.0 released
   - 4.0 2019-03-02
