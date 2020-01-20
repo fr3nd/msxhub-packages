@@ -1,0 +1,56 @@
+---
+name: 'WDW'
+version: '1.0'
+release: 1
+summary: 'Who Dares Wins game remake for MSX2'
+author: 'Retroforce'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Unknown'
+category: 'Games'
+system: 'MSX2'
+requirements:
+  - 'ROM'
+  - 'SCC'
+url: 'https://retroforce2016.tumblr.com/'
+description: |
+  Who Dares Wins II is a run and gun game developed and published by Alligata Software and released in 1985 for the Commodore 64, as well as the Amstrad CPC, Atari 8-bit family, BBC Micro, Commodore 16, Plus/4, MSX, and ZX Spectrum. This version is an MSX2 remake released in 2017 by Retroforce adding many improvements and extras. 
+  
+  These are the main requirements and extras:
+  
+  *  MSX2, MSX2+ and MSX Turbo R (also OCM and clones).
+  *  256KB Konami SCC MegaROM.
+  *  SCC sound.
+  *  Graphics completely redesigned in Screen 5 mode.
+  *  Remake true to the original MSX1 version (map).
+  *  2 players mode.
+  *  Visual stages between missions.
+  *  3 levels of difficulty.
+  *  English texts.
+  
+  The game was made publicly available in the 56 RUMSX in Barcelona. A physical edition can be purchased in https://www.msxcartridgeshop.com/
+installdir: '\WDW'
+files:
+  - wdw.zip: 'https://docs.google.com/uc?export=download&id=1dApTKWwViteXfKdzFvL8dD4BWzwXhu8E'
+build: |
+  mkdir -p package/
+  unzip wdw.zip
+  mv 'ManualWDW 20161005.pdf' package/LEEME.PDF
+  mv 'Who dares wins (MSX2) (RETROFORCE).rom' package/WDW.ROM
+  cat > package/WDW.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM WDW.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM WDW.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/WDW.BAT
+changelog: |
+  - 1.0-1 2020-01-20
+    - First release
