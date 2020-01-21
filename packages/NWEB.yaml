@@ -1,7 +1,7 @@
 ---
 name: 'NWEB'
 version: '1.0'
-release: 1
+release: 2
 summary: 'NestorWeb, Web server for MSX with support for CGI scripts'
 author: 'Nestor Soriano (Konamiman)'
 package_author: 'Carles Amigó (fr3nd)'
@@ -60,5 +60,7 @@ build: |
   unix2dos LICENSE.TXT
   mv LICENSE.TXT package/
 changelog: |
+  - 1.0-2 2020-01-21
+    - Adding README and LICENSE files
   - 1.0-1 2020-01-21
     - First release
