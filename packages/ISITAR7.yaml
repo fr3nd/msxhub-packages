@@ -1,0 +1,41 @@
+---
+name: 'ISITAR7'
+version: '1.0'
+release: 1
+summary: 'Isitar 7. Puzzle game like the classic Lemmings game.'
+author: 'N.I'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Unknown'
+category: 'Games'
+system: 'MSX'
+requirements: []
+url: 'https://pigmhall.itch.io/isitar-7'
+description: |
+  Isitar 7 is a puzzle game for MSX.
+  Your object is to guide the 100 mice to the exit.
+  You can assign the following skills to the mouse.
+  * Climb: climb a wall
+  * Parachute: use a parachute when falling
+  * Bomb: explode and destroy surrounding blocks
+  * Stop: stop moving
+  * Ladder: make a ladder
+  * Dig 1: dig sideways
+  * Dig 2: dig diagonally down
+  * Dig 3: dig down
+  * Back: return to the title screen
+installdir: '\ISITAR7'
+files:
+  - isitar7.zip: 'http://ni.10-59.com/zip/isitar7.zip'
+build: |
+  mkdir -p package/
+  unzip isitar7.zip
+  mv isitar7.bas package/
+  mv isitar7.bin package/
+  mv readme.txt package/
+  cat > package/ISITAR7.BAT << EOF
+  BASIC ISITAR7.BAS
+  EOF
+  unix2dos package/ISITAR7.bat
+changelog: |
+  - 1.0-1 2019-12-16
+    - First release

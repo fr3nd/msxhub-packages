@@ -1,0 +1,44 @@
+---
+name: 'FMPCM'
+version: '1.0'
+release: 1
+summary: 'Plays back PCM files on the YM2413 OPLL MSX-MUSIC sound chip.'
+author: 'Laurens Holst (grauw)'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'BSD-2-Clause'
+category: 'Sound'
+system: 'MSX2'
+requirements:
+  - 'MSX-DOS2'
+  - 'MSX-MUSIC'
+url: 'http://www.grauw.nl/projects/fmpcm/'
+description: |
+  This player plays 15.7 kHz or 7.85 kHz PCM on the MSX-MUSIC. The PCM file must
+  be 8-bit raw PCM data at one of the aforementioned frequencies. By default the
+  file is interpreted signed, but there is an option to provide unsigned data.
+  Since 15.7 kHz requires nearly 1 MB per minute, you do need sufficient memory
+  to fit the sample. If the sample doesn’t fit it will be truncated.
+  
+  It works by forcing the phase generator to hold on a specified phase using test
+  register bit 2. This allows it to index into the sine table and produce
+  accurate near 8-bit sample playback with a simple inverse lookup table.
+  
+  The playback is timed by synchronizing to the VDP line drawing frequency, which
+  provides a good high-frequency timer on MSX2 that is CPU speed independent.
+  Additionally it lets us render a nice visualisation during playback.
+installdir: '\FMPCM'
+files:
+  - fmpcm.zip: 'http://www.grauw.nl/projects/fmpcm/fmpcm-1.0.zip'
+  - hitbit.raw: 'https://msxhub.com/static/hub/img/hitbit.raw'
+build: |
+  mkdir -p package/
+  unzip fmpcm.zip
+  mv fmpcm.com package/
+  unix2dos LICENSE
+  mv LICENSE package/
+  unix2dos README.md
+  mv README.md package/
+  mv hitbit.raw package/
+changelog: |
+  - 1.0-1 2020-01-13
+    - First release

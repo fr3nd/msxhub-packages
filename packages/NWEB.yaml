@@ -1,0 +1,66 @@
+---
+name: 'NWEB'
+version: '1.0'
+release: 2
+summary: 'NestorWeb, Web server for MSX with support for CGI scripts'
+author: 'Nestor Soriano (Konamiman)'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'MIT'
+category: 'Internet'
+system: 'MSX'
+requirements:
+  - MSX-DOS2
+url: 'https://github.com/Konamiman/NestorWeb'
+description: |
+  NestorWeb is a web server for MSX computers, with support for CGI scripts. As simple as that.
+  
+  System requirements are:
+  
+  * MSX computer running MSX-DOS 2 or [Nextor](https://github.com/Konamiman/Nextor).
+  * TCP/IP UNAPI implementation with support for passive TCP connections.
+  
+  ## Features and limitations
+  
+  The good:
+  
+  * Static content: serves files stored in the local filesystem.
+    * `GET` and `HEAD` verbs supported.
+    * Sends `Last-Modified` header as part of the response and honors the `If-Modified-Since` header if present in the request (provided that the file has a valid last modification date).
+    * Sends files as attachments (with a `Content-Disposition: attachment` header) if `?a=1` is added to the request.
+    * Requests containing `..` are rejected for security (so that files outside of the base directory aren't accessible)
+  * Directory listings: when a directory is requested is sends a list of the contained files .
+    * Disabled by default, must be enabled via command line.
+    * Sent with a `Cache-Control` header specifying a cache duration of 1 hour.
+    * If a request for a directory doesn't end with `/` it sends a `308 Moved Permanently` response to the same location ending with `/`, this is necessary so that relative links to files within the directory render correctly in browsers.
+  * Default document: serves the `INDEX.HTM` file if a directory is requested (only if directory listings are disabled).
+  * Basic authentication support.
+  * Runs CGI scripts following [the CGI 1.1 specification](https://tools.ietf.org/html/rfc3875). See the [CGI development guide](CGI.md) for details.
+  
+  The not-so-good:
+  
+  * Serves only one client at the same time.
+  * No MIME types for static content, `Content-Type` is never sent when serving files.
+  * Absolutely no support for text encodings. I have no idea of what will happen when requesting a file with a non-ASCII name.
+  * Maximum HTTP request line length supported is 256 bytes, longer request lines will be rejected.
+  * Maximum header length supported is 256 bytes, longer headers will be truncated.
+  * Basic authentication support... but with one single set of credentials. CGI scripts can handle authentication by themselves, though.
+installdir: '\NWEB'
+files:
+  - cgi-bin.zip: 'https://github.com/Konamiman/NestorWeb/releases/download/v%VERSION%/cgi-bin.zip'
+  - nweb.com: 'https://github.com/Konamiman/NestorWeb/releases/download/v%VERSION%/nweb.com'
+  - README.MD: 'https://raw.githubusercontent.com/Konamiman/NestorWeb/v%VERSION%/README.md'
+  - LICENSE.TXT: 'https://raw.githubusercontent.com/Konamiman/NestorWeb/v%VERSION%/LICENSE.txt'
+build: |
+  mkdir -p package/
+  unzip cgi-bin.zip
+  mv nweb.com package/
+  mv cgi-bin package/
+  unix2dos README.MD
+  mv README.MD package/
+  unix2dos LICENSE.TXT
+  mv LICENSE.TXT package/
+changelog: |
+  - 1.0-2 2020-01-21
+    - Adding README and LICENSE files
+  - 1.0-1 2020-01-21
+    - First release

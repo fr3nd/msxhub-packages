@@ -1,0 +1,95 @@
+---
+name: 'VECTROID'
+version: '1.0'
+release: 1
+summary: 'Vectroids: A strategy game for a the new decade.'
+author: 'norakomi'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Unknown'
+category: 'Games'
+system: 'MSX2'
+requirements:
+  - 'ROM'
+url: 'https://www.msx.org/downloads/vectroids'
+description: |
+  A strategy game ported to the MSX computers.
+  
+  ## Instructions
+  
+  ### Send
+  
+  Press send to send the vectroids.
+  The goal is to kill them all before they reach the end of the path.
+  
+  ### Auto
+  
+  Press auto to automatically send new vectroids every level
+  
+  ### Towers
+  
+  Place towers alongside the path to attack the vectroids.
+  
+  Green towers give bonus damage to green vectroids, but give reduced damage to red vectroids.
+  Red towers give bonus damage to red vectroids, but give reduced damage to green vectroids.
+  Purple towers give bonus damage to purple vectroids, but give reduced damage to blue vectroids.
+  Blue towers give bonus damage to blue vectroids, but give reduced damage to purple vectroids.
+  
+  Towers in play can be sold for 80% of their value.
+  Towers in play can be upgraded for 50% of their initial purchase cost. when upgraded
+  Their range and damage increases.
+  
+  ### Bank
+  
+  your current money. gain money by killing vectroids
+  
+  ### Interest
+  
+  Starting from level 2 you gain interest over the money you have in the bank when you send in a new wave of vectroids.
+  
+  Example: your interest is 5% -> you have $1000 -> you press send -> you gain $50
+  
+  With this said is it always better to first send the vectroids to collect interest, and only then start building towers.
+  
+  ### Next
+  
+  In the rightbottom of the screen you see which vectroids will come next, their hp
+  and how much money you gain when killing them.
+  
+  ### Bonus
+  
+  When gaining a bonus you unlock 3 special towers:
+  
+  * power booster: place this near your towers to boost their damage by 25%
+  * range booster: place this near your towers to boost their range by 25%
+  * interest booster: increase your interest by 5%
+  
+  At the end of each world you take 1/8 of your total worth to the next world.
+  
+  Your total worth is you current money + value of all your towers.
+installdir: '\VECTROID'
+files:
+  - vectroids.zip: 'https://www.msx.org/download/download/2019/12/vectroids.zip'
+build: |
+  mkdir -p package/
+  unzip vectroids.zip
+  mv 'vectroids/Vectroids Manual.txt' package/README.TXT
+  mv vectroids/vectroids.rom package/VECTROID.ROM
+  cat > package/VECTROID.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM VECTROID.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM VECTROID.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/VECTROID.BAT
+  unix2dos package/README.TXT
+changelog: |
+  - 1.0-1 2020-01-03
+    - First release
