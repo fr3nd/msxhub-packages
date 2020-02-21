@@ -1,0 +1,45 @@
+---
+name: 'VJSX'
+version: '0.9.9.6b'
+release: 1
+summary: 'veejingSX is a software for visual effects interpretation for music sessions'
+author: 'aorante'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'GPL-3.0'
+category: 'Graphics'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://code.google.com/archive/p/veejingsx/'
+description: |
+  This software, creates different visual effects in realtime (vjing), with 8bit
+  style. Contains different types of background noise, screens and animations of
+  tiles, scrolltext and sprite animations.
+
+installdir: '\VJSX'
+files:
+  - veejingSX.zip: 'https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/veejingsx/veejingSX_V0996b_ROM__clubsprite_chiptunestageV6.zip'
+build: |
+  mkdir -p package/
+  unzip veejingSX.zip
+  mv veejingSX_v0.996b_eng.TXT package/README.TXT
+  mv VJSX0996.ROM package/
+  cat > package/VJSX.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM VJSX0996.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM VJSX0996.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/VJSX.BAT
+  unix2dos package/README.TXT
+changelog: |
+  - 2020-02-21 0.9.9.6b-1
+    - First release
