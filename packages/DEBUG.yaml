@@ -1,0 +1,53 @@
+---
+name: 'DEBUG'
+version: '0.52rc1'
+release: 1
+summary: 'MSX DOS Debugger inspired to msdos DEBUG.EXE.'
+author: 'Emily Fiorentini'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'GPL-3.0'
+category: 'Programming'
+system: 'MSX'
+requirements:
+  - 'MSX-DOS'
+url: 'https://gitlab.com/Emily82/debugger-debug.com-for-msx'
+description: |
+  # Debugger DEBUG.COM for MSX
+  
+  Msx DOS Debugger inspired to msdos DEBUG.EXE. This software is a code resurrect from old project in 1993.
+  
+  Thanks to [Ariakirasoft](http://www.kawa.net/msx/download-e.html) for releasing source code and to Guyver800 from #msxdev for his support and suggestions.
+  
+  **What has been done**
+  
+  I implemented the assemble command that was missing in original software, then i fixed various bugs in disassembly and added support for R800 IXH,IXL,IYH,IYL registers.
+  R800 MULUB and MULUW instructions are supported!
+  
+  To fill data use 'DB' for bytes and 'DW' for words. You can use strings so DB 'Test',13,10 works!
+  I added also another data fill instruction, 'DS'.
+  Example: DS 'A',0A
+  
+  It will fill memory with 10 'A' characters.
+  
+  **Notes**
+  
+  For 'IN' and 'OUT' instructions, if your port is 'C' (hex number) its mandatory to use 2 digits to avoid ambiguity with the instructions using (C) register.
+  
+  Example:
+  
+  `IN A,(C)` means **Read 1 byte from port in register C**
+  
+  `IN A,(0C)` means **Read 1 byte from port number C (port 12)**
+installdir: '\DEBUG'
+files:
+  - debug.tar.gz: 'https://gitlab.com/Emily82/debugger-debug.com-for-msx/uploads/00e1d720f6f1497a0b406cd33855b5e9/debug0.52RC1.tar.gz'
+  - README.md: 'https://gitlab.com/Emily82/debugger-debug.com-for-msx/-/raw/master/README.md'
+build: |
+  mkdir -p package/
+  tar xvzf debug.tar.gz
+  mv debug.com package/
+  unix2dos README.md
+  mv README.md package/
+changelog: |
+  - 0.52rc1-1 2020-02-25
+    - First release
