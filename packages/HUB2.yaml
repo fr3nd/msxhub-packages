@@ -1,0 +1,64 @@
+﻿---
+name: 'HUB2'
+version: '0.70.0'
+release: 1
+summary: 'MSX HUB Client for MSX2 that has a friendly user interface'
+author: 'Oduvaldo Pavan Junior'
+package_author: 'Oduvaldo Pavan Junior'
+license: 'GPL-3.0'
+category: 'Internet'
+system: 'MSX2'
+requirements:
+  - 'MSX-DOS2'
+url: 'https://github.com/ducasp/MSX-Development/tree/master/UNAPI/HUB2'
+description: |
+  This is a MSX HUB client that has a few advantages over the command line
+  client version of MSX HUB by fr3nd:
+  
+  - It has an intuitive user interface, so you do not need to keep calling
+    HUB several times (one to list groups, another to list packages in that
+    group, another to install)
+  
+  - It is fully compatible with HUB (but it doesn't use HUB.COM, it is a
+    stand-alone application), so, if you install it in the same folder you
+    have HUB.COM installed, you are good to go from where you left, no need
+    to uninstall or re-install anything :) You can use HUB at any time, all
+    information is compatible between both clients, so using HUB2 do not
+    require you to abandon HUB
+  
+  - It won't scroll over lines and lines of text over the screen when you
+    request info from a package. It will show the information page by page,
+    waiting your input when you want to continue reading (if the information
+    spans over more than one screen)
+  
+  - You don't have to input any command line option, just HUB2.COM
+  
+  There are a few trade-offs:
+  
+  - Search functionality of HUB command line client is not implemented
+  
+  - It supports up to 100 packages locally installed. If you have more than
+    100 packages it won't list anything over 100 in the Local Operations menu
+  
+  - It supports up to 25 groups being listed by MSX HUB. Anything over 25 
+    will not be listed (currently MSX HUB has 9 groups available), each group
+    name should not be over 16 characters long (currently the longest group
+    name is Programming, 11 characters long)
+  
+  - It supports up to 70 packages in each category, any package over 70 in a
+    given group won't be listed
+  
+  - A MSX2 or better is required
+  
+  - Hey, it is a brand new program, I've tested it, but HUB has been tested
+    way longer than this, so HUB2 might have bugs... Report them at my github
+    ( www.github.com/ducasp )
+installdir: '\HUB'
+files:
+  - HUB2.zip: 'https://github.com/ducasp/MSX-Development/raw/df39b2931d0472839d606fb045959f3c9ccd058f/UNAPI/HUB2/BINARY_PACK/HUB2.zip'
+build: |
+  mkdir -p package/
+  unzip HUB2.zip -d package
+changelog: |
+  - 0.70-1 2020-04-03
+    - First release
