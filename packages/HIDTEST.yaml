@@ -1,6 +1,6 @@
 ---
 name: 'HIDTEST'
-version: '3.0'
+version: '3.1'
 release: 1
 summary: 'Utility to test a Human Interface Devices.'
 author: 'FRS'
@@ -68,5 +68,7 @@ build: |
   rm -f HIDTEST.ZIP
   mv * package/
 changelog: |
+  - 3.1 2020-02-09
+    - Update to 3.1
   - 3.0 2019-05-12
     - First release
