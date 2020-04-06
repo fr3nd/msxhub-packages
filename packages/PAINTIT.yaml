@@ -1,0 +1,42 @@
+---
+name: 'PAINTIT'
+version: '1.0'
+release: 1
+summary: 'Paint it, a version of flood-it game for MSX'
+author: 'Giovanni Nunes'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'GPL-3.0'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - MSX-DOS
+url: 'https://crunchworks.itch.io/paint-it'
+description: |
+  This is a MSX version for flood-it game. In this game you have to "paint" a 16×16 blocks wall in one color. Use the following keys to choose a color:
+  
+  - B for Blue
+  - C for Cyan
+  - G for Green
+  - M for Magenta
+  - R for Red
+  - Y for Yellow
+  
+  Painting starts from upper left side, replacing all connected colors from this first block. By the way you have only 28 moves to complete this task.
+  
+  This is a simple game with a simple logic, written in SDCC and using some assembly for hardware access.
+  
+  For more details and source code visit its [git repository](https://github.com/plainspooky/paint-it-for-msx) on GitHub.
+installdir: '\PAINTIT'
+files:
+  - paintit.dsk: 'https://www.msx.org/download/download/2020/04/Paint-it%20(2020)%20(Crunchworks).dsk'
+build: |
+  mkdir -p package/
+  mkdir -p tmp/
+  mcopy -s -i paintit.dsk :: tmp/
+  mv tmp/LICENSE.TXT package/
+  mv tmp/MESSAGE.TXT package/
+  mv tmp/PAINT-IT.COM package/
+  rm -rf tmp/
+changelog: |
+  - 1.0-1 2020-04-06
+    - First release
