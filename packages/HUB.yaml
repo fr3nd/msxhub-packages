@@ -1,9 +1,9 @@
 ---
 name: 'HUB'
 version: '1.0.3'
-release: 1
+release: 2
 summary: 'Application to download and install software from the internet'
-author: 'Carles Amigó (fr3nd)'
+author: 'Carles Amigó (fr3nd) and Oduvaldo Pavan Junior (Ducasp)'
 package_author: 'Carles Amigó (fr3nd)'
 license: 'GPL-3.0'
 category: 'Internet'
@@ -12,14 +12,25 @@ requirements:
   - 'MSX-DOS2'
 url: 'https://msxhub.com'
 description: |
-    MSXHub is a MSX software installer. It can download and install packaged software from the internet directly into your MSX.
+  MSXHub is a MSX software installer. It can download and install packaged software from the internet directly into your MSX.
+  
+  This package contains two different clients:
+  * `HUB.COM`: Original command-line client.
+  * `HUBG.COM`: Graphical interface for MSX2 or greater.
 installdir: '\HUB'
 files:
   - hub.com: 'https://github.com/fr3nd/msxhub/releases/download/%VERSION%/hub.com'
+  - hubg.zip: 'https://github.com/ducasp/MSX-Development/raw/1a9c52babf0889f130c31a3efff0e86bdd4bd2fb/UNAPI/HUBG/BINARY_PACK/HUBG.zip'
 build: |
   mkdir -p package/
   mv hub.com package/
+  unzip hubg.zip
+  mv MANUAL.TXT package/HUBG.TXT
+  mv HUBG.com package/
 changelog: |
+  - 1.0.3-2 2020-04-07
+    - Adding HUBG 0.71 graphical interface!
+    - Improving package description
   - 1.0.3-1 2020-03-13
     - Upgrading to 1.0.3
   - 1.0.2-1 2019-05-12
