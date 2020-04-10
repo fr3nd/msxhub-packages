@@ -15,6 +15,7 @@ description: |
   MSXHub is a MSX software installer. It can download and install packaged software from the internet directly into your MSX.
   
   This package contains two different clients:
+  
   * `HUB.COM`: Original command-line client.
   * `HUBG.COM`: Graphical interface for MSX2 or greater.
 installdir: '\HUB'
