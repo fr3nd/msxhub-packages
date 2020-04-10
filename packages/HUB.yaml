@@ -1,7 +1,7 @@
 ---
 name: 'HUB'
-version: '1.0.3'
-release: 2
+version: '1.0.4'
+release: 1
 summary: 'Application to download and install software from the internet'
 author: 'Carles Amigó (fr3nd) and Oduvaldo Pavan Junior (Ducasp)'
 package_author: 'Carles Amigó (fr3nd)'
@@ -28,8 +28,9 @@ build: |
   mv MANUAL.TXT package/HUBG.TXT
   mv HUBG.com package/
 changelog: |
-  - 1.0.3-2 2020-04-10
-    - Adding HUBG 0.72 graphical interface!
+  - 1.0.4-2 2020-04-10
+    - Adding HUBG 0.72 graphical interface
+    - New release for HUB.COM now supporting Keepalive which will make downloading packages much faster thanks to Ducasp
     - Improving package description
   - 1.0.3-1 2020-03-13
     - Upgrading to 1.0.3
