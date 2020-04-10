@@ -1,0 +1,32 @@
+---
+name: 'MSXDIAG'
+version: '1.0.0'
+release: 1
+summary: 'MSX Diagnostics'
+author: 'knightfox'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'CC BY-NC'
+category: 'System'
+system: 'MSX'
+requirements: {}
+url: 'https://nightfoxandco.com/?page_id=787'
+description: |
+  MSX Diagnostics is a program to perform basic hardware diagnostics for the 88-bit MSX computers.
+installdir: '\MSXDIAG'
+files:
+  - msxdiag.7z: 'https://github.com/knightfox75/msx_diagnostics/releases/download/%VERSION%/msxdiag_%VERSION%.7z'
+build: |
+  mkdir -p package/
+  7z e msxdiag.7z
+  mv msxdiag.bin package/
+  mv readme.txt package/
+  mv changelog.txt package/changelo.txt
+  mv licence.txt package/license.txt
+  mcopy -s -i msxdiag.dsk ::AUTOEXEC.BAS package/AUTOEXEC.BAS
+  cat > package/MSXDIAG.BAT << EOF
+  basic AUTOEXEC.BAS
+  EOF
+  unix2dos package/MSXDIAG.BAT
+changelog: |
+  - 1.0.0 2020-04-10
+    - First release
