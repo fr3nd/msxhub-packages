@@ -1,0 +1,52 @@
+---
+name: 'DOTATK'
+version: '1.0'
+release: 1
+summary: 'Dot Attack game (MSXdev''20)'
+author: 'NOP'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Unknown'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://nopmsx.nl/dotattack/'
+description: |
+  The wild west is boiling with excitement as rival gunners from all over the world gather for a duel. The polished guns loaded with ammo are ready to go. Only the razor-sharp aiming of the best shooter can win the duel.
+  
+  ## Features
+  
+  * 3 Channel PSG music from renowned music composers
+  * Support for dual PSG
+  * Fast video access rendering engine
+  * Compatible with 8KB machines
+  * Simultaneous joystick and keyboard support.
+  * Support for dual Joyblock with bitpair communication.
+  
+  Released at Beuningen 2020.
+  
+  * [User manual](https://nopmsx.nl/download/dotattack/DotAttack%20Usermanual.pdf)
+installdir: '\DOTATK'
+files:
+  - DOTATK.ROM: 'https://nopmsx.nl/download/dotattack/dotatk.rom'
+build: |
+  mkdir -p package/
+  mv DOTATK.ROM package/
+  cat > package/DOTATK.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM DOTATK.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM DOTATK.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/DOTATK.BAT
+changelog: |
+  - 1.0-1 2020-02-06
+    - First release

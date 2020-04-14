@@ -1,0 +1,39 @@
+---
+name: 'MAG'
+version: '1.0.0'
+release: 1
+summary: 'Mag the magician game'
+author: 'Radastan'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Unknown'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'http://www.bytemaniacos.com/?page_id=3453'
+description: |
+  In the village of Telerin the wise rule, the wise can do magic, and only they have the recognition. But Mag is not a wise man, and they will not let him be unless he recovers the five pages of the great book of spells. Two pages are kept by the wise, two were stolen by the orcs, and one was lost. Recover the pages and you can be a wise person in the eyes of the elderly. Beware of the pages in the hands of the orcs, one of them has the same orc king in person!
+installdir: '\MAG'
+files:
+  - mag.rom: 'http://www.bytemaniacos.com/ficheros/msx/mag_msx.rom'
+build: |
+  mkdir -p package/
+  mv mag.rom package/
+  cat > package/MAG.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM /Z1 MAG.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM /Z1 MAG.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/MAG.BAT
+changelog: |
+  - 1.0.0-1 2020-02-12
+    - First release

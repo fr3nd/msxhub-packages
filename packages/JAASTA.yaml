@@ -1,0 +1,44 @@
+---
+name: 'JAASTA'
+version: '1.1'
+release: 1
+summary: 'Jäästä game (MSXdev''20)'
+author: 'Uninteresting'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Unknown'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2020/02/27/msxdev20-02-jaasta/'
+description: |
+  A penguin must buy a present for another penguin, Paula. Of course, that requires money...
+  
+  Jäästä is a simple graphical text adventure (in English) for MSX1.
+installdir: '\JAASTA'
+files:
+  - jaasta.zip: 'https://www.msxdev.org/wp-content/uploads/2020/02/Jaasta-v%VERSION%.zip'
+build: |
+  mkdir -p package/
+  unzip jaasta.zip
+  mv jaasta.rom package/JAASTA.ROM
+  mv README.txt package/README.TXT
+  cat > package/JAASTA.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM JAASTA.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM JAASTA.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/JAASTA.BAT
+  unix2dos package/README.TXT
+changelog: |
+  - 1.1-1 2020-02-28
+    - First release

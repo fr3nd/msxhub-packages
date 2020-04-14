@@ -1,0 +1,25 @@
+---
+name: 'NMP'
+version: '2.0b'
+release: 1
+summary: 'NOP Mod Player'
+author: 'NOP'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Unknown'
+category: 'Sound'
+system: 'MSX'
+requirements:
+  - 'MSX-DOS2'
+  - 'OPL4'
+url: 'https://nopmsx.nl/nmp/'
+description: |
+  NOP MOD Player for OPL4 cartridges.
+installdir: '\NMP'
+files:
+  - nmp.com: 'https://nopmsx.nl/download/nmp/v2.0-beta/nmp.com'
+build: |
+  mkdir -p package/
+  mv nmp.com package/
+changelog: |
+  - 2.0-beta 2020-04-10
+    - First release
