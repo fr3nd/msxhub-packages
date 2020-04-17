@@ -59,6 +59,7 @@ description: |
   - For the prompt shell: just type the command and press enter. you can edit the command line using cursor keys or mouse click
   
   Don't forget to set alias in your autoexec.bat for file extensions like:
+  
   ```
   ALIAS .BAS = "BASIC "
   ALIAS .ROM = "ROMLOAD "
