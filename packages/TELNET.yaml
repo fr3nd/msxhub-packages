@@ -37,7 +37,7 @@ build: |
   mkdir -p package/
   unzip TELNET.zip -d package
 changelog: |
-  - 1.31.0-1 2020-04-20
+  - 1.31.0-1 2020-04-24
     - Version 1.31
   - 1.30.0-1 2020-04-15
     - Version 1.30
