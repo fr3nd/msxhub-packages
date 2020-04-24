@@ -1,7 +1,7 @@
 ---
 name: 'MEMMAN'
 version: '2.4'
-release: 1
+release: 2
 summary: "MSX Memory Manager MemMan"
 author: "MSX Software Team"
 package_author: 'Carles Amigó (fr3nd)'
@@ -61,7 +61,6 @@ description: |
   * sd
   * sftreset
   * shift
-  * shift
   * strace
   * teaser
   * tracer
@@ -71,11 +70,11 @@ description: |
   * yz
 installdir: '\MEMMAN'
 files:
-  - memman.zip: 'http://msx.hansotten.com/uploads/ffiles/memman24tsr.zip'
-  - msttracer.zip: 'http://msx.hansotten.com/uploads/ffiles/msttracer.zip'
-  - mstimprove.zip: 'http://msx.hansotten.com/uploads/ffiles/mstimprove.zip'
-  - mstjansi.zip: 'http://msx.hansotten.com/uploads/ffiles/mstjansi.zip'
-  - msttsrcol.zip: 'http://msx.hansotten.com/uploads/ffiles/msttsrcol.zip'
+  - memman.zip: 'https://hansotten.file-hunter.com/uploads/files/memman24tsr.zip'
+  - msttracer.zip: 'https://hansotten.file-hunter.com/uploads/files/msttracer.zip'
+  - mstimprove.zip: 'https://hansotten.file-hunter.com/uploads/files/mstimprove.zip'
+  - mstjansi.zip: 'https://hansotten.file-hunter.com/uploads/files/mstjansi.zip'
+  - msttsrcol.zip: 'https://hansotten.file-hunter.com/uploads/files/msttsrcol.zip'
   - 5060hz.tsr: 'http://www.msxarchive.nl/pub/msx/utils/memman/5060hz.tsr'
   - barcode.tsr: 'http://www.msxarchive.nl/pub/msx/utils/memman/barcode.tsr'
   - basicbrk.tsr: 'http://www.msxarchive.nl/pub/msx/utils/memman/basicbrk.tsr'
@@ -90,7 +89,6 @@ files:
   - mousor.tsr: 'http://www.msxarchive.nl/pub/msx/utils/memman/mousor.tsr'
   - numdiv.tsr: 'http://www.msxarchive.nl/pub/msx/utils/memman/numdiv.tsr'
   - sftreset.tsr: 'http://www.msxarchive.nl/pub/msx/utils/memman/sftreset.tsr'
-  - shift.tsr: 'http://www.msxarchive.nl/pub/msx/utils/memman/shift.tsr'
   - strace.tsr: 'http://www.msxarchive.nl/pub/msx/utils/memman/strace.tsr'
   - teaser.tsr: 'http://www.msxarchive.nl/pub/msx/utils/memman/teaser.tsr'
   - tsr.tsr: 'http://www.msxarchive.nl/pub/msx/utils/memman/tsr.tsr'
@@ -160,11 +158,13 @@ build: |
   mv mousor.tsr package/tsr
   mv numdiv.tsr package/tsr
   mv sftreset.tsr package/tsr
-  mv shift.tsr package/tsr
   mv strace.tsr package/tsr
   mv teaser.tsr package/tsr
   mv tsr.tsr package/tsr
   mv yz.tsr package/tsr
 changelog: |
+  - 2020-04-24 2.4-2
+    - Fix issue #35: duplicate shift.tsr file
+    - Updating download links to the hansotten mirror. Original URL is no longer working.
   - 2018-11-24 2.4-1
     - First release
