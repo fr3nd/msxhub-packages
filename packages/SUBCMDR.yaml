@@ -3,7 +3,7 @@ name: 'SUBCMDR'
 version: '1.0'
 release: 1
 summary: 'Subcommander game (MSXdev''20)'
-author: 'Zoran Majcenić'
+author: 'Zoran Majcenic'
 package_author: 'Carles Amigó (fr3nd)'
 license: 'Freeware'
 category: 'Games'
