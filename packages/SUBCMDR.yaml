@@ -1,0 +1,48 @@
+---
+name: 'SUBCMDR'
+version: '1.0'
+release: 1
+summary: 'Subcommander game (MSXdev''20)'
+author: 'Zoran Majcenić'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Freeware'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2020/04/28/msxdev20-03-subcommander/'
+description: |
+  Control a well-armed military submarine ready to sink as much enemy ships as you can before time runs out. But be careful, as some enemies will return fire and if they hit our submarine, we’ll be disabled for a couple of seconds.
+  
+  There are some ships that are neutral, which are to be avoided to shoot at, because if we do, there’s a penalty of losing points. However, we will get extra points (x2) if we shoot the ships marked with a red square. To mix things up a bit, there are platforms in the bottom of the screen that function as a shield: they block our torpedoes as well as enemy fire.
+  
+  This game can be played by one or two players, the later ofcourse providing double the fun. In the main menu, there are some options we can use to customize the game, as there’s number of players, type of control, and game duration.
+  
+  Finally, this game has a noteworthy feature; using Sony HBI-55 user allows us to save the highscore table.
+installdir: '\SUBCMDR'
+files:
+  - subcommander.zip: 'https://www.msxdev.org/wp-content/uploads/2020/04/msxdev20_subcommander_v%VERSION%.zip'
+build: |
+  mkdir -p package/
+  unzip subcommander.zip
+  mv SUBCMDR.ROM package/SUBCMDR.ROM
+  mv README.TXT package/README.TXT
+  cat > package/SUBCMDR.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM SUBCMDR.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM SUBCMDR.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/SUBCMDR.BAT
+  unix2dos package/README.TXT
+changelog: |
+  - 1.0-1 2020-04-29
+    - First release
