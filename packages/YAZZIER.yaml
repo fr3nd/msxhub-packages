@@ -1,0 +1,58 @@
+---
+name: 'YAZZIER'
+version: '1.0'
+release: 1
+summary: 'Yazzie MSX Remastered (MSXdev''20)'
+author: 'Retrosouls & FRS'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Freeware'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2020/05/23/msxdev20-04-yazzie-msx-remastered/'
+description: |
+  This is a remastered version of the game Yazzie that was originally released
+  for the ZX-Spectrum and MSX1. The list of improvements is somewhat long.
+  
+  The target in the game is to collect all of the gold blocks in every level screen while avoiding enemies and traps. Also, we can use picks to make our way by breaking the floor. Finally, there are dangerous mines laying about, so take caution of those.
+  
+  The initial first levels are quite easy – they are basically tutorials to get to know our character’s abilities, but after that everything turns out more and more difficult. 30 levels may not sound like much, but there is still quite some challenge in completing all of them.
+  
+  As the list of improvements is quite large, we’ll just point out the most remarkable:
+  
+  * 10 more levels added
+  * Redrawn sprites and different color palettes (MSX2 or higher)
+  * User can make custom levels and play them directly in the game
+  * Level load from disk
+  * Now fully compliant to the MSX coding guidelines and passes both AcidTests
+  * Severe bugfixing
+installdir: '\YAZZIER'
+files:
+  - yazzier.zip: 'https://www.msxdev.org/wp-content/uploads/2020/05/msxdev20_yazzie_msx_remastered_000.zip'
+build: |
+  mkdir -p package/
+  unzip yazzier.zip
+  unzip Yazzie_MSX_Remastered.zip
+  mv YAZZIER.ROM package/
+  unix2dos YAZZIER.TXT
+  mv YAZZIER.TXT package/
+
+  cat > package/YAZZIER.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM YAZZIER.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM YAZZIER.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/YAZZIER.BAT
+changelog: |
+  - 1.0-1 2020-05-23
+    - First release
