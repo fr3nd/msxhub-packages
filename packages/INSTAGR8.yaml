@@ -19,7 +19,6 @@ description: |
   MSX-DOS client of InstaGR8 server has the advantage of not needing GR8NET,
   working on ObsoNet, Denyonet, SM-X WiFi, GR8NET and any other adapter for
   MSX that is TCP-IP UNAPI Compliant.
-	
   As it doesn't rely on GR8NET specific API, it is not possible to show the
   picture as fast as original Glufke program does. This is because GR8NET
   simply store the whole image in its own buffer and then transfer directly
