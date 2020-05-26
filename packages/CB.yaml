@@ -1,0 +1,53 @@
+---
+name: 'CB'
+version: '1.0'
+release: 1
+summary: 'Cold Blood game'
+author: 'Paxanga Soft'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Unknown'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'http://paxangasoft.retroinvaders.com/games/cblood.html'
+description: |
+  As member of the elite corps [PACHOUND], your mission is to sneak into the [GHOST HEAVEN] fortress, eat all the blips that you'll find around, avoid the evil ghosts and get out of there as quick as possible.
+  
+  ## Your Mission
+  
+  Eating all the blips is not going to be easy with all those ghosts trying to kill you.
+  Use the objects spread around the map and your best tactics to advance into your mission. Get the Pows with precaution and confront the enemies only when you have a chance to win.
+  If you maintain cold blood, you can success and be a hero.
+  
+  ## About the Game
+  
+  Cold Blood is a crossover between the classic Pac-Man and Metal Gear. You need to eat all the blips on each level, but you need to avoid the ghosts, use objects and find your way out.
+installdir: '\CB'
+files:
+  - cb.zip: 'http://paxangasoft.retroinvaders.com/files/coldblood.zip'
+build: |
+  mkdir -p package/
+  unzip cb.zip
+  mv ColdBlood/cb.rom package/CB.ROM
+  mv ColdBlood/ColdBlood_manual.txt package/MANUAL.TXT
+
+  cat > package/CB.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM CB.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM CB.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/CB.BAT
+  unix2dos package/MANUAL.TXT
+changelog: |
+  - 1.0-1 2020-05-19
+    - First release
