@@ -1,0 +1,42 @@
+---
+name: 'INSTAGR8'
+version: '0.20.0'
+release: 1
+summary: 'Instagram Viewer UNAPI Compatible'
+author: 'Oduvaldo Pavan Junior'
+package_author: 'Oduvaldo Pavan Junior'
+license: 'GPL-3.0'
+category: 'Internet'
+system: 'MSX'
+requirements:
+  - 'MSX-DOS2'
+url: 'https://github.com/ducasp/MSX-Development/tree/master/UNAPI/INSTAGR8'
+description: |
+  This is an Instagram Viewer based on INSTAGR8 MSX Basic software that is a
+  client to Glufke's server. His server will translate instagram pictures 
+  into MSX1 Screen2 or MSX2 Screen 8 compatible images. Those images, along
+  with a few characters of the image description are shown on screen. This 
+  MSX-DOS client of InstaGR8 server has the advantage of not needing GR8NET,
+  working on ObsoNet, Denyonet, SM-X WiFi, GR8NET and any other adapter for
+  MSX that is TCP-IP UNAPI Compliant.
+  As it doesn't rely on GR8NET specific API, it is not possible to show the
+  picture as fast as original Glufke program does. This is because GR8NET
+  simply store the whole image in its own buffer and then transfer directly
+  to VRAM. Meanwhile, in this program case, it needs to handle all the HTTP
+  protocol to receive files, and fill the VRAM as it receives every 512 bytes
+  or 1024 bytes, depending on your adapter TCP-IP buffer. If we are talking
+  more specifically about Obsonet, then it is well known that it is not
+  capable of much more than a couple KB/s transfers, and a Screen 8 picture
+  is 53KB large, that means it will take quite a bit to finish a single image
+  On SM-X, that has a fully accelerated network stack, it is pretty fast,
+  taking a couple of seconds. Now, for MSX1 images, those have 12KB, so
+  loading times are faster.
+installdir: '\INSTAGR8'
+files:
+  - INSTAGR8.zip: 'https://github.com/ducasp/MSX-Development/raw/18de532a598729c55c7179abb3dda8c4851b1bc5/UNAPI/INSTAGR8/BINARY_PACK/INSTAGR8.zip'
+build: |
+  mkdir -p package/
+  unzip INSTAGR8.zip -d package
+changelog: |
+  - 0.20.0-1 2020-05-26
+    - First release
