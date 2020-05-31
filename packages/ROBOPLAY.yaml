@@ -1,0 +1,44 @@
+---
+name: 'ROBOPLAY'
+version: '1.0'
+release: 1
+summary: 'RoboPlay is a music player using the Yamaha YMF278B OPL4 soundchip'
+author: 'Marco Blom (ToriHino)'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Unknown'
+category: 'Sound'
+system: 'MSX2'
+requirements:
+  - 'MSX-DOS2'
+  - 'OPL4'
+url: 'https://gitlab.com/torihino/roboplay'
+description: |
+  RoboPlay is a multiformat music replayer for the MSX platform using the Yamaha YMF278B OPL4 soundchip. MSX-DOS2 is needed.
+  
+  It is written in C using [SDCC](http://sdcc.sourceforge.net/) and the [FUSION-C](https://www.msx.org/news/development/en/fusion-c-is-available) library.
+  
+  Currently the following file formats are supported:
+  - SOP: Note OPL3 Music Sequencer
+  - D00: EdLib packed module
+  - DRO: DOSBox Raw OPL v0.1 and v2.0
+  - RAW: Rdos Adlib Capture
+  - MOD: Amiga Module (up to 24 channels)
+  - VGM: Video Game Music
+  - IMF: iD Software Music Format (for .WLF extension 700Hz replay is used)
+  - MBM: MoonBlaster 1.4
+  - MUS: FAC SoundTracker 1.0, 2.0 and PRO
+  - PRO: Tyfoon Pro-Tracker
+installdir: '\ROBOPLAY'
+files:
+  - file.zip: 'http://torihino.nl/msx/roboplay_1.0.zip'
+  - README.md: 'https://gitlab.com/torihino/roboplay/-/raw/master/README.md'
+build: |
+  mkdir -p package/
+  unzip file.zip
+  mv roboplay.com package/
+  mv *.ply package/
+  unix2dos README.md
+  mv README.md package/
+changelog: |
+  - 1.0-1 2020-05-31
+    - First release
