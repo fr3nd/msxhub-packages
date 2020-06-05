@@ -5,7 +5,7 @@ release: 1
 summary: 'RoboPlay is a music player using the Yamaha YMF278B OPL4 soundchip'
 author: 'Marco Blom (ToriHino)'
 package_author: 'Carles Amigó (fr3nd)'
-license: 'Unknown'
+license: 'WTFPL'
 category: 'Sound'
 system: 'MSX2'
 requirements:
