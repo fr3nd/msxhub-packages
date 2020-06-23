@@ -34,5 +34,5 @@ build: |
   mv cas2tape.asm package/
   mv make.bat package/
 changelog: |
-  - 1-1 2020-06-23
+  - 1.1-1 2020-06-23
     - First release
