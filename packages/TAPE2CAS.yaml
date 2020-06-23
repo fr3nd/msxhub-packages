@@ -1,0 +1,38 @@
+---
+name: 'TAPE2CAS'
+version: '1.1'
+release: 1
+summary: 'Tools to generate CAS files from tapes and the other way around.'
+author: 'Martos'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Unknown'
+category: 'Tools'
+system: 'MSX'
+requirements:
+  - MSX-DOS
+url: 'https://cintasmsx.webcindario.com/'
+description: |
+  This package includes the following tools:
+  
+    * TAPE2CAS
+      * Reads a MSX tape and generates a CAS file out of it.
+    * CAS2TAPE
+      * Records a CAS file on tape.
+  
+  Sources included.
+installdir: '\TAPE2CAS'
+files:
+  - TAPE2CAS.LZH: 'http://msxcas.webcindario.com/TAPE2CAS.LZH'
+  - CAS2TAPE.LZH: 'http://msxcas.webcindario.com/CAS2TAPE.LZH'
+build: |
+  mkdir -p package/
+  lha x TAPE2CAS.LZH
+  lha xf CAS2TAPE.LZH
+  mv tape2cas.com package/
+  mv tape2cas.asm package/
+  mv cas2tape.com package/
+  mv cas2tape.asm package/
+  mv make.bat package/
+changelog: |
+  - 1-1 2020-06-23
+    - First release
