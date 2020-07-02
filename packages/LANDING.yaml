@@ -1,0 +1,45 @@
+---
+name: 'LANDING'
+version: '1.0'
+release: 1
+summary: 'Landing game (MSXdev''20)'
+author: 'Z80 Epoch'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Freeware'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2020/07/01/msxdev20-05-landing/'
+description: |
+  In this game, our mission is to guide one of them as it goes down the screen, using an umbrella as a parachute (remarkably, this specimen doesn’t seem to rely much on his cat superpower of landing safely from great heights).
+  
+  As you float towards the safe ground, be cautious of birds, because if they hit the umbrella the damage gauge will go up. If damage reaches 100%, the game will be over. If you want to descend faster, use the cursor down.
+  
+  Try to get the best score you can!
+installdir: '\LANDING'
+files:
+  - landing.zip: 'https://www.msxdev.org/wp-content/uploads/2020/07/msxdev20_landing_v1.0.zip'
+build: |
+  mkdir -p package/
+  unzip landing.zip
+  mv M.S.X.DEV20-LANDING-FILES/MSXDEV20-LANDING/Landing.ROM package/LANDING.ROM
+  mv M.S.X.DEV20-LANDING-FILES/MSXDEV20-LANDING/READ-ME.txt package/README.TXT
+  cat > package/LANDING.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM LANDING.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM LANDING.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/LANDING.BAT
+changelog: |
+  - 1.0-1 2020-07-02
+    - First release
