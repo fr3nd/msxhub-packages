@@ -1,6 +1,6 @@
 ---
 name: 'DOTATK'
-version: '1.0'
+version: '2.0'
 release: 1
 summary: 'Dot Attack game (MSXdev''20)'
 author: 'NOP'
@@ -28,10 +28,11 @@ description: |
   * [User manual](https://nopmsx.nl/download/dotattack/DotAttack%20Usermanual.pdf)
 installdir: '\DOTATK'
 files:
-  - DOTATK.ROM: 'https://nopmsx.nl/download/dotattack/dotatk.rom'
+  - dotatk.zip: 'https://www.msxdev.org/wp-content/uploads/2020/07/msxdev20_dot_attack_v.2.0.zip'
 build: |
   mkdir -p package/
-  mv DOTATK.ROM package/
+  unzip dotatk.zip
+  mv dotatk.rom package/
   cat > package/DOTATK.BAT << EOF
   REM Look for SROM.COM in default dir
   IFF EXIST %_DISK%:\SOFAROM\SROM.COM
@@ -48,5 +49,7 @@ build: |
   EOF
   unix2dos package/DOTATK.BAT
 changelog: |
+  - 2.0-1 2020-07-10
+    - Version 2.0
   - 1.0-1 2020-02-06
     - First release
