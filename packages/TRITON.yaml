@@ -1,6 +1,6 @@
 ---
 name: 'TRITON'
-version: '1.0'
+version: '1.0.2'
 release: 1
 summary: 'The Menace from Triton game (MSXdev''20)'
 author: 'Santi Ontañón'
@@ -37,7 +37,7 @@ description: |
   The ultimate goal is to reach the Triton home world and defeat Triton himself! In order to do this, you will have to conquer planet after planet, getting closer and closer to Triton. However, before that, you will have to find a way to cross Aigai Nebula!
 installdir: '\TRITON'
 files:
-  - TRITON.ROM: 'https://github.com/santiontanon/triton/releases/download/v1.0/triton.rom'
+  - TRITON.ROM: 'https://github.com/santiontanon/triton/releases/download/v%VERSION%/triton.rom'
   - README.MD: 'https://raw.githubusercontent.com/santiontanon/triton/master/README.md'
   - LICENSE: 'https://raw.githubusercontent.com/santiontanon/triton/master/LICENSE'
 build: |
@@ -63,5 +63,7 @@ build: |
   unix2dos package/README.MD
   unix2dos package/LICENSE
 changelog: |
+  - 1.0.2-1 2020-07-16
+    - Latest release: 1.0.2
   - 1.0-1 2020-07-13
     - First release
