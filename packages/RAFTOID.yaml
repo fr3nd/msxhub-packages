@@ -1,0 +1,73 @@
+---
+name: 'RAFTOID'
+version: '1.0'
+release: 1
+summary: 'Raftoid game (MSXdev''20)'
+author: 'Platty Soft'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Apache-2.0'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2020/07/18/msxdev20-10-raftoid/'
+description: |
+  # Raftoid
+  
+  The era and time of this story is mostly unknown.
+  After contact was lost with the mother ship "Arkanoid", a search and rescue ship "Raftoid" was sent
+  It took many years to arrive at the place, only to be warped in space too, just a little diffent this time
+  
+  # Intro
+  
+  Raftoid is an Arkanoid-style game written in MSX Basic
+  It is not fast enough to be run as-is, so it needs to be compiled with x-basic/MSX-Basic-Kun
+  
+  This directory has some examples of partial code and details.
+  
+  The actual version with all its files is in the `disk` directory, which is the one to be deplyed.
+  
+  Try the current version on WebMXS: https://webmsx.org/?DISK=https://github.com/plattysoft/MSX/raw/master/raftoid/Raftoid.dsk&MACHINE=MSX1E
+  
+  ## PowerUps:
+  
+  Current powerups:
+  
+  * Yellow ("Rich"): bricks give double points
+  * Blue ("Anchor"): ball sticks to the paddle
+  * Red ("Fireball"): ball gets through bricks
+  
+  ## Extra lives
+  
+  There are extra lives at
+  * 5000
+  * 10000
+  * 20000
+  * 40000
+  * 80000
+  ... and so on
+  
+  ## Levels
+  
+  There are 5 levels, once completed, the game cycles them again
+  
+  * Wall
+  * Face
+  * Diamond
+  * Arrow
+  * Wave
+  
+  There are 3 backgrounds, so to see each level with each background you need to reach Stage 15. After that point it just repeats.
+installdir: '\RAFTOID'
+files:
+  - RAFTOID.DSK: 'https://github.com/plattysoft/MSX/raw/e91e31fabe549e4fc28bbd26216327aa83cd061a/raftoid/Raftoid.dsk'
+build: |
+  mkdir -p package/
+  mcopy -s -i RAFTOID.DSK :: package/
+  cat > package/RAFTOID.BAT << EOF
+  basic AUTOEXEC.BAS
+  EOF
+  unix2dos package/RAFTOID.BAT
+changelog: |
+  - 1.0-1 2020-07-19
+    - First release
