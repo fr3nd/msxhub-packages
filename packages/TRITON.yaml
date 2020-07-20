@@ -1,6 +1,6 @@
 ---
 name: 'TRITON'
-version: '1.0.2'
+version: '1.1'
 release: 1
 summary: 'The Menace from Triton game (MSXdev''20)'
 author: 'Santi Ontañón'
@@ -38,8 +38,8 @@ description: |
 installdir: '\TRITON'
 files:
   - TRITON.ROM: 'https://github.com/santiontanon/triton/releases/download/v%VERSION%/triton.rom'
-  - README.MD: 'https://raw.githubusercontent.com/santiontanon/triton/master/README.md'
-  - LICENSE: 'https://raw.githubusercontent.com/santiontanon/triton/master/LICENSE'
+  - README.MD: 'https://raw.githubusercontent.com/santiontanon/triton/v%VERSION%/README.md'
+  - LICENSE: 'https://raw.githubusercontent.com/santiontanon/triton/v%VERSION%/LICENSE'
 build: |
   mkdir -p package/
   mv TRITON.ROM package/TRITON.ROM
@@ -63,6 +63,8 @@ build: |
   unix2dos package/README.MD
   unix2dos package/LICENSE
 changelog: |
+  - 1.1-1 2020-07-20
+    - Latest release: 1.1
   - 1.0.2-1 2020-07-16
     - Latest release: 1.0.2
   - 1.0-1 2020-07-13
