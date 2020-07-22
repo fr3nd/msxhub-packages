@@ -1,0 +1,66 @@
+---
+name: 'MUPLAY'
+version: '2.61'
+release: 1
+summary: 'MuPLAY music player which supports various music data'
+author: 'SAKA'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'GPL-2.0'
+category: 'Sound'
+system: 'MSX Turbo-R'
+requirements:
+  - 'MSX-DOS2'
+url: 'https://github.com/K-Sakanoshita/MuPlay'
+description: |
+  MuPLAY is a music player utility which supports various MSX-format music data.
+  
+  Following music drivers are supported.
+
+  MuPLAY boasts unique feature to support multiple sounds, from internal to MIDI sound modules.
+  
+  Supported drivers:
+  
+  - MuSICA (by ASCII. Use Kinrou 5th to play)
+  - Kinrou 5th (by Kuroda Keiichi; http://www.akari-house.net/~kk/)
+  - MPK (by K-KAZ; http://mu.ice.uec.ac.jp/~kokubun/xray/mpk.html)
+  - MIO (by Honshamae; http://member.nifty.ne.jp/Breeze/index.html)
+  - MGS (by Ain; http://www.gigamixonline.com/mgsdrv/)
+installdir: '\MUPLAY'
+files:
+  - MUPLAY.COM: 'https://github.com/K-Sakanoshita/MuPlay/raw/8e54173501c20c7f919c685080269eb60d395257/MUPLAY.COM'
+  - MUPLAY.BIN: 'https://github.com/K-Sakanoshita/MuPlay/raw/8e54173501c20c7f919c685080269eb60d395257/MUPLAY.BIN'
+  - README.ENG: 'https://github.com/K-Sakanoshita/MuPlay/raw/8e54173501c20c7f919c685080269eb60d395257/README.ENG'
+  - README.MD: 'https://github.com/K-Sakanoshita/MuPlay/raw/8e54173501c20c7f919c685080269eb60d395257/README.MD'
+  - mgsdr318.lzh: 'http://sakuramail.net/fswold/music/mgsdr318.lzh'
+  - kin5200.lzh: 'http://sakuramail.net/fswold/music/kin5200.lzh'
+  - mpk106.lzh: 'http://sakuramail.net/fswold/music/mpk106.lzh'
+build: |
+  mkdir -p package/
+  mkdir -p package/drvdocs
+  mv MUPLAY.COM package/
+  mv MUPLAY.BIN package/
+  mv README.ENG package/
+  mv README.MD package/
+  # MGSDRV.COM
+  lha x mgsdr318.lzh
+  mv mgsdrv.com package/
+  mv mgsdr318.doc package/drvdocs
+  # KINROU5.DRV
+  lha x kin5200.lzh
+  mv kinrou5.drv package/
+  mv kin5spec.txt package/drvdocs
+  mv kinrou5.txt package/drvdocs
+  mv kinrous.txt package/drvdocs
+  # MPK.BIN
+  lha x mpk106.lzh
+  mv mpk.bin package/
+  mv mpk-his.doc package/drvdocs
+  mv mpk106.doc package/drvdocs
+  mv mpk106.hed package/drvdocs
+  mv mpk106sp.doc package/drvdocs
+  mv mpkc106.doc package/drvdocs
+  # TODO Cannot find:
+  # MIO (by Honshamae; http://member.nifty.ne.jp/Breeze/index.html)
+changelog: |
+  - 2.61-1 2020-07-21
+    - First release
