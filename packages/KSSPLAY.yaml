@@ -22,15 +22,16 @@ description: |
   KSSPLAY <filename.KSS> [#NN]
   ```
   
-  #NN is a song number inside the KSS file (#00 - #FF)
-  System reguirements:
+  * #NN is a song number inside the KSS file (#00 - #FF)
+  
+  ## System reguirements:
   
   - Fast MSX
   - DOS2
   - at least 32Kb free memory at primary mapper.
   - at least 48Kb free memory at primary mapper to play songs with 16Kb mapper support (more memory = less swapping from disk)
   
-  Supported hardware:
+  ## Supported hardware:
   
   - Memory mapper 16K
   - PSG
