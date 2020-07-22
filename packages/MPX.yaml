@@ -1,0 +1,56 @@
+---
+name: 'MPX'
+version: '1.13'
+release: 1
+summary: 'MPX (MultiPlay-X) music replayer for MSX2 computers and higher'
+author: 'Takku!'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Unknown'
+category: 'Sound'
+system: 'MSX2'
+requirements: []
+url: 'http://www6.plala.or.jp/takkuweb/'
+description: |
+  MPX stands for MultiPlay-X. It's a music replayer for MSX2 computers and higher, and it enables you to play (MML-based) music files. Supported formats are OPX, BGM, MPK, MGS and BGR. The player comes with a neat interface for file-browsing.
+installdir: '\MPX'
+files:
+  - mpx.lzh: 'https://archive.org/download/MSXMAG2/MSXMAG2.iso/fsw%2FMPX113.LZH'
+  - mgsdr318.lzh: 'http://sakuramail.net/fswold/music/mgsdr318.lzh'
+  - kin5200.lzh: 'http://sakuramail.net/fswold/music/kin5200.lzh'
+  - mpk106.lzh: 'http://sakuramail.net/fswold/music/mpk106.lzh'
+  - opxdb101.lzh: 'http://sakuramail.net/fswold/music/opxdb101.lzh'
+build: |
+  mkdir -p package/
+  mkdir -p package/drvdocs
+  lha xw=package mpx.lzh
+
+  # MGSDRV.COM
+  lha x mgsdr318.lzh
+  mv mgsdrv.com package/
+  mv mgsdr318.doc package/drvdocs
+  # KINROU5.DRV
+  lha x kin5200.lzh
+  mv kinrou5.drv package/
+  mv kin5spec.txt package/drvdocs
+  mv kinrou5.txt package/drvdocs
+  mv kinrous.txt package/drvdocs
+  # MPK.BIN
+  lha x mpk106.lzh
+  mv mpk.bin package/
+  mv mpk-his.doc package/drvdocs
+  mv mpk106.doc package/drvdocs
+  mv mpk106.hed package/drvdocs
+  mv mpk106sp.doc package/drvdocs
+  mv mpkc106.doc package/drvdocs
+  # OPX.BIN
+  lha x opxdb101.lzh
+  mv OPXDB.BIN package/OPX.BIN
+  mv OPXDB.DOC package/drvdocs
+  mv OPXDB101.DOC package/drvdocs
+  mv OPXDB.HLP package/drvdocs
+  mv SETUP.BAS package/drvdocs
+  mv SETUP.CNF package/drvdocs
+  mv SETUP.DOC package/drvdocs
+changelog: |
+  - 1.13-1 2020-07-22
+    - First release
