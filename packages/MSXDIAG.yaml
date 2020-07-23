@@ -1,6 +1,6 @@
 ---
 name: 'MSXDIAG'
-version: '1.1.8'
+version: '1.2.0'
 release: 1
 summary: 'MSX Diagnostics'
 author: 'knightfox'
@@ -28,6 +28,8 @@ build: |
   EOF
   unix2dos package/MSXDIAG.BAT
 changelog: |
+  - 1.1.8 2020-07-23
+    - New relase 1.2.0
   - 1.1.8 2020-05-01
     - New relase 1.1.8
   - 1.0.0 2020-04-10
