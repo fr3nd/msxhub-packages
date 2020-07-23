@@ -1,0 +1,48 @@
+---
+name: 'BLOCKPUZ'
+version: '1.0'
+release: 1
+summary: 'BlockPuzzle game (MSXdev''20)'
+author: 'David "turbor" Heremans'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Unknown'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2020/07/21/msxdev20-12-blockpuzzle/'
+description: |
+  Puzzles, a good way to spend our spare time playing with our MSX computer. Here we have a new one that pretends to be casual but also give a good moments of entertainment.
+  
+  The mechanics are easy to learn but needs some time to master: place the blocks in the grid to fill the spaces. Use ‘M’ key or secondary button to switch between the three blocks available or move them using the cursor keys (or joystick) and confirm position by pressing space (or primary button).
+  
+  Once those pieces are in place, three new random pieces will appear and we must repeat the process. The aim of the game is to reach the highest score by placing pieces in the spots available. Once there’s no movement possible, the game is over.
+  
+  This game has different levels of difficulty so you can try each one to find the best that fits your skill level.
+  
+  According to its author, BlockPuzzle started as an attempt to create a simple one pixel smooth text scroller on MSX1 but then he got carried away. It was intended to be fitted in a 16KB ROM but finally because of the sound, it grew until 32KB by not using compression algorithms.
+installdir: '\BLOCKPUZ'
+files:
+  - blockpuz.zip: 'https://www.msxdev.org/wp-content/uploads/2020/07/msxdev20_blockpuzzle.zip'
+build: |
+  mkdir -p package/
+  unzip blockpuz.zip
+  mv blockpuz.rom package/BLOCKPUZ.ROM
+  cat > package/BLOCKPUZ.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM BLOCKPUZ.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM BLOCKPUZ.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/BLOCKPUZ.BAT
+changelog: |
+  - 1.0-1 2020-07-22
+    - First release
