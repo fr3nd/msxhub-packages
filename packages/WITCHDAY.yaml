@@ -1,0 +1,46 @@
+---
+name: 'WITCHDAY'
+version: '1.0'
+release: 1
+summary: 'Witch Day game (MSXdev''20)'
+author: 'José Soto Gándara (joesg)'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Freeware'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2020/07/23/msxdev20-14-witch-day/'
+description: |
+  Witch Day is an adventure that reminds Zelda and other games. Saying that, we play the role of old lady named Anabel that comes into the town to visit her grandaughter Ángela but something happened as she arrives… After a while, our character wakes up with his memory lost and then she starts looking for Ángela.
+  
+  Our mission is to find Ángela, so we should walk the whole town talking to people, getting objects to get further as we investigate what is going on here…
+  
+  We have three basic keys to use during the game: open doors, talk and do actions (push, take, search, etc.). It is important to pay attention to all the screens in order to find clues and directions to complete the adventure.
+installdir: '\WITCHDAY'
+files:
+  - witchday.zip: 'https://www.msxdev.org/wp-content/uploads/2020/07/msxdev20_witch_day.zip'
+build: |
+  mkdir -p package/
+  unzip witchday.zip
+  mv ENGLISH/WITCH_DAY.ROM package/WITCHDAY.ROM
+  mv ENGLISH/LICENSE.txt package/
+  cat > package/WITCHDAY.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM WITCHDAY.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM WITCHDAY.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/WITCHDAY.BAT
+  unix2dos package/LICENSE.txt
+changelog: |
+  - 1.0-1 2020-07-27
+    - First release
