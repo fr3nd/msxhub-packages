@@ -1,6 +1,6 @@
 ---
 name: 'MARTIANS'
-version: '1.0'
+version: '1.1'
 release: 1
 summary: 'Stupid Martians game (MSXdev''20)'
 author: 'Visualedu and Bitcaffe'
@@ -17,10 +17,9 @@ description: |
   The purpose of the game is to eliminate the three races of Martians who intend to invade Earth.
 installdir: '\MARTIANS'
 files:
-  - martians.zip: 'https://www.msxdev.org/wp-content/uploads/2020/07/msxdev20_stupid_martians.zip'
+  - sm.rom:  'https://docs.google.com/uc?export=download&id=15K4UbZU-DnrWhogBQN_0ojCcksNEuM6u'
 build: |
   mkdir -p package/
-  unzip martians.zip
   mv sm.rom package/MARTIANS.ROM
   cat > package/MARTIANS.BAT << EOF
   REM Look for SROM.COM in default dir
@@ -38,5 +37,7 @@ build: |
   EOF
   unix2dos package/MARTIANS.BAT
 changelog: |
+  - 1.1-1 2020-07-15
+    - New release
   - 1.0-1 2020-07-15
     - First release
