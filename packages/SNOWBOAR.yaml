@@ -1,0 +1,58 @@
+---
+name: 'SNOWBOAR'
+version: '1.01'
+release: 1
+summary: 'Relevo''s Snowboarding game (MSXdev''20)'
+author: 'Relevo Videogames'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Freeware'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://relevo.itch.io/snowboarding'
+description: |
+  ## The game
+  
+  This game is a love-letter to those early MSX games created by Konami in the mid 80s. Small and simple but with great playability, colorful graphics and catchy tunes.
+  
+  Every MSX lover out there remembers the great sport games, along with titles such as Hyper Rally, Road Fighter, Antarctic Adventure, Sky Jaguar and many others.
+  
+  That’s why we at Relevo decided to create this game as a humble tribute to Konami, trying to come up with a game featuring the same look and feel of those we still remember and play with a smile in our faces. We sincerely hope you enjoy playing Relevo’s Snowboarding.
+  
+  ## Story
+  
+  You are about to enter the Relevo Snowboarding World Championship all around the globe!
+  
+  The contest has a total of 16 stages - all of them beautiful and challenging circuits. Use your skills in this wild race against the clock while you master different styles and experience speed!
+  
+  Give a good read to the provided instruction manual for detailed information on controls and how to perform freestyle tricks!
+installdir: '\SNOWBOAR'
+files:
+  - snowboarding.zip: 'https://www.msxdev.org/wp-content/uploads/2020/07/msxdev20_relevos_snowboarding_v1.01.zip'
+build: |
+  mkdir -p package/
+  unzip snowboarding.zip
+  mv "RLV933_Relevo's_Snowboarding.rom" package/SNOWBOAR.ROM
+  mv _license.txt package/LICENSE.TXT
+  mv _readme.txt package/README.TXT
+  cat > package/SNOWBOAR.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM SNOWBOAR.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM SNOWBOAR.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/SNOWBOAR.BAT
+  unix2dos package/README.TXT
+  unix2dos package/LICENSE.TXT
+changelog: |
+  - 1.01-1 2020-07-29
+    - First release
