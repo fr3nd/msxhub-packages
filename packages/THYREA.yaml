@@ -1,0 +1,56 @@
+---
+name: 'THYREA'
+version: '1.0'
+release: 1
+summary: 'Chambers of Thyrea game (MSXdev''20)'
+author: 'Spacesugar'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Unknown'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2020/07/30/msxdev20-19-chambers-of-thyrea/'
+description: |
+  ## Chambers of Thyrea
+  
+  Enter the Chambers of Thyrea and search the golden treasure hidden into the labyrinth.
+  
+  Push the stones to open paths, avoid mines and use keys to open doors. Once you grab all diamonds, you can enter the exit to continue.
+  
+  In some later levels you will find teleports. Use it to send stones over them.
+  
+  Keys are, Cursor to move and ESC to suicide -you will use it often-
+  
+  While playing, in the upper side of screen, it will locate diamonds remaining, number of lives and the number of keys you are carrying. Down game zone there are four symbols. It’s the password of the level. You can enter it from the main menu.
+  
+  #Tips: Think before you move.
+  
+  This game is based on an old pc game called “Spych” written by Pawel Slawinski.
+  
+  Chambers of Thyrea coded by Spacesugar in christmas of 2019 and finished under covid-19 pandemia. Written to participate in msxdev competition.
+installdir: '\THYREA'
+files:
+  - thyrea.zip: 'https://www.msxdev.org/wp-content/uploads/2020/07/msxdev20_chambers_of_thyrea.zip'
+build: |
+  mkdir -p package/
+  unzip thyrea.zip
+  mv thyrea.rom package/THYREA.ROM
+  cat > package/THYREA.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM THYREA.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM THYREA.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/THYREA.BAT
+changelog: |
+  - 1.0-1 2020-07-31
+    - First release

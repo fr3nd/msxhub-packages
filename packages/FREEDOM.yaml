@@ -1,0 +1,42 @@
+---
+name: 'FREEDOM'
+version: '1.1'
+release: 1
+summary: 'Freedom Fighter game (MSXdev''20)'
+author: 'Geppo and Phaze101'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Unknown'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2020/07/30/msxdev20-18-pacificfreedom-fighter/'
+description: |
+  ## Freedom Fighter – Rise of The Humans
+  
+  Vertical shoot ''em up presented to the MSXdev''20
+installdir: '\FREEDOM'
+files:
+  - freedom.zip: 'https://www.msxdev.org/wp-content/uploads/2020/07/msxdev20_freedom_fighter.zip'
+build: |
+  mkdir -p package/
+  unzip freedom.zip
+  mv FreedomFighter.rom package/FREEDOM.ROM
+  cat > package/FREEDOM.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM FREEDOM.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM FREEDOM.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/FREEDOM.BAT
+changelog: |
+  - 1.1-1 2020-07-31
+    - First release

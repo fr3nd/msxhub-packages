@@ -1,0 +1,64 @@
+---
+name: 'FINDIT'
+version: '1.0'
+release: 1
+summary: 'Find It! game (MSXdev''20)'
+author: 'Fabf'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Unknown'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2020/07/31/msxdev20-20-find-it/'
+description: |
+  ## FIND IT ! - Fabf 2020
+  
+  FIND IT ! is a 16KB puzzle game written in 100% pure MSX basic.
+  Original game "WHERE IS IT" by Ricco59 for Colecovision.
+  
+  ### Rules
+  
+  Find the right pattern in the puzzle before 60 seconds.
+  Your points equal remaining time X10.
+  If you find pattern, time is refilled to 60 seconds.
+  Every 5 patterns found, refilled time decreases by 10 seconds up to 20 seconds.
+  
+  FIND IT ! have 4 difficulty level depending numbers of colors.
+  
+  ### Controls
+  
+  Use arrows keys to select pattern in the puzzle.
+  Space key to check.
+  
+  ### Bonus
+  
+  The game detect MSX frequency to adjust time speed.
+  The game also detect MSX version and switch to 60Hz for MSX2 and above.
+installdir: '\FINDIT'
+files:
+  - findit.zip: 'https://www.msxdev.org/wp-content/uploads/2020/07/msxdev20_find_it.zip'
+build: |
+  mkdir -p package/
+  unzip findit.zip
+  mv find_it!.rom package/FINDIT.ROM
+  mv read_me.txt package/README.TXT
+  cat > package/FINDIT.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM FINDIT.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM FINDIT.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/FINDIT.BAT
+  unix2dos package/README.TXT
+changelog: |
+  - 1.0-1 2020-07-31
+    - First release
