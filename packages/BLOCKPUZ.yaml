@@ -1,6 +1,6 @@
 ---
 name: 'BLOCKPUZ'
-version: '1.0'
+version: '1.2'
 release: 1
 summary: 'BlockPuzzle game (MSXdev''20)'
 author: 'David "turbor" Heremans'
@@ -23,7 +23,7 @@ description: |
   According to its author, BlockPuzzle started as an attempt to create a simple one pixel smooth text scroller on MSX1 but then he got carried away. It was intended to be fitted in a 16KB ROM but finally because of the sound, it grew until 32KB by not using compression algorithms.
 installdir: '\BLOCKPUZ'
 files:
-  - blockpuz.zip: 'https://www.msxdev.org/wp-content/uploads/2020/07/msxdev20_blockpuzzle.zip'
+  - blockpuz.zip: 'https://www.msxdev.org/wp-content/uploads/2020/07/msxdev20_blockpuzzle_v1.2.zip'
 build: |
   mkdir -p package/
   unzip blockpuz.zip
@@ -44,5 +44,7 @@ build: |
   EOF
   unix2dos package/BLOCKPUZ.BAT
 changelog: |
+  - 1.2-1 2020-08-05
+    - First release
   - 1.0-1 2020-07-22
     - First release

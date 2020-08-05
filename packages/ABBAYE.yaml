@@ -1,6 +1,6 @@
 ---
 name: 'ABBAYE'
-version: '1.1'
+version: '1.2'
 release: 1
 summary: 'Abbaye Des Morts game (MSXdev''20)'
 author: 'RetroDeluxe (Enric Geijo)'
@@ -47,5 +47,7 @@ build: |
   unix2dos package/README.MD
   unix2dos package/LICENSE
 changelog: |
+  - 1.2-1 2020-07-30
+    - Version 1.2
   - 1.1-1 2020-07-28
     - First release

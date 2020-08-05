@@ -1,6 +1,6 @@
 ---
 name: 'WITCHDAY'
-version: '1.0'
+version: '1.2'
 release: 1
 summary: 'Witch Day game (MSXdev''20)'
 author: 'José Soto Gándara (joesg)'
@@ -19,7 +19,7 @@ description: |
   We have three basic keys to use during the game: open doors, talk and do actions (push, take, search, etc.). It is important to pay attention to all the screens in order to find clues and directions to complete the adventure.
 installdir: '\WITCHDAY'
 files:
-  - witchday.zip: 'https://www.msxdev.org/wp-content/uploads/2020/07/msxdev20_witch_day.zip'
+  - witchday.zip: 'https://www.msxdev.org/wp-content/uploads/2020/07/msxdev20_witch_day_v1.2.zip'
 build: |
   mkdir -p package/
   unzip witchday.zip
@@ -41,6 +41,9 @@ build: |
   EOF
   unix2dos package/WITCHDAY.BAT
   unix2dos package/LICENSE.txt
+changelog: |
+  - 1.2-1 2020-07-27
+    - New release
 changelog: |
   - 1.0-1 2020-07-27
     - First release

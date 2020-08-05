@@ -1,6 +1,6 @@
 ---
 name: 'RAFTOID'
-version: '1.0'
+version: '1.1'
 release: 1
 summary: 'Raftoid game (MSXdev''20)'
 author: 'Platty Soft'
@@ -60,7 +60,7 @@ description: |
   There are 3 backgrounds, so to see each level with each background you need to reach Stage 15. After that point it just repeats.
 installdir: '\RAFTOID'
 files:
-  - RAFTOID.DSK: 'https://github.com/plattysoft/MSX/raw/e91e31fabe549e4fc28bbd26216327aa83cd061a/raftoid/Raftoid.dsk'
+  - RAFTOID.DSK: 'https://github.com/plattysoft/MSX/raw/d437f6071482a09c285324283e2988e4db107ddf/raftoid/Raftoid.dsk'
 build: |
   mkdir -p package/
   mcopy -s -i RAFTOID.DSK :: package/
@@ -69,5 +69,7 @@ build: |
   EOF
   unix2dos package/RAFTOID.BAT
 changelog: |
+  - 1.1-1 2020-07-19
+    - New release
   - 1.0-1 2020-07-19
     - First release

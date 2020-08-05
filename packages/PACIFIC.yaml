@@ -1,6 +1,6 @@
 ---
 name: 'PACIFIC'
-version: '1.1.1'
+version: '1.2.2'
 release: 1
 summary: 'Pacific game (MSXdev''20)'
 author: 'André Baptista'
@@ -15,8 +15,8 @@ description: |
   Shoot'em up vertical scrolling game for MSX 1 made in Assembly, inspired by 8-bit classics such as 1942.
 installdir: '\PACIFIC'
 files:
-  - PACIFIC.ROM: 'https://raw.githubusercontent.com/albs-br/pacific/9710bada644c2691fa6054dcc8dcb799430eae64/pacific.rom'
-  - README.MD: 'https://raw.githubusercontent.com/albs-br/pacific/9710bada644c2691fa6054dcc8dcb799430eae64/README.md'
+  - PACIFIC.ROM: 'https://raw.githubusercontent.com/albs-br/pacific/fe4b70c3a6407c67527d45272507e667ba625bdc/pacific.rom'
+  - README.MD: 'https://raw.githubusercontent.com/albs-br/pacific/fe4b70c3a6407c67527d45272507e667ba625bdc/README.md'
 build: |
   mkdir -p package/
   mv PACIFIC.ROM package/PACIFIC.ROM
@@ -38,5 +38,7 @@ build: |
   unix2dos package/PACIFIC.BAT
   unix2dos package/README.MD
 changelog: |
+  - 1.2.1-1 2020-08-05
+    - New release
   - 1.1.1-1 2020-07-29
     - First release
