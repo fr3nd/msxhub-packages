@@ -1,0 +1,38 @@
+---
+name: 'SG1000'
+version: '0.96'
+release: 1
+summary: 'SG1000.COM allows you to play SG-1000 games on MSX'
+author: 'gdx'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Unknown'
+category: 'Tools'
+system: 'MSX'
+requirements:
+  - 'MSX-DOS'
+url: 'https://www.msx.org/downloads/sg1000-v096'
+description: |
+  SG1000.COM allows you to play SG-1000 games on MSX. Franky, Musical Memory
+  Mapper or Playsoniq cartridge allows to get a perfect sound.
+  You will not get sound without one of these three cartridges.
+  
+  Features:
+  
+  * Easy to use
+  * High compatibility
+  * Fast loading and patching
+  * Patches can be added for unsupported games without add extra files
+  * SMS palette option (MSX2~)
+  * Perfect sound using the cartridge Franky, Musical Memory Mapper or Playsoniq (otherwise no sound)
+installdir: '\SG1000'
+files:
+  - sg1000.zip: 'https://www.msx.org/download/download/2020/06/SG1000-v096.zip'
+build: |
+  mkdir -p package/
+  unzip sg1000.zip
+  mv *.DAT package/
+  mv *.txt package/
+  mv *.COM package/
+changelog: |
+  - 0.96-1 2020-06-12
+    - First release

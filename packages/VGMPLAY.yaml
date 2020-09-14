@@ -1,6 +1,6 @@
 ---
 name: 'VGMPLAY'
-version: '1.2'
+version: '1.3'
 release: 1
 summary: 'Plays back VGM music files on MSX with the supported sound chips.'
 author: 'Laurens Holst (grauw)'
@@ -16,7 +16,7 @@ description: |
   
   Both the VGM and VGZ formats are supported. The compressed VGZ format takes longer to load but also consumes less disk space. If so desired, VGZ files can be manually decompressed to VGM with gunzip for MSX or PC.
   
-  The timing resolution is 50 or 60 Hz on MSX1 machines with a TMS9918 VDP, 300 Hz on machines with a V9938 or V9958 VDP, and 4000 Hz on MSX turboR.
+  The timing resolution is 50 or 60 Hz on MSX1 machines with a TMS9918 VDP, 300 Hz on machines with a V9938 or V9958 VDP, 1130 Hz if a MoonSound or OPL3 is present, and 4000 Hz on MSX turboR.
   
   For more information on the VGM format see:
 
@@ -29,7 +29,7 @@ description: |
   * http://opl.wafflenet.com/
 installdir: '\VGMPLAY'
 files:
-  - vgmplay.zip: 'https://bitbucket.org/grauw/vgmplay-msx/downloads/vgmplay-1.2.zip'
+  - vgmplay.zip: 'http://www.grauw.nl/projects/vgmplay-msx/vgmplay-%VERSION%.zip'
 build: |
   mkdir -p package/
   unzip vgmplay.zip
@@ -38,5 +38,7 @@ build: |
   mv LICENSE package/
   mv README.md package/
 changelog: |
+  - 1.3-1 2020-07-27
+    - New release: 1.3
   - 1.2-1 2018-09-02
     - First release

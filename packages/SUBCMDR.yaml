@@ -1,6 +1,6 @@
 ---
 name: 'SUBCMDR'
-version: '1.0'
+version: '1.02'
 release: 1
 summary: 'Subcommander game (MSXdev''20)'
 author: 'Zoran Majcenic'
@@ -21,28 +21,26 @@ description: |
   Finally, this game has a noteworthy feature; using Sony HBI-55 user allows us to save the highscore table.
 installdir: '\SUBCMDR'
 files:
-  - subcommander.zip: 'https://www.msxdev.org/wp-content/uploads/2020/04/msxdev20_subcommander_v%VERSION%.zip'
+  - subcommander.zip: 'https://www.msxdev.org/wp-content/uploads/2020/05/msxdev20_subcommader_v1.02.zip'
 build: |
   mkdir -p package/
   unzip subcommander.zip
-  mv SUBCMDR.ROM package/SUBCMDR.ROM
+  mv SUBCMDR.BIN package/SUBCMDR.BIN
   mv README.TXT package/README.TXT
+  mv CHANGELOG.txt package/CHANGELO.TXT
+  cat > package/SUBCMDR.BAS << EOF
+  10 BLOAD"SUBCMDR.BIN",R
+  EOF
   cat > package/SUBCMDR.BAT << EOF
-  REM Look for SROM.COM in default dir
-  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
-    %_DISK%:\SOFAROM\SROM.COM SUBCMDR.ROM
-  ELSE
-    REM Try to run it from path
-    IFF EXIST SROM.COM
-      SROM.COM SUBCMDR.ROM
-    ELSE
-      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
-      exit 1
-    ENDIFF
-  ENDIFF
+  BASIC SUBCMDR.BAS
   EOF
   unix2dos package/SUBCMDR.BAT
+  unix2dos package/SUBCMDR.BAS
   unix2dos package/README.TXT
+  unix2dos package/CHANGELO.TXT
 changelog: |
+  - 1.02-1 2020-05-29
+    - Version 1.02
+    - Using binary version instead of ROM
   - 1.0-1 2020-04-29
     - First release

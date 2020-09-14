@@ -1,0 +1,46 @@
+---
+name: 'BMARY'
+version: '1.0'
+release: 1
+summary: 'Bloody Mary game (MSXdev''20)'
+author: 'Lady DarkBite (Tábata Galvez Angelo)'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'MIT'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2020/07/31/msxdev20-21-bloody-mary/'
+description: |
+  We like parents that teach their children how to use a computer, but we really love when parents show how to make a game using MSX-BASIC.
+  
+  Bloody Mary is a good example of that as Danilo Angelo, father, has been teaching his ten years old daughter the MSX-BASIC language and then he encourage her to apply this knowledge in order to make a game. And, finally she made it!
+  
+  The main objetive in the game is to give as many glasses full of blood as you can to the thirsty Mary before time runs out. Problem is that Mary is always changing her position around the screen after a couple of seconds, so we must move the glass very fast to catch her up and give her favourite drink.
+installdir: '\BMARY'
+files:
+  - bmary.zip: 'https://www.msxdev.org/wp-content/uploads/2020/07/msxdev20_bloody_mary.zip'
+build: |
+  mkdir -p package/
+  unzip bmary.zip
+  mv BMARY.rom package/BMARY.ROM
+  mv "Bloody Mary LICENSE.TXT" package/LICENSE.TXT
+  cat > package/BMARY.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM BMARY.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM BMARY.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/BMARY.BAT
+  unix2dos package/LICENSE.TXT
+changelog: |
+  - 1.0-1 2020-07-31
+    - First release

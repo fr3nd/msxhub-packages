@@ -1,0 +1,43 @@
+---
+name: 'LITTERBX'
+version: '1.0'
+release: 1
+summary: 'Litter Box game (MSXdev''20)'
+author: 'RAY2DAY MSX SOFTWARE'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Freeware'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2020/07/11/msxdev20-06-litter-box/'
+description: |
+  According to a popular theory, cats are really plotting to take over the world. And arguably, that could be for the best. It’s not a far stretch to suppose that our hairy friends would do a better job than us, warmongering humans.
+  
+  In every stage: Avoid both dogs (these are your enemies), eat ALL cat food (dots) and when all dots are eaten RETURN to the LITTER BOX in the middle.
+installdir: '\LITTERBX'
+files:
+  - litterbox.zip: 'https://www.msxdev.org/wp-content/uploads/2020/07/msxdev20_litter_box.zip'
+build: |
+  mkdir -p package/
+  unzip litterbox.zip
+  mv LITTERBX.ROM package/LITTERBX.ROM
+  mv README.TXT package/README.TXT
+  cat > package/LITTERBX.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM LITTERBX.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM LITTERBX.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/LITTERBX.BAT
+changelog: |
+  - 1.0-1 2020-07-13
+    - First release

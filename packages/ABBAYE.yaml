@@ -1,0 +1,53 @@
+---
+name: 'ABBAYE'
+version: '1.2'
+release: 1
+summary: 'Abbaye Des Morts game (MSXdev''20)'
+author: 'RetroDeluxe (Enric Geijo)'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'GPL-3.0'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://github.com/retrodeluxe/AbbayeMSX'
+description: |
+  ## Plot
+  
+  In the 13th century, the Cathars, clerics who preached about the poverty of Christ and defended life without material aspirations, were treated as heretics by the Catholic Church and expelled out of the Languedoc region in France. One of them, called Jean Raymond, found an old church in which to hide from crusaders, not knowing that beneath its ruins lay buried an ancient evil.
+  
+  ## About
+  
+  Originally created by Locomalito (and music by Gryzor87) for PC emulating a ZX Spectrum game, it's now been ported to MSX.
+installdir: '\ABBAYE'
+files:
+  - ABBAYE.ROM: 'https://github.com/retrodeluxe/AbbayeMSX/releases/download/v%VERSION%/abbaye_v%VERSION%.rom'
+  - README.MD: 'https://raw.githubusercontent.com/retrodeluxe/AbbayeMSX/v%VERSION%/README.md'
+  - LICENSE: 'https://raw.githubusercontent.com/retrodeluxe/AbbayeMSX/v%VERSION%/LICENSE'
+build: |
+  mkdir -p package/
+  mv ABBAYE.ROM package/ABBAYE.ROM
+  mv README.MD package/README.MD
+  mv LICENSE package/LICENSE
+  cat > package/ABBAYE.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM ABBAYE.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM ABBAYE.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/ABBAYE.BAT
+  unix2dos package/README.MD
+  unix2dos package/LICENSE
+changelog: |
+  - 1.2-1 2020-07-30
+    - Version 1.2
+  - 1.1-1 2020-07-28
+    - First release
