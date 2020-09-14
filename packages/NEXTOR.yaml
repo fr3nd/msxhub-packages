@@ -1,6 +1,6 @@
 ---
 name: 'NEXTOR'
-version: '2.0.5beta1'
+version: '2.1.0'
 release: 1
 summary: 'NEXTOR disk operating system for MSX computers'
 author: 'Nestor Soriano (Konamiman)'
@@ -24,11 +24,13 @@ description: |
   * **Support for disk image files.** Starting at version 2.1, Nextor allows to mount disk image files in drive letters, so that its contents can be managed easily. It is also possible to boot in floppy disk emulation mode, where disk image files are used as if they were storage devices; this allows to play old disk games that only work in MSX-DOS 1 mode and/or load data by using direct sector access (there is no filesystem in the game disks).
 installdir: '\NEXTOR'
 files:
-  - nextor-dsk.zip: 'https://www.konamiman.com/msx/nextor/tools/nextor-dsk.zip'
+  - nextor-dsk.zip: 'https://github.com/Konamiman/Nextor/releases/download/v%VERSION%/tools.dsk.zip'
 build: |
   mkdir -p package/
-  unzip nextor-dsk.zip
+  7z x nextor-dsk.zip
   mcopy -s -i nextor.dsk :: package/
 changelog: |
-  - 2.20-1 2019-01-07
+  - 2.1.0 2020-08-02
+    - Latest release
+  - 2.0.5-1 2019-01-07
     - First release

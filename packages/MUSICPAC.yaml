@@ -1,0 +1,63 @@
+---
+name: 'MUSICPAC'
+version: '1.1'
+release: 1
+summary: 'Giant MSX music pack'
+author: 'WORP3'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Unknown'
+category: 'Sound'
+system: 'MSX'
+requirements: []
+url: 'https://worp3.com/'
+description: |
+  Music pack containing a lot of msx related (mgs,mbm,kss,mod,xg,etc..) kind of music files.
+  
+  ## Warnings
+  
+  * This is a BIG package for the MSX (48M). It will take a long time to download.
+  * A compatible music player is not included in this package and will be required to play the files.
+  * Some files had to be renamed to adapt them to the 8.3 DOS format.
+installdir: '\MUSICPAC'
+files:
+  - msx_musics.rar: 'https://www.worp3.com/download/msx_musics.rar'
+build: |
+  mkdir -p package/
+  unrar x msx_musics.rar
+  # Rename long directories
+  mv msx_musics/MID/illusioncitymidis_gm msx_musics/MID/illusion
+  mv msx_musics/mgs/GameTitle msx_musics/mgs/Game
+  cd msx_musics/mgs/Game
+  find . -maxdepth 1 -type d -print | while read line; do
+    file=$(basename "$line")
+    newfile=$(echo $file | iconv -f utf8 -t ascii//TRANSLIT//IGNORE | sed -e 's/[^A-Za-z0-9._-]//g'| head -c 8)
+    [ "$file" != "$newfile" ] && mv "$file" $newfile
+  done
+  cd -
+  mv msx_musics/mgs/Game/Xak/XakIII\ The\ Eternal\ Recurrence/ msx_musics/mgs/Game/Xak/XakIIIEt
+  mv msx_musics/mgs/Game/Xak/XakIII\ The\ Voice\ of\ Moon/ msx_musics/mgs/Game/Xak/XakIIIvo
+  mv msx_musics/mgs/uncategorised msx_musics/mgs/uncatego
+  mv msx_musics/KSS/carbuncle msx_musics/KSS/carbuncl
+  # Rename long files
+  find msx_musics -type f -print | while read line;
+  do
+    dirname=$(dirname "$line")
+    file=$(echo $line |awk -F/ '{print $NF}')
+    name=$(echo $file | awk -F\. '{print $1}')
+    ext=$(echo $file | awk -F\. '{print $2}')
+    newname=$(echo $name | iconv -f utf8 -t ascii//TRANSLIT//IGNORE | sed -e 's/[^A-Za-z0-9._-]/_/g' | head -c 8)
+    newext=$(echo $ext | iconv -f utf8 -t ascii//TRANSLIT//IGNORE | sed -e 's/[^A-Za-z0-9._-]/_/g' | head -c 3)
+    if [ $ext ]; then
+      newdirname="${dirname}/${newname}.${newext}"
+    else
+      newdirname="${dirname}/${newname}"
+    fi
+    if [ "$line" != "$newdirname" ]; then
+      echo renaming "$line" to "$newdirname"
+      mv "$line" "$newdirname"
+    fi
+  done
+  mv msx_musics/* package/
+changelog: |
+  - 1.1-1 2020-07-21
+    - First release

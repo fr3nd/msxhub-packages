@@ -1,0 +1,46 @@
+---
+name: 'CUNCUNA'
+version: '1.0'
+release: 1
+summary: 'Cuncuna game (MSXdev''20)'
+author: 'Christian Córdova'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Freeware'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2020/07/18/msxdev20-09-cuncuna/'
+description: |
+  Hey kids, remember The Very Hungry Caterpillar?
+  
+  Well, now we actually get to play one, in a Snake-inspired (yes, the eating one, but not the one eating in the jungle) classic experience.
+  
+  Contrary to most games of this type, you’ll only die when you manage to take a bite out of your own body, but this variant adds extra strategy by having a very maze-like map layout, so we’ll have to be careful about the path to take in order to gobble up all of the goodies.
+  
+  This adds a fresh puzzle element which we hope will entertain you.
+installdir: '\CUNCUNA'
+files:
+  - cuncuna.zip: 'https://www.msxdev.org/wp-content/uploads/2020/07/msxdev20_cuncuna.zip'
+build: |
+  mkdir -p package/
+  unzip cuncuna.zip
+  mv CUNCUNA.ROM package/CUNCUNA.ROM
+  cat > package/CUNCUNA.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM CUNCUNA.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM CUNCUNA.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/CUNCUNA.BAT
+changelog: |
+  - 1.0-1 2020-07-19
+    - First release

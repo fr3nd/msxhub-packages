@@ -1,0 +1,48 @@
+---
+name: 'KSSPLAY'
+version: '1.0'
+release: 1
+summary: "KSS music player for the MSX"
+author: "nyyrikki"
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Unknown'
+category: 'Sound'
+system: 'MSX Turbo-R'
+requirements:
+  - 'MSX-DOS2'
+  - 'MSX-MUSIC'
+  - 'MSX-AUDIO'
+url: 'http://msx.fi/nyyrikki/software.html'
+description: |
+  KSSPLAY is a tool to play MSX musics. KSS format is quite a near to C64 SID format, so the file it self includes the player routines. KSSPLAY has a build in Z80 emulator (Made By: NYYRIKKI) that runs the code, so  fast CPU is needed to get perfect result. Most of the songs can be played on MSX tR without speed problems.
+  
+  Usage:
+  
+  ```
+  KSSPLAY <filename.KSS> [#NN]
+  ```
+  
+  * #NN is a song number inside the KSS file (#00 - #FF)
+  
+  ## System reguirements:
+  
+  - Fast MSX
+  - DOS2
+  - at least 32Kb free memory at primary mapper.
+  - at least 48Kb free memory at primary mapper to play songs with 16Kb mapper support (more memory = less swapping from disk)
+  
+  ## Supported hardware:
+  
+  - Memory mapper 16K
+  - PSG
+  - MSX-Music
+  - MSX-Audio
+installdir: '\KSSPLAY'
+files:
+  - kssplay.lzh: 'http://msx.fi/nyyrikki/files/kssplay.lzh'
+build: |
+  mkdir -p package/
+  lha xw=package kssplay.lzh
+changelog: |
+  - 2020-07-22 1.0-1
+    - First release

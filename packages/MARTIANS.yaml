@@ -1,0 +1,45 @@
+---
+name: 'MARTIANS'
+version: '1.2'
+release: 1
+summary: 'Stupid Martians game (MSXdev''20)'
+author: 'Visualedu and Bitcaffe'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Freeware'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2020/07/14/msxdev20-08-stupid-martians/'
+description: |
+  Stupid Martians is a vertical shmup game, a bit bullet-hell.
+  
+  The purpose of the game is to eliminate the three races of Martians who intend to invade Earth.
+installdir: '\MARTIANS'
+files:
+  - sm.rom: 'https://docs.google.com/uc?export=download&id=1PZ82fggOKfC7nqC6msBsgKqO5MWgjlI0'
+build: |
+  mkdir -p package/
+  mv sm.rom package/MARTIANS.ROM
+  cat > package/MARTIANS.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM MARTIANS.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM MARTIANS.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/MARTIANS.BAT
+changelog: |
+  - 1.2-1 2020-08-05
+    - New release
+  - 1.1-1 2020-07-15
+    - New release
+  - 1.0-1 2020-07-15
+    - First release

@@ -1,0 +1,36 @@
+---
+name: 'LOADCAS'
+version: '2.99'
+release: 1
+summary: 'Generic CAS file loader.'
+author: 'Martos'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Unknown'
+category: 'Tools'
+system: 'MSX2'
+requirements: {}
+url: 'https://cintasmsx.webcindario.com/'
+description: |
+  This program acts as a general CAS file loader, and can be used on any MSX2
+  with 128K memory mapper. Basically, it copies the bios to ram and patches it,
+  redirecting the tape reading routines. This method allows any CAS file on disk
+  to be handled by the system as a real tape.
+  
+  The program takes the form of a generic loader, which must be copied to the
+  same disk or directory where the CAS file is, renaming to match its filename.
+  For example, if you have `ZARTH.CAS`, do `COPY"LOADCAS"TO"ZARTH.BIN"` or simply
+  `TO"ZARTH"` (extension doesn't count). Then execute with `BLOAD"ZARTH",R`. The
+  program will set the system up and start loading with the proper command.
+installdir: '\LOADCAS'
+files:
+  - LOADCAS.LZH: 'http://msxcas.webcindario.com/LOADCAS.LZH'
+build: |
+  mkdir -p package/
+  lha x LOADCAS.LZH
+  mv loadcas package/
+  mv loadcasx package/
+  mv readme package/
+  mv leeme package/
+changelog: |
+  - 2.99-1 2020-06-23
+    - First release

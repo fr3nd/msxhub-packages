@@ -1,0 +1,46 @@
+---
+name: 'HOOPS'
+version: '1.0'
+release: 1
+summary: 'SPC Super HOOPS game (MSXdev''20)'
+author: 'Hakogame'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Unknown'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2020/07/21/msxdev20-13-spc-super-hoops/'
+description: |
+  It’s showtime!
+  
+  Time for playing a basketball-like game before times runs out. There is a power bar at the bottom of the screen where a dial moves from side to side. We should stop it in the right place to shoot the ball to the basket. But basket changes its height so we have to calculate the power needed before shoooting.
+  
+  Enjoy your time while shooting some hoops.
+  
+  SPC Super HOOPS was made using XBASIC and started as the first MSX-BASIC project from the author in a Sanno SPC Super MSX computer.
+installdir: '\HOOPS'
+files:
+  - hoops.zip: 'https://www.msxdev.org/wp-content/uploads/2020/07/msxdev20_spc_super_hoops.zip'
+build: |
+  mkdir -p package/
+  unzip hoops.zip
+  mv SPCsuperHOOPSs.rom package/HOOPS.ROM
+  cat > package/HOOPS.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM HOOPS.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM HOOPS.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/HOOPS.BAT
+changelog: |
+  - 1.0-1 2020-07-22
+    - First release

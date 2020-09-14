@@ -1,0 +1,44 @@
+---
+name: 'PACIFIC'
+version: '1.2.2'
+release: 1
+summary: 'Pacific game (MSXdev''20)'
+author: 'André Baptista'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Unknown'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2020/07/28/msxdev20-16-pacific/'
+description: |
+  Shoot'em up vertical scrolling game for MSX 1 made in Assembly, inspired by 8-bit classics such as 1942.
+installdir: '\PACIFIC'
+files:
+  - PACIFIC.ROM: 'https://raw.githubusercontent.com/albs-br/pacific/fe4b70c3a6407c67527d45272507e667ba625bdc/pacific.rom'
+  - README.MD: 'https://raw.githubusercontent.com/albs-br/pacific/fe4b70c3a6407c67527d45272507e667ba625bdc/README.md'
+build: |
+  mkdir -p package/
+  mv PACIFIC.ROM package/PACIFIC.ROM
+  mv README.MD package/README.MD
+  cat > package/PACIFIC.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM PACIFIC.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM PACIFIC.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/PACIFIC.BAT
+  unix2dos package/README.MD
+changelog: |
+  - 1.2.1-1 2020-08-05
+    - New release
+  - 1.1.1-1 2020-07-29
+    - First release
