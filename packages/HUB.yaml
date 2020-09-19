@@ -33,7 +33,7 @@ build: |
   mv MANUAL.TXT package/HUBG.TXT
   mv HUBG.com package/
 changelog: |
-  - 1.0.4-2 2020-09-19
+  - 1.0.5-1 2020-09-19
     - New release
     - HUBG updated to 0.80
     - Improving software description
