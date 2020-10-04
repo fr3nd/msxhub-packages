@@ -1,0 +1,30 @@
+---
+name: 'AOD'
+version: '2.2'
+release: 1
+summary: 'The Arrow of Direction game'
+author: 'Piroyan Soft'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Freeware'
+category: 'Games'
+system: 'MSX2'
+requirements: []
+url: 'http://msx.piroyan.com/'
+description: |
+  # THE ARROW OF DIRECTION
+  
+  Puzzle game released in 1991 and since 2007 it's is available for free.
+installdir: '\AOD'
+files:
+  - AOD.zip: 'http://msx.piroyan.com/aod/AOD_V22.zip'
+build: |
+  mkdir -p package/
+  unzip AOD.zip
+  mcopy -s -i AOD_V22/AOD.DSK :: package/
+  cat > package/AOD.BAT << EOF
+  basic AUTOEXEC.BAS
+  EOF
+  unix2dos package/AOD.BAT
+changelog: |
+  - 2.2-1 2020-10-04
+    - First release
