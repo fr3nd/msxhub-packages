@@ -1,6 +1,6 @@
 ---
 name: 'ROBOPLAY'
-version: '1.0'
+version: '1.2'
 release: 1
 summary: 'RoboPlay is a music player using the Yamaha YMF278B OPL4 soundchip'
 author: 'Marco Blom (ToriHino)'
@@ -18,19 +18,24 @@ description: |
   It is written in C using [SDCC](http://sdcc.sourceforge.net/) and the [FUSION-C](https://www.msx.org/news/development/en/fusion-c-is-available) library.
   
   Currently the following file formats are supported:
-  - SOP: Note OPL3 Music Sequencer
-  - D00: EdLib packed module
-  - DRO: DOSBox Raw OPL v0.1 and v2.0
-  - RAW: Rdos Adlib Capture
-  - MOD: Amiga Module (up to 24 channels)
-  - VGM: Video Game Music
-  - IMF: iD Software Music Format (for .WLF extension 700Hz replay is used)
-  - MBM: MoonBlaster 1.4
-  - MUS: FAC SoundTracker 1.0, 2.0 and PRO
-  - PRO: Tyfoon Pro-Tracker
+  - For OPL4:
+    - SOP: Note OPL3 Music Sequencer
+    - D00: EdLib packed module
+    - DRO: DOSBox Raw OPL v0.1 and v2.0
+    - RAW: Rdos Adlib Capture
+    - MOD: Amiga Module (up to 24 channels)
+    - VGM: Video Game Music
+    - IMF: iD Software Music Format (for .WLF extension 700Hz replay is used)
+    - MBM: MoonBlaster 1.4 (inlcuding PSG drums, ADPCM sample support)
+    - MUS: FAC SoundTracker 1.0, 2.0 and PRO (stereo replay, ADPCM sample support)
+    - PRO: Tyfoon Pro-Tracker (stereo replay)
+    - MID: Standard MIDI file (WaveTable or FM)
+  - For SCC:
+    - SBM: SCC Blaffer NT (including PSG drums)
+    - SNG: SCC Musixx
 installdir: '\ROBOPLAY'
 files:
-  - file.zip: 'http://torihino.nl/msx/roboplay_1.0.zip'
+  - file.zip: 'http://www.torihino.nl/msx/roboplay_1.2.zip'
   - README.md: 'https://gitlab.com/torihino/roboplay/-/raw/master/README.md'
 build: |
   mkdir -p package/
@@ -40,5 +45,7 @@ build: |
   unix2dos README.md
   mv README.md package/
 changelog: |
+  - 1.2-1 2020-10-14
+    - New release
   - 1.0-1 2020-05-31
     - First release
