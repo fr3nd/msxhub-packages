@@ -61,7 +61,7 @@ description: |
 
   ### About save format
 
-  By default, you can only save to cassette tape, and if a floppy disk drive is connected, you can save to disk.
+  * By default, you can only save to cassette tape, and if a floppy disk drive is connected, you can save to disk.
   * It supports two types of storage formats.
     * **BSAVE format**: A format with headers such as file name and address information added. It can be loaded from BASIC with the BLOAD instruction.
     * **RAW format**: A format that outputs binary data as a file as it is. It cannot be loaded with BASIC commands.
