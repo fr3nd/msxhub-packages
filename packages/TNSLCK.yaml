@@ -21,9 +21,9 @@ description: |
 
   ## Operating environment
 
-  * ROM version ( TNSLCK.ROM )… Works on all MSX with 8KB or more of RAM. (It is necessary to burn to a ROM cartridge. Also, if you start with a model with less than 32KB of RAM, some functions will be restricted.)
-  * RAM version ( TNSLCK.BIN )… Works on all MSX with 32KB or more of RAM . (It works regardless of whether it is loaded from a floppy disk or cassette tape)
-  * Simplified version ( TNSLCK8.BIN )… Works on all MSX with 8KB or more of RAM. (Only for cassette tapes. Some functions are limited.)
+  * ROM version ( TNSLCK.ROM ) Works on all MSX with 8KB or more of RAM. (It is necessary to burn to a ROM cartridge. Also, if you start with a model with less than 32KB of RAM, some functions will be restricted.)
+  * RAM version ( TNSLCK.BIN ) Works on all MSX with 32KB or more of RAM . (It works regardless of whether it is loaded from a floppy disk or cassette tape)
+  * Simplified version ( TNSLCK8.BIN ) Works on all MSX with 8KB or more of RAM. (Only for cassette tapes. Some functions are limited.)
 
   ## Execution method
 
