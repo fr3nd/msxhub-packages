@@ -98,8 +98,8 @@ description: |
   ### Back up the cartridge in slot 2 using MegaFlashROM SCC + SD
 
   * Insert the MegaFlashROMSCC + SD with TNSLCK.ROM burned in slot 1 and the cartridge you want to back up in slot 2 and start the main unit.
-  * Pressing ↑ at startup opens the MegaFlashROM RECOVERY menu.
-  * Press "S" → [F2] to skip Slot 2.
+  * Pressing `ARROW UP` at startup opens the MegaFlashROM RECOVERY menu.
+  * Press "S" and [F2] to skip Slot 2.
   * TINY SLOT CHECKER will start. Save page 1 of slot 2 to a floppy disk (C drive) or SD card (B drive) in RAW format.
   * A file called SL20MEG.ROM will be created. Write this file to MegaFlashROM with the OPFXSD command.
   * When writing a mega ROM to a Mega Flash ROM, it will usually detect it automatically without any options, but if it is not recognized correctly, add the following option at the end of the OPFXSD command.
