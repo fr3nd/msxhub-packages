@@ -1,6 +1,6 @@
 ---
 name: 'TELNET'
-version: '1.33.0'
+version: '1.34.0'
 release: 1
 summary: 'Fast ANSI compatible TELNET client'
 author: 'Oduvaldo Pavan Junior'
@@ -32,11 +32,13 @@ description: |
     YMODEM-G, including file batch in YMODEM/YMODEM-G
 installdir: '\TELNET'
 files:
-  - TELNET.zip: 'https://github.com/ducasp/MSX-Development/raw/a07e9dc106f09dc2676b3eba601510cb34ec69e9/UNAPI/TELNET/BINARY_PACK/TELNET.zip'
+  - TELNET.zip: 'https://github.com/ducasp/MSX-Development/raw/59650e18f9f2225ec741f10a4d911fff80b7b86f/UNAPI/TELNET/BINARY_PACK/TELNET.zip'
 build: |
   mkdir -p package/
   unzip TELNET.zip -d package
 changelog: |
+  - 1.34.0-1 2020-11-16
+    - Version 1.34
   - 1.33.0-1 2020-09-14
     - Version 1.33
   - 1.32.0-1 2020-05-03
