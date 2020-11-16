@@ -1,0 +1,139 @@
+---
+name: 'TNSLCK'
+version: '2.0.0'
+release: 1
+summary: 'Tiny Slot Checker'
+author: 'Tiny Yarou'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Unknown'
+category: 'System'
+system: 'MSX'
+requirements: []
+url: 'http://www.tiny-yarou.com/slotchecker.html'
+description: |
+  A tool that checks the status of MSX slots and displays them graphically.
+
+  I referred to the tool "SLOT.BAS" recorded in MSX / FAN, but the program was recreated from almost scratch.
+
+  * The judgment of EMPTY has been strengthened. (2020.10.4)
+  * Supports saving of mega ROM. (2020.10.2)
+  * I uploaded v2 with minor modifications. (2020.9.21)
+
+  ## Operating environment
+
+  * ROM version ( TNSLCK.ROM ) Works on all MSX with 8KB or more of RAM. (It is necessary to burn to a ROM cartridge. Also, if you start with a model with less than 32KB of RAM, some functions will be restricted.)
+  * RAM version ( TNSLCK.BIN ) Works on all MSX with 32KB or more of RAM . (It works regardless of whether it is loaded from a floppy disk or cassette tape)
+  * Simplified version ( TNSLCK8.BIN ) Works on all MSX with 8KB or more of RAM. (Only for cassette tapes. Some functions are limited.)
+
+  ## Execution method
+
+  ### ROM version
+
+  * Burn TNSLCK.ROM to MegaFlashROM, etc., insert it into the youngest slot of MSX, and then start the main unit.
+
+  ### RAM version
+
+  * Copy TNSLCK.BIN to disk or tape in advance (the disk image and tape image are included in the downloaded zip). It is loaded and executed from BASIC with BLOAD "TNSLCK.BIN", R ( BLOAD "CAS:", R for tape ).
+
+  ### Abridged edition
+
+  * Copy TNSLCK8.BIN to tape in advance (the tape image and wav file are included in the downloaded zip).
+  If a floppy disk is connected, be sure to hold down the SHIFT key (disconnect the floppy disk) and turn on the power of the main unit.
+  * Loaded and executed from BASIC with BLOAD "CAS:", R.
+
+  ## Basic operation
+
+  * When started, it automatically checks the status of all slots and displays the information graphically.
+  * Press ESC to recheck.
+  * Use the cursor keys to move the slot selection cursor.
+  * The RETURN key opens the menu for the binary data save function (described later). (Excluding the simplified version)
+  * If you hold down SHIFT when booting the console, you can boot TinySlotChercker at the fastest speed without passing control to other slots, but you will not be able to save to disk. (ROM version only)
+
+  ## Binary data storage function
+
+  The contents of the slot can be saved in 16KB units on a floppy disk or cassette tape.
+
+  ### Method of operation
+
+  * Move the cursor to the slot page you want to save and press RETURN to open the menu.
+  * Select a command on the keyboard.
+  * If the RAM is less than 32KB (or simplified version), the menu itself will not be displayed.
+
+  ### About save format
+
+  * By default, you can only save to cassette tape, and if a floppy disk drive is connected, you can save to disk.
+  * It supports two types of storage formats.
+    * **BSAVE format**: A format with headers such as file name and address information added. It can be loaded from BASIC with the BLOAD instruction.
+    * **RAW format**: A format that outputs binary data as a file as it is. It cannot be loaded with BASIC commands.
+  * Basically, the selected page (16KB) is saved, but for ROMs that span multiple pages in the same slot, saving the first page also saves the subsequent pages at once.
+    * Example 1) If MAIN-ROM exists on page 0 and page 1, saving page 0 automatically saves page 1 as well.
+    * Example 2) If the ROM of the cartridge software exists on page 1 and page 2, saving page 1 automatically saves page 2 as well.
+  * In the case of a ROM that spans multiple pages, in the case of BSAVE format, it is saved as a separate file every 16KB, and in the case of RAW format, it is saved as one large file that combines all the data.
+  * It also supports saving mega ROM. Save all data while switching banks.
+    * Depending on the type of ROM, it may not be saved correctly.
+    * 1 A 128KB (or 16KB x 8) file is created with MROM, and a 512KB (or 16KB x 32) file is created with 4MROM. Pay attention to the capacity for discs and the time for tapes.
+
+  ### Save to disk
+
+  * Press [D] in the menu to enter the mode to save the contents of the ROM to a floppy disk ([D] will not be displayed in the menu if the disk drive is not connected).
+  * First, select the drive containing the disk to save from [A] to [D].
+  * Next, select [B] to save in BSAVE format or [R] to save in RAW format.
+  * If you press [Y] on "SAVE OK?", The binary data of the selected slot will be saved on the disk.
+  * The file name will be `"SLxyPz.ROM"`. `x` is the base slot, `y` is the expansion slot, and `z` is the page number.
+    * Example 1) If page 1 of slot 0-2 is saved, a 16KB file called SL02P1.ROM will be created.
+    * Example 2) When a ROM cartridge that spans pages 1 and 2 of slot 1-0 is saved, two files, SL10P1.ROM and SL10P2.ROM, are created when the BSAVE format is selected, and SL10P1.ROM when the RAW format is selected. A 32KB file will be created.
+  * For mega ROMs, page numbers are ignored. The file name will be `"SLxyMEG.ROM"`.
+    * Example 1) When the mega ROM in slot 2-1 is saved, selecting the BSAVE format creates multiple files SL21MEG.R01, SL21MEG.R01, SL21MEG.R02, ..., and selecting the RAW format creates SL21MEG. One file called ROM is created.
+  * When booting from MegaFlashROMSCC + SD, it cannot be saved correctly if the old Nextor is installed. Please download Nextor 2.1.0 or later from [here](https://www.konamiman.com/msx/msx-e.html#nextor) and reinstall it on your MFR. (See the INSTALL section of the MFR manual)
+
+  ### Save to tape
+
+  * Press [T] in the menu to enter the mode to save to cassette tape.
+  * First, select [B] to save in BSAVE format or [R] to save in RAW format.
+  * Then select the baud rate you want to save. Select [Y] for "HIGH SPEED?" To save at 2400 baud, and select [N] to save at 1200 baud.
+  * Press [Y] on "SAVE OK?" To save the binary data of the selected slot to tape.
+  * The file name is `"SLxyPz"` , where `x` is the base slot, `y` is the expansion slot, and `z` is the page number. (Same as saving to disk, but without the extension).
+  * Unlike saving to disk, even if you select the RAW format or save a ROM that spans multiple pages, it will always be saved in 16KB increments.
+
+  ### Back up the cartridge in slot 2 using MegaFlashROM SCC + SD
+
+  * Insert the MegaFlashROMSCC + SD with TNSLCK.ROM burned in slot 1 and the cartridge you want to back up in slot 2 and start the main unit.
+  * Pressing `ARROW UP` at startup opens the MegaFlashROM RECOVERY menu.
+  * Press "S" and [F2] to skip Slot 2.
+  * TINY SLOT CHECKER will start. Save page 1 of slot 2 to a floppy disk (C drive) or SD card (B drive) in RAW format.
+  * A file called SL20MEG.ROM will be created. Write this file to MegaFlashROM with the OPFXSD command.
+  * When writing a mega ROM to a Mega Flash ROM, it will usually detect it automatically without any options, but if it is not recognized correctly, add the following option at the end of the OPFXSD command.
+    * / M0: KONAMI's Megarom controller without SCC
+    * / M1: KONAMI Megarom controller with SCC
+    * / M2: ASCII 8k bank megarom controller
+    * / M3: ASCII 16k bank megarom controller
+    * / M4: 64kB ROM (0000h-FFFFh)
+    * / M5: R-Type Megarom Controller
+    * / M6: Unknown (automatic discrimination)
+    * / M7: 8k (4000-5FFFh), 16k (4000-7FFFh)
+    * / M8: 32k (4000-BFFFh)
+
+  ## Finally
+
+  If you have any questions, please feel free to contact @tiny_yarou on twitter (^_^)
+installdir: '\TNSLCK'
+files:
+  - tnslck.zip: 'http://www.tiny-yarou.com/files/TinySlotChecker_v2.zip'
+build: |
+  mkdir -p package/
+  unzip tnslck.zip
+  mv README.txt package/
+  mv TNSLCK.BIN package/
+  mv TNSLCK8.BIN package/
+  mv TNSLCK.ROM package/
+  cat > package/TNSLCK.BAS << EOF
+  10 BLOAD"TNSLCK.BIN",R
+  EOF
+  cat > package/TNSLCK.BAT << EOF
+  BASIC TNSLCK.BAS
+  EOF
+  unix2dos package/TNSLCK.BAS
+  unix2dos package/TNSLCK.BAT
+changelog: |
+  - 2.0.0-1 2020-11-07
+    - First release

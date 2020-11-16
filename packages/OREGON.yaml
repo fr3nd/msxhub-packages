@@ -1,0 +1,45 @@
+---
+name: 'OREGON'
+version: '1.0.0'
+release: 1
+summary: 'The Oregon Trail'
+author: 'Cobinee (translated by jltursan)'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Unknown'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'http://blog.livedoor.jp/cobinee/archives/2002468.html'
+description: |
+  The game The Oregon Trail is a text-based strategy video game originally developed in 1971 to teach school children about the realities of 19th-century pioneer life on the Oregon Trail. It was released as a simple text game, the full graphic version was released after 1985 and has considerably enhanced the game's content. The game was recently ported to MSX. Finally.
+
+  It took 40 years, but Japanese developer Cobinee stepped up and created an MSX version of this game. He took the BASIC code that was published in Creative Computing Magazine in 1978 and ported it to our beloved Z80 system. While Cobinee coded it with Japanese texts, it was MRC user jltursan who translated it to an English text ROM. The English version is using most of the original texts of the popular BASIC listing.
+
+  In the game, the player assumes the role of a wagon leader guiding a party of settlers from Independence, Missouri, to Oregon City, Oregon via a covered wagon in 1847. Along the way the player must purchase supplies, hunt for food, and make choices on how to proceed along the trail while encountering random events such as storms and wagon breakdowns.
+
+  The game runs on MSX with 16KB or more of RAM and it can be played with either keyboard or joystick.
+installdir: '\OREGON'
+files:
+  - OREGON.ROM: 'https://www.msx.org/download/download/2020/11/OREGON.ROM'
+build: |
+  mkdir -p package/
+  mv OREGON.ROM package/
+  cat > package/OREGON.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM OREGON.rom
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM OREGON.rom
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/OREGON.BAT
+changelog: |
+  - 1.0.0-1 2020-11-11
+    - First release

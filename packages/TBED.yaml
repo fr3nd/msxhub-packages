@@ -1,0 +1,60 @@
+---
+name: 'TBED'
+version: '1.0.0'
+release: 1
+summary: 'Tiny Binfile Editor'
+author: 'Tiny Yarou'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Unknown'
+category: 'Editors'
+system: 'MSX'
+requirements:
+  - MSX-DOS
+url: 'http://www.tiny-yarou.com/binfileeditor.html'
+description: |
+  A tool for MSX-DOS that allows you to easily edit binary files saved on floppy disks.
+  Since the files on the disk are directly rewritten, you can edit files up to 8MB regardless of the amount of RAM in the main unit.
+
+  * Never open a file that should not be rewritten, as it will be auto-saved at any time.
+
+  * We cannot handle any troubles caused by using this tool, so please take your own risk.
+
+  ## Operating environment
+
+  MSX running MSX-DOS or MSX-DOS2
+
+  ## Execution method
+
+  * Please download and extract the file from the link above.
+  * TBED.COM is the main body of the tool. Copy it to an MSX-DOS (or DOS2) disk in advance.
+  * Start MSX-DOS (or DOS2) and enter the following at the command prompt.
+  ```
+  TBED file name
+  ```
+
+  ## Basic operation
+
+  * Use the cursor keys to move the cursor and edit the data.
+  * If you hold down [SHIFT], [CTRL], and [GRAPH] and press the cursor keys, the cursor will move in units of 100H, 1000H, and 10000H, respectively.
+  * Press [ESC] to exit the tool and return to DOS. Be sure to exit the tool after use. Also, do not remove the disc until you exit the tool.
+  * The following commands are available.
+    * [CTRL] + [F]… Search for the specified data. When searching for multiple bytes of data, enter them consecutively without any spaces.
+      * Example) If you want to search for 3 bytes called 41 42 90, enter "414290" when "FIND>" is displayed.
+    * [F3]… Re-searches the previously searched data from the current cursor position.
+    * [CTRL] + [J]… Jumps to the specified address.
+    * [CTRL] + [Z]… Cancels the previous edit.
+  * The search takes time because it is performed while reading the data from the disk. You can cancel halfway by pressing any key during the search.
+
+  ## Finally
+  If you have any questions, please feel free to contact @tiny_yarou on twitter (^_^)
+installdir: '\TBED'
+files:
+  - tbed.zip: 'http://www.tiny-yarou.com/files/TinyBinfileEditor.zip'
+build: |
+  mkdir -p package/
+  unzip tbed.zip
+  mv README.txt package/
+  mv TBED.COM package/
+changelog: |
+  - 1.0.0-1 2020-11-07
+    - First release
