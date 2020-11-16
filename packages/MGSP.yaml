@@ -1,0 +1,54 @@
+---
+name: 'MGSP'
+version: '2.0.0'
+release: 1
+summary: 'MGS music file player'
+author: 'HRA!'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Unknown'
+category: 'Sound'
+system: 'MSX'
+requirements:
+  - MSX-DOS2
+url: 'http://hraroom.s602.xrea.com/msx/software/mgsp_e.html'
+description: |
+  This is an MGS file player that works when MGSDRV is installed.
+  It has almost the same purpose as Ain's MGSEL, but with the following differences
+
+  Advantages over MGSEL:
+
+  1. It also works on MSX1.
+  2. Song titles can be displayed in a mixture of kanji and kana even without a kanji ROM.
+  3. You can control it with the joypad.
+
+  Inferior to MGSEL:
+  1. It consumes a lot of MapperRAM.
+  2. Mouse operation is not possible.
+  3. There are many features that MGSEL has, but MGSP doesn't.
+
+  Usage:
+  Execute from the command prompt in the following order.
+  　
+  ```
+  A:\> MAINROMP
+  A:\> MGSDRV /Z
+  A:\> MGSP
+  ```
+  　
+  (*) MAINROMP does not need to be run on MSX2 or later; it is a workaround for a problem where MGSDRV v3.20 may not start on MSX1.
+installdir: '\MGSP'
+files:
+  - MGSP.ZIP: 'http://hraroom.s602.xrea.com/msx/software/files/MGSP%VERSION%.zip'
+  - mgsdr318.lzh: 'http://sakuramail.net/fswold/music/mgsdr318.lzh'
+build: |
+  mkdir -p package/
+  unzip MGSP.ZIP -d package
+  mv package/RequestList.txt package/Request.txt
+
+  # MGSDRV.COM
+  lha x mgsdr318.lzh
+  mv mgsdrv.com package/
+  mv mgsdr318.doc package/drvdocs
+changelog: |
+  - 2.0.0-1 2020-11-16
+    - First release
