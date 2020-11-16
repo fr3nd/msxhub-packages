@@ -28,13 +28,13 @@ description: |
 
   Usage:
   Execute from the command prompt in the following order.
-  　
+
   ```
   A:\> MAINROMP
   A:\> MGSDRV /Z
   A:\> MGSP
   ```
-  　
+
   (*) MAINROMP does not need to be run on MSX2 or later; it is a workaround for a problem where MGSDRV v3.20 may not start on MSX1.
 installdir: '\MGSP'
 files:
