@@ -12,7 +12,7 @@ requirements:
   - 'MSX-DOS'
 url: 'https://code.distributedrebirth.love/arch-msx/omsxctl'
 description: |
-  OpenMSXConTroL is an utility to send control commands to openMSX from within the emulated msx.
+  OpenMSXConTroL is an utility to send control commands to openMSX(16.0 or higher) from within the emulated msx.
 installdir: '\OMSXCTL'
 files:
   - omsxctl-1.0.tar.gz: 'https://code.distributedrebirth.love/attachments/d704a675-fa4f-4cb3-8c54-b9626393f283'
