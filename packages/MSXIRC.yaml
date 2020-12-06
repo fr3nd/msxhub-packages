@@ -7,7 +7,7 @@ author: 'Ptero and Oduvaldo Pavan Junior'
 package_author: 'Fubukimaru'
 license: 'Unknown'
 category: 'Internet'
-system: 'MSX'
+system: 'MSX2'
 requirements:
   - 'MSX-DOS2'
 url: 'https://github.com/Fubukimaru/msxirc'
