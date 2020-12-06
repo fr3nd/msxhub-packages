@@ -5,7 +5,7 @@ release: 1
 summary: 'MSXDOS IRC client'
 author: 'Ptero and Oduvaldo Pavan Junior'
 package_author: 'Fubukimaru'
-license: ''
+license: 'Unknown'
 category: 'Internet'
 system: 'MSX'
 requirements:
