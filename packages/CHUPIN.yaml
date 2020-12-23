@@ -1,0 +1,25 @@
+---
+name: 'CHUPIN'
+version: '1.0'
+release: 1
+summary: 'ROM extraction tool'
+author: 'Marcos Daniel Blanco de Oliveira'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Unknown'
+category: 'System'
+system: 'MSX'
+requirements:
+  - ROM
+  - MSX-DOS
+url: 'https://www.msx.org/downloads/power-chupin-10'
+description: |
+  With this extraction tool you can create ROM files of your MSX Cartridges with different sizes, from 16 Kb up to 2048 Kb. And with the most common mapper types, like Konami, ASCII 8 Kb, and ASCII 16 Kb. Its necessary to have a slot expander or another device to disable the cartridge ROM and allow booting into DOS. Or, do it the old fashion way and plug the cart in just after the MSX logo appears. Be careful though.
+installdir: '\CHUPIN'
+files:
+  - chupin.zip: 'https://www.msx.org/download/download/2020/12/chupin.com_.v1.0.zip'
+build: |
+  mkdir -p package/
+  unzip chupin.zip -d package
+changelog: |
+  - 1.0-1 2020-12-23
+    - First release
