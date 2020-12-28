@@ -1,6 +1,6 @@
 ---
 name: 'HIDTEST'
-version: '3.1'
+version: '3.2'
 release: 1
 summary: 'Utility to test a Human Interface Devices.'
 author: 'FRS'
@@ -25,13 +25,13 @@ description: |
      - Trackball
      - Touchpad
      - Keyboard (directional keys, SPACE and GRAPH)
-     - Light gun (Plus-X Terminator Laser protocol)
-     - Light Pen (note: Only the Sanyo interface was tested. The MSX2-BIOS V9938 light pen support is implemented but still require testing)
+     - Light gun (Plus-X Terminator Laser protocol. You can use NES and SMS light guns [via adapters](http://frs.badcoffee.info/hardware/lightgun_adapters.html))
+     - Light Pen (Sanyo and V9938 interfaces)
      - Micomsoft XE-1AP analog joypad
-       - Micomsoft XE-1AJ analog joypad (has the same protocol as the XE-1AP)
        - Sharp Cyberstick CZ-8NJ2 (has the same protocol as the XE-1AP)
+       - Micomsoft XE-1AP analog joypad (has a backwards-compatibility mode with the XE-1AJ)
      - PWM protocol devices
-       - MSX-Paddle
+       - MSX-Paddle, with up to 5 digital buttons
        - Yamaha MMP-01
      - Vaus Arkanoid paddle
 
@@ -40,7 +40,7 @@ description: |
      - Sega Megadrive 6-button joypad
      - Sega Megadrive MK-1654 Multi-tap (and compatibles)
 
-  3. Joysat adapter devices
+  3. JoySaturn adapter devices
      - Sega Saturn digital joypad
      - Sega Saturn analog joystick
 
@@ -48,17 +48,22 @@ description: |
      - IBM DA-15 joysticks
      - Atari 2600's dual-paddles
 
+  5. Only detected, but won't be supported:
+     -	Sega Saturn mouse
+
+  6. The following devices are incompatible with the MSX-HID detection, but you can hold a button to disable the detection and force a compatibility mode:
+     - Hold the button-B:
+       - Panasonic FS-JH1 joywheel
+       - Panasonic FS-JS222 joypad
+       - FM-Towns controllers (2+2 and 6+2 buttons supported)
+     - Hold the button-A:
+       - Capcom CPS-A10CA + CPSF-PC/CPA001 adapter for the X68000
+
   Warning: **Never** connect any Megadrive device directly to the MSX as it can
   damage your computer and/or the device! Always connect them using a joymega
   adapter. You can buy one in the MSX community, or DIY following the
   instructions shown here:
   http://frs.badcoffee.info/hardware/joymega-en.html
-
-  ## Devices that are detected, but have no drivers:
-  - Sega Saturn mouse
-
-  ## Only planned
-  - Panasonic FS-JH1 joywheel (there's no doc available about its protocol yet)
 installdir: '\HIDTEST'
 files:
   - HIDTEST.ZIP: 'http://frs.badcoffee.info/files/HIDTEST.ZIP'
@@ -68,6 +73,8 @@ build: |
   rm -f HIDTEST.ZIP
   mv * package/
 changelog: |
+  - 3.2 2020-12-28
+    - Update to 3.2
   - 3.1 2020-02-09
     - Update to 3.1
   - 3.0 2019-05-12
