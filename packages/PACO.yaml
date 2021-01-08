@@ -1,0 +1,39 @@
+---
+name: 'PACO'
+version: '1.0'
+release: 1
+summary: 'Paco el Bombas REDUX'
+author: 'Physical Dreams Games'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Unknown'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://twitter.com/physicaldreams1'
+description: |
+  Bomb Jack tribute game.
+installdir: '\PACO'
+files:
+  - PACO.ROM: 'https://www.msx.org/download/download/2021/01/Paco%20el%20Bombas%20REDUX.rom'
+build: |
+  mkdir -p package/
+  mv PACO.ROM package/
+  cat > package/PACO.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM PACO.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM PACO.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/PACO.BAT
+changelog: |
+  - 1.0-1 2021-01-07
+    - First release
