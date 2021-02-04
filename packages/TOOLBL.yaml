@@ -1,0 +1,44 @@
+---
+name: 'TOOLBL'
+version: '1.0'
+release: 1
+summary: 'Tool Blocks game (MSXdev''21)'
+author: 'ray2day MSX Software'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Freeware'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2021/02/03/msxdev21-tool-blocks/'
+description: |
+  Tool Blocks a cute puzzle platformer, and you will find that the puzzles get harder as the game progresses!
+
+  In every stage:
+  Get key and find your way out (door) by jumping, moving and moving boxes around.
+installdir: '\TOOLBL'
+files:
+  - toolbl.zip: 'https://www.msxdev.org/wp-content/uploads/2021/02/Tool-Blocks.zip'
+build: |
+  mkdir -p package/
+  unzip toolbl.zip
+  mv "Tool Blocks/TOOLBL.ROM" package/
+  mv "Tool Blocks/README.TXT" package/
+  cat > package/TOOLBL.bat << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM TOOLBL.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM TOOLBL.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/TOOLBL.bat
+changelog: |
+  - 1.0-1 2021-02-04
+    - First release
