@@ -1,0 +1,50 @@
+---
+name: 'VEXED'
+version: '1.0'
+release: 1
+summary: 'Vexed game'
+author: 'Under4Mhz'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Unknown'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msx.org/forum/msx-talk/software/new-game-vexed'
+description: |
+  Vexed is puzzle game for the Sega Master System and SG-1000.
+
+  Vexed is a puzzle game in which your goal is to move similar blocks together, which causes them to disappear. Once all the blocks are gone, you've solved the level and you're presented with a new level to solve.
+
+  You move blocks by putting the target on them and pressing the button and moving to either the right or left. If an empty space is encountered, "gravity" takes over and the blocks fall towards the bottom.
+
+  Scoring is based on a golf-like "par" concept. If you solve the level in the same number of moves as the target, you get a score of 0, or par, for that level. Note that the target may not be the most efficient one, so you can beat "par" and have a negative score.
+
+  Click the right button to restart the level. The level score is reset. You can restart as often as you like.
+installdir: '\VEXED'
+files:
+  - vexed.zip: 'https://www.msx.org/download/download/2021/02/Vexed-MSX-1.00.zip'
+build: |
+  mkdir -p package/
+  unzip vexed.zip
+  mv Vexed.rom package/
+  mv readme.txt package/
+  unix2dos package/readme.txt
+  cat > package/VEXED.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM /Z1 VEXED.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM /Z1 VEXED.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/VEXED.BAT
+changelog: |
+  - 1.0-1 2021-02-12
+    - First release
