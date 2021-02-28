@@ -1,0 +1,49 @@
+---
+name: 'ADXP'
+version: '2.1'
+release: 1
+summary: 'Quick ADX Player'
+author: 'Mstz80ax'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Unknown'
+category: 'Sound'
+system: 'MSX'
+requirements:
+  - 'MSX-DOS'
+url: 'https://www.msx.org/downloads/quick-adx-player-ver2'
+description: |
+  A simplified version of the new ADX player.
+  Significantly added and improved the performance program.
+
+  The added functions are:
+
+  * YM2413 OPLL stereo performance.
+  * Support for PCM sound source of MSX Turbo R.
+  * Support for Double PSG sound source.
+
+  It also has the operability of a CD player.
+
+  Contains 28 songs of sample ADX file data plus Space Harrier album.
+
+  MSX, MSX2, MSX2 +, MSX-TR
+
+  Compatible with both MSX-DOS1 and MSX-DOS2.
+
+  By using Panasonic FM PAC you can play it in stereo.
+  This requires modification on the hardware side.
+
+  Functions such as level meter display will be added later.
+installdir: '\ADXP'
+files:
+  - ADXP.zip: 'https://www.msx.org/download/download/2021/01/ADXP.zip'
+build: |
+  mkdir -p package/
+  unzip ADXP.zip
+  mv ADXP/ADXP.COM package/
+  mv ADXP/ADXP-Instructions.txt package/README.TXT
+  mv ADXP/CHKPAN.ADX package/
+  mv "GMUSICS ADX FILES/" package/ADX/
+  mv "SPACE HARRIER ADX FILES" package/SPHARR/
+changelog: |
+  - 2.1-1 2021-02-28
+    - First release

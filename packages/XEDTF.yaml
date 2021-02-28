@@ -1,0 +1,49 @@
+---
+name: 'XEDTF'
+version: '20210p'
+release: 1
+summary: 'MSX Sound editor. ADX file creation.'
+author: 'Mstz80ax'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Unknown'
+category: 'Sound'
+system: 'MSX2'
+requirements:
+  - 'MSX-DOS'
+url: 'https://www.msx.org/downloads/xedtf-editor'
+description: |
+  MSX SOUND EDITOR [XEDTF]
+
+  This sound editor uses MML data input. You can create sounds and play songs by operating each sound source of
+  PSG + OPLL + PCM (Supported only for XEDT full version).
+
+  You can operate two MSX OPLL and PSG to achieve stereo sound.
+  An editor that creates data for the ADX driver.
+  The other is that you can also use the PCM sound source of MSX Turbo R.
+  This feature is the full version of the paid version.
+  This feature has been removed in this free version.
+
+  Sample data is also included for reference.
+
+  MSX-DOS1 or MSX-DOS2 is required.
+
+   Compatible models:
+   * MSX2, MSX2+, MSX-TR
+
+   2021. Mstz80ax. 
+installdir: '\XEDTF'
+files:
+  - XEDTF.zip: 'https://www.msx.org/download/download/2021/02/XEDTF.zip'
+build: |
+  mkdir -p package/
+  unzip XEDTF.zip
+  mv XEDTF/ADXDRV.BIN package/
+  mv XEDTF/VUMZ.BIN package/
+  mv XEDTF/XEDTF.COM package/
+  mv XEDTF/AFONT.BIN package/
+  mv XEDTF/XEDTF-Manual-English.txt package/README.TXT
+  mv "MUSIC TXF FILES/" package/MUSIC/
+  mv "SAMPLE TXF FILES/" package/SAMPLE/
+changelog: |
+  - 20210p-1 2021-02-28
+    - First release

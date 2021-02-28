@@ -1,0 +1,27 @@
+---
+name: 'DIXE'
+version: '2.1'
+release: 1
+summary: 'A tool to create DIX files'
+author: 'Mstz80ax'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Unknown'
+category: 'Sound'
+system: 'MSX'
+requirements:
+  - 'MSX-DOS'
+url: 'https://www.msx.org/downloads/quick-adx-player-ver2'
+description: |
+  Edit multiple ADX files to create playlist files
+  A tool for creating DIX files.
+installdir: '\DIXE'
+files:
+  - DIXE.zip: 'https://www.msx.org/download/download/2021/01/ADXP.zip'
+build: |
+  mkdir -p package/
+  unzip DIXE.zip
+  mv DIXE/DIXE.COM package/
+  mv DIXE/DIXE-Instructions.txt package/README.TXT
+changelog: |
+  - 2.1-1 2021-02-28
+    - First release
