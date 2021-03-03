@@ -1,0 +1,44 @@
+---
+name: 'BOOKWORM'
+version: '1.0'
+release: 1
+summary: 'Bookworm game (MSXdev''20)'
+author: 'Z80ASMer'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Freeware'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2021/03/01/msxdev21-2-bookworm/'
+description: |
+  In this game, our mission is to guide one of them as it goes down the screen, using an umbrella as a parachute (remarkably, this specimen doesn’t seem to rely much on his cat superpower of landing safely from great heights).
+  
+  As you float towards the safe ground, be cautious of birds, because if they hit the umbrella the damage gauge will go up. If damage reaches 100%, the game will be over. If you want to descend faster, use the cursor down.
+  
+  Try to get the best score you can!
+installdir: '\BOOKWORM'
+files:
+  - bookworm.zip: 'https://www.msxdev.org/wp-content/uploads/2021/03/MSXdev21_Bookworm_v1.0.zip'
+build: |
+  mkdir -p package/
+  unzip bookworm.zip
+  mv bookworm.ROM package/
+  cat > package/BOOKWORM.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM BOOKWORM.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM BOOKWORM.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/BOOKWORM.BAT
+changelog: |
+  - 1.0-1 2021-03-03
+    - First release
