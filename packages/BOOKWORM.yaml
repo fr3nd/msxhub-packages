@@ -2,7 +2,7 @@
 name: 'BOOKWORM'
 version: '1.0'
 release: 1
-summary: 'Bookworm game (MSXdev''20)'
+summary: 'Bookworm game (MSXdev''21)'
 author: 'Z80ASMer'
 package_author: 'Carles Amigó (fr3nd)'
 license: 'Freeware'
