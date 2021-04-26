@@ -1,0 +1,47 @@
+---
+name: 'PUZZYBOX'
+version: '1.0'
+release: 1
+summary: 'Puzzybox (MSXdev''21)'
+author: 'Gamecast Entertainment'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Freeware'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2021/04/25/msxdev21-6-puzzybox/'
+description: |
+  You are a scientist with your hands in your pockets inside various mazes
+  and your task is to carefully move the pink BOXES with the
+  PUZZY BOX written, but be careful not to get stuck inside the
+  your path. Each level of the game there are vegetables to harvest
+  to accumulate your SCORE score, if you go to touch the BOXES
+  point "?" and the point "!" you discover BONUS scoring vegetables.
+installdir: '\PUZZYBOX'
+files:
+  - puzzybox.zip: 'https://www.msxdev.org/wp-content/uploads/2021/04/MSXdev21_PuzzyBox_v1.0.zip'
+build: |
+  mkdir -p package/
+  unzip puzzybox.zip
+  mv "MSXdev21_PuzzyBox_v1.0.rom" package/PUZZYBOX.ROM
+  mv "MSXdev21_PuzzyBox_v1.0.eng.txt" package/README.TXT
+  cat > package/PUZZYBOX.bat << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM PUZZYBOX.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM PUZZYBOX.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/PUZZYBOX.bat
+  unix2dos package/README.TXT
+changelog: |
+    - 1.0-1 2021-04-26
+    - First release
