@@ -1,0 +1,52 @@
+---
+name: 'KLONDIKE'
+version: '1.0'
+release: 1
+summary: 'Klondike Solitaire (MSXdev''21)'
+author: 'Under4Mhz'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Unknown'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2021/04/29/msxdev21-7-klondike-solitaire/'
+description: |
+  The classic solitaire card game now available for the MSX.
+
+  The goal of the game is to sort the cards into order.
+
+  Left button to select a card to move, then press again to move the card.
+
+  Right button to move the pointer to bottom of the pile, then press again to move the deck.
+
+  Right click also automatically moves a card to the foundation, if a valid move.
+
+  Hold both left and right buttons together to resign the current game.
+installdir: '\KLONDIKE'
+files:
+  - klondike.zip: 'https://www.msxdev.org/wp-content/uploads/2021/04/MSXdev21_KlondikeSolitaire_v1.0.zip'
+build: |
+  mkdir -p package/
+  unzip klondike.zip
+  mv "MSXdev21_KlondikeSolitaire_v1.0.rom" package/KLONDIKE.ROM
+  mv "MSXdev21_KlondikeSolitaire_v1.0.txt" package/README.TXT
+  cat > package/KLONDIKE.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM KLONDIKE.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM KLONDIKE.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/KLONDIKE.BAT
+  unix2dos package/README.TXT
+changelog: |
+    - 1.0-1 2021-05-02
+    - First release
