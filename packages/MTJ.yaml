@@ -1,0 +1,44 @@
+---
+name: 'MTJ'
+version: '1.0'
+release: 1
+summary: 'Make Them Jump (MSXdev''21)'
+author: 'Robosoft'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Freeware'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2021/05/04/msxdev21-9-make-them-jump/'
+description: |
+  This is the MSX version of 'Make them jump'. The stick men compete against each other running and jumping over walls. As a single player you control both stick men with either cursor keys or joystick. Activating Up makes the upper dude jump, activating down makes the lower dude jump.
+
+  See how high you can set your score...
+installdir: '\MTJ'
+files:
+  - mtj.zip: 'https://www.msxdev.org/wp-content/uploads/2021/04/MSXdev21_MakeThemJump_v1.0.zip'
+build: |
+  mkdir -p package/
+  unzip mtj.zip
+  mv "MSXdev21_MakeThemJump_v1.0.rom" package/MTJ.ROM
+  mv "MSXdev21_MakeThemJump_v1.0.txt" package/README.TXT
+  cat > package/MTJ.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM MTJ.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM MTJ.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/MTJ.BAT
+  unix2dos package/README.TXT
+changelog: |
+    - 1.0-1 2021-05-05
+    - First release

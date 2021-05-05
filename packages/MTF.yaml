@@ -1,0 +1,46 @@
+---
+name: 'MTF'
+version: '1.0'
+release: 1
+summary: 'Make Them Fall (MSXdev''21)'
+author: 'Robosoft'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Freeware'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2021/05/04/msxdev21-10-make-them-fall/'
+description: |
+  This is the MSX version of 'Make them fall'. The stick men compete against each gliding down a tunnel while avoiding lethal saw blades.
+
+  As a single player you control both stick men with either cursor keys or joystick. Activating Left makes the left dude jump, activating right makes the right dude jump.
+
+  See how high you can set your score...
+installdir: '\MTF'
+files:
+  - mtf.zip: 'https://www.msxdev.org/wp-content/uploads/2021/04/MSXdev21_MakeThemFall_v1.0.zip'
+build: |
+  mkdir -p package/
+  unzip mtf.zip
+  mv "MSXdev21_MakeThemFall_v1.0.rom" package/MTF.ROM
+  mv "MSXdev21_MakeThemFall_v1.0.txt" package/README.TXT
+  cat > package/MTF.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM MTF.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM MTF.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/MTF.BAT
+  unix2dos package/README.TXT
+changelog: |
+    - 1.0-1 2021-05-05
+    - First release
