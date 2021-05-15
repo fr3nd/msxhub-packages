@@ -1,0 +1,98 @@
+---
+name: 'MUTANTS'
+version: '1.0'
+release: 1
+summary: 'Mutants from the Deep'
+author: 'Retroworks (Original Windows version: Locomalito)'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'CC BY-NC-ND'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'http://www.retroworks.es/php/game_en.php?id=19'
+description: |
+  ## Introduction
+
+  We have been informed of some anomalies in sections G1 and G2 of the Cabo Angosto pipeline facilities. You have been tasked with finding the source of the issue. You will be transported by helicopter to the diving area at 16:35 on next 05/07. Act with caution: the possibility of industrial sabotage is not ruled out.. As you know, this whole matter is of the utmost confidentiality. We trust in your discretion and expertise.
+
+  ## The game
+
+  Mutants From The Deep is designed for a single player, but you can choose between two characters at the start of the game. When the game begins, you will have to dive into the sea and fight your way through with your automatic harpoon. Depending on the creatures or items you destroy, you can find weapons, oxygen, health or coins to use in the shop. Here is a description of these objects:
+
+  ### Weapons
+
+  * Harpoon: normal and fast shot
+  * Spread: several projectiles at once
+  * Wave: it passes through solid surfaces
+  * Bombs: slow but powerful detonation
+
+  ### Items
+
+  Crate: container capsules of the Company. Shoot to open them
+  Air: full oxygen recovery
+  Heart: little health recovery
+  Coin: 1 unit
+  Big coin: 5 units
+
+  ### Store
+
+  Increase max air: increases total oxygen capacity
+  Increase fire power: increases damage by 25%
+  x2 bonus: doubles the game score
+  Points: 500 points
+  Increase max Health: raises total life capacity
+  Increase speed: to move faster
+
+  ## Controls
+
+  You can use the keyboard (cursors + space) or a compatible controller to play Mutants From The Deep. During the game, use the arrow keys or the controller stick to move in the 8 directions. Use the space bar or button 1 on the controller to fire your harpoon, choose options or buy items in the shop. Press F1 on the keyboard or button 2 on the controller to pause the game. Press GRAPH key or Button 2 on the controller to jump to the exit (only in stores).
+  Dangers
+
+  Into the sea there are many dangers: lack of oxygen, animals defending themselves, labyrinthine structures, hostile enemies... Avoid at all costs being trapped between reefs and rocks or you will die.
+  Tips & tricks
+
+  * In order to dodge enemies, do not shoot. You will move faster.
+  * It is better to aim accurately than to shoot wildly.
+  * Adjust your resources and decide well what to buy in the store.
+  * Explore the terrain and you will get more rewards.
+  * With some practice you will be able to go further and further.
+  * Choose very well which weapon is the most suitable in each area.
+  * Do not allow them to besiege you, kill the enemies asap.
+
+  ## Credits
+
+  * *Locomalito*: main idea, graphics and Windows version.
+  * *Gryzor87*: music and sound FX.
+  * *Jacobo García*: cover and manual illustrations.
+  * *Manuel Pazos & Fernando García*: MSX version
+  * *Retroworks*: physical edition and distribution.
+
+  We would like to thank our families and the entire retro community for supporting us during all these years of video games.
+installdir: '\MUTANTS'
+files:
+  - mutants.zip: 'http://www.retroworks.es/upload/Mutants%20from%20the%20deep.zip'
+build: |
+  mkdir -p package/
+  unzip mutants.zip
+  mv "Mutants from the deep.rom" package/MUTANTS.ROM
+  mv "LICENSE" package/LICENSE.TXT
+  cat > package/MUTANTS.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM MUTANTS.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM MUTANTS.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/MUTANTS.BAT
+  unix2dos package/LICENSE.TXT
+changelog: |
+    - 1.0-1 2021-05-15
+    - First release
