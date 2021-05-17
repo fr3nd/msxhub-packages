@@ -1,0 +1,50 @@
+---
+name: 'BLOCKBUS'
+version: '1.0'
+release: 1
+summary: 'Blockbuster (MSXdev''21)'
+author: 'Robosoft'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Freeware'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2021/05/16/msxdev21-14-blockbuster/'
+description: |
+  This is the MSX version of Blockbuster. In this game you have to combine blocks with the same color in groups of 3 or more. Control the blocks in the middle columns with either cursor keys or joystick: up/down to move the blocks up or down, left/right to swap the blocks and fire to move them to the left and right columns.
+  Try to set the highest score. There are 4 levels, after clearing a number of blocks the level will go up. Every level up will speed up the timer.
+
+  Score:
+
+  * Combine 3 blocks : 1 point
+  * Combine 4 blocks : 20 points
+  * 1 column empty: 5 points
+  * Both columns empty: 15 points
+installdir: '\BLOCKBUS'
+files:
+  - BLOCKBUS.zip: 'https://www.msxdev.org/wp-content/uploads/2021/05/MSXdev21_Blockbuster_v1.0.zip'
+build: |
+  mkdir -p package/
+  unzip BLOCKBUS.zip
+  mv "MSXdev21_Blockbuster_v1.0.rom" package/BLOCKBUS.ROM
+  mv "MSXdev21_Blockbuster_v1.0.txt" package/README.TXT
+  cat > package/BLOCKBUS.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM BLOCKBUS.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM BLOCKBUS.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/BLOCKBUS.BAT
+  unix2dos package/README.TXT
+changelog: |
+    - 1.0-1 2021-05-17
+    - First release
