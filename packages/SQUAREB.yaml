@@ -1,0 +1,77 @@
+---
+name: 'SQUAREB'
+version: '1.0'
+release: 1
+summary: 'Square Ball (MSXdev''21)'
+author: 'RAY2DAY MSX Software, in co-operation with mafcase'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Freeware'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2021/05/18/msxdev21-16-square-ball/'
+description: |
+  This is a freeware MSX puzzle game developed by
+  R. van Hoorn in co-operation with M. Krooshof for the MSX Dev '21.
+
+  Controls
+  --------
+
+  The game is designed for one single player.
+
+  Use keyboard or a joystick/-pad connected to port1.
+
+
+  To start the game:
+
+  SPACE / FIRE BUTTON
+
+
+  Move:
+
+  LEFT, RIGHT, UP and DOWN
+
+
+  Select ball or square:
+
+  SPACE / FIRE BUTTON
+
+
+  Can't proceed in a particular level?/Stuck?:
+
+  ESC (to restart the stage with a loss of one life)
+
+  Goal
+  ----
+
+  Switch between the ball and square by selecting it by pressing space / or fire.
+  Move the ball or square in order to get the jewels. To complete a stage;
+  Collect ALL jewels in the amount of moves shown on the right side of the screen.
+installdir: '\SQUAREB'
+files:
+  - SQUAREB.zip: 'https://www.msxdev.org/wp-content/uploads/2021/05/MSXdev21_SquareBall_v1.0.zip'
+build: |
+  mkdir -p package/
+  unzip SQUAREB.zip
+  mv "MSXdev21_SquareBall_v1.0.ROM" package/SQUAREB.ROM
+  mv "MSXdev21_SquareBall_v1.0.TXT" package/README.TXT
+  cat > package/SQUAREB.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM SQUAREB.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM SQUAREB.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/SQUAREB.BAT
+  unix2dos package/README.TXT
+changelog: |
+    - 1.0-1 2021-05-20
+    - First release
