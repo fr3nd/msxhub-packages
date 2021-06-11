@@ -1,6 +1,6 @@
 ---
 name: 'ADXP'
-version: '2.1'
+version: '2.5'
 release: 1
 summary: 'Quick ADX Player'
 author: 'Mstz80ax'
@@ -35,7 +35,7 @@ description: |
   Functions such as level meter display will be added later.
 installdir: '\ADXP'
 files:
-  - ADXP.zip: 'https://www.msx.org/download/download/2021/01/ADXP.zip'
+  - ADXP.zip: 'https://www.msx.org/download/download/2021/01/ADXP25.zip'
 build: |
   mkdir -p package/
   unzip ADXP.zip
@@ -43,7 +43,15 @@ build: |
   mv ADXP/ADXP-Instructions.txt package/README.TXT
   mv ADXP/CHKPAN.ADX package/
   mv "GMUSICS ADX FILES/" package/ADX/
-  mv "SPACE HARRIER ADX FILES" package/SPHARR/
+  mv "SPACE HARRIER ADX FILES/" package/SPHARR/
+  mv "DRAGON SABER ADX FILES/" package/DRAGONS/
+  mv "MACH RIDER ADX FILES/" package/MACHRID/
+  mv "MSX GRADIUS2 ADX FILES/" package/GRADIUS2/
+  mv "RAY FORCE ADX FILES/" package/RAYFORCE/
+  mv "THUNDER CROSS ADX FILES/" package/THUNDER/
+  mv "YS ADX FILES" package/YS/
 changelog: |
+  - 2.5-1 2021-06-11
+    - New release
   - 2.1-1 2021-02-28
     - First release
