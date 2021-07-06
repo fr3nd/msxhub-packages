@@ -1,0 +1,26 @@
+---
+name: 'V9SW'
+version: '1.0'
+release: 1
+summary: 'Graphics9000 50/60Hz Selector.'
+author: 'Marcel Delorme (N.W.O)'
+package_author: 'Willem Cazander'
+license: 'Unknown'
+category: 'Graphics'
+system: 'MSX2'
+requirements:
+  - 'MSX-DOS2'
+  - 'V9990'
+url: 'http://www.msx.ch/sunformsx/download/dl-gfx.html'
+description: |
+  Graphics9000 PAL/NTSC selector.
+installdir: '\V9SW'
+files:
+  - v9sw.lzh: 'http://www.msx.ch/ftp/Products/Graphics9000/v9sw.lzh'
+build: |
+  mkdir -p package/
+  lha x v9sw.lzh
+  mv v9sw.com package/
+changelog: |
+  - 2021-07-06 1.0-1
+    - First release
