@@ -4,7 +4,7 @@ version: '3.30'
 release: 1
 summary: 'MSX commenting Dizassembler'
 author: 'Solidsoft International inc.'
-package_author: 'immetoo'
+package_author: 'Willem Cazander'
 license: 'Public domain'
 category: 'Programming'
 system: 'MSX'
