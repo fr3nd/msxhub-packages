@@ -1,0 +1,47 @@
+---
+name: 'WAVEDRV'
+version: '1.14'
+release: 1
+summary: 'Moonblaster BASIC Wave Driver for Moonsound'
+author: 'Marcel Delorme (N.W.O)'
+package_author: 'Willem Cazander'
+license: 'Unknown'
+category: 'Sound'
+system: 'MSX2'
+requirements:
+  - 'MSX-DOS2'
+  - 'OPL4'
+url: 'http://www.msx.ch/sunformsx/download/dl-moon.html'
+description: |
+  This BASIC driver is spread as a binary file for BASIC programmers and as a source file for ML programmers. The first part of this text will explain how to use this driver for BASIC programmers. The second part is meant for ML programmers.
+
+  The driver supports:
+  - MoonBlaster for MoonSound Wave songs from version 0.90 to 1.14.
+  - DOS1 and DOS2
+  - Z80,Z80H and R800 (three different drivers)
+
+  For 7MHz Users is now a special version available (WAVDRV7.BIN).
+
+  This version is mutch faster because (for 7Mhz that is) the wait for the Turbo R is:
+  PUSH BC
+  POP BC (This is a total of 21 cycles for the Z80)
+
+  In the 7Mhz version this is replayced by:
+  NOP (only 4 Cycles)
+  This means 17 cycles faster by almost each OUT or IN. And there are a lot of those.
+installdir: '\WAVEDRV'
+files:
+  - wavedrv.lzh: 'http://www.msx.ch/ftp/Products/MoonSound/wavedrv.lzh'
+build: |
+  mkdir -p package/
+  lha x wavedrv.lzh
+  mv basic.asm package/
+  mv howto.txt package/
+  mv mbmacros.asm package/
+  mv patches.asm package/
+  mv wavedrv7.bin package/
+  mv wavedrvr.bin package/
+  mv wavedrvz.bin package/
+changelog: |
+  - 2021-07-06 1.14-1
+    - First release
