@@ -1,0 +1,27 @@
+---
+name: 'V9BMP'
+version: '1.00'
+release: 1
+summary: 'V9990 BMP loader.'
+author: 'Marcel Delorme (N.W.O)'
+package_author: 'Willem Cazander'
+license: 'Unknown'
+category: 'Graphics'
+system: 'MSX2'
+requirements:
+  - 'MSX-DOS2'
+  - 'V9990'
+url: 'http://www.msx.ch/sunformsx/download/dl-gfx.html'
+description: |
+  The fastest V9990 *.BMP Image loader!
+installdir: '\V9BMP'
+files:
+  - v9bmp.lzh: 'http://www.msx.ch/ftp/Products/Graphics9000/v9bmp.lzh'
+build: |
+  mkdir -p package/
+  lha x v9bmp.lzh
+  mv v9bmp.com package/
+  mv v9bmp.txt package/
+changelog: |
+  - 2021-07-06 1.00-1
+    - First release
