@@ -1,7 +1,7 @@
 ---
 name: 'LHEXT'
 version: '1.34'
-release: 1
+release: 2
 summary: 'LZH decompression tool'
 author: 'Tomoya Iwata'
 package_author: 'Fubukimaru'
@@ -26,12 +26,16 @@ description: |
 
 installdir: '\LHEXT'
 files:
-  - lhext134.lzh: 'http://members.ziggo.nl/the.incantation/dload/lhext134.lzh'
+  - lzhpack.zip: 'https://hansotten.file-hunter.com/uploads/files/lzhpack.zip'
 build: |
   mkdir -p package/
-  lha x lhext134.lzh
-  mv LHEXT.COM package/lhext.com
-  mv LHEXT.DOC package/lhext.doc
+  unzip lzhpack.zip
+  mv Lhext.com package/lhext.com
+  mv Lhext.doc package/lhext.doc
+  mv Lhext.hlp package/lhext.hlp
 changelog: |
-  - 1.34 2019-10-13
-    - First release
+  - 2019-10-13 1.34-1
+    - First release (with version 1.33)
+  - 2021-07-08 1.34-2
+    - Made download equal to LHPACK
+    - Added help file
