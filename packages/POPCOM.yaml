@@ -1,13 +1,13 @@
 ---
 name: 'POPCOM'
 version: '1.00'
-release: 1
+release: 2
 summary: 'Compress com files'
 author: 'Yoshihiko Mino'
-package_author: 'immetoo'
+package_author: 'Willem Cazander'
 license: 'Unknown'
 category: 'Tools'
-system: 'MSX2'
+system: 'MSX'
 requirements:
   - 'MSX-DOS'
 url: 'https://www.msx.org/downloads/utilities/msx-dos-2/popcom-10'
@@ -24,3 +24,5 @@ build: |
 changelog: |
   - 1.00-1 2019-01-02
     - First release
+  - 1.00-2 2021-07-06
+    - Changed system to msx as its a CP/M program.
