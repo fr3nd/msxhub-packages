@@ -1,0 +1,26 @@
+---
+name: 'V9ENAGFX'
+version: '1.0'
+release: 1
+summary: 'Enable gfx for the Video9000'
+author: 'Michael Stellmann'
+package_author: 'Willem Cazander'
+license: 'Unknown'
+category: 'Graphics'
+system: 'MSX2'
+requirements:
+  - 'MSX-DOS2'
+  - 'V9990'
+url: 'http://www.msx.ch/sunformsx/download/dl-gfx.html'
+description: |
+   For Enable the Graphics9000 with the Video9000.
+installdir: '\V9ENAGFX'
+files:
+  - enagfx.lzh: 'http://www.msx.ch/ftp/Products/Graphics9000/enagfx.lzh'
+build: |
+  mkdir -p package/
+  lha x enagfx.lzh
+  mv enagfx.com package/
+changelog: |
+  - 2021-07-06 1.0-1
+    - First release

@@ -1,0 +1,30 @@
+---
+name: 'PUT9000'
+version: '1.0'
+release: 1
+summary: 'ANSI for Graphics9000'
+author: 'Eric Maas'
+package_author: 'Willem Cazander'
+license: 'Unknown'
+category: 'Graphics'
+system: 'MSX2'
+requirements:
+  - 'MSX-DOS2'
+  - 'V9990'
+url: 'http://www.msx.ch/sunformsx/download/dl-gfx.html'
+description: |
+   Put9000 is a MSX-DOS2 TSR that will enable you to use fast full colour ANSI on the Gfx9000!
+installdir: '\PUT9000'
+files:
+  - put9000.lzh: 'http://www.msx.ch/ftp/Products/Graphics9000/put9000.lzh'
+build: |
+  mkdir -p package/
+  lha x put9000.lzh
+  mv put9000.com package/
+  mv put9000.doc package/
+  mv put9000.ovl package/
+  mv voff.com package/
+  mv von.com package/
+changelog: |
+  - 2021-07-06 1.0-1
+    - First release
