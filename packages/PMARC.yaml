@@ -10,7 +10,7 @@ category: 'Files'
 system: 'MSX'
 requirements:
   - 'MSX-DOS'
-url: 'http://www.msxarchive.nl/pub/msx/utils/archive/'
+url: 'https://hansotten.file-hunter.com/software/'
 description: |
   As an utility for CP/M, PMARC/PMEXT doesn't allow the use of directories on
   the command line, only drives. To use directories chdir first or use the
