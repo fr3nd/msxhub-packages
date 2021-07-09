@@ -1,0 +1,38 @@
+---
+name: 'ZD'
+version: '3.30'
+release: 1
+summary: 'MSX commenting Dizassembler'
+author: 'Solidsoft International inc.'
+package_author: 'Willem Cazander'
+license: 'Public domain'
+category: 'Programming'
+system: 'MSX'
+requirements:
+  - 'MSX-DOS'
+url: 'http://www.msxarchive.nl/pub/msx/programming/asm/'
+description: |
+  ZD is a commenting dizassembler for Z-80, oriented for use on MSX computers.
+
+  ## Features
+
+  - any input format: MSX-DOS program, BLOAD program, MSX ROM, code fragment, SPR program.
+  - automatic search of strings and pointer arrays.
+  - good readability due to meaningful comments.
+  - "preprocessor" mode to generate symbol tables for further use with dialog dizassembler
+  - ZD understands MSX-specific RST instructions.
+
+  ## Example
+  `ZD [{-,/}options] inputfile[.ext]`
+
+installdir: '\ZD'
+files:
+  - zd.com: 'http://www.msxarchive.nl/pub/msx/programming/asm/zd.com'
+  - zd.doc: 'http://www.msxarchive.nl/pub/msx/programming/asm/zd.doc'
+build: |
+  mkdir -p package/
+  mv zd.com package/
+  mv zd.doc package/
+changelog: |
+  - 2021-07-06 3.30-1
+    - First release

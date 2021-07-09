@@ -1,0 +1,25 @@
+---
+name: 'DMPHEX'
+version: '1.00'
+release: 1
+summary: 'Dump hexadecimal'
+author: 'XelaSoft'
+package_author: 'Willem Cazander'
+license: 'Unknown'
+category: 'Tools'
+system: 'MSX'
+requirements:
+  - 'MSX-DOS'
+url: 'http://www.msxarchive.nl/pub/msx/utils/misc/'
+description: |
+  Dump files as hexadecimal and ascii values.
+installdir: '\DMPHEX'
+files:
+  - dmphex.pma: 'http://www.msxarchive.nl/pub/msx/utils/misc/dmphex.pma'
+build: |
+  mkdir -p package/
+  lha x dmphex.pma
+  mv dmphex.com package/
+changelog: |
+  - 1.00-1 2021-07-06
+    - First release
