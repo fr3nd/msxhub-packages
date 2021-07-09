@@ -10,7 +10,7 @@ category: 'Files'
 system: 'MSX'
 requirements:
   - 'MSX-DOS'
-url: ''
+url: 'https://hansotten.file-hunter.com/software/'
 description: |
   For MSX-DOS. LZH compression LHpack
 
