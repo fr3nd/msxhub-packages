@@ -1,0 +1,29 @@
+---
+name: 'WAVPLAY'
+version: '0.22'
+release: 1
+summary: 'WAV-Play replayer'
+author: 'Marcel Delorme (N.W.O)'
+package_author: 'Willem Cazander'
+license: 'Unknown'
+category: 'Sound'
+system: 'MSX2'
+requirements:
+  - 'MSX-DOS2'
+  - 'OPL4'
+url: 'http://www.msx.ch/sunformsx/download/dl-moon.html'
+description: |
+  Wavplay is a simple wav-player for the OPL4.
+
+  It support 8 and 16 bits mono WAV. 16 bit samples can be upto 128KB
+installdir: '\WAVPLAY'
+files:
+  - wavplay.lzh: 'http://www.msx.ch/ftp/Products/MoonSound/wavplay.lzh'
+build: |
+  mkdir -p package/
+  lha x wavplay.lzh
+  mv WAVPLAY.COM package/
+  mv WAVPLAY.TXT package/
+changelog: |
+  - 2021-07-06 0.22-1
+    - First release

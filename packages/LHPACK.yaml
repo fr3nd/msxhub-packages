@@ -1,0 +1,32 @@
+---
+name: 'LHPACK'
+version: '1.00'
+release: 1
+summary: 'LZH compression tool'
+author: 'Tomoya Iwata'
+package_author: 'Willem Cazander'
+license: 'Proprietary'
+category: 'Files'
+system: 'MSX'
+requirements:
+  - 'MSX-DOS'
+url: 'https://hansotten.file-hunter.com/software/'
+description: |
+  For MSX-DOS. LZH compression LHpack
+
+  LHpack version 1.00
+  Copyright (C) 1995 by KYOJU
+
+  Usage::LHpack [command] <archive> <file..> <{-|/}option>
+installdir: '\LHPACK'
+files:
+  - lzhpack.zip: 'https://hansotten.file-hunter.com/uploads/files/lzhpack.zip'
+build: |
+  mkdir -p package/
+  unzip lzhpack.zip
+  mv Lhpack.com package/lhpack.com
+  mv Lhpack.doc package/lhpack.doc
+  mv Lhpack.hlp package/lhpack.hlp
+changelog: |
+  - 2021-07-08 1.00-1
+    - First release

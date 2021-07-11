@@ -1,0 +1,52 @@
+---
+name: 'MBWAVE'
+version: '1.16'
+release: 1
+summary: 'MoonBlaster for MoonSound (WAVE)'
+author: 'Marcel Delorme (N.W.O)'
+package_author: 'Willem Cazander'
+license: 'Unknown'
+category: 'Sound'
+system: 'MSX2'
+requirements:
+  - 'MSX-DOS2'
+  - 'OPL4'
+url: 'http://www.msx.ch/sunformsx/download/dl-moon.html'
+description: |
+  Version 1.16
+  =========
+  Release date: 29/05/04 (Update by N.W.O)
+
+  Improvements / other modifications:
+  - Added Solo support in pattern editor. Press space bar to set current
+    channel to solo, additional channels can be activated with CTRL-W.
+    To activate all channels press space again on the channel that was set
+    to solo.
+
+  Bugfixes:
+  - 2 settings Variables were not saved. Don't use your old settings file!!
+installdir: '\MBWAVE'
+files:
+  - mbwav116.lzh: 'http://www.msx.ch/ftp/Products/MoonSound/mbwav116.lzh'
+build: |
+  mkdir -p package/
+  lha x mbwav116.lzh
+  mv E_PIANO.MWV package/
+  mv MBW115.MWK package/
+  mv MBW115.MWM package/
+  mv MBWAVE.000 package/
+  mv MBWAVE.001 package/
+  mv MBWAVE.002 package/
+  mv MBWAVE.003 package/
+  mv MBWAVE.004 package/
+  mv MBWAVE.005 package/
+  mv MBWAVE.006 package/
+  mv MBWAVE.007 package/
+  mv MBWAVE.CFG package/
+  mv MBWAVE.COM package/
+  mv MBWAVE.REV package/
+  mv ROMTONES.TXT package/
+  mv TR808.MWV package/
+changelog: |
+  - 2021-07-06 1.16-1
+    - First release
