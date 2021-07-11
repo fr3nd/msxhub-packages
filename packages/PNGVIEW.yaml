@@ -1,0 +1,31 @@
+---
+name: 'PNGVIEW'
+version: '1.0'
+release: 1
+summary: 'Shows PNG files on MSX.'
+author: 'Laurens Holst'
+package_author: 'Willem Cazander'
+license: 'BSD-2-Clause'
+category: 'Graphics'
+system: 'MSX2'
+requirements:
+  - 'MSX-DOS2'
+url: 'http://www.grauw.nl/projects/pngview/'
+description: |
+  It currently supports PNG files which are stored progressively (most of them), including those with transparency.
+  Since no scaling is applied to the output, it works best with images of size 256x212 or smaller.
+  Beware that because it first decompresses the PNG fully before showing it, it can be very memory hungry.
+
+  Run PNGView from MSX-DOS 2, specifying the PNG file to show on the command line.
+
+  Usage:
+  pngview [options] <image.png>
+installdir: '\PNGVIEW'
+files:
+  - pngview.com: 'http://www.grauw.nl/etc/msx/pngview.com'
+build: |
+  mkdir -p package/
+  mv pngview.com package/
+changelog: |
+  - 2021-07-11 1.0-1
+    - First release
