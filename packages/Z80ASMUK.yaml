@@ -1,0 +1,45 @@
+---
+name: 'Z80ASMUK'
+version: '3.4'
+release: 1
+summary: 'Z80 assembler'
+author: 'Miguel I. Garcia Lopez, FloppySoftware'
+package_author: 'Willem Cazander'
+license: 'Unknown'
+category: 'Programming'
+system: 'MSX'
+requirements:
+  - 'MSX-DOS'
+url: 'https://github.com/MiguelVis/zsm'
+description: |
+  ZSM, also known as Z80ASMUK, is a Z80 assembler for CP/M, that outputs HEX files.
+
+  The tools;
+  * zsm: Z80 assembler to hex files.
+  * zsmpp: source code preprocessor for the ZSM assembler.
+  * bintoasm: converts a binary file into an assembler file for ZSM.
+  * hextobin: converts a HEX file into a binary file.
+  * hextocom: converts an HEX file into a COM file for CP/M.
+  * prl: makes PRL relocatable files from COM files.
+  * prntosym: extracts symbols from a PRN file (from ZSM v2.8+) and generates an assembler file for ZSM.
+  * rsx: manages RSX files.
+  * dump: prints file contents in hexadecimal and ascii format.
+installdir: '\Z80ASMUK'
+files:
+  - master.zip: 'https://github.com/MiguelVis/zsm/archive/refs/heads/master.zip'
+build: |
+  mkdir -p package/
+  unzip master.zip
+  mv zsm-master/BINTOASM.COM package/
+  mv zsm-master/DUMP.COM package/
+  mv zsm-master/HEXTOCOM.COM package/
+  mv zsm-master/PRL.COM package/
+  mv zsm-master/PRNTOSYM.COM package/
+  mv zsm-master/RSX.COM package/
+  mv zsm-master/ZSM.COM package/
+  mv zsm-master/ZSMPP.COM package/
+  mv zsm-master/hextobin.com package/HEXTOBIN.COM
+  mv zsm-master/releases/zsm34/ZSMDOC.DOC package/
+changelog: |
+  - 2021-06-11 3.4-1
+    - First release
