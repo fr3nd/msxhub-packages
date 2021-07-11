@@ -1,0 +1,36 @@
+---
+name: 'PAINT9'
+version: '1.00'
+release: 1
+summary: 'Paint 9000'
+author: 'Henrik Gilvad'
+package_author: 'Willem Cazander'
+license: 'Unknown'
+category: 'Graphics'
+system: 'MSX2'
+requirements:
+  - 'MSX-DOS2'
+  - 'V9990'
+url: 'http://www.msx.ch/sunformsx/download/dl-gfx.html'
+description: |
+   Paint 9000 is painting programm for the v9990 VDP.
+installdir: '\PAINT9'
+files:
+  - paint9.lzh: 'http://www.msx.ch/ftp/Products/Graphics9000/paint9.lzh'
+build: |
+  mkdir -p package/
+  lha x paint9.lzh
+  mv bird.sc7 package/
+  mv flight.ge7 package/
+  mv girl5.sr7 package/
+  mv p9000.com package/
+  mv paint900.sc7 package/
+  mv standard.con package/
+  mv standard.pal package/
+  mv standard.pat package/
+  mv standard.sc7 package/
+  mv standard.win package/
+  mv wipe.com package/
+changelog: |
+  - 2021-07-06 1.00-1
+    - First release
