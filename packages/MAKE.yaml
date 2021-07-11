@@ -1,0 +1,41 @@
+---
+name: 'MAKE'
+version: '2.00'
+release: 1
+summary: 'Makefile support for MSX-DOS'
+author: 'The MSX Maniac'
+package_author: 'Willem Cazander'
+license: 'Unknown'
+category: 'Programming'
+system: 'MSX2'
+requirements:
+  - 'MSX-DOS2'
+url: 'https://hansotten.file-hunter.com/software/msx-c/'
+description: |
+  MAKE takes a description of file-dependencies as input.
+  Normally, a makefile will contain these descriptions but if no makefile is specified,
+  MAKE can read from the standard input just as well.A description of a file-dependency
+  contains subsequent filenames in the master-slave format:
+
+  MASTER: SLAVE.1 SLAVE.2 … SLAVE.n operation1 operation2
+
+  MAKE checks whether one of the slaves has been modified by comparing the time & date
+  of the slaves against the time & date of the master.
+  If the master is older then one of the slaves, the operations will be send to the standard output.
+
+  Besides outputting these make operations, MAKE can also output backup commands.
+  When youre using MSX-DOS2, MAKE checks the archive attribute of every file to determine
+  if the file has been modified. If the file has been modified,
+  the copy command will be send to the standard output.
+installdir: '\MAKE'
+files:
+  - make200a.zip: 'https://hansotten.file-hunter.com/uploads/files/make200a.zip'
+build: |
+  mkdir -p package/
+  unzip make200a.zip
+  mv MAKE.COM package/
+  mv MAKE.HLP package/
+  mv MAKE.MF package/EXAMPLE.MF
+changelog: |
+  - 2021-07-11 2.00-1
+    - First release
