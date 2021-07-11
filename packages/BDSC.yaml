@@ -1,0 +1,37 @@
+---
+name: 'BDSC'
+version: '1.6'
+release: 1
+summary: 'The BD Software C Compiler (BDS C)'
+author: 'Leor Zolman'
+package_author: 'Willem Cazander'
+license: 'Public domain'
+category: 'Programming'
+system: 'MSX'
+requirements:
+  - 'MSX-DOS'
+url: 'https://www.bdsoft.com/resources/bdsc.html'
+description: |
+  This archive contains the last generation retail distributions of BDS C
+  for CP/M-80, and the full corresponding source code.
+  The major executable commands in the package are: cc, cc2, and clink.
+
+  BDS C may be used to produce 8080/8085/Z80 embedded systems code (it generates CP/M-resident code by default,
+  but the runtime package can be configured easily enough to run in the absence of an operating system.)
+
+  Full user guide is available as pdf;
+  https://www.bdsoft.com/dist/bdsc-guide.pdf
+installdir: '\BDSC'
+files:
+  - bdsc-all.zip: 'https://www.bdsoft.com/dist/bdsc-all.zip'
+build: |
+  mkdir -p package/
+  unzip bdsc-all.zip
+  dos2unix -n README.txt package/README.txt
+  mv bdsc160/* package/
+  rm -rf package/Sources
+  rm -rf package/Examples
+  mv extra package/EXTRA
+changelog: |
+  - 2021-07-11 1.6-1
+    - First release
