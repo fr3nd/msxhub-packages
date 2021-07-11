@@ -1,0 +1,39 @@
+---
+name: 'V9MAGIC'
+version: '1.00'
+release: 1
+summary: 'MAGIC graphical *.MWM replayer'
+author: 'Marcel Delorme (N.W.O)'
+package_author: 'Willem Cazander'
+license: 'Unknown'
+category: 'Sound'
+system: 'MSX2'
+requirements:
+  - 'MSX-DOS2'
+  - 'OPL4'
+  - 'V9990'
+url: 'http://www.msx.ch/sunformsx/download/dl-moon.html'
+description: |
+  Magic is a Graphical MWM replayer for the GFX9000, but not just any.
+  It is a TSR program. This means that you can run MAGIC on your GFX9000 and do something else on your V99x8 at the same time.
+
+  System requirements:
+  - MSX2 or higher
+  - DOS2.XX
+  - 3 Free 16KB segments
+  - GFX9000
+  - Moonsound!
+installdir: '\V9MAGIC'
+files:
+  - magic.lzh: 'http://www.msx.ch/ftp/Products/MoonSound/magic.lzh'
+build: |
+  mkdir -p package/
+  lha x magic.lzh
+  mv magic.com package/
+  mv magic.dat package/
+  mv magic.txt package/
+  mv magicr.com package/
+  mv nuke.skn package/
+changelog: |
+  - 2021-07-06 1.00-1
+    - First release

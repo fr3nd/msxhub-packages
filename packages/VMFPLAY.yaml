@@ -1,0 +1,28 @@
+---
+name: 'VMFPLAY'
+version: '0.82'
+release: 1
+summary: 'V9990 Movie format.'
+author: 'Marcel Delorme (N.W.O)'
+package_author: 'Willem Cazander'
+license: 'Unknown'
+category: 'Graphics'
+system: 'MSX2'
+requirements:
+  - 'MSX-DOS2'
+  - 'V9990'
+url: 'http://www.msx.ch/sunformsx/download/dl-gfx.html'
+description: |
+  GFX9000 Movie Format. A new file format for the GFX9000. You can make a VMF movie with VMFcreat, this programm creats a VMF file form a BMP Sequence.
+installdir: '\VMFPLAY'
+files:
+  - vmfplay.lzh: 'http://www.msx.ch/ftp/Products/Graphics9000/vmfplay.lzh'
+build: |
+  mkdir -p package/
+  lha x vmfplay.lzh
+  mv vmf.txt package/
+  mv vmfcreat.com package/
+  mv vmfplay.com package/
+changelog: |
+  - 2021-07-06 1.00-1
+    - First release

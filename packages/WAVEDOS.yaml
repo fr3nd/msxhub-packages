@@ -1,0 +1,46 @@
+---
+name: 'WAVEDOS'
+version: '1.14'
+release: 1
+summary: 'Moonblaster wavedriver TSR for DOS 2.XX'
+author: 'Marcel Delorme (N.W.O)'
+package_author: 'Willem Cazander'
+license: 'Unknown'
+category: 'Sound'
+system: 'MSX2'
+requirements:
+  - 'MSX-DOS2'
+  - 'OPL4'
+url: 'http://www.msx.ch/sunformsx/download/dl-moon.html'
+description: |
+  System requirements: OPL4 ,DOS2.XX with atleast 2 free segements.
+
+  Supports: MBWAVE 1.14 MWM files
+  Also files bigger than 16KB van be played.
+
+  Try to start some games while playing a MWM file and you will see that the music playes on... (Works for example with Be-Bop-Bout)
+
+  The driver automatically loads the rigth kernel for either the Z80 or the R800 mode.
+
+  More info is in the driver itself.
+installdir: '\WAVEDOS'
+files:
+  - wavdos.lzh: 'http://www.msx.ch/ftp/Products/MoonSound/wavdos.lzh'
+build: |
+  mkdir -p package/
+  lha x wavdos.lzh
+  mv drvtest.com package/
+  mv example.asc package/
+  mv example.asm package/
+  mv load.asc package/
+  mv load.asm package/
+  mv load.com package/
+  mv mwmdrivr.asc package/
+  mv mwmdrivr.asm package/
+  mv mwmdrivr.txt package/
+  mv wavedrv.com package/
+  mv waver800.drv package/
+  mv wavez80x.drv package/
+changelog: |
+  - 2021-07-06 1.14-1
+    - First release

@@ -1,0 +1,29 @@
+---
+name: 'V9VGF'
+version: '1.1'
+release: 1
+summary: 'V9990 Graphic Format.'
+author: 'Marcel Delorme (N.W.O)'
+package_author: 'Willem Cazander'
+license: 'Unknown'
+category: 'Graphics'
+system: 'MSX2'
+requirements:
+  - 'MSX-DOS2'
+  - 'V9990'
+url: 'http://www.msx.ch/sunformsx/download/dl-gfx.html'
+description: |
+  A new file format for the V9990. It supports all the V9990 resolutions en color modes, except for the VGA and Pattern Modes.
+installdir: '\V9VGF'
+files:
+  - vgf.lzh: 'http://www.msx.ch/ftp/Products/Graphics9000/vgf.lzh'
+build: |
+  mkdir -p package/
+  lha xf vgf.lzh
+  mv VGF.COM package/
+  mv VGF.TXT package/
+  mv VGFHEAD.ASC package/
+  mv VGFS.COM package/
+changelog: |
+  - 2021-07-06 1.1-1
+    - First release
