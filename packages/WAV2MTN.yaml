@@ -1,0 +1,29 @@
+---
+name: 'WAV2MTN'
+version: '0.82'
+release: 1
+summary: 'WAV-TO-MTN converter'
+author: 'Marcel Delorme (N.W.O)'
+package_author: 'Willem Cazander'
+license: 'Unknown'
+category: 'Sound'
+system: 'MSX2'
+requirements:
+  - 'MSX-DOS2'
+  - 'OPL4'
+url: 'http://www.msx.ch/sunformsx/download/dl-moon.html'
+description: |
+  A WAV to MTN converter for Moonblaster.
+
+  Support 8 and 16 bits mono WAV's. 16 bit samples can be upto 128KB. Improved screen information and added frequency table select funtion.
+installdir: '\WAV2MTN'
+files:
+  - wav2mtn.lzh: 'http://www.msx.ch/ftp/Products/MoonSound/wav2mtn.lzh'
+build: |
+  mkdir -p package/
+  lha x wav2mtn.lzh
+  mv WAV2MTN.COM package/
+  mv WAV2MTN.TXT package/
+changelog: |
+  - 2021-07-06 0.82-1
+    - First release

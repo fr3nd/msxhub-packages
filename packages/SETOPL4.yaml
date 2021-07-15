@@ -1,0 +1,27 @@
+---
+name: 'SETOPL4'
+version: '2.01'
+release: 1
+summary: 'Set OPL4'
+author: 'Marcel Delorme (N.W.O)'
+package_author: 'Willem Cazander'
+license: 'Unknown'
+category: 'Sound'
+system: 'MSX2'
+requirements:
+  - 'MSX-DOS2'
+  - 'OPL4'
+url: 'http://www.msx.ch/sunformsx/download/dl-moon.html'
+description: |
+  To change de current OPL4 mode and/or the current volume.
+installdir: '\SETOPL4'
+files:
+  - setopl4.lzh: 'http://www.msx.ch/ftp/Products/MoonSound/setopl4.lzh'
+build: |
+  mkdir -p package/
+  lha x setopl4.lzh
+  mv SETOPL4.COM package/
+  mv SETOPL4.HLP package/
+changelog: |
+  - 2021-07-06 2.01-1
+    - First release

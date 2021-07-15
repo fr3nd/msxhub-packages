@@ -1,0 +1,37 @@
+---
+name: 'GUNZIP'
+version: '1.1'
+release: 1
+summary: 'Extracts files compressed with the gzip (.gz) format.'
+author: 'Laurens Holst'
+package_author: 'Willem Cazander'
+license: 'BSD-2-Clause'
+category: 'Files'
+system: 'MSX'
+requirements:
+  - 'MSX-DOS'
+url: 'http://www.grauw.nl/projects/gunzip/'
+description: |
+  Extracts files compressed with the gzip (.gz) format.
+  By generating the Huffman decompression code, it performs very well compared to other compression tools.
+
+  Philips NMS 8245 MSX2 (openMSX) with Sunrise IDE:
+  * gunzip 1.1 (244129 bytes): 87s
+  * gunzip 1.0 (244129 bytes): 133s
+  * pmext 2.22 (247552 bytes): 619s
+  * lhext 1.33 (252614 bytes): 278s
+  * tunzip 0.91 (247414 bytes): 341s
+
+installdir: '\GUNZIP'
+files:
+  - gunzip-1.1.zip: 'http://www.grauw.nl/projects/gunzip/gunzip-1.1.zip'
+build: |
+  mkdir -p package/
+  unzip gunzip-1.1.zip
+  mv CHANGES.md package/
+  mv gunzip.com package/
+  mv LICENSE package/
+  mv README.md package/
+changelog: |
+  - 2021-08-09 1.1-1
+    - First release
