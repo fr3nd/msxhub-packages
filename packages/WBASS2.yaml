@@ -1,0 +1,29 @@
+---
+name: 'WBASS2'
+version: '2.0'
+release: 1
+summary: 'The WBASS2 Z80 Assembler'
+author: 'Wilbert Berendsen'
+package_author: 'Willem Cazander'
+license: 'GPL-2.0'
+category: 'Programming'
+system: 'MSX2'
+url: 'https://wbsoft.home.xs4all.nl/msx/'
+description: |
+  Lightweighted Z80 assembler and monitor in the dutch language.
+
+  A beautiful thing about WB-ASS is, that it used the Memory Mapper for its editor buffer,
+  so you could edit files up to 100K!
+  The global labels from the first file (which could be saved automagically) were hand-included in the second one.
+installdir: '\WBASS2'
+files:
+  - wbass2.zip: 'https://wbsoft.home.xs4all.nl/msx/wbass2/wbass2.zip'
+build: |
+  mkdir -p package/
+  unzip wbass2.zip
+  mv zoekram.bin package/
+  mv wbass2.bin package/
+  mv wbass2.bas package/
+changelog: |
+  - 2021-07-11 2.0-1
+    - First release
