@@ -1,0 +1,44 @@
+---
+name: 'LOGIC'
+version: '1.2'
+release: 1
+summary: 'Logic Remastered (MSXdev''21)'
+author: 'Plattysoft'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Unknown'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2021/07/20/msxdev21-20-logic-remastered/'
+description: |
+  Booting sequence completed… Little android LOGIC finds itself in a room in an unknown location, with all his communications being offline and one simple directive in its program: Get out.
+
+  The android LOGIC jumps across countless pits, gets to the deeper levels of the complex, dodging many foes, avoids deadly traps, runs against conveyor belts in order to escape.
+
+  Plattysoft’s MSX-BASIC game "LOGIC" was originally designed in the late 80s and inspired by some of the author’s favorite games back then. In summer of 2020 the source code was recovered from a cassette and the creator managed to rework the game for MSXdev. Resulting in Logic-Remastered.
+installdir: '\LOGIC'
+files:
+  - logic.zip: 'https://www.msxdev.org/wp-content/uploads/2021/07/MSXdev21_LogicRemastered_v1.2.zip'
+build: |
+  mkdir -p package/
+  unzip logic.zip
+  mv "MSXdev21_LogicRemastered_v1.2.rom" package/LOGIC.ROM
+  cat > package/LOGIC.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM LOGIC.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM LOGIC.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/LOGIC.BAT
+changelog: |
+    - 1.0-1 2021-07-21
+    - First release
