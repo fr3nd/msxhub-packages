@@ -1,0 +1,47 @@
+---
+name: 'FFOOTB'
+version: '1.0'
+release: 1
+summary: 'Fantastic Football (MSXdev''21)'
+author: 'Zoran Majcenić, Daniel Simon'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'CC BY-NC'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2021/08/17/msxdev21-25-fantastic-football/'
+description: |
+  Whichever way one prefers to call it, whether it’s football of soccer – games dealing with this type of sport weren’t released much on MSX, making “Fantastic Football” a welcome addition to the ever growing pile of MSXdev titles.
+
+  Prepare yourself for a good match, using skills and determination, as the World Cup awaits you. Fantastic Football is a smooth scrolling, highly interactive soccer simulation game. There are teams, statistics, and two game modes. You can either gain fame in the World Cup match, or have a go at a regular one in the Quick Game mode. With 64 teams playing for the cup, it sure promises for quite the challenge and entertainment.
+
+  During the World Cup mode, there is an option to save your current score to Sony HBI-55 SRAM cartridge, if that hardware is present.
+
+  Note that game was designed for 50Hz/PAL machines. If the frequency is 60Hz, then gameplay, music,
+  and sound effects will appear faster than intended.
+installdir: '\FFOOTB'
+files:
+  - ffootb.zip: 'https://www.msxdev.org/wp-content/uploads/2021/08/MSXdev21_FantasticFootball_v1.0.zip'
+build: |
+  mkdir -p package/
+  unzip ffootb.zip
+  mv "MSXdev21_FantasticFootball_v1.0.rom" package/FFOOTB.ROM
+  cat > package/FFOOTB.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM FFOOTB.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM FFOOTB.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/FFOOTB.BAT
+changelog: |
+    - 1.0-1 2021-08-18
+    - First release
