@@ -3,7 +3,7 @@ name: 'FFOOTB'
 version: '1.0'
 release: 1
 summary: 'Fantastic Football (MSXdev''21)'
-author: 'Zoran Majcenić, Daniel Simon'
+author: 'Zoran Majcenic, Daniel Simon'
 package_author: 'Carles Amigó (fr3nd)'
 license: 'CC BY-NC'
 category: 'Games'
