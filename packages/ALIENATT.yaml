@@ -1,0 +1,68 @@
+---
+name: 'ALIENATT'
+version: '3.0'
+release: 1
+summary: 'Alien Attack (MSXdev''21)'
+author: 'Marcos Daniel Blanco, Daniel Simon'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Unknown'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2021/08/18/msxdev21-26-alien-attack/'
+description: |
+  It is the year 2421.
+
+  Despite the constant threat of exploitation of its own planet, global pandemics and
+  wars for resources, humanity has created a confederative system of government that
+  has largely ensured political and economic stability over the past 120 years. The
+  overpopulation of the Earth continues to be critical.
+
+  Individual planets in the solar system have now been colonized or are being used for
+  the extraction of raw materials. The settlement of Mars is well advanced; through the
+  development of advanced terraforming technologies, it is already the home planet for
+  over ten generations.
+
+  Beyond that, any efforts to reach, let alone colonize, habitable planets outside the
+  known solar system have been unsuccessful. The search for intelligent extraterrestrial
+  life has also been fruitless so far. Very worrying, however, were the discoveries made
+  as early as the 23rd century of several planets in the Vega system that showed traces
+  of highly developed civilizations.
+
+  Along with the formation of a confederative world government, Star Fleet Command
+  (S.F.C.) was founded. The primary goals of this global institution are the defense of
+  Earth and the exploration of outer space. S.F.C. has advanced technologies to support
+  its missions.
+
+  The best example is the reconnaissance and combat fighter V.I.P.E.R. (“Very
+  Impressive Photon Energized Raider”). Advanced propulsion, sensor and weapon
+  systems and the innovative power system S.P.H.E.R.E. ("Super Photon Hadron Electron
+  Radial Energy") make this prototype a promising element in the S.F.C. fleet.
+
+  The first and most experienced pilot for V.I.P.E.R. is – you!
+installdir: '\ALIENATT'
+files:
+  - alienatt.zip: 'https://www.msxdev.org/wp-content/uploads/2021/08/MSXdev21_AlienAttack_v3.0.zip'
+build: |
+  mkdir -p package/
+  unzip alienatt.zip
+  mv "MSXdev21_AlienAttack_v3.0.ROM" package/ALIENATT.ROM
+  cat > package/ALIENATT.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM ALIENATT.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM ALIENATT.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/ALIENATT.BAT
+changelog: |
+    - 3.0-1 2021-08-20
+    - First release
