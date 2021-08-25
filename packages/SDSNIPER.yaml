@@ -1,0 +1,42 @@
+---
+name: 'SDSNIPER'
+version: '1.0'
+release: 1
+summary: 'SD Sniper (MSXdev''21)'
+author: 'Kirem'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Unknown'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2021/08/23/msxdev21-27-sd-sniper/'
+description: |
+  One bullet, one shot, one life… Pick the right target at the right time by following the clues. Scope and shoot.
+
+  In this 100% written in BASIC game from Kirem, your aim is to snipe and kill the baddies. As a trained sniper operative, you get a few clues and just 30 seconds to locate the suspect, aim, exhale calmly, and gently pull the trigger of your long range rifle to make that perfect kill.
+installdir: '\SDSNIPER'
+files:
+  - sdsniper.zip: 'https://www.msxdev.org/wp-content/uploads/2021/08/MSXdev21_SDSniper_v1.0.zip'
+build: |
+  mkdir -p package/
+  unzip sdsniper.zip
+  mv "MSXdev21_SDSniper_v1.0.ROM" package/SDSNIPER.ROM
+  cat > package/SDSNIPER.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM SDSNIPER.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM SDSNIPER.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/SDSNIPER.BAT
+changelog: |
+    - 1.0-1 2021-08-25
+    - First release
