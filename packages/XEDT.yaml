@@ -1,0 +1,70 @@
+---
+name: 'XEDT'
+version: '2.0.0'
+release: 1
+summary: 'MSX Sound editor.'
+author: 'Mstz80ax'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Unknown'
+category: 'Sound'
+system: 'MSX2'
+requirements:
+  - 'MSX-DOS'
+url: 'https://www.msx.org/news/software/en/xedt-music-editor-version-2'
+description: |
+  MSX SOUND EDITOR [XEDT]
+
+  This sound editor uses MML data input. You can create sounds and play songs by operating each sound source of
+  PSG + OPLL + PCM.
+
+  You can operate two MSX OPLL and PSG to achieve stereo sound.
+  An editor that creates data for the ADX driver.
+  The other is that you can also use the PCM sound source of MSX Turbo R.
+
+  Sample data is also included for reference.
+
+  MSX-DOS1 or MSX-DOS2 is required.
+
+  Compatible models:
+  MSX2, MSX2+, MSX-TR
+
+  There are two different programs:
+
+  * XEDTM: for MSX2 and higher. No PCM samples nor memory mapper allowed.
+  * XEDTR: for MSX turbo R only. PCM samples and memory mapper allowed.
+
+  Both versions are compatible with MSX-DOS and MSX-DOS2 and are provided with some music files and a couple of tools, a .DIX file generator (playlist file) and a WAV to PCM converter.
+
+  A previous release of this tool was already released as [XEDTF](https://msxhub.com/XEDTF).
+installdir: '\XEDT'
+files:
+  - XEDT.zip: 'https://www.msx.org/download/download/2021/08/XEDT_V2.zip'
+build: |
+  mkdir -p package/
+  unzip XEDT.zip
+  mv XEDT/ADXDRV.BIN package/
+  mv XEDT/AFONT.BIN package/
+  mv XEDT/XEDTM.COM package/
+  mv XEDT/XEDTR.COM package/
+  mv XEDT/XEDT-Manual-English.txt package/README.TXT
+  mv XEDT/XEDT-Manual-Japanese.txt package/README.JP
+
+  mkdir package/WVPCM
+  mv WVPCM/WVP.COM package/WVPCM/
+  mv WVPCM/WVP-Instructions.txt package/WVPCM/README.TXT
+
+  mkdir package/DIXE
+  mv DIX\ Edit/AFONT.BIN package/DIXE
+  mv DIX\ Edit/DIXE.COM package/DIXE
+  mv DIX\ Edit/DIXE-Instructions.txt package/DIXE/README.TXT
+
+  mv "MUSIC TXF FILES/" package/MUSIC/
+  mv "SAMPLE TXF FILES/" package/SAMPLE/
+
+  unix2dos package/README.TXT
+  unix2dos package/README.JP
+  unix2dos package/WVPCM/README.TXT
+  unix2dos package/DIXE/README.TXT
+changelog: |
+  - 2.0.0-1 2021-08-25
+    - First release
