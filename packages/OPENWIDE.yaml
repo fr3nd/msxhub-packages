@@ -1,0 +1,50 @@
+---
+name: 'OPENWIDE'
+version: '1.0'
+release: 1
+summary: 'Open Wide! (MSXdev''21)'
+author: 'Hakogame'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Unknown'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2021/09/02/msxdev21-31-open-wide/'
+description: |
+  The goal of the game is to find and remove bad teeth from your patient's mouth.
+
+  You have several tools available to help you:
+
+  * Pliers - The pliers are used to remove teeth. If you remove the wrong tooth, you will be told if you are near a bad tooth or not with a hot/cold symbol.
+  * Mirror - The mirror can be used to reveal 3 "?" teeth. One of these "?" teeth is bad, but you can't be sure which one it is.
+  * Pick - The pick will allow you to check if any 2 teeth of your choosing are good or bad.
+
+  Try to remove all of your patient's bad teeth before you run out of turns.
+installdir: '\OPENWIDE'
+files:
+  - openwide.zip: 'https://www.msxdev.org/wp-content/uploads/2021/08/MSXdev21_OpenWide_v1.0.zip'
+build: |
+  mkdir -p package/
+  unzip openwide.zip
+  mv "MSXdev21_OpenWide!_v1.0.rom" package/OPENWIDE.ROM
+  mv "MSXdev21_OpenWide!_v1.0.txt" package/README.TXT
+  cat > package/OPENWIDE.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM OPENWIDE.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM OPENWIDE.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/OPENWIDE.BAT
+  unix2dos package/README.TXT
+changelog: |
+    - 1.0-1 2021-09-03
+    - First release
