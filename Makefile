@@ -15,6 +15,7 @@ all:
 	mkdir -p dsk/
 	ln -rfs files/ dsk/
 	rm -rf package
+	ls -l dsk/files/$(@)
 
 test:
 	$(DOCKER) pytest-3 -v
