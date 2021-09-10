@@ -1,0 +1,86 @@
+---
+name: 'MINQ'
+version: '1.0'
+release: 1
+summary: 'MinQ'
+author: 'NukegaraDHP'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Unknown'
+category: 'Games'
+system: 'MSX2'
+requirements: []
+url: 'http://nukegaratools.net/2021/08/25/minq-2/'
+description: |
+  This is an RPG in which a rogue invades the Demon Lord’s castle and defeats monsters and heroes to steal items and defeat the Demon Lord. There is no save function, but the estimated playtime to clear the game is about an hour.
+
+  ## Operation method
+
+  You can use either the keyboard or the gamepad to control the game, but only one of them will be used after the game has started, since the game start also selects the input device.
+
+  ## Items
+
+  This is an RPG where you explore dungeons, collect items, and defeat the Demon Lord. There are two main types of items: disposable items and important items.
+
+  ### Disposable items
+
+  These items are used for attack and recovery. When the number of times remaining on the right side of the screen reaches zero, the item will disappear. The fewer times you have left when you get the item, the more powerful it is.
+
+  * Blow attack: It’s easy to get critical hits and has a large number of uses, but its power is only moderate and it can’t hit the enemy’s weak points.
+  * Sword: It’s very powerful and can hit the weak points of some enemies, but on the other hand, some enemies are completely ineffective.
+  * Magic: As with swords, magic is powerful and can hit some enemies’ weak points, but some enemies are completely ineffective.
+  * Recovery Potion: HP recovery item that can be used both in battle and on the move.
+
+  Disposable items can be obtained at a certain rate when defeating enemies, and can also be obtained from treasure chests in dungeons. You can have up to 12 of them, including “Punch” for unlimited use. When you have 12, you cannot get new items from enemies or open treasure chests in the dungeon.
+
+  ### Important items
+
+  These items are necessary for exploring dungeons, such as keys to open doors, and can be obtained from treasure chests in dungeons. You can get it even if you have 12 disposable items. Even if you don’t use it, just having it in your possession will have an effect.
+
+  ## Battle
+
+  While exploring the dungeon, a battle will occur. In battle, each turn you choose whether to fight or run, and if you fight, you choose which items to use. There is a certain chance that an attack will become a critical hit and do a lot of damage, and conversely, the enemy may use a powerful special attack.
+
+  There are four types of randomly encountered enemies, and as you progress through the dungeon, you’ll find even stronger versions of the same enemies. Also, some enemies have weaknesses and resistances to different types of weapons, so the shortcut to victory is to attack them in various ways and figure out their weaknesses.
+
+  * Slimy: The weakest monster. They sometimes drop recovery items, so try to defeat them when you encounter them.
+  * Mage: A mage who worships the Demon Lord. The magic attack is painful, but if you can get it, it will make your attack much easier.
+  * Hero: A hero who came to defeat the Demon Lord. Strong enemies with no weaknesses. If you defeat him, you may be able to obtain a powerful sword.
+  * Martial artist: A tough guy who is proud of his strength. HP is high, so it may be difficult to defeat him.
+
+  There may be other enemies as you explore the dungeon.
+
+  ## Growth system
+
+  There is no concept of level or experience in this game, but if you take a certain amount of damage during a battle, your maximum HP will increase at the end of the battle according to the amount of damage. This is also the case when you escape, and your maximum HP will increase according to the amount of damage you have taken. Also, as your maximum HP increases, the damage you deal when attacking and the chance of getting a critical hit also increases, while the damage you receive from enemies decreases.
+
+  ## When you’re dead
+
+  Even if your HP is reduced to zero, you will be fully recovered and restarted from the starting point. As a penalty, all disposable items will be confiscated and you will be returned to your initial equipment, but the important items you have obtained and the maximum HP you have grown will be retained. However, treasure chests that have been opened in the dungeon will not be restored.
+
+  ## Exploration tips
+
+  The starting point is a fountain of recovery, and when you go to the fountain, your HP will be fully recovered. Also, if you use the fountain when your HP is full, you can get the healing item “Heal”. These can be used as many times as you want, but you cannot have more than one “Heal” at a time.
+
+  ## Others
+
+  If you encounter any errors or problems, please contact the author (twitter/@nukegaradotnet). However, as I am not an English speaker, I may not be able to respond adequately. Please understand.
+
+  This is a free game, but if anyone would like to contribute, please purchase the tunes on Bandcamp. Thank you.
+
+  * [https://nununun.bandcamp.com/album/minq-ost](https://nununun.bandcamp.com/album/minq-ost)
+
+installdir: '\MINQ'
+files:
+  - minq.zip: 'http://nukegaratools.net/files/games/MinQ_e.zip'
+build: |
+  mkdir -p package/
+  unzip minq.zip
+  mcopy -s -i MinQ_e.dsk :: package/
+  rm -rf package/System\ Volume\ Information/
+  cat > package/MINQ.BAT << EOF
+  BASIC AUTOEXEC.BAS
+  EOF
+  unix2dos package/MINQ.BAT
+changelog: |
+    - 1.0-1 2021-09-10
+    - First release
