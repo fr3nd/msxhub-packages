@@ -1,0 +1,58 @@
+---
+name: 'WESTEN'
+version: '1.2'
+release: 1
+summary: 'Westen House'
+author: 'Santi Ontañón'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Apache-2.0'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://github.com/santiontanon/westen'
+description: |
+  ## Introduction
+
+  Westen House is an MSX1 game, in a 48KB ROM cartridge format. I originally started it to participate in the MSXDev'21 competition ( https://www.msxdev.org ), but I did not make it in time. You can play in either 50Hz or 60Hz machines, but the game is a bit more enjoyable in 60Hz machines, as the player walks a bit faster.
+
+  Westen House is an isometric adventure that has the goal of exploring the possibility of creating an isometric game for MSX1 that exploits hardware sprites to increase the colorfulness of the game. I grew up playing classics like Batman and Head over Heels, which were my favorite isometric games, and I have been wanting to make an isometric game for a very long time. I hope you  enjoy the game and the story!
+
+  ### Game Goal
+
+  You play as Professor Edward Kelvin, who has been asked to collect the research notes of his deceased colleague Jonathan Westen before Jonathan's family comes to take possession of the house. What Edward cannot imagine is that this seemingly inocent task might turn into one of his biggest adventures!
+
+  ## Acknowledgments
+
+  - Thanks to Jordi Sureda who betatested early versions of the game and caught many, many bugs!
+
+installdir: '\WESTEN'
+files:
+  - WESTEN.ROM: 'https://github.com/santiontanon/westen/releases/download/v%VERSION%/westen%VERSION%.rom'
+  - README.MD: 'https://raw.githubusercontent.com/santiontanon/westen/v%VERSION%/README.md'
+  - LICENSE: 'https://raw.githubusercontent.com/santiontanon/westen/v%VERSION%/LICENSE'
+build: |
+  mkdir -p package/
+  mv WESTEN.ROM package/WESTEN.ROM
+  mv README.MD package/README.MD
+  mv LICENSE package/LICENSE
+  cat > package/WESTEN.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM WESTEN.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM WESTEN.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/WESTEN.BAT
+  unix2dos package/README.MD
+  unix2dos package/LICENSE
+changelog: |
+  - 1.2-1 2021-09-22
+    - First release
