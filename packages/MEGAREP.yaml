@@ -1,0 +1,45 @@
+---
+name: 'MEGAREP'
+version: '1.3'
+release: 1
+summary: 'MegaReport of msx hardware'
+author: 'Jurgen Kramer'
+package_author: 'Willem Cazander'
+license: 'GPL-3.0'
+category: 'System'
+system: 'MSX2'
+requirements: {}
+url: 'https://github.com/lintweaker/msxstuff/tree/master/megarep'
+description: |
+  # MegaReport
+
+  Want to know what hardware is connected to or is hiding inside your (real/virtual/emulated) MSX ?
+  MegaReport knows about the most common hardware and settings.
+
+  The old version has been thought some new tricks for you to try out;
+  - Audio: Detect OPL4 and amount of wavetable RAM
+  - Audio: Detect MSX-AUDIO MBIOS
+  - RTC: Detect most common (partial) initialization issues
+  - CPU: Detect Panasonic Turbo CPU and show mode
+  - Disk: Basic detection for Nextor diskroms.
+  - Added basic detection for OCM PLD FPGA implementations
+  - Fixed current memory display for systems with 4MB of RAM
+  - Fixed max memory of 65535 Kb display. It was printed in reverse
+installdir: '\MEGAREP'
+files:
+  - MEGAREP.BIN: 'https://github.com/lintweaker/msxstuff/blob/master/megarep/releases/v13-2021u1/MEGAREP.BIN?raw=true'
+build: |
+  mkdir -p package/
+  mv MEGAREP.BIN package/
+  cat > package/MEGAREP.BAS << EOF
+  10 CLS
+  20 BLOAD "MEGAREP.BIN",R
+  EOF
+  unix2dos package/MEGAREP.BAS
+  cat > package/MEGAREP.BAT << EOF
+  BASIC MEGAREP.BAS
+  EOF
+  unix2dos package/MEGAREP.BAT
+changelog: |
+  - 2021-10-05 1.3-1
+    - First release
