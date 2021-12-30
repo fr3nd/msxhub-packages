@@ -68,13 +68,12 @@ description: |
 installdir: '\MILLI'
 files:
   - milli.com: 'https://github.com/ricardojpinheiro/nanomsx/releases/download/v%VERSION%/milli.com'
+  - readme.md: 'https://raw.githubusercontent.com/ricardojpinheiro/nanomsx/v%VERSION%/readme.md'
 build: |
   mkdir -p package/
   mv milli.com package/
+  mv readme.md package/
+  unix2dos package/readme.md
 changelog: |
-  - 0.1 2021-09-02
-    - First public release
-  - 0.2 2021-09-09
-    - Die hateful bug, die!
-  - 0.3 2021-10-04
-    - Slower than expected, but...
+  - 0.3-1 2021-12-30
+    - First release
