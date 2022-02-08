@@ -1,0 +1,28 @@
+---
+name: 'ORACLE'
+version: '1.10'
+release: 1
+summary: 'Oracle is a fully-featured tracker'
+author: 'Fuzzy Logic'
+package_author: 'Willem Cazander'
+license: 'Proprietary'
+category: 'Sound'
+system: 'MSX2'
+requirements:
+  - 'MSX-DOS'
+  - 'MSX-MUSIC'
+  - 'MSX-AUDIO'
+url: 'https://www.msx.org/downloads/music/trackers/oracle'
+description: |
+  Oracle is a fully-featured tracker for the MSX-MUSIC, MSX-AUDIO and PSG.
+installdir: '\ORACLE'
+files:
+  - ORACLE.LZH: 'https://www.msx.org/download/downloads/music/trackers/ORACLE.LZH'
+build: |
+  mkdir -p package/
+  lha x ORACLE.LZH
+  mv orc-manl.txt package/
+  mcopy -s -i oracle.dsk :: package/
+changelog: |
+  - 2022-02-08 1.10-1
+    - First release
