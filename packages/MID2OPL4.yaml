@@ -1,0 +1,28 @@
+---
+name: 'MID2OPL4'
+version: '0.1'
+release: 1
+summary: 'Play midi notes on OPL4.'
+author: 'Erik Maas'
+package_author: 'Willem Cazander'
+license: 'Unknown'
+category: 'Sound'
+system: 'MSX2'
+requirements:
+  - 'MSX-DOS'
+  - 'OPL4'
+  - 'MSX-AUDIO'
+url: 'https://www.msx.org/wiki/MIDI_Players'
+description: |
+  Play received MIDI data from Philips Music Module on OPL4.
+installdir: '\MID2OPL4'
+files:
+  - mid2opl4.zip: 'http://www.msxvillage.fr/upload/mid2opl4.zip'
+build: |
+  mkdir -p package/
+  unzip mid2opl4.zip
+  mv MIDI.DOC package/
+  mv MIDI.COM package/
+changelog: |
+  - 2022-02-10 0.1-1
+    - First release
