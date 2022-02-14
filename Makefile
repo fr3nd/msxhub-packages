@@ -16,7 +16,7 @@ all:
 	ln -rfs files/ dsk/
 	rm -rf package
 	ls -l dsk/files/$(@)
-	md5sum dsk/files/$(@)/*
+	find dsk/files/$(@) -type f -exec md5sum '{}' \;
 
 test:
 	$(DOCKER) pytest-3 -v

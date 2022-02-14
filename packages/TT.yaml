@@ -1,6 +1,6 @@
 ---
 name: 'TT'
-version: '0.10.1b'
+version: '0.11.7'
 release: 1
 summary: 'TriloTracker music tracker'
 author: 'Trilobyte Soft'
@@ -34,11 +34,14 @@ description: |
   * Gryzor87 (Design, Testing)
 installdir: '\TT'
 files:
-  - TT.DSK: 'https://github.com/cornelisser/TriloTracker/releases/download/10.1.b/TT_0_10_1b.dsk'
+  - TT.ZIP: 'https://github.com/cornelisser/TriloTracker/releases/download/%VERSION%/TT_0_11.7.zip'
 build: |
   mkdir -p package/
-  mcopy -s -i TT.DSK :: package/
+  unzip TT.ZIP
+  mv TT*/* package/
 changelog: |
+  - 0.11.7-1 2022-02-14
+    - New release
   - 0.10.1b-1 2021-05-05
     - New release
   - 0.10.0b-1 2021-03-09
