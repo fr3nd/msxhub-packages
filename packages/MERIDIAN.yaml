@@ -26,6 +26,8 @@ build: |
   mv meridian.ini package/
   mv meridian.hlp package/
   mv meridian.bin package/
+  echo -n -e "10 RUN \"meridian.ldr\"\r" > package/meridian.bas
+  echo -n -e "BASIC meridian.bas\r" > package/meridian.bat
 changelog: |
   - 2022-02-15 3.0Beta3-1
     - First release
