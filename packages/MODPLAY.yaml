@@ -11,7 +11,7 @@ system: 'MSX'
 url: 'https://www.msx.org/downloads/music/players/modplay-msx1'
 description: |
  An Amiga MOD player for MSX1! It comes with a few MOD-files for demonstration purposes.
-installdir: '\BENOEM1'
+installdir: '\MODPLAY'
 files:
   - MODPLAY.LZH: 'https://www.msx.org/download/downloads/music/players/MODPLAY.LZH'
 build: |
