@@ -1,0 +1,30 @@
+---
+name: 'MODPLAY'
+version: '0.1'
+release: 1
+summary: 'Mod-play'
+author: 'NYYRIKKI'
+package_author: 'Willem Cazander'
+license: 'Unknown'
+category: 'Sound'
+system: 'MSX'
+url: 'https://www.msx.org/downloads/music/players/modplay-msx1'
+description: |
+ An Amiga MOD player for MSX1! It comes with a few MOD-files for demonstration purposes.
+installdir: '\MODPLAY'
+files:
+  - MODPLAY.LZH: 'https://www.msx.org/download/downloads/music/players/MODPLAY.LZH'
+build: |
+  mkdir -p package/
+  lha x MODPLAY.LZH
+  mv xbasic.bin package/
+  mv pestil.mod package/
+  mv modplay.bin package/
+  mv modplay.bas package/
+  mv ds.mod package/
+  mv children.mod package/
+  mv blueberr.mod package/
+  echo -n -e "BASIC modplay.bas\r" > package/modplay.bat
+changelog: |
+  - 2022-02-17 0.1-1
+    - First release
