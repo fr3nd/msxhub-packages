@@ -1,0 +1,58 @@
+---
+name: 'SWITCHER'
+version: '1.0'
+release: 1
+summary: 'Shadow Switcher (MSXdev''22)'
+author: 'ToriHino @ RoboSoft Inc.'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Unknown'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2022/02/24/msxdev22-01-shadow-switcher/'
+description: |
+  Run around abandoned places and collect all the rings - but be careful, evil zombie robots are chasing you! Also avoid touching the electric lightning.
+
+  Your shadow is your secret weapon - when in danger, hit fire to switch places!
+
+  40 exciting levels are waiting for you to be mastered.
+
+  ### Additional information:
+  Controls:
+
+  * 1 player: keyboard or joystick port 1
+  * 2 players: player 1 uses keyboard or joystick port1, player 2 uses joystick port 2
+
+  Switch between shadow and player means also switch of control. New level means the other player starts.
+
+  `ESC` key can be used to restart level when stuck (at the cost of a life)
+
+  At every 1000 points one additional life (to a max of 9)
+installdir: '\SWITCHER'
+files:
+  - switcher.zip: 'https://www.msxdev.org/wp-content/uploads/2022/02/MSXdev22_ShadowSwitcher_v1.0.zip'
+build: |
+  mkdir -p package/
+  unzip switcher.zip
+  mv "MSXdev22_ShadowSwitcher_v1.0.rom" package/SWITCHER.ROM
+  mv "MSXdev22_ShadowSwitcher_v1.0.txt" package/README.TXT
+  cat > package/SWITCHER.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM SWITCHER.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM SWITCHER.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/SWITCHER.BAT
+  unix2dos package/README.TXT
+changelog: |
+    - 1.0-1 2022-02-24
+    - First release
