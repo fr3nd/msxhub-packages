@@ -81,6 +81,8 @@ allowed_requirements = [
     "MSX-AUDIO",
     "V9990",
     "NEXTOR",
+    "TCP/IP-UNAPI"
+    "ETH-UNAPI"
 ]
 
 
