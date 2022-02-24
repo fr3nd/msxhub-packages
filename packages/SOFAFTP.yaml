@@ -10,12 +10,13 @@ category: 'Internet'
 system: 'MSX'
 requirements:
   - 'MSX-DOS2'
+  - 'TCP/IP-UNAPI'
 url: 'https://www.louthrax.net/mgr/'
 description: |
   SofaFTP is an MSX-DOS 2 FTP client for GR8NET and UNAPI devices (DenYoNet and ObsoNet).
-  
+
   It supports recursive and "update-only" transfers in both directions.
-  
+
   FTP server has to support STAT command and passive mode. It must also list directories in UNIX mode.
 installdir: '\SOFAFTP'
 files:

@@ -10,13 +10,14 @@ category: 'Internet'
 system: 'MSX'
 requirements:
   - 'MSX-DOS2'
+  - 'TCP/IP-UNAPI'
 url: 'https://github.com/ducasp/MSX-Development/tree/master/UNAPI/TELNET'
 description: |
   This is a TELNET client that allow you to connect to a TELNET server / BBSs
   and interact with it. If an MSX2 or better is used, it will be able to
   receive and show ANSI escape codes / colors. It should be MSX1 friendly as
   long as your UNAPI adapter is compatible with MSX1.
-  
+
   - It implements telnet negotiations, as such, echo is used as the other end
     requests (no need to turn on or off manually), tell terminal type (Dumb
     if MSX1 or xterm 16 colors otherwise), tell window size as 40x24 (MSX1)

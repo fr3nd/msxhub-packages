@@ -10,17 +10,18 @@ category: 'Internet'
 system: 'MSX2'
 requirements:
   - 'MSX-DOS2'
+  - 'TCP/IP-UNAPI'
 url: 'https://msxhub.com'
 description: |
   MSXHub is a MSX software installer. It can download and install packaged software from the internet directly into your MSX.
-  
+
   This package contains two different clients:
-  
+
   * `HUB.COM`: Original command-line client.
   * `HUBG.COM`: Graphical interface for MSX2 or greater.
-  
+
   With MSXHub it's possible to install MSX software directly from the Internet.
-  
+
   It works as a MSX package manager, allowing to install, uninstall, upgrade any available package.
 installdir: '\HUB'
 files:

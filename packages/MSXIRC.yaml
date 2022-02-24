@@ -10,46 +10,47 @@ category: 'Internet'
 system: 'MSX2'
 requirements:
   - 'MSX-DOS2'
+  - 'TCP/IP-UNAPI'
 url: 'https://github.com/Fubukimaru/msxirc'
 description: |
-  IRC client for MSX 2 or superior computers with MSXDOS.  
+  IRC client for MSX 2 or superior computers with MSXDOS.
 
   MSXIRC v1.1 by DucaSP
-  
+
   This version has been modified and updated. Also, now it is compiled using SJASM
-  
+
   Original code by Ptero, based on Konamiman's TCPcon. This code can be found in
   original_code folder. Originally assembled with AS80.
-  
+
   Special thanks to Ptero for making the code and for allowing us to share it.
-  
-  
+
+
   # User manual (extracted from MSXIRC.HLP)
-  
+
   Use navigations buttons [UP] [DOWN] to scroll this help screen
-  
+
   ## Work anywhere:
-  
+
   - [ESC] - Invoke Main Menu / Last Window Opened
   - [F1]  - Show this help screen
-  
+
   ## In Main Menu:
-  
+
   - [S] - Invoke Server Console Window
   - [Q] - Return to MSX-DOS
   - [UP][DOWN] - Navigate the Window list (if any)
   - [ENTER] - Enter the Window selected
-  
+
   ## In Server Console Window:
-  
+
   - [F2] - Connect to server
   - [F3] - Disconect
   - [&] - Send again NICK , PASS and USER messages and SERVERPASS if configured
   - Join IRC channel: /JOIN #channel
   - Private MSG: /QUERY username
-  
+
   ## Work on any Window you input text (Channel, Query, Server)
-  
+
   - [SHIFT]+[UP], [SHIFT+DOWN] to scroll pages
   - [CTRL]+[UP], [CTRL+DOWN] to go up/down a single line (in this case line is not
       related to a screen line, but a line of text from server or keyboard input)
@@ -60,35 +61,35 @@ description: |
   - [DEL] - Delete character selected
   - [BS] - Delete character to the left of selected char
   - [CTRL] + [Q] - Close the current Window (except Server Console Window)
-  
+
   ## In Channel Window
-  
+
   - [F2] - Allow you to navigate the nick list, enter will copy the name in the
          text input line
   - [SELECT] - Same as F2
   - Private Message - /QUERY username OR, type /QUERY and space, then hit F2 or
   SELECT, choose the nick and hit enter (once to copy the nick and twice to open
   the query/private message window)
-  
-  
+
+
   ## Configuration file
-  
+
   This client will connect only to a single server. You can open up to 80 Windows
   (channel, server console, private message), as long as your MSX has enough
   free segments in the memory mapper. For each window a 16KB memory segment is
   allocated. So, the maximum number of Windows opened is limited by how many free
   16KB segments your computer has (i.e.: MSX-DOS2 uses one, UNAPI Memory Mapper
-  driver another, a 128KB machine has 4 segments for main ram, 1 segment for 
+  driver another, a 128KB machine has 4 segments for main ram, 1 segment for
   MSX-DOS2 and 1 segment to the UNAPI driver, leaving 2 free segments).
-  
+
   To change server and color settings, edit MSXIRC.INI, or, create different .INI
   files for each server you want to use. When executing MSXIRC, if no parameter
   is given, it will try to use MSXIRC.INI file to load configurations, but you
   can use any .INI file you want, i.e.: FREENODE.INI as a file to connect to
   FREENODE, so you execute MSXIRC as follow: MSXIRC FREENODE.INI
-  
+
   The following items are read from the .INI file:
-  
+
   - server - the server name / address to connect to
   - port - the port for the server connection
   - srvpass - password for the server

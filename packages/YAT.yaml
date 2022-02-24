@@ -8,7 +8,8 @@ package_author: 'Carles Amigó (fr3nd)'
 license: 'Public domain'
 category: 'Internet'
 system: 'MSX'
-requirements: []
+requirements:
+  - 'TCP/IP-UNAPI'
 url: 'https://github.com/majingazetto/YAT'
 description: |
   # YAT
