@@ -1,0 +1,36 @@
+---
+name: 'SAFARI'
+version: '1.1'
+release: 1
+summary: 'Safari Kids (MSXdev''22)'
+author: 'Jipe MSXvillage'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Unknown'
+category: 'Games'
+system: 'MSX2'
+requirements: []
+url: 'https://www.msxdev.org/2022/03/08/msxdev22-03-safari-kids/'
+description: |
+  This game is for young children to help them discover the keys of a computer keyboard and reflect on the different
+  actions to be taken to reach the next stage
+
+  The instructions for use are included in the game in several languages and the finale presents all the animals
+  encountered followed by the chosen language
+
+  The language used is the standard MSX 2 basic with some calls to Bios routines
+
+  This game has no sprites and just uses the basic COPY functions
+installdir: '\SAFARI'
+files:
+  - safari.zip: 'https://www.msxdev.org/wp-content/uploads/2022/03/MSXdev22_SafariKids_v1.1.zip'
+build: |
+  mkdir -p package/
+  unzip safari.zip
+  mcopy -s -i MSXdev22_SafariKids_v1.1.DSK :: package/
+  cat > package/SAFARI.BAT << EOF
+  BASIC AUTOEXEC.BAS
+  EOF
+  unix2dos package/SAFARI.BAT
+changelog: |
+    - 1.0-1 2022-03-09
+    - First release
