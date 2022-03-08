@@ -1,0 +1,45 @@
+---
+name: 'MSXINET'
+version: '1.0'
+release: 1
+summary: 'Nestor internet applications'
+author: 'Nestor Soriano (Konamiman)'
+package_author: 'Willem Cazander'
+license: 'Proprietary'
+category: 'Internet'
+system: 'MSX2'
+requirements:
+  - 'MSX-DOS2'
+  - 'TCP/IP-UNAPI'
+url: 'https://www.konamiman.com/msx/msx-e.html#networking'
+description: |
+  MSXINET are a collections of tools to work with the internet.
+
+  The tools:
+
+  * PING.COM: Simple PING client 1.1. Sends one ping request automatically, then sends additional requests when ENTER is pressed. 
+  * TFTP.COM: TFTP client/server 1.1. TFTP is a simple and straighforward way to transfer single files between two computers.
+  * TCPCON.COM: TCP console 1.1. It is a simplified Telnet client, it just sends data from the keyboard to the network and from the network to the screen, ignoring the Telnet control codes. 
+  * FTP.COM: FTP client 1.0. Command-line based FTP client, requires MSX-DOS 2 to work. The multiple file management commands (MGET, MPUT and MDELETE) require NestorMan to work. 
+  * SNTP.COM: SNTP client 1.2. Allows you to configure the clock of your MSX by querying the current date and time to a time server.
+  * TWEETER.COM: MSX trivial tweeter 1.0. Allows you to send messages to Twitter from your MSX. 
+  * HGET.COM: HTTP file downloader 1.3. A (very) simplified version of the popular tool WGET, it allows you to download files and resources by using the HTTP protocol.
+  * GETURL.COM: URL extractor 1.0. This is not strictly a network application, but it may be useful when used together with HGET. It searches inside a text file for a line with the format [urlname] url, then it sends the URL to the console.
+  * MSXTDB.LZH: MSX trivial dropbox 1.1. Dropbox is an online file storage service which offers both free and paid plans.
+  * OBSOSMB.COM: ObsoSMB 1.0. ObsoSMB allows you to expose your MSX disk drives as shared folders to machines running Microsoft Windows.
+  * OBSOFTP.COM: ObsoFTP 1.0. ObsoFTP will turn your MSX into a FTP server, allowing you to easily transfer files between your MSX and other computers.
+  
+installdir: '\MSXINET'
+files:
+  - msxinet.zip: 'https://www.konamiman.com/msx/networking/msxinet.zip'
+build: |
+  mkdir -p package/
+  unzip msxinet.zip
+  mcopy -s -i msxinet.dsk :: package/
+  rm package/AUTOEXEC.BAT
+  rm package/REBOOT.BAT
+  rm package/MSXDOS2.SYS
+  rm package/COMMAND2.COM
+changelog: |
+  - 1.0-1 2022-03-08
+    - First release
