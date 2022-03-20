@@ -1,6 +1,6 @@
 ---
 name: 'WORD'
-version: '1.0'
+version: '1.1'
 release: 1
 summary: 'WÖRD (MSXdev''22)'
 author: "Patrik’s Retro Tech"
@@ -58,14 +58,13 @@ description: |
   MSX, Minimum 16K RAM
 installdir: '\WORD'
 files:
-  - word.zip: 'https://www.msxdev.org/wp-content/uploads/2022/03/MSXdev22_Word_v%VERSION%.zip'
+  - word.zip: 'https://www.msxdev.org/wp-content/uploads/2022/03/MSXdev22_WORD_v1.1.zip'
 build: |
   mkdir -p package/
   unzip word.zip
 
-  for LANG in EN ES NL SE; do
-    mv "MSXdev22_Word_v1.0_${LANG}.rom" package/WORD_${LANG}.ROM
-
+  for LANG in en es nl se; do
+    mv "MSXdev22_WÖRD_v1.1_${LANG}.rom" package/WORD_${LANG}.ROM
     cat > package/WORD_${LANG}.BAT << EOF
   REM Look for SROM.COM in default dir
   IFF EXIST %_DISK%:\SOFAROM\SROM.COM
@@ -133,5 +132,7 @@ build: |
 
   unix2dos package/README.TXT
 changelog: |
-    - 1.0-1 2022-03-08
+  - 1.1-1 2022-03-20
+    - Version 1.1
+  - 1.0-1 2022-03-08
     - First release
