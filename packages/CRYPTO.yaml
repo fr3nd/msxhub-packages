@@ -1,0 +1,67 @@
+---
+name: 'CRYPTO'
+version: '1.0'
+release: 1
+summary: 'Cryptogram - Anagrams Crosswords (MSXdev''22)'
+author: 'Amaury Carvalho'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'GPL-3.0'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2022/03/24/msxdev22-06-cryptogram-anagrams-crosswords/'
+description: |
+  Cryptogram is a letter arrangement game where the main goal is to form the right words out of given letters
+  randomly arranged into a crossword-style grid as fast as you can and with as few changes as possible.
+
+  There are three word banks (English, Portuguese and Spanish) with 200 entries each.
+
+  Each level adds more words to the grid and the time/change counter is also reset at the level beginning.
+
+  There are on-screen hints of how many letters are correct in the grid and in each row as well.
+
+  Written in MSX Basic from scratch (~450 lines of code) and compiled using MSXBAS2ROM compiler (a),
+  this is a MSX1 compatible single player game (standard ROM BASIC required). Joysticks are recommended,
+  but not required.
+
+  All songs, except Mozart's K3 theme (b), were randomly composed with the MU-Tech Music Laboratory tool (c)
+  and rearranged with Arkos Tracker 2 (d).
+
+  Good Luck!
+
+  Note: ExecROM is not compatible with this 48kb ROM type, so use SofaRUN or ODO (e) to load this
+  game from MSX-DOS.
+
+  (a) https://launchpad.net/msxbas2rom
+  (b) https://imslp.org/wiki/Allegro_in_B-flat_major%2C_K.3_(Mozart%2C_Wolfgang_Amadeus)
+  (c) http://www.mu-tech.co.jp/AcsWebE/setparam.asp
+  (d) https://www.julien-nevo.com/arkostracker/
+  (e) http://msxbanzai.tni.nl/dev/software.html
+installdir: '\CRYPTO'
+files:
+  - crypto.zip: 'https://www.msxdev.org/wp-content/uploads/2022/03/MSXdev22_Cryptogram-AnagramsCrosswords_v1.0.zip'
+build: |
+  mkdir -p package/
+  unzip crypto.zip
+  mv "MSXdev22_Cryptogram-AnagramsCrosswords_v1.0.rom" package/CRYPTO.ROM
+  mv "MSXdev22_Cryptogram-AnagramsCrosswords_v1.0.txt" package/README.TXT
+  cat > package/CRYPTO.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM CRYPTO.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM CRYPTO.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/CRYPTO.BAT
+  unix2dos package/README.TXT
+changelog: |
+    - 1.0-1 2022-03-25
+    - First release
