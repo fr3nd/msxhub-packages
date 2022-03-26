@@ -1,6 +1,6 @@
 ---
 name: 'NMP'
-version: '2.0b'
+version: '2.01'
 release: 1
 summary: 'NOP Mod Player'
 author: 'NOP'
@@ -16,10 +16,12 @@ description: |
   NOP MOD Player for OPL4 cartridges.
 installdir: '\NMP'
 files:
-  - nmp.com: 'https://nopmsx.nl/download/nmp/v2.0-beta/nmp.com'
+  - nmp.com: 'https://nopmsx.nl/download/nmp/v2.0/nmp.com'
 build: |
   mkdir -p package/
   mv nmp.com package/
 changelog: |
+  - 2.01 2022-03-26
+    - Updated to 2.01
   - 2.0-beta 2020-04-10
     - First release
