@@ -1,0 +1,29 @@
+---
+name: 'WB2TXT'
+version: '1.1'
+release: 1
+summary: 'WBAss2 source to text'
+author: 'Vincent van Dam'
+package_author: 'Willem Cazander'
+license: 'GPL-2.0'
+category: 'Programming'
+system: 'MSX'
+requirements:
+  - 'MSX-DOS'
+url: 'http://home.kabelfoon.nl/~vincentd/'
+description: |
+  Translates tokenized WBAss2 files to readable text.
+installdir: '\WB2TXT'
+files:
+  - wb2txt.zip: 'http://home.kabelfoon.nl/~vincentd/download/wb2txt.zip'
+build: |
+  mkdir -p package/
+  unzip wb2txt.zip
+  mv readme.txt package/
+  mv COPYING package/
+  mv wb2txt.cpm package/wb2txt.com
+  unix2dos package/readme.txt
+  unix2dos package/COPYING
+changelog: |
+  - 2022-08-10 1.1-1
+    - First release
