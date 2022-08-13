@@ -1,0 +1,50 @@
+---
+name: 'ROBOR'
+version: '1.0'
+release: 1
+summary: 'Robo Rumble (MSXdev''22)'
+author: 'RoboSoft Inc.'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Freeware'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2022/08/12/msxdev22-12-robo-rumble/'
+description: |
+  This is an MSX remake of the game Robots Rumble on the ZX-Spectrum. It already has ports for C64, VIC-20, Atari 7800 so time for an MSX edition as well, with kind permission from the creator of the original Miguetelo.
+
+  In this game you have to guide the robot to the latest screen of each planet and throw it into the lava. You control the robot with the right and left magnets. Avoid green radioactive rocks and guardians. You need to recharge your energy picking up the batteries.
+
+  ## Controls:
+
+  Use the following keys:
+  * Q-A:  Up-Down left magnet.
+  * P-L:  Up-Down right magnet
+installdir: '\ROBOR'
+files:
+  - mine.zip: 'https://www.msxdev.org/wp-content/uploads/2022/07/MSXdev22_RoboRumble_v1.0.zip'
+build: |
+  mkdir -p package/
+  unzip mine.zip
+  mv "MSXdev22_RoboRumble_v1.0.rom" package/ROBOR.ROM
+  mv "MSXdev22_RoboRumble_v1.0.txt" package/README.TXT
+  cat > package/ROBOR.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM ROBOR.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM ROBOR.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/ROBOR.BAT
+  unix2dos package/README.TXT
+changelog: |
+    - 1.1-1 2022-08-13
+    - First release
