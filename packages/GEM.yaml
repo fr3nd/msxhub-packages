@@ -10,6 +10,7 @@ category: 'Tools'
 system: 'MSX2'
 requirements:
   - 'MSX-DOS2'
+  - 'V9990'
 url: 'http://www.tni.nl/products/gem.html'
 description: |
   GEM - Gameboy Emulator for MSX
