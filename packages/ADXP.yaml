@@ -1,8 +1,8 @@
 ---
 name: 'ADXP'
-version: '2.5'
+version: '3.0'
 release: 1
-summary: 'Quick ADX Player'
+summary: 'ADX Player'
 author: 'Mstz80ax'
 package_author: 'Carles Amigó (fr3nd)'
 license: 'Unknown'
@@ -10,7 +10,7 @@ category: 'Sound'
 system: 'MSX'
 requirements:
   - 'MSX-DOS'
-url: 'https://www.msx.org/downloads/quick-adx-player-ver2'
+url: 'https://www.msx.org/downloads/adx-player-ver-30'
 description: |
   A simplified version of the new ADX player.
   Significantly added and improved the performance program.
@@ -20,6 +20,8 @@ description: |
   * YM2413 OPLL stereo performance.
   * Support for PCM sound source of MSX Turbo R.
   * Support for Double PSG sound source.
+  * 2 FM-PAC cartridges support.
+  * 2 SCC+ cartridges support.
 
   It also has the operability of a CD player.
 
@@ -35,22 +37,23 @@ description: |
   Functions such as level meter display will be added later.
 installdir: '\ADXP'
 files:
-  - ADXP.zip: 'https://www.msx.org/download/download/2021/01/ADXP25.zip'
+  - ADXP.zip: 'https://www.msx.org/download/download/2022/08/ADXP30.zip'
 build: |
   mkdir -p package/
+  mkdir -p package/DIXE
   unzip ADXP.zip
-  mv ADXP/ADXP.COM package/
-  mv ADXP/ADXP-Instructions.txt package/README.TXT
-  mv ADXP/CHKPAN.ADX package/
-  mv "GMUSICS ADX FILES/" package/ADX/
-  mv "SPACE HARRIER ADX FILES/" package/SPHARR/
-  mv "DRAGON SABER ADX FILES/" package/DRAGONS/
-  mv "MACH RIDER ADX FILES/" package/MACHRID/
-  mv "MSX GRADIUS2 ADX FILES/" package/GRADIUS2/
-  mv "RAY FORCE ADX FILES/" package/RAYFORCE/
-  mv "THUNDER CROSS ADX FILES/" package/THUNDER/
-  mv "YS ADX FILES" package/YS/
+  mv ADXPV3/ADXP.COM package/
+  mv ADXPV3/ADXP-Instructions.txt package/README.TXT
+  mv ADXPV3/CHKC.ADX package/
+  mv ADXPV3/CHKLR.ADX package/
+  mv DIXE/DIXE.COM package/DIXE/DIXE.COM
+  mv DIXE/DIXE-Instructions.txt package/DIXE/DIXE.TXT
+  mv "CONTRA" package/CONTRA/
+  mv "DRAGON QUEST" package/DRAGON/
+  mv "FALSION" package/FALSION/
 changelog: |
+  - 3.0-1 2022-08-15
+    - New release
   - 2.5-1 2021-06-11
     - New release
   - 2.1-1 2021-02-28
