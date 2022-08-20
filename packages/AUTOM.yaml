@@ -1,0 +1,125 @@
+---
+name: 'AUTOM'
+version: '1.0'
+release: 1
+summary: 'Auto Mania (MSXdev''22)'
+author: 'Eric Boez'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Freeware'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2022/08/20/msxdev22-13-automania/'
+description: |
+  # AUTOMANIA (MANIC MECHANIC)
+
+  ## Welcome to the world of Wally Week.
+
+  O.K. Wally try and get it right this time!
+  All you have to do is get these car
+  parts from the store, take them to the
+  assambly area and put them together.
+
+  Simple, INNIT? If you bought decent
+  shelving units things wouldn't keep
+  falling off would they Wally, and if the
+  gangplanks seem to have a mind of
+  their own happen it's because you're a
+  Wally, Wally. If you put things back in
+  their right places you wouldn't have to
+  jump over them to get what you want.
+  With your fiat hat, beer belly and
+  oversize boots you really are a Wally,
+  Wally.
+
+  You as Wally Week have ten cars to
+  build, each consisting of 6 parts. You
+  will begin in the store area with tyres
+  bouncing around to hit you. You must
+  go to the stock room, identify the parts
+  required, and go up the ladders to
+  each level to collect them (moving
+  over the part will collect it). The
+  gangplanks are none too safe and you
+  must jump the gaps to reach the
+  relevant parts. There are various items
+  strewn on the floors. These appear in
+  different places on each screen, so the
+  game is a constant challenge.
+
+  You will then return to the assembly
+  area to place the parts in their correct
+  position on the car, but to deposit the
+  upper parts of the car (e.g.
+  windscreen, roof, etc.) you will have to
+  jump when in the correct position.
+
+  On menu screen you will see:
+
+  * Key 1 ­ Music On
+  * Key 2 ­ Music Off
+  * Key 3 ­ Joystick (to play for)
+  * Key 4 ­ Cursors (to play for)
+  * Key 5 ­ Credits (to show this crazy crew)
+
+  You will start with 3 lives and gain an
+  extra live for each car you complete.
+  However, you also have time limit on
+  each car part and will lose a life if you
+  exceed this limit.
+
+  Right Wally, away you go!!
+
+  Watch out for Wally Weeks other
+  wacky adventures.
+
+  ## Hardware requirements:
+
+  an MSX­1 with 64 kB of RAM memory.
+
+  ## Notes:
+
+  This game is the MSX
+  conversion/remake of Mikro­Gen's
+  game "Automania", released in 1984
+  for ZX Spectrum and Commodore 64
+  machines.
+
+  In­game music only available for
+  MSX2 or higher in this version.
+
+  ## Credits:
+
+  * Code: fregarni
+  * Graphics: fregarni
+  * Music/FX: fregarni
+
+installdir: '\AUTOM'
+files:
+  - autom.zip: 'https://www.msxdev.org/wp-content/uploads/2022/08/MSXdev22_Automania_v1.0.zip'
+build: |
+  mkdir -p package/
+  unzip autom.zip
+  mv "MSXdev22_Automania_v1.0.rom" package/AUTOM.ROM
+  pdftotext "MSXdev22_Automania_v1.0.pdf"
+  mv "MSXdev22_Automania_v1.0.txt" package/README.TXT
+  cat > package/AUTOM.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM AUTOM.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM AUTOM.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/AUTOM.BAT
+  unix2dos package/README.TXT
+changelog: |
+    - 1.0-1 2022-08-20
+    - First release
