@@ -1,7 +1,7 @@
 ---
 name: 'AUTOM'
 version: '1.0'
-release: 1
+release: 2
 summary: 'Auto Mania (MSXdev''22)'
 author: 'Eric Boez'
 package_author: 'Carles Amigó (fr3nd)'
@@ -121,5 +121,7 @@ build: |
   unix2dos package/AUTOM.BAT
   unix2dos package/README.TXT
 changelog: |
+    - 1.0-2 2022-08-20
+    - Rebuilt to include README.TXT file
     - 1.0-1 2022-08-20
     - First release
