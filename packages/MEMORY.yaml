@@ -1,0 +1,48 @@
+---
+name: 'MEMORY'
+version: '1.0'
+release: 1
+summary: 'Memory (MSXdev''22)'
+author: 'Jipe MSXvillage'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Freeware'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2022/09/01/msxdev22-15-memory/'
+description: |
+  # MEMORY GAME by JIPE for MSX22dev
+
+  One to four player game with two levels
+
+  Enter names of players with the keyboard
+
+  Is played with the keys of the keyboard and space
+  or a gamepad in port 1 with a fire button
+
+  The goal is to turn over two cards on the board
+
+  If they are identical the player scores a point
+
+  In easy mode the maps remain displayed
+  In hard mode they disappear
+
+  At the end of the game the scores are displayed
+installdir: '\MEMORY'
+files:
+  - memory.zip: 'https://www.msxdev.org/wp-content/uploads/2022/08/MSXdev22_Memory_v1.0.zip'
+build: |
+  mkdir -p package/
+  unzip memory.zip
+  mcopy -s -i MSXdev22_Memory_v1.0.DSK :: package/
+  pdftotext "MSXdev22_Memory_v1.0.pdf"
+  mv "MSXdev22_PenguinRun_v1.0.txt" package/README.TXT
+  cat > package/MEMORY.BAT << EOF
+  BASIC AUTOEXEC.BAS
+  EOF
+  unix2dos package/MEMORY.BAT
+  unix2dos package/README.TXT
+changelog: |
+    - 1.0-1 2022-09-01
+    - First release
