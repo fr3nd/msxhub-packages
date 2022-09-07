@@ -1,0 +1,58 @@
+---
+name: 'BUFONADA'
+version: '1.0'
+release: 1
+summary: 'Bufonada (MSXdev''22)'
+author: 'Roolandoo'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Freeware'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2022/09/06/msxdev22-16-bufonada/'
+description: |
+  # Bufonada
+
+
+  > The kingdom of Kimeria has fallen into disgrace. A spell of "Perpetual Night" threatens its existence.
+  >
+  > I, Lisistra, sorceress supreme, must find an ally who can help me undo this mess... but Who?.
+  >
+  > God help us.
+
+  An adventure full of puzzles and humour, where you play the role of two characters: a useless jester and a half-crazy magic goat, entangled in a mission that is too big for them. Can you save the kingdom?
+
+  ## Keyboard (Redefinable):
+
+  * `Q` – Jump
+  * `A` – Swap (change character)
+  * `O` – Left
+  * `P` – Right
+  * `Space` - Action (unique to each character)
+
+installdir: '\BUFONADA'
+files:
+  - bufonada.zip: 'https://www.msxdev.org/wp-content/uploads/2022/09/MSXdev22_Bufonada_v1.0.zip'
+build: |
+  mkdir -p package/
+  unzip bufonada.zip
+  mv "MSXdev22_Bufonada_v1.0.eng.rom" package/BUFONADA.ROM
+  cat > package/BUFONADA.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM BUFONADA.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM BUFONADA.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/BUFONADA.BAT
+changelog: |
+  - 1.0-1 2022-09-07
+    - First release
