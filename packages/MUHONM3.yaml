@@ -1,0 +1,49 @@
+---
+name: 'MUHONM3'
+version: '1.1'
+release: 1
+summary: 'Muhonmourn 3 (MSXdev''22)'
+author: 'hoge1e3'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Freeware'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2022/09/22/msxdev22-18-muhonmourn-3/'
+description: |
+  This game can be played with 0-4 Players.
+
+  Controllers:
+
+  * Red Player: Use wasd key
+  * Blue Player: Use arrow key
+  * Green Player: Use Joystick 1
+  * Yellow Player: Use Joystick 2
+
+  On the title screen, select up or down whether each character is controlled by the player or by the COM. By default, only the Blue character( Use arrow key ) is controlled by the Player. The others are controlled by COM.
+
+  And press space key to start the game.
+
+  You can paint the areas you passed through. You have to paint more areas than enemies within 60 seconds.
+  Sometimes a ball with each player's color appears at random. You can pick up the balls  with your color. The picked ball paints fields and attacks enemies. If a player is attacked by enemies, the player cannot move for a while and returns to initial position. You can erase enemy's unpicked ball by pass over it.( But it may have a delay to disappear it)
+
+  This game is a feasibility test of the game engine for MSX in which you can develop MSX games with Javascript-like oop and pseud-parallel programming: https://github.com/hoge1e3/reTrONew
+  I hope someone will submit games made from this game engine in next MSXDev23.
+
+installdir: '\MUHONM3'
+files:
+  - muhonm3.zip: 'https://www.msxdev.org/wp-content/uploads/2022/09/MSXdev22_Muhonmourn3_v1.1.zip'
+build: |
+  mkdir -p package/
+  unzip muhonm3.zip
+  mcopy -s -i MSXdev22_Muhonmourn3_v1.1.dsk :: package/
+  mv MSXdev22_Muhonmourn3_v1.1.txt package/README.TXT
+  cat  > package/MUHONM3.BAT << EOF
+  BASIC AUTOEXEC.BAS
+  EOF
+  unix2dos package/MUHONM3.BAT
+  unix2dos package/README.TXT
+changelog: |
+  - 1.0-1 2022-09-22
+    - First release
