@@ -1,0 +1,65 @@
+---
+name: 'SACREDPL'
+version: '1.0'
+release: 1
+summary: 'My Sacred Place (MSXdev''22)'
+author: 'Mario Cavalcanti'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Freeware'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2022/10/02/msxdev22-25-my-sacred-place/'
+description: |
+  My Sacred Place is an action strategy RPG
+  for MSX in which you have to protect
+  your village's garden from the clutches of
+  the fearsome Garks. Generally speaking, you
+  should arm yourself with as many silver
+  daggers as possible and create protective
+  barriers using the ginger seedlings. This all
+  needs to be done before day time runs out and
+  the horde of Garks arrives at nightfall.
+
+  Silver daggers and ginger seedlings can be
+  purchased from the witch Aris' shop. Each
+  ginger seedling costs 3 Tyzin coins, and each
+  silver dagger costs 5 Tyzin coins. If you need
+  more coins, you can go to your home dojo to
+  train. Blocking eight fireballs in a roll earns you
+  Tyzin coins. Furthermore you can ask sage Isao
+  for advice. In some cases, he will be able to
+  provide you with some money.
+
+  My Sacred Place color palette is optimized
+  on MSX2 (or higher) computers, and can be
+  played either with a keyboard or a joystick.
+installdir: '\SACREDPL'
+files:
+  - sacredpl.zip: 'https://www.msxdev.org/wp-content/uploads/2022/10/MSXdev22_MySacredPlace_v1.0.zip'
+build: |
+  mkdir -p package/
+  unzip sacredpl.zip
+  mv "MSXdev22_SacredPlace_v1.0.rom" package/SACREDPL.ROM
+  pdftotext "MSXdev22_SacredPlace_v1.0.pdf"
+  mv "MSXdev22_SacredPlace_v1.0.txt" package/README.TXT
+  cat > package/SACREDPL.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM SACREDPL.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM SACREDPL.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/SACREDPL.BAT
+  unix2dos package/README.TXT
+changelog: |
+  - 1.0-1 2022-10-03
+    - First release

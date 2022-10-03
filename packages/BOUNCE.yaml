@@ -1,0 +1,30 @@
+---
+name: 'BOUNCE'
+version: '1.0'
+release: 1
+summary: 'Bounce Mania (MSXdev''22)'
+author: 'Zett Darkstone'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Freeware'
+category: 'Games'
+system: 'MSX'
+requirements: []
+url: 'https://www.msxdev.org/2022/09/27/msxdev22-21-bounce-mania/'
+description: |
+  Bounce Mania
+
+  > *NOTE*: This software requires MSX-BASIC-KUN which is not included in the package.
+installdir: '\BOUNCE'
+files:
+  - bounce.zip: 'https://www.msxdev.org/wp-content/uploads/2022/09/MSXdev22_BounceMania_v1.0.zip'
+build: |
+  mkdir -p package/
+  unzip bounce.zip
+  mcopy -s -i MSXdev22_BounceMania_v1.0.dsk :: package/
+  cat  > package/BOUNCE.BAT << EOF
+  BASIC AUTOEXEC.BAS
+  EOF
+  unix2dos package/BOUNCE.BAT
+changelog: |
+  - 1.0-1 2022-10-03
+    - First release

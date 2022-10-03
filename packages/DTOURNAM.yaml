@@ -1,0 +1,63 @@
+---
+name: 'DTOURNAM'
+version: '1.0'
+release: 1
+summary: 'DICED - Tournament (MSXdev''22)'
+author: 'Mi-Chi, Def Danny'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Freeware'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2022/10/03/msxdev22-26-diced-tournament/'
+description: |
+  ## It is 1915, somewhere in the Wild West.
+
+  Once a year, the best players meet to take part in a tournament of a special kind.
+  Skills like aiming or shooting faster than his shadow are of no help here. It is all
+  about intellect, strategy, endurance and luck. And the ability to drink hard.
+
+  It's about a dice game as brilliant as it is simple. asy to learn, hard to master.
+
+  Put your wits up against over 190 unique opponents in 17 tournaments. Crush the
+  competition. Or be crushed. Outclass your fellow players with sovereignty and
+  strategy. Or outsmart them.
+
+  I am Dolus Ictis, teacher and trainer, coach and contributor, patron and
+  philanthropist. I will accompany you at the tournament and analyze whether you
+  have what it takes to become a champion.
+
+  If you don't know the game yet, or want to have the rules explained again, or just
+  want to compete against some helpless dummies, I recommend you come to my
+  dojo to play a few matches.
+installdir: '\DTOURNAM'
+files:
+  - dtournam.zip: 'https://www.msxdev.org/wp-content/uploads/2022/10/MSXdev22_DICED-Tournament_v1.0.zip'
+build: |
+  mkdir -p package/
+  unzip dtournam.zip
+  mv "MSXdev22_DICED-Tournament_v1.0.rom" package/DTOURNAM.ROM
+  mv "MSXdev22_DICED-Tournament_v1.0.txt" package/INFO.TXT
+  pdftotext "MSXdev22_DICED-Tournament_v1.0.pdf"
+  mv "MSXdev22_DICED-Tournament_v1.0.txt" package/README.TXT
+  cat > package/DTOURNAM.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM DTOURNAM.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM DTOURNAM.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/DTOURNAM.BAT
+  unix2dos package/README.TXT
+  unix2dos package/INFO.TXT
+changelog: |
+  - 1.0-1 2022-10-03
+    - First release
