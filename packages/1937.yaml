@@ -1,0 +1,42 @@
+---
+name: '1937'
+version: '1.0'
+release: 1
+summary: '1937 (MSXdev''22)'
+author: 'joesg'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Freeware'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2022/10/04/msxdev22-30-1937/'
+description: |
+  # 1937
+
+  The game is about a kid that tries to escape from the horror.
+installdir: '\1937'
+files:
+  - 1937.zip: 'https://www.msxdev.org/wp-content/uploads/2022/10/MSXdev22_1937_v1.0.zip'
+build: |
+  mkdir -p package/
+  unzip 1937.zip
+  mv "MSXdev22_1937_v1.0_eng.rom" package/1937.ROM
+  cat > package/1937.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM 1937.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM 1937.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/1937.BAT
+changelog: |
+  - 1.0-1 2022-10-11
+    - First release

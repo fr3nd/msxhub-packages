@@ -1,0 +1,60 @@
+---
+name: 'MSXMAS'
+version: '1.0'
+release: 1
+summary: 'MSXmas (MSXdev''22)'
+author: 'André Baptista'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Freeware'
+category: 'Games'
+system: 'MSX2'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2022/10/04/msxdev22msxmas/'
+description: |
+  Simple Christmas game for MSX 2
+
+  MSXmas 21/22 is a simple game I made to learn some basics of the 9938 VDP, the graphic heart of MSX 2.
+
+  Initially my goal was to complete it for the 2021 Christmas, but it wasn't possible and it was "extended" to include 2022 Christmas.
+
+  The player should avoid that the gifts on the out of control Santa Claus plant fall to the ground. Simple as that.
+
+  Controls are keyboard keys left, right and space or joystick 1: left, right and button A.
+
+  Both input methods can be used at any time.
+
+  Game developed in Assembly language, using TNIAsm. Most of graphic assetes were drawn on TinySprite.
+
+  Tested on openMSX and WebMSX, besides a real MSX (Panasonic WSX).
+
+  The game is freeware; free to download and free to play. Code is open source and is available on Github. https://github.com/albs-br/msxmas21
+
+  Hope you guys enjoy it.
+installdir: '\MSXMAS'
+files:
+  - msxmas.zip: 'https://www.msxdev.org/wp-content/uploads/2022/10/MSXdev22_MSXmas_v1.0.zip'
+build: |
+  mkdir -p package/
+  unzip msxmas.zip
+  mv "MSXdev22_MSXmas_v1.0.rom" package/MSXMAS.ROM
+  mv "MSXdev22_MSXmas_v1.0.txt" package/README.TXT
+  cat > package/MSXMAS.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM MSXMAS.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM MSXMAS.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/MSXMAS.BAT
+  unix2dos package/README.TXT
+changelog: |
+  - 1.0-1 2022-10-11
+    - First release
