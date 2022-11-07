@@ -1,7 +1,7 @@
 ---
 name: 'NBASIC'
 version: '1.11'
-release: 1
+release: 2
 summary: 'NestorBASIC, a Turbo-BASIC compatible BASIC extension'
 author: 'Nestor Soriano (Konamiman)'
 package_author: 'Carles Amigó (fr3nd)'
@@ -12,7 +12,7 @@ requirements: []
 url: 'https://www.konamiman.com/msx/msx-e.html#nestorbasic'
 description: |
   NestorBASIC is a BASIC extension for MSX2/2+/TR computers with at least 128K mapped RAM. It is Turbo-BASIC compatible (in fact it includes Turbo-BASIC, an loads it at installation time) and provides the following capabilities:
-  
+
   * Access to all the mapped memory available on the computer (all the free memory when using DOS 2), up to 4 Mb.
   * Full access to VRAM, including data blocks exchange between RAM and VRAM.
   * BASIC programs storage in mapped memory, it is possible to switch from one to another without losing the existing variables.
@@ -22,11 +22,11 @@ description: |
   * PSG sound effects replay.
   * Machine code routines execution; routines placed in BIOS, in a mapped memory segment or in BASIC main memory (including system work area) can be executed directly or using interrupts.
   * NestorMan functions, InterNestor Suite and InterNestor Lite routines execution.
-  
+
   NestorBASIC consists on a single file which can be installed with a simple BLOAD instruction. It installs itself on a hidden RAM segment and only uses about 500 bytes of the BASIC main memory. Its functions are invoked using an USR instruction and an array for the parameters, so they can be used from inside of turbo-blocks. Turbo-BASIC is included within the NestorBASIC file, both are installed simultaneously.
 installdir: '\NBASIC'
 files:
-  - nbasic.bin: 'https://www.konamiman.com/msx/nbasic/nbasic.bin'
+  - nbasic.bin: 'https://www.konamiman.com/msx/nbasic/NBASIC.BIN'
   - nbasic.txt: 'https://www.konamiman.com/msx/nbasic/nbas111e.txt'
   - versions.txt: 'https://www.konamiman.com/msx/nbasic/nbvers-e.txt'
   - samples.lzh: 'https://www.konamiman.com/msx/nbasic/samples.lzh'
@@ -37,5 +37,7 @@ build: |
   mv versions.txt package/
   lha xw=./package samples.lzh
 changelog: |
+  - 1.11-2 2022-11-07
+    - Fixing NBASIC.BIN not properly downloaded: https://github.com/fr3nd/msxhub/issues/19
   - 1.11-1 2020-04-14
     - First release
