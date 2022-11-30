@@ -1,0 +1,35 @@
+---
+name: 'GEM'
+version: '1.21'
+release: 1
+summary: 'Gameboy Emulator for MSX'
+author: 'Patriek Lesparre (TNI)'
+package_author: 'Willem Cazander'
+license: 'Freeware'
+category: 'Tools'
+system: 'MSX2'
+requirements:
+  - 'MSX-DOS2'
+  - 'V9990'
+url: 'http://www.tni.nl/products/gem.html'
+description: |
+  GEM - Gameboy Emulator for MSX
+
+  GEM runs on MSX2 and above, but is optimized for MSX turboR. Written in 100% assembly and employing advanced translation techniques, GEM is able to run Gameboy games at playable speeds.
+
+  The Dynamic Recompiler, a first-timer in 8-bit computing, was first introduced in GEM v0.7 and translates Gameboy code into MSX code at run-time and caches it in MSX memory for further execution. Gfx9000 is required since version v0.9990, while SCC and an external 4MB Memory Mapper are optional, though recommended since v1.0.
+installdir: '\GEM'
+files:
+  - gem121.lzh: 'http://www.tni.nl/products/gem121.lzh'
+build: |
+  mkdir -p package/
+  lha x gem121.lzh
+  mv gem.txt package/
+  mv gem.dat package/
+  mv gem.com package/
+  mv gem.cfg package/
+  unix2dos package/gem.txt
+  unix2dos package/gem.cfg
+changelog: |
+  - 1.21 2022-08-13
+    - First release

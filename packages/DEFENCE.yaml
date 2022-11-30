@@ -1,0 +1,63 @@
+---
+name: 'DEFENCE'
+version: '1.0'
+release: 1
+summary: 'Defence (MSXdev''22)'
+author: 'GameCast Entertainment'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Freeware'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2022/03/11/msxdev22-04-defence/'
+description: |
+  ## SYSTEM REQUIREMENTS
+
+  MSX1 with 16KB RAM
+
+  ## PURPOSE OF THE GAME
+
+  Hit all the aliens attacking your space base.
+  Avoid the bombs dropped by the aliens, otherwise lose a life.
+  You have 5 lives for each game.
+  For each yellow alien hit 200 points are awarded.
+  For each celestial alien hit 100 points are awarded.
+
+  ## CHECKS
+
+  * DIRECTION: cursor keys and space bar or joystick in port 1 and fire button A
+
+  ## EXTRA LIFE BONUS
+
+  Upon reaching for every 10000 points you will get an additional life,
+  this will be confirmed by a sound effect.
+installdir: '\DEFENCE'
+files:
+  - defence.zip: 'https://www.msxdev.org/wp-content/uploads/2022/03/MSXdev22_Defence_v%VERSION%.zip'
+build: |
+  mkdir -p package/
+  unzip defence.zip
+  mv "MSXdev22_Defence_v1.0.ROM" package/DEFENCE.ROM
+  mv "MSXdev22_Defence_v1.0_eng.txt" package/README.TXT
+  mv "MSXdev22_Defence_v1.0_ita.txt" package/LEGGIMI.TXT
+  cat > package/DEFENCE.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM DEFENCE.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM DEFENCE.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/DEFENCE.BAT
+  unix2dos package/README.TXT
+  unix2dos package/LEGGIMI.TXT
+changelog: |
+    - 1.0-1 2022-03-
+    - First release

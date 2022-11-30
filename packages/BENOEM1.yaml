@@ -1,0 +1,25 @@
+---
+name: 'BENOEM1'
+version: '2.0'
+release: 1
+summary: 'Woordbenoemen 1'
+author: 'Hv Gemert'
+package_author: 'Willem Cazander'
+license: 'Unknown'
+category: 'Programming'
+system: 'MSX2'
+requirements:
+  - 'MSX-DOS'
+url: 'https://www.msx.org/downloads/games/educational/benoem-1'
+description: |
+   Woordbenoemen 1 is educational software to learn to program with dutch sentences.
+installdir: '\BENOEM1'
+files:
+  - BENOEM-1.LZH: 'https://www.msx.org/download/downloads/games/education/BENOEM-1.LZH'
+build: |
+  mkdir -p package/
+  lha x BENOEM-1.LZH
+  mv benoem-1.com package/
+changelog: |
+  - 2022-02-17 2.0-1
+    - First release

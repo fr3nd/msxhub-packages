@@ -1,0 +1,88 @@
+---
+name: 'ZOMCAL'
+version: '1.0'
+release: 1
+summary: 'Zombie Calavera Prologue game'
+author: 'The Mojon Twins - ported by Óscar Toledo (nanochess)'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Unknown'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://atariage.com/forums/topic/317370-zombie-calavera-prologue/'
+description: |
+  A game by The Mojon Twins.
+
+  Ported to MSX and Colecovision by nanochess.
+
+  ## Story
+
+  For years, Santos Gimenez, who used to work as a guard in the graveyard near Ataualtepec, a small village located in Mexico, next to the north border, just lived for revenge. He had spent six years developing his skills to begin his crusade by entering the purgatory and searching for his beloved wife. It was the only way to calm down his rage.
+
+  Six years in the past, his village was calm and peaceful… until rumours about Pellejo Martinez, a terrible narco who had rencently moved to a ranch in the outskirts of Ataualtepec began to arrive. Since then, villagers noticed how plants stopped growing around the ranch, and that traces of obscure ceremonies were found here and there. It was rumoured that Pellejo was in fact the reincarnation of an old Aztec priest and that he celebrated dark rituals in order to bring back from among the dead his ancient guard.
+
+  A dark day of January, while Santos was alone in the graveyard burying a poor drunkard who had died in a corner, he felt a deep tremor and witnessed how the land cracked and opened in front of him. Horrified, he saw how huge fragments of land rose in the air revealing an evil, bottomless darkness beneath. In the sky, static, dead, the lone full moon glared greenishly. In the far, Ataualtepec burned to its foundations.
+
+  Has fast as he could, Santos ran to his house, terribly worried about María Fernanda, his young and beautiful wife, who was waiting for him to have a late dinner. When he arrived to the village, he was horrified: Pellejo and his minions, surrounded in shadows which rendered them invincible, had slaughtered everybody using long knives. Over their shredded corpses, black spirits floated, bound to Pellejo.
+
+  Before he could be seen, Santos hid behind a bush, near his home, and he could see how María Fernanda was saved from being killed: Pellejo had different plans for her. He got his five hundred souls. He got the magical skills needed. He just needed a woman of good heart to be the bearer. The beautiful and kind María was perfect.
+
+  Santos, blind with fury, ran in their direction, but there was little for him to do: with a simple gesture, Pellejo, his minions, the black spirits, and his beloved María disappeared from this world. They moved to the purgatory in order to complete Pellejo’s evil plans. Desperated, Santos falled on his knees cursing the heavens. The events drove him to insanity. The flesh which covered his bones ended up falling out and a red light glared inside his skull. He wasn’t human any more. Now he was just a creature driven by rage. He knew all about his fate: go to the purgatory, find Pellejo, and bring back his wife.
+
+  ## The Game
+
+  To be able to move to the purgatory, Santos must open a door and, for that, he needs spiritual energy. The only way to get enough spiritual energy is gathering up to sixteen crucifixes in the graveyard. The problem is that it won’t be an easy task.
+
+  The graveyard is infested of monsters. Santos, carrying a powerful shotgun, should be able to eliminate them without much of a hassle, although this won’t be always a good idea, because dead monsters will come back in the shape of winged spirits which will pursue you relentlessly and which are much more difficult to dodge. Luckily, they are almost blind so if you hide in the background and don’t move they will stop seeing you and they’ll go away.
+
+  Usually you can hide behind pinacles, big trees and the weeds growing in the corners or next to a wall. You will soon discover which places are good hideouts and which aren’t. If you think you are hiden but spirits keep approaching… Look for a better place!
+
+  Finding the best hideouts, being patient and shooting only when needed are the keys of success in your mission.
+
+  ## Controls
+
+  Move left and right with joystick.
+
+  For MSX, press Space to shoot, and M to jump. For Colecovision, press the left side button to shoot, and the right side button to jump.
+
+  ## FX Shadow Theatre
+
+  Graphics in this game are designed to resemble a shadow theatre, using hardware limitations and crappy sprites in our advantage.
+
+  ## Credits
+
+  * Concept and Story: Anjuel & na\_th\_an
+  * Design, code, graphics and music: na\_th\_an
+  * Loading Screen & cover art: Anjuel
+  * Ingame sound effects: Shiru (port redesigned by nanochess)
+  * MSX/Colecovision port: nanochess (Feb/2021)
+
+  Link to original Spectrum game: [https://www.mojontwins.com/juegos_mojonos/zombie-calavera-prologue/](https://www.mojontwins.com/juegos_mojonos/zombie-calavera-prologue/)
+installdir: '\ZOMCAL'
+files:
+  - zomcal.zip: 'https://atariage.com/forums/applications/core/interface/file/attachment.php?id=812943'
+build: |
+  mkdir -p package/
+  unzip zomcal.zip
+  mv zomcamsx.rom package/ZOMCAL.ROM
+  mv zomcal.txt package/ZOMCAL.TXT
+  cat > package/ZOMCAL.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM ZOMCAL.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM ZOMCAL.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/ZOMCAL.BAT
+  unix2dos package/ZOMCAL.TXT
+changelog: |
+  - 1.0-1 2021-02-20
+    - First release

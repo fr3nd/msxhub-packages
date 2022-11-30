@@ -1,0 +1,85 @@
+---
+name: 'MIX'
+version: '1.0'
+release: 1
+summary: 'Mix (MSXdev''22)'
+author: 'Uninteresting'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Freeware'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2022/04/28/msxdev22-09-mix/'
+description: |
+  An MSX1 game that is heavily inspired by Taito's QIX.
+
+  ## Gameplay
+
+  In Mix, you cordon off pieces of the playing field. You may move only on the
+  border of the open area, unless you are drawing a new line.
+
+  If the red enemies circling the playing field hit you, you're done for.
+  If the big green monster in the middle touches an open line you're still
+  drawing, you're done for.
+  If the time runs out, you're done for.
+
+  It's fine if the big monster touches you, mind you.
+
+  When enough of the playing field has been cordoned off, the scene is cleared.
+
+  ## Scoring
+
+  You gain points by cordoning off area.
+
+  If you manage to leave one of the Tracers outside, you will gain bonus points
+  and the enemy will respawn after a short period.
+
+  If there are multiple enemies in the middle, then separating them with a line
+  will:
+
+  1. clear the level as if you had painted 100% of the level
+  2. double your the time bonus in that level
+
+  ## Controls
+
+  You can move only on the edge of the open area. When you press FIRE and push
+  away from the edge, you will start drawing a new line. You may not loop back
+  to the unfinished line.
+
+  Unlike in Qix, the line drawing speed is constant.
+
+  ## Credits
+
+  Original game concept: Taito.
+
+  Coding: Uninteresting
+  Graphics: Uninteresting
+  Sound: Uninteresting
+installdir: '\MIX'
+files:
+  - mix.zip: 'https://www.msxdev.org/wp-content/uploads/2022/04/MSXdev22_Mix_v1.0.zip'
+build: |
+  mkdir -p package/
+  unzip mix.zip
+  mv "MSXdev22_Mix_v1.0.rom" package/MIX.ROM
+  mv "MSXdev22_Mix_v1.0.txt" package/README.TXT
+  cat > package/MIX.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM MIX.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM MIX.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/MIX.BAT
+  unix2dos package/README.TXT
+changelog: |
+    - 1.0-1 2022-04-28
+    - First release

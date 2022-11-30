@@ -13,6 +13,7 @@ RUN apt-get update && apt-get install -y \
       make \
       mtools \
       p7zip-full \
+      poppler-utils \
       python3 \
       python3-pytest \
       python3-requests \

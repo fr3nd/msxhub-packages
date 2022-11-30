@@ -1,0 +1,63 @@
+---
+name: 'MARKET'
+version: '1.1'
+release: 1
+summary: 'Market Master (MSXdev''21)'
+author: 'Amaury Carvalho'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'GPL-3.0'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2021/05/01/msxdev21-8-market-master/'
+description: |
+  Market Master is a spinning plates style game written in MSX Basic and
+  compiled using MSXBAS2ROM compiler.
+
+  Inspired on the simplicity of old atari games as well as the five forces business
+  model and the BCG Matrix, your main goal in the game is to survive the maximum of
+  time you can on the market, fighting and equilibrating all the market forces
+  thats act against you.
+
+  The initial strategy and focus you choose to your company will change the forces
+  balance, making some of them more difficult to keep in control.
+
+  Also, each fiscal year that you survive will make the market still worse for your
+  company ("the universe entropy always increases" would say a physicist).
+
+  Use the diagonal arrows (ex: left+up) and space/trigger to counteract the market
+  forces and avoid to be overwhelmed by them. Joysticks use are recommended
+  although not required.
+
+  This is a MSX1 compatible game (standard ROM BASIC required). Play it also on a
+  MSX2 and you will have a little better experience.
+
+  Good Luck, entrepreneur!
+installdir: '\MARKET'
+files:
+  - market.zip: 'https://www.msxdev.org/wp-content/uploads/2021/04/MSXdev21_MarketMaster_v1.1.zip'
+build: |
+  mkdir -p package/
+  unzip market.zip
+  mv "MSXdev21_MarketMaster_v1.1.rom" package/MARKET.ROM
+  mv "MSXdev21_MarketMaster_v1.1.txt" package/README.TXT
+  cat > package/MARKET.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM MARKET.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM MARKET.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/MARKET.BAT
+  unix2dos package/README.TXT
+changelog: |
+    - 1.0-1 2021-05-02
+    - First release

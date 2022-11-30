@@ -1,0 +1,92 @@
+---
+name: 'NOBACKD'
+version: '1.0'
+release: 1
+summary: 'No Back Down (MSXdev''21)'
+author: 'SoCal'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Unknown'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2021/09/02/msxdev21-32-no-back-down/'
+description: |
+  ## Story
+
+  What is your favorite hobby? It’s climbing buildings. This practice is prohibited and dangerous. To escape the police, you are helped by your friend, in a chopper, to take off through the roofs.
+
+  But the locals won't let you climb so easily. They'll close windows on your hands and throw items at you.
+
+  However, falling is not an option. Your mantra is "*No back down !*"
+
+  ## Scoring
+
+  Each climb inscrease your score by the step point.
+
+  Bonus decrease by 100 per second when you are static.
+
+  When you catch the chopper, you finish the level and you are rewarded with the bonus points. If you miss it, no bonus will be awarded.
+
+  Some hearts appear during your climb. They will earn you 5,000 points.
+
+  You can’t exceed a score of 999,999 points.
+
+  Every 200,000 points, a life is awarded.
+
+  ## Collisions
+
+  You fall and loose a life when :
+  - You are hit by an item (falling item or clothes) and you don’t have both hands on the same window.
+  - You touch an electric spark.
+  - The window closes on both your hands.
+
+  ## Credits
+
+  * Programing, SoundFX
+    * Metalion
+  * Graphics, Level Design, Documentation
+    * RibbSayan
+  * Music
+    * Granced
+
+  ## Thanks
+
+  * Metalion
+    * Catherine, for her support. Gfx, for the SoCal Logo.
+  * RibbSayan
+    * Dedicated to my daughter.
+
+  ## Third-party tools
+
+  * Sjasm: Z80 cross assembler
+  * AY Sound FX Editor: FX editor
+  * TuxGuitar: Music Editor
+  * Msx Visual Studio (C#): Patterns & Maps Editor from RibbSayan Paint : Sprite Editor
+  * BlueMSX
+  * OpenMSX
+installdir: '\NOBACKD'
+files:
+  - nobackd.zip: 'https://www.msxdev.org/wp-content/uploads/2021/08/MSXdev21_NoBackDown_v1.0.zip'
+build: |
+  mkdir -p package/
+  unzip nobackd.zip
+  mv "MSXdev21_NoBackDown_v1.0.rom" package/NOBACKD.ROM
+  cat > package/NOBACKD.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM NOBACKD.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM NOBACKD.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/NOBACKD.BAT
+changelog: |
+    - 1.0-1 2021-09-03
+    - First release

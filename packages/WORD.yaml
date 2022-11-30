@@ -1,0 +1,138 @@
+---
+name: 'WORD'
+version: '1.1'
+release: 1
+summary: 'WÖRD (MSXdev''22)'
+author: "Patrik’s Retro Tech"
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Unknown'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2022/03/07/msxdev22-02-word/'
+description: |
+  # WÖRD!
+
+  A game for MSX similar to Wordle. WÖRD is not a real Swedish word and
+  should be read as “Word”.
+
+  ## Languages
+
+  The game can be played in English, Spanish, Dutch and Swedish by selecting
+  one of the four the ROM files. Spanish version adds the letter Ñ and Swedish
+  adds Å Ä Ö. No other diacritical marks are supported so words must be written
+  without them. E.g. È becomes E.
+
+  ## Gameplay
+
+  Guess the five letter word in six tries. Each guess must be five letters but doesn’t
+  have to be a real word. After each guess, the color of the frame will indicate
+  how close your guess was.
+
+  * Yellow: Letter is in the word but in wrong possition.
+  * Green: Letter is correct.
+  * White: Letter is not in the word. These letter will also be marked with blue on the virtual keyboard.
+
+  ## Controls
+
+  Letters can be typed on a keyboard and the guess is submitted with Enter. A
+  joystick can also be used to move the cursor on the virtual keyboard. After six
+  guesses press space/fire to see the correct answer on the last line. ESC can be
+  used to give up and start over.
+
+  ## Warning
+
+  The game may contain inappropriate or offensive words that is not sutable for
+  children.
+
+  ## Credits
+
+  * Code by Patrik’s Retro Tech: [Instagram](https://www.instagram.com/patriksretrotech/), [YouTube](https://www.youtube.com/channel/UCaFWrgS4kNwspYCvaff0Wjg), [Twitter](https://twitter.com/patriksretrotec/), [Facebook](https://facebook.com/patriksretrotech)
+  * Music by Wolk aka Blueyakk: [Instagram](https://www.instagram.com/blueyakk_retrocomputing/), [YouTube](https://www.youtube.com/user/blueyakk)
+  * Game is created with UBOX MSX LIB.
+  * Music playback in Arkos 2 Minimal Player (AKM).
+
+  ## Requirements
+
+  MSX, Minimum 16K RAM
+installdir: '\WORD'
+files:
+  - word.zip: 'https://www.msxdev.org/wp-content/uploads/2022/03/MSXdev22_WORD_v1.1.zip'
+build: |
+  mkdir -p package/
+  unzip word.zip
+
+  for LANG in en es nl se; do
+    mv "MSXdev22_WÖRD_v1.1_${LANG}.rom" package/WORD_${LANG}.ROM
+    cat > package/WORD_${LANG}.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM WORD_${LANG}.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM WORD_${LANG}.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+
+    unix2dos package/WORD_${LANG}.BAT
+  done
+
+  cat > package/README.TXT << EOF
+  # WÖRD!
+
+  A game for MSX similar to Wordle. WÖRD is not a real Swedish word and
+  should be read as “Word”.
+
+  ## Languages
+
+  The game can be played in English, Spanish, Dutch and Swedish by selecting
+  one of the four the ROM files. Spanish version adds the letter Ñ and Swedish
+  adds Å Ä Ö. No other diacritical marks are supported so words must be written
+  without them. E.g. È becomes E.
+
+  ## Gameplay
+
+  Guess the five letter word in six tries. Each guess must be five letters but doesn’t
+  have to be a real word. After each guess, the color of the frame will indicate
+  how close your guess was.
+
+  * Yellow: Letter is in the word but in wrong possition.
+  * Green: Letter is correct.
+  * White: Letter is not in the word. These letter will also be marked with blue on the virtual keyboard.
+
+  ## Controls
+
+  Letters can be typed on a keyboard and the guess is submitted with Enter. A
+  joystick can also be used to move the cursor on the virtual keyboard. After six
+  guesses press space/fire to see the correct answer on the last line. ESC can be
+  used to give up and start over.
+
+  ## Warning
+
+  The game may contain inappropriate or offensive words that is not sutable for
+  children.
+
+  ## Credits
+
+  * Code by Patrik’s Retro Tech: [Instagram](https://www.instagram.com/patriksretrotech/), [YouTube](https://www.youtube.com/channel/UCaFWrgS4kNwspYCvaff0Wjg), [Twitter](https://twitter.com/patriksretrotec/), [Facebook](https://facebook.com/patriksretrotech)
+  * Music by Wolk aka Blueyakk: [Instagram](https://www.instagram.com/blueyakk_retrocomputing/), [YouTube](https://www.youtube.com/user/blueyakk)
+  * Game is created with UBOX MSX LIB.
+  * Music playback in Arkos 2 Minimal Player (AKM).
+
+  ## Requirements
+
+  MSX, Minimum 16K RAM
+  EOF
+
+  unix2dos package/README.TXT
+changelog: |
+  - 1.1-1 2022-03-20
+    - Version 1.1
+  - 1.0-1 2022-03-08
+    - First release

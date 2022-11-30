@@ -1,0 +1,52 @@
+---
+name: 'MINE'
+version: '1.1'
+release: 1
+summary: 'Mine Finder (MSXdev''22)'
+author: 'Paolo Fabrizio Pugno'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Freeware'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2022/05/15/msxdev22-10-mine-finder/'
+description: |
+  The game field is a 30x20 grid of cells covered with tiles. The goal is to identify with flags which cells have a concealed mine and remove all other cover tiles. Tiles can be removed by just clicking on them. However, if the selected tile conceals a mine, it will explode, and the game will be over. Only by placing a flag over a tile you can prevent the mine from going off. You have as many flags as there are mines in the game.
+  By removing a regular tile, you will expose the ground below. If there are mines hidden in adjacent (Note 1) cells, then the newly opened cell will display a number indicating how many mines are hidden in adjacent cells. This information and logic will be used to mark the cells where there are hidden mines. If a tile is successfully removed, all empty tiles around it will be automatically removed for you, until cells with mines surrounding them are reached.
+  You control an arrow pointing to the cells. You can move the pointer to indicate what tile is to be removed or to place or remove a flag.
+  You have a limited time to complete the task. If time runs out and you did not place all flags or did not remove all remaining tiles, you will lose the game. If all flags are placed on the correct spots, but there are still tiles to be removed, you will lose as well.
+
+  ## Controls
+
+  You can play the game using the keyboard, a joystick, or a mouse. If you intend to use a joystick, it should have 2 independent buttons. We will call the buttons as `A` (primary) and `B` (secondary).
+  During initialization, the software will look for a mouse in both ports #1 and #2 (Note 2). If a mouse is found, the remaining port will be automatically assigned to a joystick.
+  All three control methods work at the same time, but you should choose and use only one of them.
+  If you are not using a mouse, then the joystick must be connected to port #1 only.
+installdir: '\MINE'
+files:
+  - mine.zip: 'https://www.msxdev.org/wp-content/uploads/2022/05/MSXdev22_MineFinder_v1.1.zip'
+build: |
+  mkdir -p package/
+  unzip mine.zip
+  mv "MSXdev22_MineFinder_v1.1.ROM" package/MINE.ROM
+  mv "MSXdev22_MineFinder_v1.1.txt" package/README.TXT
+  cat > package/MINE.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM MINE.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM MINE.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/MINE.BAT
+  unix2dos package/README.TXT
+changelog: |
+    - 1.1-1 2022-05-15
+    - First release

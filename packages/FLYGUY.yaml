@@ -1,0 +1,42 @@
+---
+name: 'FLYGUY'
+version: '1.0'
+release: 1
+summary: 'FlyGuy (MSXdev''21)'
+author: 'Robosoft'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Freeware'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2021/08/23/msxdev21-28-flyguy/'
+description: |
+  In this game you control FlyGuy who is stuck in a web with 10 spiders. The object of the game is to collect all pills without getting caught. A bonus timer is counting down, so the faster a level is cleared, the more points are awarded. When one of the spiders picks up a pill, all spiders get a short speed boost so be aware! There are 5 levels, every next level the speed increases a bit.
+installdir: '\FLYGUY'
+files:
+  - flyguy.zip: 'https://www.msxdev.org/wp-content/uploads/2021/08/MSXdev21_FlyGuy_v1.0.zip'
+build: |
+  mkdir -p package/
+  unzip flyguy.zip
+  mv "MSXdev21_FlyGuy_v1.0.rom" package/FLYGUY.ROM
+  mv "MSXdev21_FlyGuy_v1.0.txt" package/README.TXT
+  cat > package/FLYGUY.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM FLYGUY.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM FLYGUY.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/FLYGUY.BAT
+  unix2dos package/README.TXT
+changelog: |
+    - 1.0-1 2021-08-25
+    - First release

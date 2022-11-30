@@ -1,0 +1,140 @@
+---
+name: 'HEARTST2'
+version: '1.0'
+release: 1
+summary: 'Heart Stealer 2 (MSXdev''21)'
+author: 'Timmy'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Unknown'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2021/09/02/msxdev21-33-heart-stealer-2/'
+description: |
+  ## Intro
+
+  Heart Stealer 2 is a remake of a game that
+  was originally released in 2013 by Timmy, on
+  the ZX Spectrum.
+
+  This game is a remake (or demake, depends
+  on how you look at it) of a game called VVVV,
+  which was written for the Java4k 2010 compo
+  (website no longer exists). By a guy called
+  Markus 'Notch' Persson (you might have heard
+  of him).
+
+  According to that compo page, "VVVV is a
+  4K tribute to Terry Cavanagh's brilliant
+  game VVVVVV."
+
+
+  ## Goal
+
+  Our hero is back again to collect hearts.
+
+  This time, our hero only needs 6 hearts to
+  finish the game, but this time they are located
+  all over the world.
+
+  Beware of the spikes! These pointy things are
+  the only dangerous things in the game.
+
+  To make it easier, you also have infinite
+  lives, with checkpoints all over.
+
+  The challenge is not only to complete the
+  game, but also try to finish the game quickly.
+
+
+  ## Controls
+
+  This game can be controlled with a joystick
+  (or use the cursor keys and the space bar.)
+
+  Move your character with the joystick (or
+  cursor keys).
+
+  Use the fire button (or space key) to "flip".
+  Note: You can't flip while in the air.
+
+    During the game, you can HOLD the Escape key
+  to reveal a map.
+
+
+  ## Timmy's Additional Notes
+
+  This version is a bit larger than the
+  original 4K version. The screens in this
+  version are larger than the original 19x11.
+
+  That means that all the screens in this
+  game are completely redesigned, even if I
+  tried to retain the original look.
+
+           -----
+
+  The map is compressed in a very strange way
+  and it was a way for me to try to use as few
+  bytes as possible. A row of (28) wall tiles
+  takes 28 bits and a 4-bit identifier, i.e.
+  4 bytes in total.
+
+  I've lifted this map directly from the
+  Spectrum version because I'm not redoing this
+  again xD. So you might find references to SP1,
+  which is a Spectrum only sprite library.
+
+           -----
+
+  The game is written in C and assembly language
+  using the z88dk compiler, like my other MSXdev
+  entries (including the ones in previous years).
+  The Spectrum version of HS2 also used z88dk, but
+  I still had to rewrite almost everything. :P
+
+           -----
+
+  If the game seems familiar, you might have
+  seen a demo of this in Nijmegen back in 2020. :D
+
+
+  ## Links
+
+  The original VVVV game page (web archive version):
+
+  * https://web.archive.org/web/20120112053832/http://www.java4k.com/index.php?action=games&method=view&gid=288
+
+
+  The z88dk compiler:
+
+  * https://z88dk.org/
+
+installdir: '\HEARTST2'
+files:
+  - heartst.zip: 'https://www.msxdev.org/wp-content/uploads/2021/08/MSXdev21_HeartStealer2_v1.0.zip'
+build: |
+  mkdir -p package/
+  unzip heartst.zip
+  mv "MSXdev21_HeartStealer2_v1.0.rom" package/HEARTST2.ROM
+  mv "MSXdev21_HeartStealer2_v1.0.txt" package/README.TXT
+  cat > package/HEARTST2.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM HEARTST2.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM HEARTST2.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/HEARTST2.BAT
+  unix2dos package/README.TXT
+changelog: |
+    - 1.1-1 2021-09-03
+    - First release

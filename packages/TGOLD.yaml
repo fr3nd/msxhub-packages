@@ -1,0 +1,28 @@
+---
+name: 'TGOLD'
+version: '1.0'
+release: 1
+summary: 'The Tower Of Gold (MSXdev''22)'
+author: 'Kirem'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Freeware'
+category: 'Games'
+system: 'MSX'
+requirements: []
+url: 'https://www.msxdev.org/2022/10/04/msxdev22-29-the-tower-of-gold/'
+description: |
+  # The Tower Of Gold
+installdir: '\TGOLD'
+files:
+  - tgold.zip: 'https://www.msxdev.org/wp-content/uploads/2022/10/MSXdev22_TheTowerOfGold_v1.0.zip'
+build: |
+  mkdir -p package/
+  unzip tgold.zip
+  mcopy -s -i  MSXdev22_TheTowerOfGold_v1.0.dsk :: package/
+  cat > package/TGOLD.BAT << EOF
+  BASIC AUTOEXEC.BAS
+  EOF
+  unix2dos package/TGOLD.BAT
+changelog: |
+  - 1.0-1 2022-10-11
+    - First release

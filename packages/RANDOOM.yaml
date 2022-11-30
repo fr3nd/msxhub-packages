@@ -1,0 +1,42 @@
+---
+name: 'RANDOOM'
+version: '1.0'
+release: 1
+summary: 'Randoom (MSXdev''22)'
+author: 'RoboSoft Inc.'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Freeware'
+category: 'Games'
+system: 'MSX2'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2022/04/03/msxdev22-08-randoom/'
+description: |
+  This is an MSX-2 remake of the game on the C64. Capture all enemies running around and put them in jail. But, make sure you take them in the right order! Capturing enemies within a short time gives a combo bonus. Try to make it to the end screen while getting the highest score, over 25 levels to master.
+installdir: '\RANDOOM'
+files:
+  - randoom.zip: 'https://www.msxdev.org/wp-content/uploads/2022/04/MSXdev22_Randoom_v1.0.zip'
+build: |
+  mkdir -p package/
+  unzip randoom.zip
+  mv "MSXdev22_Randoom_v1.0.rom" package/RANDOOM.ROM
+  mv "MSXdev22_Randoom_v1.0.txt" package/README.TXT
+  cat > package/RANDOOM.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM RANDOOM.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM RANDOOM.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/RANDOOM.BAT
+  unix2dos package/README.TXT
+changelog: |
+    - 1.0-1 2022-04-04
+    - First release

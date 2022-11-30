@@ -1,0 +1,51 @@
+---
+name: 'SACREDVA'
+version: '1.0'
+release: 1
+summary: 'Sacred Valley (MSXdev''22)'
+author: 'Visualedu, Bitcaffe'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Freeware'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2022/10/02/msxdev22-24-sacred-valley/'
+description: |
+  My name is Sayri and I am the brother of the king
+  The queen and the general have committed high treason
+  My king and I have been thrown into the sacred valley
+  I feel bruised, nothing serious
+  but the king is dead
+  It wasn't the blows that opened
+  his entrails before precipitating it
+  They wanted to be sure he didn't get out alive
+  Tradition can no longer be fulfilled
+installdir: '\SACREDVA'
+files:
+  - sacredv.zip: 'https://www.msxdev.org/wp-content/uploads/2022/09/MSXdev22_SacredValley_v1.0.zip'
+build: |
+  mkdir -p package/
+  unzip sacredv.zip
+  mv "MSXdev22_SacredValley_v1.0.rom" package/SACREDVA.ROM
+  pdftotext "MSXdev22_SacredValley_v1.0.pdf"
+  mv "MSXdev22_SacredValley_v1.0.txt" package/README.TXT
+  cat > package/SACREDVA.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM SACREDVA.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM SACREDVA.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/SACREDVA.BAT
+  unix2dos package/README.TXT
+changelog: |
+  - 1.0-1 2022-10-03
+    - First release

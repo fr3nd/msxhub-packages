@@ -1,0 +1,48 @@
+---
+name: 'BREAKBO'
+version: '1.0'
+release: 1
+summary: 'Break Bomb (MSXdev''21)'
+author: 'Gamecast Entertainment'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Freeware'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2021/04/23/msxdev21-5-break-bomb/'
+description: |
+  You are inside a well designed labyrinth with a vertical and horizontal scroll,
+  your task is to defuse all the bombs as quickly as possible within the time limit
+  established of 30 seconds, if the bomb explodes within 30 seconds, lose a life.
+  Advanced for each level of the game, the bombs to be defused will increase in number.
+  Every 6 game levels, there is a bonus level, to enter the bonus level, enter
+  inside the yellow door, to take all the treasures, for each treasure taken,
+  you will accumulate a score of 500 points.
+installdir: '\BREAKBO'
+files:
+  - breakbo.zip: 'https://www.msxdev.org/wp-content/uploads/2021/04/MSXdev21_BreakBomb_v1.0.zip'
+build: |
+  mkdir -p package/
+  unzip breakbo.zip
+  mv "MSXdev21_BreakBomb_v1.0.rom" package/BREAKBO.ROM
+  mv "MSXdev21_BreakBomb_v1.0.eng.txt" package/README.TXT
+  cat > package/BREAKBO.bat << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM BREAKBO.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM BREAKBO.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/BREAKBO.bat
+  unix2dos package/README.TXT
+changelog: |
+    - 1.0-1 2021-04-26
+    - First release

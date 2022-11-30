@@ -1,0 +1,101 @@
+---
+name: 'SHAPIG'
+version: '1.0'
+release: 1
+summary: 'Shadow Of The Pig (MSXdev''22)'
+author: 'thegeps'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Freeware'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2022/09/28/msxdev22-22-shadow-of-the-pig/'
+description: |
+  Farty Pig is back! And this time he'll have to, uh, jump a lot!
+  Our hero was so happy to spend a day at the beach not knowing that the
+  holiday would turn into a real nightmare...
+
+  On the beach, in fact, our cute little pig has recklessly cast his rounded
+  shadow on a witch (also on vacation) ruining her tan!
+
+  In revenge, the witch stole his shadow and replaced it with that of a
+  beast. If our friend fails to have the witch return the shadow he will die!
+
+  Obviously the witch is very angry and ran away to the nearby desert
+  astride her broom.
+
+  It is up to us guide Farty in his pursuit. It won't be a walk, because in the
+  path chosen by the witch the desert is full of cacti. As if that weren'tenough, the witch periodically releases her lethal bats that will give our
+  poor pig a hard time...
+
+  The game levels differ from each other in one or more ways.
+  Depending on the levels we will have on the screen from zero to two
+  enemies. Each enemy can have its own specific speed so in some levels we
+  may have two fast enemies or one slow and one fast or both slow or even
+  both fast.
+
+  The scrolling speed (and therefore the cacti speed) can also vary. We
+  have three speeds: normal (1 pixel/frame), double (2 pixels/frame) and
+  quadruple (4pixels/frame). The first level with speed change is free of
+  enemies. The higher the scrolling speed, the greater the minimum
+  distance between one cactus and the next one.
+
+  All the elements to be avoided (cacti and their size, flight altitudes of
+  the bats) are randomly generated so I am not responsible for the anger
+  that your MSX may cause you LoL
+
+  To avoid obstacles you can make use of the Force, which flows powerfully
+  within you. Did I say the Force? Um, I meant intestinal gas. Wich flows
+  powerfully within you. Farty, in fact, is able to rise from the ground
+  thanks to the strength of his farts. Releasing the fire button before
+  reaching the maximum jump height will bring in the force of gravity
+  allowing you to make lower jumps. Farty can also be controlled in "flight"
+  so you can "adjust" the jumps.
+
+  In addition to the normal farts Farty has three eXtraFarts available for
+  each level that will allow him to perform a double (or multiple) jump
+  simply by pressing the fire button again at the apex of the current jump.
+
+  The eXtraFarts not used during the level will stack up with the ones ofthe next level (up to a maximum of 9 eXtraFarts) as well as being
+  counted for an additional bonus points at the end of the level.
+  We will gain an extra life every 10000 points (up to 9 lives).
+
+  The game can be paused by pressing the “P” key (fire to continue).
+  Controls are chosen when starting to play. Pressing the space bar, cursor
+  keys are selected. Otherwise, pressing fire button on joystick (in any
+  port) will set your choice.
+
+  On the screen we have all the information we need: at the top are shown
+  score and hiscore, at the bottom instead the remaining distance to
+  travel, the available lives and the amount of eXtraFarts.
+
+  Now it's your turn, do your best to reach the witch. Step on the gas!!!
+installdir: '\SHAPIG'
+files:
+  - shapig.zip: 'https://www.msxdev.org/wp-content/uploads/2022/09/MSXdev22_ShadowOfThePig_v1.3.zip'
+build: |
+  mkdir -p package/
+  unzip shapig.zip
+  mv "MSXdev22_ShadowOfThePig_v1.3.rom" package/SHAPIG.ROM
+  pdftotext "MSXdev22_ShadowOfThePig_v1.3_eng.pdf"
+  mv "MSXdev22_ShadowOfThePig_v1.3_eng.txt" package/README.TXT
+  cat > package/SHAPIG.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM SHAPIG.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM SHAPIG.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/SHAPIG.BAT
+  unix2dos package/README.TXT
+changelog: |
+  - 1.0-1 2022-10-03
+    - First release

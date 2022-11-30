@@ -1,0 +1,45 @@
+---
+name: 'SAME'
+version: '1.1'
+release: 1
+summary: 'Do The Same (MSXdev''21)'
+author: 'Eric Mendel (Ricco59)'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Unknown'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2021/08/16/msxdev21-22-do-the-same/'
+description: |
+  Flip the tiles before getting flipped yourself. This nail-biting game tests both your brain and your nerves. This MSX conversion of the original Atari Jaguar puzzle game, is Eric “Rico59” Mendel his second game for this years dev edition.
+
+  The idea is simple: mirror the image shown left. You get a few lives, a timer and load of options to choose from. Shift, turn and wiggle the tileset until you moved all items to the correct position. The game supports three difficulty levels with a total of 112 levels to pounder on.
+
+  Do The Same supports both playing with keyboard and joystick; the attached manual will explain how.
+  Now, flip them tiles!
+installdir: '\SAME'
+files:
+  - same.zip: 'https://www.msxdev.org/wp-content/uploads/2021/08/MSXdev21_DoTheSame_v1.1-1.zip'
+build: |
+  mkdir -p package/
+  unzip same.zip
+  mv "MSXdev21_DoTheSame_v1.1.rom" package/SAME.ROM
+  cat > package/SAME.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM SAME.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM SAME.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/SAME.BAT
+changelog: |
+    - 1.1-1 2021-08-16
+    - First release

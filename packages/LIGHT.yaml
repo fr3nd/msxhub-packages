@@ -1,0 +1,34 @@
+---
+name: 'LIGHT'
+version: '1.0'
+release: 1
+summary: 'MSX Light (MSXdev''22)'
+author: 'Sergio Yukio'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Freeware'
+category: 'Games'
+system: 'MSX2'
+requirements: []
+url: 'https://www.msxdev.org/2022/09/26/msxdev22-20-msx-light/'
+description: |
+  There is a World Crisis. The energy is over. Use your Mouse to turn off the Lights.
+
+  ## Controls
+  #
+  Mouse to move,Click the Mouse Button to change Lights.
+installdir: '\LIGHT'
+files:
+  - msxlight.zip: 'https://www.msxdev.org/wp-content/uploads/2022/09/MSXdev22_MSXLight_v1.0.zip'
+build: |
+  mkdir -p package/
+  unzip msxlight.zip
+  mcopy -s -i MSXdev22_MSXLight_v1.0.dsk :: package/
+  mv "MSXdev22_MSXLight_v1.0.txt" package/README.TXT
+  cat  > package/LIGHT.BAT << EOF
+  BASIC AUTOEXEC.BAS
+  EOF
+  unix2dos package/README.TXT
+  unix2dos package/LIGHT.BAT
+changelog: |
+  - 1.0-1 2022-10-03
+    - First release

@@ -1,0 +1,31 @@
+---
+name: 'CATCHER'
+version: '1.1'
+release: 1
+summary: 'Penguin Catcher (MSXdev''22)'
+author: '_NetNomad'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Unlicense'
+category: 'Games'
+system: 'MSX'
+requirements: []
+url: 'https://www.msxdev.org/2022/09/29/msxdev22-23-penguin-catcher/'
+description: |
+  This is a simple arcade game
+  based off the popular crane games and UFO catchers where children operate a
+  mechanical claw in order to win prizes. You'll find Penguin Catcher to be much
+  more fair that the quarter-munchers of old, but all the same be prepared for a
+  serious challenge at the highest speeds!
+installdir: '\CATCHER'
+files:
+  - penguinc.zip: 'https://www.msxdev.org/wp-content/uploads/2022/09/MSXdev22_PenguinCatcher_v1.1.zip'
+build: |
+  mkdir -p package/
+  unzip penguinc.zip
+  mcopy -s -i MSXdev22_PenguinCatcher_v1.1.dsk :: package/
+  pdftotext "MSXdev22_PenguinCatcher_v1.1.pdf"
+  mv "MSXdev22_PenguinCatcher_v1.1.txt" package/README.TXT
+  unix2dos package/README.TXT
+changelog: |
+  - 1.0-1 2022-10-03
+    - First release

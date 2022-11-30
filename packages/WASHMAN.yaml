@@ -1,0 +1,92 @@
+---
+name: 'WASHMAN'
+version: '1.2'
+release: 1
+summary: 'Wash Man (MSXdev''22)'
+author: 'GameCast Entertainment'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Freeware'
+category: 'Games'
+system: 'MSX'
+requirements: []
+url: 'https://www.msxdev.org/2022/03/15/msxdev22-05-wash-man/'
+description: |
+  # Gameplay HISTORY
+
+  The protagonist Chinese laundress must give himself by
+  do to clean the garments of the building while
+  people protest against broken washing machines.
+
+  Wash Man is a game that will put you to the hardest
+  your skills of a real bar room arcade,
+  using two elevators which will take you to different floors of the building.
+
+  You are driving a Chinese washerman
+  who has to collect dirty clothes
+  and then take them into the washing machines.
+
+  To enter the rooms, you should knock one of the doors of the building,
+  pressing the cursor key up, or from your joystick in port 1.
+
+  To get on and off the floors of the building you will have to use the two elevators a
+  To take an elevator, you should stay with the character
+  PLAYER1 above the elevator and to open the elevator doors press the button
+  cursor up, or always with your joystick.
+
+  Finally you will have to reach the yellow exit door with the word EXIT ROOM for
+  return to the scenery of the building. For each t-shirt and trousers gathered at the top
+  on the right of the scoreboard it will count all your collected garments.
+  with M = shirt and P = gathered trousers.
+
+  You will also receive a score bonus for each indume-
+  nto collected, for each shirt you will accumulate 200 points,
+  instead for each collected trousers you will accumulate 100 points.
+
+  Your mission is to collect all clothing and
+  and then in the end always go out through the EXIT ROOM door.
+
+  For this version of the WashMan game, there are
+  a maximum of 3 apartments, one different from the other
+  tro, if you fail to get all the clothes for each
+  apartment and passed the 3 apartments, the doors
+  will remain blocked, i.e. closed by the tenants of the building
+  zo, so if you haven't taken all the clothes on first
+  all apartments, you risk getting stuck on
+  level of play of the building, therefore it is difficult to
+  ste go to the next level.
+
+  The second scenario of the building, with more difficulties,
+  it presents precipices that if you fall you will certainly die losing
+  a life.
+
+  But don't worry! If you hit a score for each
+  50,000 points you will get an extra bonus life and hear a
+  good sound effect that signals it to you.
+
+  Unfortunately, the doors do not open on the first attempt, for-
+  because tenants are very wary when it happens that
+  the door will be closed, the face of a mouse appears
+  indicate that the door is closed and also indicates an effect
+  sound.
+
+  If on occasion you get stuck during gameplay why
+  fail to take one of the two elevators, press F1 to restore
+  the elevators to the floor will hold, but this will cost you a lifetime.
+installdir: '\WASHMAN'
+files:
+  - washman.zip: 'https://www.msxdev.org/wp-content/uploads/2022/03/MSXdev22_WashMan_v1.2.zip'
+build: |
+  mkdir -p package/
+  unzip washman.zip
+  mcopy -s -i MSXdev22_WashMan_v1.2.dsk :: package/
+  mv "MSXdev22_WashMan_v1.2_eng.txt" package/README.TXT
+  mv "MSXdev22_WashMan_v1.2_ita.txt" package/LEGGIMI.TXT
+  cat > package/WASHMAN.BAT << EOF
+  BASIC AUTOEXEC.BAS
+  EOF
+  unix2dos package/WASHMAN.BAT
+  unix2dos package/README.TXT
+  unix2dos package/LEGGIMI.TXT
+changelog: |
+    - 1.0-1 2022-03-
+    - First release

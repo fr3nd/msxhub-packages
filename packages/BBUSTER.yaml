@@ -1,0 +1,74 @@
+---
+name: 'BBUSTER'
+version: '1.0'
+release: 1
+summary: 'Balloon Buster (MSXdev''22)'
+author: 'Hakogame'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Freeware'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2022/10/03/msxdev22-27-balloon-buster/'
+description: |
+  ## Instructions
+
+  The goal of the game is to pop the required number of balloons in each stage and make your way to the exit before you run out of turns.
+
+  ## Controls
+  #
+  Use the targeting reticle to aim "Smiley" where you want him to go by using LEFT and RIGHT. For finer control while aiming, Hold UP while pressing LEFT or RIGHT. When finished aiming hit SPACE or FIRE to bring up the power meter. When the power meter is at the desired power level, press SPACE or FIRE to launch "Smiley".
+  Smiley will bounce off of walls and balloons when he collides with them.
+  At any time while "Smiley" is in the air, hit SPACE or FIRE to freeze the action and take your next shot.
+
+  Each round has a set number of balloons required to be popped before the exit will open, as indicated by the number shown below the lock icon on-screen.
+  Once the exit is unlocked, you need to launch Smiley into the exit to finish the stage.
+
+  You are given a set number of shots to finish each stage, this number will vary depending on the current stage.
+  Every time you pop 4 balloons you will earn an extra shot.
+
+  ## Scoring
+
+  Each popped balloon is worth 100 points.
+  When you reach the exit, every unused shot will earn you 500 points, and if you can manage to pop all the balloons in a stage, you will earn a special bonus of 2500 points.
+
+  Lives are lost when you collide with spikes or run out of shots.
+  The game is over when you run out of lives.
+  Extra lives will be awarded at the end of the stage whenever your score has reached a multiple of 5000 points.
+
+  There are a total of 16 stages in the game. If you manage to pass all 16 stages, you will be awarded with a congratulations screen and then the game will loop back to stage 1.
+
+  ## Extra help
+
+  If the game is too hard for you, type "CHEAT" (in caps) at the title screen once the "press key or stick" message appears. This will allow you to start the game with 10 lives instead of the usual 3. A tone will play to indicate that the code was entered correctly.
+
+
+  > This game was developed with MSXBas2ROM
+installdir: '\BBUSTER'
+files:
+  - bbuster.zip: 'https://www.msxdev.org/wp-content/uploads/2022/09/MSXdev22_BalloonBuster_v1.0.zip'
+build: |
+  mkdir -p package/
+  unzip bbuster.zip
+  mv "MSXdev22_BalloonBuster_v1.0.rom" package/BBUSTER.ROM
+  mv "MSXdev22_BalloonBuster_v1.0.txt" package/README.TXT
+  cat > package/BBUSTER.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM BBUSTER.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM BBUSTER.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/BBUSTER.BAT
+  unix2dos package/README.TXT
+changelog: |
+  - 1.0-1 2022-10-03
+    - First release

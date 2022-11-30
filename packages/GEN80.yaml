@@ -1,0 +1,58 @@
+---
+name: 'GEN80'
+version: '2.04'
+release: 1
+summary: 'Z80 assembler and editor suite'
+author: 'HiSoft'
+package_author: 'Willem Cazander'
+license: 'Proprietary'
+category: 'Programming'
+system: 'MSX'
+requirements:
+  - 'MSX-DOS'
+url: 'https://hansotten.file-hunter.com/software/'
+description: |
+  Collection of tools to edit and compile z80 assembly code.
+installdir: '\GEN80'
+files:
+  - gen80p.zip: 'https://hansotten.file-hunter.com/uploads/files/gen80p.zip'
+build: |
+  mkdir -p package/
+  unzip gen80p.zip
+  lha x GEN.PMA
+  mv gen80ins.com package/
+  mv gen80.com package/
+  mv ed80inst.com package/
+  mv ed80inst.msg package/
+  mv ed80.com package/
+  mv ed80.hlp package/
+  mv ed80msx2.com package/
+  mv ed80msx2.hlp package/
+  mv mon80.com package/
+  mv mon80ins.com package/
+  mv mon80ins.msg package/
+  mv mon80.mon package/
+  mv pmon.com package/
+  mv pmon.mon package/
+  mv pmonins.com package/
+  mv pmonins.msg package/
+  mv wp.com package/
+  mv wd.com package/
+  mv unload2.com package/
+  mv hde.com package/
+  mv hdeinst.com package/
+  mv hde.hlp package/
+  mv fact.gen package/
+  mv fact.com package/
+  mv fact.sym package/
+  mv test.gen package/
+  mv test.com package/
+  mv test.sym package/
+  mv read.me package/
+  mv extra.wok package/
+  mv jabber.wok package/
+  mv 6act.gen package/
+  mv midiouta.gen package/
+changelog: |
+  - 2021-07-09 2.04-1
+    - First release

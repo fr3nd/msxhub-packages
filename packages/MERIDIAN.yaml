@@ -1,0 +1,33 @@
+---
+name: 'MERIDIAN'
+version: '3.0Beta3'
+release: 1
+summary: 'Meridian by MIDIPhonics'
+author: 'Michiel de Vries'
+package_author: 'Willem Cazander'
+license: 'Unknown'
+category: 'Sound'
+system: 'MSX2'
+requirements:
+  - 'MSX-AUDIO'
+  - 'OPL4'
+url: 'https://www.msx.org/downloads/music/trackers/meridian-30-beta3'
+description: |
+  Meridian is a versatile MIDI-based (delta)steptime tracker supporting both external MIDI devices and Sunrise's OPL4 based Moonsound. Default OPL4 soundbank included. 
+installdir: '\MERIDIAN'
+files:
+  - MERIDIAN.LZH: 'https://www.msx.org/download/downloads/music/trackers/MERIDIAN.LZH'
+build: |
+  mkdir -p package/
+  lha x MERIDIAN.LZH
+  mv opl4_gm1.opl package/
+  mv meridian.pgm package/
+  mv meridian.ldr package/
+  mv meridian.ini package/
+  mv meridian.hlp package/
+  mv meridian.bin package/
+  echo -n -e "10 RUN \"meridian.ldr\"\r" > package/meridian.bas
+  echo -n -e "BASIC meridian.bas\r" > package/meridian.bat
+changelog: |
+  - 2022-02-15 3.0Beta3-1
+    - First release

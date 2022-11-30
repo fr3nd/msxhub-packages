@@ -1,0 +1,31 @@
+---
+name: 'MOONR'
+version: '0.01'
+release: 1
+summary: 'Moon Rabbit - gopher browser'
+author: 'Alexander Sharihin(Nihirash)'
+package_author: 'Alexander Sharihin(Nihirash)'
+license: 'Freeware'
+category: 'Internet'
+system: 'MSX2'
+requirements:
+  - 'MSX-DOS2'
+  - 'TCP/IP-UNAPI'
+url: 'https://github.com/nihirash/moon-rabbit'
+description: |
+  Gopher browser for MSX2 compatible computers.
+
+  It can browse gopher spaces(including text requests), open plain-text files, play PT3 track and download files
+installdir: '\MOONR'
+files:
+  - moonr.zip: 'https://github.com/nihirash/moon-rabbit/releases/download/%VERSION%/moonr.zip'
+build: |
+  mkdir -p package/
+  unzip moonr.zip
+  mv moonr.com package/
+  mv index.gph package/
+  mv font.bin package/
+
+changelog: |
+  - "0.01"
+    - Initial version

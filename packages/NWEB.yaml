@@ -10,19 +10,20 @@ category: 'Internet'
 system: 'MSX'
 requirements:
   - MSX-DOS2
+  - 'TCP/IP-UNAPI'
 url: 'https://github.com/Konamiman/NestorWeb'
 description: |
   NestorWeb is a web server for MSX computers, with support for CGI scripts. As simple as that.
-  
+
   System requirements are:
-  
+
   * MSX computer running MSX-DOS 2 or [Nextor](https://github.com/Konamiman/Nextor).
   * TCP/IP UNAPI implementation with support for passive TCP connections.
-  
+
   ## Features and limitations
-  
+
   The good:
-  
+
   * Static content: serves files stored in the local filesystem.
     * `GET` and `HEAD` verbs supported.
     * Sends `Last-Modified` header as part of the response and honors the `If-Modified-Since` header if present in the request (provided that the file has a valid last modification date).
@@ -35,9 +36,9 @@ description: |
   * Default document: serves the `INDEX.HTM` file if a directory is requested (only if directory listings are disabled).
   * Basic authentication support.
   * Runs CGI scripts following [the CGI 1.1 specification](https://tools.ietf.org/html/rfc3875). See the [CGI development guide](CGI.md) for details.
-  
+
   The not-so-good:
-  
+
   * Serves only one client at the same time.
   * No MIME types for static content, `Content-Type` is never sent when serving files.
   * Absolutely no support for text encodings. I have no idea of what will happen when requesting a file with a non-ASCII name.

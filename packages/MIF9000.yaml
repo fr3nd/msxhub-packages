@@ -1,0 +1,28 @@
+---
+name: 'MIF9000'
+version: '1.00'
+release: 1
+summary: 'MIF Image viewer'
+author: 'Laurent Halter'
+package_author: 'Willem Cazander'
+license: 'Unknown'
+category: 'Graphics'
+system: 'MSX2'
+requirements:
+  - 'MSX-DOS2'
+  - 'V9990'
+url: 'http://www.msx.ch/sunformsx/download/dl-gfx.html'
+description: |
+  A Viewer for the new MSX Image Format (*.MIF).
+installdir: '\MIF9000'
+files:
+  - mif9000.lzh: 'http://www.msx.ch/ftp/Products/Graphics9000/mif9000.lzh'
+build: |
+  mkdir -p package/
+  lha x mif9000.lzh
+  mv mvg9000.com package/
+  mv b0303.mif package/
+  mv b3603.mif package/
+changelog: |
+  - 2021-07-06 1.00-1
+    - First release

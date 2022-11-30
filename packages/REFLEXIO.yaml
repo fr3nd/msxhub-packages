@@ -1,0 +1,59 @@
+---
+name: 'REFLEXIO'
+version: '1.0'
+release: 1
+summary: 'Reflexion game (MSXdev''21)'
+author: 'JIPE'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Freeware'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2021/03/01/msxdev21-3-reflexion/'
+description: |
+  Reflexion iss a very quickly paced reaction game, based on a PC game by Juho Pohjonen.
+
+  Flip the mirrors fast, but wisely in order steer the lightning fast projectile into the right directions, in order to clear the screen and reach the goal!
+installdir: '\REFLEXIO'
+files:
+  - reflexion.zip: 'https://www.msxdev.org/wp-content/uploads/2021/03/MSXdev21_Reflexion_v1.0.zip'
+build: |
+  mkdir -p package/
+  unzip reflexion.zip
+  mv MSXdev21_Reflexion_v1.0/DEV21SCC.rom package/REFLESCC.ROM
+  cat > package/REFLESCC.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM REFLESCC.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM REFLESCC.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/REFLESCC.BAT
+
+  mv MSXdev21_Reflexion_v1.0/DEV21AS8.rom package/REFLEAS8.ROM
+  cat > package/REFLEAS8.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM REFLEAS8.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM REFLEAS8.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/REFLEAS8.BAT
+changelog: |
+  - 1.0-1 2021-03-03
+    - First release

@@ -1,6 +1,6 @@
 ---
 name: 'TNSLCK'
-version: '2.0.0'
+version: '3.2.0'
 release: 1
 summary: 'Tiny Slot Checker'
 author: 'Tiny Yarou'
@@ -118,7 +118,7 @@ description: |
   If you have any questions, please feel free to contact @tiny_yarou on twitter (^_^)
 installdir: '\TNSLCK'
 files:
-  - tnslck.zip: 'http://www.tiny-yarou.com/files/TinySlotChecker_v2.zip'
+  - tnslck.zip: 'http://www.tiny-yarou.com/files/TinySlotChecker_v3_2.zip'
 build: |
   mkdir -p package/
   unzip tnslck.zip
@@ -135,5 +135,7 @@ build: |
   unix2dos package/TNSLCK.BAS
   unix2dos package/TNSLCK.BAT
 changelog: |
+  - 3.2.0-1 2021-11-03
+    - Update to 3.2.0
   - 2.0.0-1 2020-11-07
     - First release

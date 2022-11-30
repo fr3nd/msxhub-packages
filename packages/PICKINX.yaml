@@ -1,0 +1,55 @@
+---
+name: 'PICKINX'
+version: '1.0'
+release: 1
+summary: 'PickinX (MSXdev''21)'
+author: 'Amaury Carvalho'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'GPL-3.0'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2021/05/16/msxdev21-15-pickinx/'
+description: |
+  PICKINX - v1.0
+  ====================
+
+  Pickin'X is a MSX clone of the arcade game of similar name developed by Valadon Automation in 1983.
+
+  With gameplay loosely based on the original game, with notable changes in sound, graphics, maps and game rules, in this version you are the Picker and you need to get all of the like-colored blocks into their matching places while avoiding hitting the enemies, the Transporter and Killer.
+
+  If you hit the Transposer, you will be captured by him until you press the joystick button or space bar. Hit the Killer and you will get game over immediately. During the game the Disturber will randomly capture some blocks and move them from their original places. Hitting the Disturber will not harm you, but it cant be stopped so pay very close attention in its moves.
+
+  You have a limited time to complete each stage (named "Act"). Complete it in time and you will get more time  in the next round.
+
+  Written in MSX Basic from scratch and compiled using MSXBAS2ROM compiler, this is a MSX1 compatible single player game (standard ROM BASIC required). Joysticks are recommended, but not required.
+
+  Good Luck and have fun, Pickers!
+installdir: '\PICKINX'
+files:
+  - PICKINX.zip: 'https://www.msxdev.org/wp-content/uploads/2021/05/MSXdev21_PickinX_v1.0.zip'
+build: |
+  mkdir -p package/
+  unzip PICKINX.zip
+  mv "MSXdev21_PickinX_v1.0.rom" package/PICKINX.ROM
+  mv "MSXdev21_PickinX_v1.0.txt" package/README.TXT
+  cat > package/PICKINX.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM PICKINX.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM PICKINX.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/PICKINX.BAT
+  unix2dos package/README.TXT
+changelog: |
+    - 1.0-1 2021-05-17
+    - First release

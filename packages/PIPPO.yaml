@@ -1,0 +1,54 @@
+---
+name: 'PIPPO'
+version: '1.0'
+release: 1
+summary: 'Pippo la scopa ficcanaso (MSXdev''21)'
+author: 'Gamecast Entertainment'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Freeware'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2021/08/27/msxdev21-29-pippo-la-scopa-ficcanaso/'
+description: |
+  The tenants in the houses of the city are angry and then go on strike
+  at work, and therefore in protest they throw the garbage out of their windows
+  on the streets at night. Passers-by also protest,
+  and yet they ask for help from an urban hygiene company by calling
+  a particular garbage man.
+
+  Here you are the protagonist of the famous broom; "PIPPO LA SCOPA FICCANASO".
+
+  Your task is to clean the road well, which is continually dirty
+  by the inhabitants of the city, again as a protest to the tenants,
+  they will not give you respite, because to put you in danger, they will send you
+  vacuum cleaners to attack you and dirty even more
+  the street.
+installdir: '\PIPPO'
+files:
+  - pippo.zip: 'https://www.msxdev.org/wp-content/uploads/2021/08/MSXdev21_Pippolascopaficcanaso_v1.0.zip'
+build: |
+  mkdir -p package/
+  unzip pippo.zip
+  mv "MSXdev21_Pippolascopaficcanaso_v1.0.rom" package/PIPPO.ROM
+  mv "MSXdev21_Pippolascopaficcanaso_v1.0.en.txt" package/README.TXT
+  cat > package/PIPPO.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM PIPPO.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM PIPPO.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/PIPPO.BAT
+  unix2dos package/README.TXT
+changelog: |
+    - 1.0-1 2021-08-29
+    - First release

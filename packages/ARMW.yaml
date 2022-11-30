@@ -1,0 +1,67 @@
+---
+name: 'ARMW'
+version: '1.0'
+release: 1
+summary: 'Arm Wrestler (MSXdev''21)'
+author: 'SKSOFT'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Freeware'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2021/05/10/msxdev21-12-arm-wrestler/'
+description: |
+  MSX DEV 21-Arm Wrestler version 1.0
+  ------------------------------------
+
+  This game is an arm wrestling simulator.
+
+  The goal of the game is to beat all the levels/CPU opponents.
+
+  For each level reached a boxed letter L appears next to the word lev/level.
+  There are two progress bars showing how far each opponent is to winning the arm wrestle match. The  player wins the match when their progess bar reaches its end.
+
+  Keys are z,x which are used to push against your opponent arm, pressing z when your progress bar is highlighted red will push back your opponent, pressing x when your progress bar is highlighted button for purple will also push back your opponent accordingly.
+  Pressing the wrong button for the wrong highlighted colour will let the CPU opponent make progress accordingly.
+  The opponent gets more difficult with each passing level requires better reflexes and more rapid correct button presses.Game gets significantly harder past level 7.
+  Space key starts the game.
+
+  This game is freeware (because of the MSXDEV 21 rules). The game can be freely distributed.
+
+  Requirements
+  ------------
+
+  MSX1 with 8KRAM
+
+  Credits
+  -------
+
+  Programming and Graphics: Shaun Kemp / SKSOFT
+installdir: '\ARMW'
+files:
+  - armw.zip: 'https://www.msxdev.org/wp-content/uploads/2021/05/MSXdev21_ArmWrestler_v1.0.zip'
+build: |
+  mkdir -p package/
+  unzip armw.zip
+  mv "MSXdev21_ArmWrestler_v1.0.ROM" package/ARMW.ROM
+  mv "MSXdev21_ArmWrestler_v1.0.txt" package/README.TXT
+  cat > package/ARMW.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM ARMW.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM ARMW.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/ARMW.BAT
+  unix2dos package/README.TXT
+changelog: |
+    - 1.0-1 2021-05-10
+    - First release

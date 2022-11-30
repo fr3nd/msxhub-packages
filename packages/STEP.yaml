@@ -1,0 +1,50 @@
+---
+name: 'STEP'
+version: '1.1'
+release: 1
+summary: 'Step (MSXdev''21)'
+author: 'Uninteresting'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Unknown'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2021/08/03/msxdev21-21-step/'
+description: |
+  A scifi adventure game in three chapters.
+
+  The Earth is going to hell in a handbasket. Rather than trying to fix Earth,
+  humans have sent two spaceships to establish a colony on a planet presumed
+  dead. The faster, smaller ship with its crew in cryogenic sleep to initiate
+  the process of terraforming the planet, and preparing for the arrival of the
+  bigger generation ship with humans, plants and some animals.
+
+  You are on the former ship.
+installdir: '\STEP'
+files:
+  - step.zip: 'https://www.msxdev.org/wp-content/uploads/2021/08/MSXdev21_Step_v1.1.zip'
+build: |
+  mkdir -p package/
+  unzip step.zip
+  mv "MSXdev21_Step_v1.1.rom" package/STEP.ROM
+  mv "MSXdev21_Step_v1.1.txt" package/README.TXT
+  cat > package/STEP.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM STEP.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM STEP.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/STEP.BAT
+  unix2dos package/README.TXT
+changelog: |
+    - 1.1-1 2021-08-04
+    - First release

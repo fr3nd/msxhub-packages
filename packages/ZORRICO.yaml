@@ -1,0 +1,40 @@
+---
+name: 'ZORRICO'
+version: '1.0'
+release: 1
+summary: 'Zorrico'
+author: 'Physical Dreams'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Proprietary'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://computeremuzone.com/ficha/1773/zorrico'
+description: |
+  Help Zorrico to recover all his weapons and to rescue your friend *Bernardo* who has been kidnapped.
+installdir: '\ZORRICO'
+files:
+  - zorrico.zip: 'https://computeremuzone.com/msx/Zorrico.zip'
+build: |
+  mkdir -p package/
+  unzip zorrico.zip
+  mv "ZorricoEXENG.rom" package/ZORRICO.ROM
+  cat > package/ZORRICO.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM ZORRICO.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM ZORRICO.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/ZORRICO.BAT
+changelog: |
+    - 1.0-1 2021-09-21
+    - First release

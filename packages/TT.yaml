@@ -1,6 +1,6 @@
 ---
 name: 'TT'
-version: '0.9.2'
+version: '0.11.7'
 release: 1
 summary: 'TriloTracker music tracker'
 author: 'Trilobyte Soft'
@@ -13,30 +13,38 @@ requirements:
 url: 'http://trilobyte-msx.com/TriloTracker/index.php/Main_Page'
 description: |
   MSX Music tracker for PSG and SCC.
-  
+
   Work on TriloTracker was started around mid 2011. The goal was to write a music tracker that would support both the PSG (AY3-8910) and SCC (Konami's Sound Custom Chip) for our own projects.
-  
+
   After some experiments it was decided to move the tracker to dedicated MSX hardware (or MSX emulation) as sound emulation didn't work out very well.
-  
+
   TriloTracker is strongly influenced by Vortex Tracker II which is probably the best tracker available for creating PSG music for the MSX. To be able to convert quickly from Vortex Tracker II to TriloTracker we adopted many features (like the instrument macros). Other influences come from FastTracker 2. The effects, order list, instrument list and pattern lay-out show similarities.
-  
+
+  This tracker is available in 3 separate versions:
+
+  * TTSCC (PSG AY-3-8910 + SCC)
+  * TTFM (PSG AY-3-8910 + OPLL)
+  * TTSMS (PSG SN76489 + OPLL)
+
   TriloTracker would not be what it is today without the help of the following people:
-  
+
   * ARTRAG (SCC routines, teaching me to code)
   * John Hassink (Design, Testing)
   * Inverse Phase (Design, Testing)
   * Gryzor87 (Design, Testing)
 installdir: '\TT'
 files:
-  - TT.COM: 'https://github.com/cornelisser/TriloTracker/releases/download/V%VERSION%/TT.COM'
-  - TT_0_9_1.zip: 'https://github.com/cornelisser/TriloTracker/releases/download/V0.9.1/TT_0_9_1.zip'
+  - TT.ZIP: 'https://github.com/cornelisser/TriloTracker/releases/download/%VERSION%/TT_0_11.7.zip'
 build: |
   mkdir -p package/
-  cp TT.COM package/
-  unzip -n TT_0_9_1.zip
-  mv music package/
-  mv wave package/
-  mv instr package/
+  unzip TT.ZIP
+  mv TT*/* package/
 changelog: |
+  - 0.11.7-1 2022-02-14
+    - New release
+  - 0.10.1b-1 2021-05-05
+    - New release
+  - 0.10.0b-1 2021-03-09
+    - New release
   - 0.9.2-1 2018-10-03
     - First release

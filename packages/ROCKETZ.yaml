@@ -1,0 +1,79 @@
+---
+name: 'ROCKETZ'
+version: '1.1'
+release: 1
+summary: 'Micro rocketz (MSXdev''22)'
+author: 'Troll Soft'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Freeware'
+category: 'Games'
+system: 'MSX'
+requirements: []
+url: 'https://www.msxdev.org/2022/06/14/msxdev22-11-micro-rocketz/'
+description: |
+  # micro ROCKETz for MSX COMPUTER EMULATORS
+
+  The old school mini game for 1 human player.
+
+  ## Plot:
+
+  ZILOXX: Massive. Alien enemies. Invading for sport. Parallel universes.
+  Bending. Space-time continuum. Overlapping themselves. One dimension. One world.
+  One invader. Attacking. Shooting. Firing > Huge energy matrix blocks. From the
+  stars. Down.
+
+  YOU: A cyborg. Female. SVETLN_A7. Only micro rocketz. Big block of highly
+  concentrated afterburner energy. Stop the ZILOXX. Fight! Friends are coming.
+  Air support. Reinforcements. Resist.
+
+  ## Rules and purpose of the game:
+
+  > Fight against 9 ZILOXX enemies.
+  > How many times in a row can you intercept the HUGE energy matrix blocks?
+  > Use only your [SPACE] key or the [FIRE] button while playing.
+
+  ---------------------------------------------------------------
+
+  ## How to run the program:
+
+  1) Open the MSX emulator (in this case we will use the blueMSX emulator).
+  2) Insert the virtual diskette 'micro_rocketz_MSXdev22' into the virtual MSX 1
+     computer (drive A).
+  3) Start the MSX emulation if necessary.
+
+  ----------------------------------------
+
+  ## Important notes:
+
+  * Write down your final scores (on paper, for example).
+  * You can run the disk on your REAL MSX COMPUTER too.
+  * If you have a REAL MSX COMPUTER with cassette cables, you can load any of the
+    WAV files stored in the 'EXTRA_cassette_tape_WAVs' folder. Connect the white
+    jack to a music device (like a cell phone). It's old school time. Run any game
+    with RUN"CAS:" + [RETURN]. Play the WAV file at high volume.
+
+  --------------------------------------------------------------
+
+  ## Data:
+
+  > idea + gfx + code + sounds + enemies (1,3,4,5,6,7,8,9) + plot : SENGLAR.
+  > photo in SCREEN 2 format + enemy number 2 : KITSHU.
+  > troll soft 2022.
+  > @troll_soft
+  > this game is freeware.
+installdir: '\ROCKETZ'
+files:
+  - rocketz.zip: 'https://www.msxdev.org/wp-content/uploads/2022/06/MSXdev22_Microrocketz_v1.0.zip'
+build: |
+  mkdir -p package/
+  unzip rocketz.zip
+  mcopy -s -i MSXdev22_Microrocketz_v1.0.dsk :: package/
+  mv "MSXdev22_Microrocketz_v1.0.txt" package/README.TXT
+  cat > package/ROCKETZ.BAT << EOF
+  BASIC AUTOEXEC.BAS
+  EOF
+  unix2dos package/ROCKETZ.BAT
+  unix2dos package/README.TXT
+changelog: |
+    - 1.1-0 2022-06-16
+    - First release

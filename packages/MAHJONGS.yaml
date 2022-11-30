@@ -1,0 +1,48 @@
+---
+name: 'MAHJONGS'
+version: '1.0'
+release: 1
+summary: 'Mahjong Solitaire (MSXdev''21)'
+author: 'Under4Mhz'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Freeware'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2021/05/25/msxdev21-17-mahjongsolitaire/'
+description: |
+  The classic tile matching game.
+
+  Match the tile pairs until all the tiles have been removed.
+
+  A tile must have a left or right side open in order to be selected for matching.
+
+  Play until no more matches are possible or all the tiles have been cleared.
+installdir: '\MAHJONGS'
+files:
+  - MAHJONGS.zip: 'https://www.msxdev.org/wp-content/uploads/2021/05/MSXdev21_MahjongSolitaire_v1.0.zip'
+build: |
+  mkdir -p package/
+  unzip MAHJONGS.zip
+  mv "MSXdev21_MahjongSolitaire_v1.0.rom" package/MAHJONGS.ROM
+  mv "MSXdev21_MahjongSolitaire_v1.0.txt" package/README.TXT
+  cat > package/MAHJONGS.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM MAHJONGS.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM MAHJONGS.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/MAHJONGS.BAT
+  unix2dos package/README.TXT
+changelog: |
+    - 1.0-1 2021-05-26
+    - First release

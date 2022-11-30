@@ -1,0 +1,60 @@
+---
+name: 'BLASTOID'
+version: '1.0'
+release: 1
+summary: 'Blastoid (MSXdev''22)'
+author: 'Ludogix ltd'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Freeware'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2022/03/25/msxdev22-07-blastoid/'
+description: |
+  Travelling back into deep geological time in your time machine tank
+  you want to bully those spiky skinned echinoderms into oblivion.
+  You’ll take them all out, sand dollars, sea urchins, starfish... but for
+  some strange reason you really have it in for those blastoids. You’re
+  madman enough to say that five fold radial symmetry deserves an
+  explosive shell right into their ambulacra. They’re not going to sur-
+  vive the Permian extinctions. Come on Psycho, blow them out of
+  the water. Wipe them from Planet Earth.
+
+  Blastoid requires an MSX 1 or later or emulator and is a 32Kb ROM
+  image.
+
+  Blastoids is a riff on a 1978 arcade game called Blasto from Gremlin
+  Graphics. Blasto had its only home port, to the Texas Instruments TI
+  -99/4A, in 1981.
+
+  Blastoid was written by Matthew Thredgold in C for MSXdev22. It
+  uses the SDCC compiler and MSX SDCC Make Script, and the
+  msxbios and msxromcrt0 libraries by Danilo Angelo (adapted from
+  mvac7/303bcn and Konamiman respectively) and the SDCC AY-3-
+  8910 playFX Library from mvac7/303bcn.
+installdir: '\BLASTOID'
+files:
+  - blastoid.zip: 'https://www.msxdev.org/wp-content/uploads/2022/03/MSXdev22_Blastoid_v1.0.zip'
+build: |
+  mkdir -p package/
+  unzip blastoid.zip
+  mv "MSXdev22_Blastoid_v1.0.ROM" package/BLASTOID.ROM
+  cat > package/BLASTOID.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM BLASTOID.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM BLASTOID.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/BLASTOID.BAT
+changelog: |
+    - 1.0-1 2022-03-26
+    - First release

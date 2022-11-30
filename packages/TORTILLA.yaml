@@ -1,0 +1,46 @@
+---
+name: 'TORTILLA'
+version: '1.0'
+release: 1
+summary: 'Tortilla Sunrise (MSXdev''21)'
+author: 'Tortilla Yonkers'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Unknown'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2021/04/08/msxdev21-4-tortilla-sunrise/'
+description: |
+  Once upon a time, a girl called Jenny came to Spain to be with her love.
+
+  Enjoying tortilla’s, the famous Spanish potato omelettes all the time, everything was fine, until they decided to spend a day at the beach. From there, things suddenly took a wrong turn!
+  Can you help Jenny find her husband Maté, and solve the mystery behind his sudden disappearance?
+
+  The group “Tortilla Yonkers” presents us with an entry which takes us on a perilous adventure, and makes us face remarkable dangers – all in classic platforming style with puzzle elements.
+  As it’s a lot harder than it looks, this guarantees a lot of playing time!
+installdir: '\TORTILLA'
+files:
+  - tortilla.zip: 'https://www.msxdev.org/wp-content/uploads/2021/04/MSXdev21_TortillaSunriseEng_v1.0.zip'
+build: |
+  mkdir -p package/
+  unzip tortilla.zip
+  mv "MSXdev21_TortillaSunriseEng_v1.0/MSXdev21_TortillaSunriseEng1.0.rom" package/TORTILLA.rom
+  cat > package/TORTILLA.bat << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM TORTILLA.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM TORTILLA.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/TORTILLA.bat
+changelog: |
+    - 1.0-1 2021-04-13
+    - First release

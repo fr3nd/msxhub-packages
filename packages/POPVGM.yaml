@@ -1,0 +1,36 @@
+---
+name: 'POPVGM'
+version: '0.0'
+release: 1
+summary: 'Pop!Art VGM Player'
+author: 'PopolonY2k'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'GPL-3.0'
+category: 'Sound'
+system: 'MSX'
+requirements:
+  - 'MSX-DOS2'
+url: 'http://www.popolony2k.com.br/?p=3149'
+description: |
+  Pop!Art is a VGM player supporting all existing chips on the MSX platform, like Konami SCC (K051649), PSG (AY8910), FM (YM2413), SFG01/05(YM2151), OPL3/OPL4 and the Philips Music Module (Y8950).
+
+  Pop!Art features list:
+
+  * VGM file support (1.0 up to 1.70 – some commands are still disabled. eg. non MSX existing chip commands);
+  * Memory Mapper support (VGM files longer than 64Kb can be loaded and played);
+  * MSXDOS2 only support (sub-directories access). Maybe MSXDOS1 will be supported in future releases;
+  * AY8910 support;
+  * YM2413 support;
+  * YM2151 (SFG 01/05) support;
+  * Y8950 (Philips Music Module) support;
+  * YMF278 (OPL4) support;
+  * K051649 (SCC) support;
+installdir: '\POPVGM'
+files:
+  - popart.zip: 'https://pilotfiber.dl.sourceforge.net/project/oldskooltech/MSX/Pop%21Art/v0.0/popart_v_0_0.zip'
+build: |
+  mkdir -p package/
+  unzip popart.zip -d package
+changelog: |
+  - 0.0-1 2021-01-10
+    - First release

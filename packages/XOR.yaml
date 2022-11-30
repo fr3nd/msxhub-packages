@@ -1,0 +1,74 @@
+---
+name: 'XOR'
+version: '1.0'
+release: 1
+summary: 'XOR2021 (MSXdev''21)'
+author: 'Timmy'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Unknown'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2021/08/16/msxdev21-24-xor2021/'
+description: |
+  XOR 2021 is a remake of XOR, a game
+  originally released in 1987 for the ZX Spectrum,
+  BBC, and some other 8-bit computers.
+
+  15 Levels in total, XOR is first marketed as
+  an educational game. But it is really a maze
+  game, with some similarities to Boulderdash,
+  and also with turn based movement, and have
+  puzzles that are quite difficult. For me,
+  this is a brilliant puzzle game.
+
+  ## Goal
+
+  1 Letter is hidden behind each door of the 15
+  levels. Collect all the 15 letters (and perhaps
+  some extra clues) to find the hidden word, an
+  anagram.
+
+  Note that you cannot enter the door until you
+  have collected all the masks in the level.
+
+  In these 15 levels, you will encounter 2 kinds
+  of forcefields, walking chickens, exploding
+  bombs, dolls, BMUS (Beam Me Up Scotty), and many
+  other items that behave as you'd expected, or not.
+  It's up to you to find out what they do. =)
+
+  The levels get harder the further you progress,
+  and the later levels can be really hard!
+
+  Note 2: The solution to this version differs
+  from the original version, and is a word consisting
+  of 15 letters.
+installdir: '\XOR'
+files:
+  - xor.zip: 'https://www.msxdev.org/wp-content/uploads/2021/08/MSXdev21_XOR2021_v1.0.zip'
+build: |
+  mkdir -p package/
+  unzip xor.zip
+  mv "MSXdev21_XOR2021_v1.0.rom" package/XOR.ROM
+  mv "MSXdev21_XOR2021_v1.0.txt" package/README.TXT
+  cat > package/XOR.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM XOR.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM XOR.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/XOR.BAT
+  unix2dos package/README.TXT
+changelog: |
+    - 1.0-1 2021-08-16
+    - First release

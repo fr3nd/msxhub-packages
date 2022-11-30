@@ -1,0 +1,99 @@
+---
+name: 'SPACECAT'
+version: '1.0'
+release: 1
+summary: 'Space Cat (MSXdev''22)'
+author: 'Platty Soft'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Freeware'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2022/09/10/msxdev22-17-spacecat/'
+description: |
+  ## The Story
+
+  In the year 3122, humankind has conquered space and has taken their favourite pets
+  with them: Cats.
+
+  Did you know that the favourite toys of cats in space are flying saucers? Even better,
+  chasing mice while flying around! They are the only ones that can go into the narrow
+  spaces and capture the SpaceRats, an evolved species that keeps annoying the
+  crew of the spaceships.
+
+  It may not be easy, but cats are provided with expert training on the SpaceCat
+  facility. Every kitty deserves a chance to pilot a spaceship.
+
+  Do you have what it takes to drive your Spaceship along the SpaceCat training
+  deck?
+
+  Because the world will be a better place with more cats in flying saucers.
+
+  ## The Game Play
+
+  SpaceCat combines gameplay aspects of lander and platform games.You are a new student at the SpaceCat academy. Make it through the training deck,
+  and you will be rewarded with an official certificate. With that, you can go into space
+  as a SpaceCat pilot.
+
+  The SpaceCat manual is a bit sparse. It is just 6 pages and there are not many
+  words on it. After all, cats can’t read.
+
+  Dodge walls, avoid lasers, pilot through narrow passages, catch the floating mice
+  and more.
+
+  Prove that you are worthy of being called a SpaceCat.
+
+  ## About SpaceCat
+
+  We published the original SpaceCat game for Android in 2011. Back then it pushed
+  what a mobile phone GPU could do. We were always putting as many polygons on
+  screen as we could without compromising gameplay.I was already looking into creating a lander for MSX when I got the idea of a port (or
+  more precisely, a demake) of SpaceCat, to see how far I could push the MSX.
+
+  This version tries to recreate the original as much as possible, including gameplay,
+  levels and art style. Obviously, many things have been left out, but I hope you enjoy
+  this demake of SpaceCat.
+
+  ## Credits
+
+  * Development: Raul Portales (@sla_shalafi)
+  * Original design for Android: Juan Soler (@ailantd)
+
+  Most game tiles and sprites are based on the work of Vector Pixel Star
+  (@vectorpixelstar) https://vectorpixelstar.wordpress.com/
+
+  ## Notes
+
+  * This product is to be used with MSX computers.
+  * Make sure the power is OFF when removing or inserting the cartridge.
+  * This is a precision device and should not be disassembled.
+  * This game is Free Software and you can get its source code from GitHub https://github.com/plattysoft/MSX/tree/develop/spacecat.
+installdir: '\SPACECAT'
+files:
+  - spacecat.zip: 'https://www.msxdev.org/wp-content/uploads/2022/09/MSXdev22_SpaceCat_v1.0.zip'
+build: |
+  mkdir -p package/
+  unzip spacecat.zip
+  mv "MSXdev22_SpaceCat_v1.0.rom" package/SPACECAT.ROM
+  pdftotext "MSXdev22_SpaceCat_v1.0.pdf"
+  mv "MSXdev22_SpaceCat_v1.0.txt" package/README.TXT
+  cat > package/SPACECAT.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM SPACECAT.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM SPACECAT.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/SPACECAT.BAT
+  unix2dos package/README.TXT
+changelog: |
+  - 1.0-1 2022-09-10
+    - First release

@@ -1,0 +1,51 @@
+---
+name: 'CIRCUSM'
+version: '1.4'
+release: 1
+summary: 'The Circus Mystery (MSXdev''22)'
+author: 'DTenso Games'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Freeware'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2022/10/05/msxdev22-32-the-circus-mystery/'
+description: |
+  # THE CIRCUS MYSTERY
+
+  It was a normal night like any other, when Bill, changed into his work clothes, prepared to go to the circus like every day to work to do what he liked the most, make the people who visited the circus laugh with his humor.
+  When he left his caravan, he saw in the distance, an object flying over the circus, which surprised him and from there he began the adventure to discover what had happened in the circus.
+
+  Some things about the game:
+
+  * Press "P" to pause the game
+  * Press "up" (keyboard or joystick) to go through the exit door
+  * The game ends if our life reaches 00% or the time reaches 00 seconds
+installdir: '\CIRCUSM'
+files:
+  - circusm.zip: 'https://www.msxdev.org/wp-content/uploads/2022/10/MSXdev22_TheCircusMystery_v1.4-1.zip'
+build: |
+  mkdir -p package/
+  unzip circusm.zip
+  mv "MSXdev22_TheCircusMystery_v1.4.rom" package/CIRCUSM.ROM
+  mv "MSXdev22_TheCircusMystery_v1.3.txt" package/README.TXT
+  cat > package/CIRCUSM.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM CIRCUSM.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM CIRCUSM.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/CIRCUSM.BAT
+  unix2dos package/README.TXT
+changelog: |
+  - 1.4-1 2022-10-11
+    - First release

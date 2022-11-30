@@ -1,0 +1,56 @@
+---
+name: 'SD'
+version: '1.0'
+release: 1
+summary: 'Sales Discontinued (MSXdev''22)'
+author: 'NOP'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Freeware'
+category: 'Games'
+system: 'MSX2'
+requirements:
+  - 'MSX-DOS2'
+  - 'OPL4'
+url: 'https://nopmsx.nl/sales-discontinued/'
+description: |
+  After more than two years developing, writing and testing we are proud to release our point & click adventure Sales Discontinued. The game engine is written from scratch in 100% assembly code and uses a custom designed tokenized scripting language. It contains more than 30,000 scripting lines and 5,000 lines of dialog, resulting in what – we think – must be the most storage space hogging MSX™ game ever.
+
+  The sound engine uses all 24 channels of your OLP4™ sound cartridge together with environment-modeled samples. Using state of the art synthesizers, electric guitars and kitchen utensils we have tried to create as many original sounds as possible. Interactive stereo effects will result in an audio experience never heard on an MSX™ before.
+
+  The game makes use of all the glorious 256 colors that MSX™ screen mode 8 offers. Special effects include RLE direct draw and real time graphics scaling technology, interactive dialogs and a three slot save game system to store your progress for later. Keyboard not needed.
+
+  You play as Karl Dandleton, an unsuccessful door-to-door salesman who gets himself into the most difficult situations just by chance. One day, when he closes a sale, he gets involved a nasty situation. Can you figure out what to do to save the day?
+
+  system requirements:
+
+  * 8-bit home computer carrying the MSX2™ logo.
+  * 128kB Video RAM.
+  * 512kB RAM single slot memory mapper.
+  * DOS2 operating system with FAT16 support.
+  * Storage device with the FAT16 filesystem (memory card or hard disk), with at least 36MB free space.
+  * Yamaha® OPL4™ sound cartridge with a minimum of 512kB RAM wavetable memory.
+  * Amplified stereo headphones or speakers connected directly to OPL4™ audio output.
+
+  Recommended system requirements:
+
+  * Faster MSX2™ Z80 CPU or R800 CPU with 512kB fast memory mapper. A one-chip MSX in turbo mode is also supported.
+  * Yamaha® OPL4™ compatible sound cartridge with a minimum of 512kB RAM wavetable memory.
+  * Nextor DOS2.
+  * MSX mouse or USB mouse hardware emulator.
+  * Color RGB CRT monitor.
+  * Good quality amplified stereo headphones or speakers connected directly to OPL4™ output.
+installdir: '\SD'
+files:
+  - sd.zip: 'https://nopmsx.nl/download/salesdiscontinued/NOP%20Sales%20Discontinued%2013622.zip'
+build: |
+  mkdir -p package/
+  unzip sd.zip
+  cp manual.com package/
+  cp manual.dat package/
+  cp sd.com package/
+  cp sd.dat package/
+  cp readme.txt package/
+  unix2dos package/readme.TXT
+changelog: |
+  - 1.0-1 2022-09-24
+    - First release

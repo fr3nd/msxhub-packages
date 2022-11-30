@@ -1,0 +1,100 @@
+---
+name: 'WISIT'
+version: '1.0'
+release: 1
+summary: 'Where Is it? The Quest For the 10th Island (MSXdev''21)'
+author: 'Mendel (Ricco59)'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Unknown'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2021/05/05/msxdev21-11-where-is-it-the-quest-for-the-10th-island/'
+description: |
+  ## The Game
+
+  You (PLAY'R) have to find a 3x3 pattern (FINDIT) in a large game area. Warning you have a time limit !
+
+  You have 3 lives (timer) to find a maximum of right patterns.
+
+  There are 10 levels and 10 rounds per level. At the end of the 10th round, you'll access to the CHALLENGE STAGE.
+
+  Remember : Speed and Observation skills will be essential !
+
+  ## Game Mode
+
+  ARCADE MODE
+
+  Do your best while playing one of these 4 modes : Easy - Normal - Hard and Mix.
+
+  STORY MODE
+
+  Hounded by Drühl, you have to help Reko to return on his planet by flying through an archipelago composed of 10 islands...
+
+  There are only 9 known islands. Nobody knows where the 10th is !
+
+  To discover it, you will have to progress through the 9 islands in which the difficulty will increase !
+
+  Reko is counting on you !
+
+  ## Controls
+
+  * MOVES : Arrow keys or joystick
+  * ACTION : Space or Fire1
+  * PAUSE : Esc or Fire2 (if you had a 2 buttons stick :) )
+
+  ## Password
+
+  During the STORY MODE, each time you'll fly to another island, you'll get a new PASSWORD that helping you in your quest ;)
+
+  ## Scores
+
+  It depends of how long you take to find the right pattern.
+
+  During the CHALLENGE STAGE, each time you find the right pattern, your score will be : 100 + remaining time
+
+  At the end of the Quest, a bonus will be added to your score.
+
+  This bonus is number of PERFECTs x 1000
+
+  ## Extra timer
+
+  During the CHALLENGE STAGE, if you make a PERFECT, you'll get an extra timer. Another extra timer every 5000pts.
+
+  ## Credits
+
+  Game by Eric 'RICCO59' Mendel
+  YOUTUBE : https://www.youtube.com/channel/UCmIrd9SxNi3ep-LmnAtiqaw
+  FACEBOOK : https://www.facebook.com/eric.lednem.5
+
+  ## Special Thanks
+
+  Aoineko / Ericb59 / Jipe and Gfx from MSXVILLAGE : http://www.msxvillage.fr/ FabF MSX
+  MSX Ressource Center : https://www.msx.org
+  and last but not least, Michel 'BFG' Louvet who introduce me in the great MSX Dev World ;)
+installdir: '\WISIT'
+files:
+  - wisit.zip: 'https://www.msxdev.org/wp-content/uploads/2021/04/MSXdev21_WISIT_v1.0.zip'
+build: |
+  mkdir -p package/
+  unzip wisit.zip
+  mv "MSXdev21_WISIT_v1.0.rom" package/WISIT.ROM
+  cat > package/WISIT.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM WISIT.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM WISIT.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/WISIT.BAT
+changelog: |
+    - 1.0-1 2021-05-09
+    - First release

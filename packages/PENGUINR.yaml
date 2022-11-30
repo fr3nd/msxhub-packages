@@ -1,0 +1,66 @@
+---
+name: 'PENGUINR'
+version: '1.0'
+release: 1
+summary: 'Penguin Run (MSXdev''22)'
+author: 'Patrik’s Retro Tech'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Freeware'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2022/08/27/msxdev22-14-penguin-run/'
+description: |
+  Pijku Penguin was having so much fun on the ice when
+  he realized that the ice started to break up and that he
+  was far away from home.
+
+  ## Gameplay
+
+  Jump over the holes in the ice to avoid falling into the
+  water. If you get wet you have to start over. The speed
+  increases the further you go.
+
+  ## Controls
+
+  Push space or fire to jump.
+
+  ## Requirements
+
+  MSX1, Minimum 16K RAM
+
+  ## Credits
+
+  Developed by Patrik’s Retro Tech
+  Music by Wolk aka Blueyakk
+  Game is created with UBOX MSX LIB.
+  Music playback in Arkos 2 Minimal Player (AKM).
+installdir: '\PENGUINR'
+files:
+  - penguinr.zip: 'https://www.msxdev.org/wp-content/uploads/2022/08/MSXdev22_PenguinRun_v1.0.zip'
+build: |
+  mkdir -p package/
+  unzip penguinr.zip
+  mv "MSXdev22_PenguinRun_v1.0.rom" package/PENGUINR.ROM
+  pdftotext "MSXdev22_PenguinRun_v1.0.pdf"
+  mv "MSXdev22_PenguinRun_v1.0.txt" package/README.TXT
+  cat > package/PENGUINR.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM PENGUINR.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM PENGUINR.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/PENGUINR.BAT
+  unix2dos package/README.TXT
+changelog: |
+    - 1.0-1 2022-08-29
+    - First release

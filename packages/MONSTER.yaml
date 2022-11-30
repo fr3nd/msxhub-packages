@@ -1,0 +1,47 @@
+---
+name: 'MONSTER'
+version: '1.0'
+release: 1
+summary: 'Monster On The Run (MSXdev''21)'
+author: 'Paolo "Neurox66" Borzini'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Freeware'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2021/08/16/msxdev21-23-monster-on-the-run/'
+description: |
+  Drive the monster by following the walls inside the screen to reach exit.
+
+  The exit is represented by the yellow square.
+
+  Pay attention to the number of moves performed, there is a limited number of moves
+  and it depends on the level.
+installdir: '\MONSTER'
+files:
+  - monster.zip: 'https://www.msxdev.org/wp-content/uploads/2021/08/MSXdev21_MonsterOnTheRun_v1.0.zip'
+build: |
+  mkdir -p package/
+  unzip monster.zip
+  mv "MSXdev21_MonsterOnTheRun_v1.0.rom" package/MONSTER.ROM
+  mv "MSXdev21_MonsterOnTheRun_v1.0.txt" package/README.TXT
+  cat > package/MONSTER.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM MONSTER.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM MONSTER.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/MONSTER.BAT
+  unix2dos package/README.TXT
+changelog: |
+    - 1.0-1 2021-08-16
+    - First release

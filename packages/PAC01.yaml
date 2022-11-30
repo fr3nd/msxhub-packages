@@ -1,0 +1,71 @@
+---
+name: 'PAC01'
+version: '1.0'
+release: 1
+summary: 'PAC-01 (MSXdev''21)'
+author: 'ARC8'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Freeware'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2021/08/31/msxdev21-30-pac-01/'
+description: |
+  ##  WORLD'S FASTEST DOT EATING GAME
+
+  This game has 3 game modes:
+  * 1 Player  -> 10 different rounds
+  * 2 Player  -> 1 round, unlimited lifes
+  * Fast Game -> 1 round, one life, FAST!
+
+  In the 1 player mode the objective is to catch all 6 ghosts. When all 6 ghosts are captured a new round will start. Game is over when all lives are lost.
+
+  In the 2 player mode the player that scores most points wins. Both players and ghosts will be respawned when dead. Game is over when the maze ends.
+
+  In fast game mode: just survive! Oh... and try to get as many points as possible - catch all 6 ghosts, get the fruit and make streaks as long as possible when eating dots.
+
+  In PAC-01 there are 2 ways of dying:
+  * when catched by a ghost
+  * when trapped in the green bits
+
+  ### Scoring
+  * Eat dots:  when eating dots in a continuing streak, each dot will be worth more points (1 to 7 points).
+  * Big dots:  worth 50 points, plus the ability to catch ghosts.
+  * Get ghost: 1st ghost 100 points. 2nd ghost 200 points. 3rd ghost 400 points.
+  * Get fruit: fruit is worth 500 points
+
+  In the 1 player mode extra lifes are rewarded at each 5000 points.
+
+  ### Controls
+  * 1up: plays with the cursor keys or joystick in port 1
+  * 2up: plays with joystick in port 2
+
+  For the best possible experience this game should be played on a real MSX machine connected to a CRT monitor. The fastest levels of the Fast Game mode may became unplayable when using an emulator, due to lag.
+installdir: '\PAC01'
+files:
+  - pac01.zip: 'https://www.msxdev.org/wp-content/uploads/2021/08/MSXdev21_PAC-01_v1.0.zip'
+build: |
+  mkdir -p package/
+  unzip pac01.zip
+  mv "MSXdev21_PAC-01_v1.0.rom" package/PAC01.ROM
+  mv "MSXdev21_PAC-01_v1.0.txt" package/README.TXT
+  cat > package/PAC01.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM PAC01.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM PAC01.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/PAC01.BAT
+  unix2dos package/README.TXT
+changelog: |
+    - 1.0-1 2021-09-01
+    - First release

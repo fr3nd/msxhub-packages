@@ -1,0 +1,46 @@
+---
+name: 'LSAGA'
+version: '1.0'
+release: 1
+summary: 'Lilly’s Saga – The Stones of Evergreen (MSXdev''22)'
+author: 'Fabulous 8bit'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Freeware'
+category: 'Games'
+system: 'MSX2'
+requirements:
+  - 'ROM'
+  - 'MSX-MUSIC'
+url: 'https://www.lillyssaga.com'
+description: |
+  Lilly’s Saga – The Stones of Evergreen, is a smooth scrolling platform game for the MSX2 8-bit micro computer, released via MSXdev in October 2022 and to be released on a cartridge later in 2022.
+
+  Tech info: MSX2. Megarom. MSX Music. 64kB RAM. 128kB VRAM. -Game experience will be identical across the MSX-generations, MSX2, MSX2+ and MSX turbo-R.
+installdir: '\LSAGA'
+files:
+  - lsaga.zip: 'https://www.msxdev.org/wp-content/uploads/2022/10/MSXdev22_LillysSaga-TheStonesofEvergreen_v1.0.zip'
+build: |
+  mkdir -p package/
+  unzip lsaga.zip
+  mv "MSXdev22_Lilly'sSaga-TheStonesofEvergreen_v1.0.rom" package/LSAGA.ROM
+  pdftotext "MSXdev22_Lilly'sSaga-TheStonesofEvergreen_v1.0.pdf"
+  mv "MSXdev22_Lilly'sSaga-TheStonesofEvergreen_v1.0.txt" package/README.TXT
+  cat > package/LSAGA.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM LSAGA.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM LSAGA.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/LSAGA.BAT
+  unix2dos package/README.TXT
+changelog: |
+  - 1.0-1 2022-10-11
+    - First release

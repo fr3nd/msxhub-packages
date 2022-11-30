@@ -10,12 +10,13 @@ category: 'Internet'
 system: 'MSX'
 requirements:
   - 'MSX-DOS2'
+  - 'TCP/IP-UNAPI'
 url: 'https://github.com/ducasp/MSX-Development/tree/master/UNAPI/INSTAGR8'
 description: |
   This is an Instagram Viewer based on INSTAGR8 MSX Basic software that is a
-  client to Glufke's server. His server will translate instagram pictures 
+  client to Glufke's server. His server will translate instagram pictures
   into MSX1 Screen2 or MSX2 Screen 8 compatible images. Those images, along
-  with a few characters of the image description are shown on screen. This 
+  with a few characters of the image description are shown on screen. This
   MSX-DOS client of InstaGR8 server has the advantage of not needing GR8NET,
   working on ObsoNet, Denyonet, SM-X WiFi, GR8NET and any other adapter for
   MSX that is TCP-IP UNAPI Compliant.

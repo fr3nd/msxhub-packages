@@ -1,0 +1,58 @@
+---
+name: 'BOMBAMAN'
+version: '1.0'
+release: 1
+summary: 'Bombaman Extra Ammo edition'
+author: 'Team Bomba'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Freeware'
+category: 'Games'
+system: 'MSX2'
+requirements:
+  - 'MSX-DOS'
+  - 'MSX-MUSIC'
+  - 'MSX-AUDIO'
+url: 'https://www.teambomba.net/bombaman.html'
+description: |
+  # What is Bombaman?
+
+  Bombaman is a game based on Hudson's Bomberman series, and was developed for the MSX. Bombaman has been in development for quite a while (a few years actually), resulting in a polished game with a lot of new stuff and interesting features.
+
+  If you are interested in how the game came to be, you can read more in the making of Bombaman. There's also a lot of extra information on the game, like progress reports, extra downloads, news items and more available on the old Bombaman site: http://www.teambomba.net/bombaman/.
+
+  # Bombaman Extra Ammo edition
+
+  To celebrate this special occasion, we have created a special edition of the game: Bombaman Extra Ammo. Apart from the unlockables and difficulty settings that were present in the original game, we have expanded the game with some fresh new content. Most notable is the Extra Ammo substory, with its own world, boss and demos. A must play for everybody!
+
+  The original game was released for the MSX. Because not everybody has an retro home computer or a suitably configured emulator, we teamed up with the BlueMSX team. Together, we created a special version of the BlueMSX emulator and bundled it with Bombaman Extra Ammo to make the game easily accessible for every user.
+
+  Still looking for the original game? Contact Sunrise and ask if they still have copies on sale! The original game comes on 2 disks, in nice box along with a manual and a CD filled with a lot of bonus materials.
+
+  # Features
+
+  Bombaman is quite a big game, with a lot of extras and options. Apart from the gameplay you expect from normal Bomberman games, we also added some extra materials. The highlight is probably being able to play with 4 people at the same time in multiplayer mode! Also, there's a big (60+ levels) single player mode with a storyline and bossmonsters and 3 different difficulty levels. Did I already mention that the game is available in 8 different languages?
+
+  Here's a brief summary of what you can expect:
+
+  * Single player game mode featuring 3 game modes, great graphics, cool bossmonsters, digital soundeffects (MoonSound only), great music, hard-to-beat enemies and a cool storyline!
+  * Only in this edition: another new cool world with a story that is linked to the original game and an ultra nasty boss (not suitable for young players).
+  * A special PC release, made possible with the help of the BlueMSX team.
+  * A lot of cool stuff like teleports, a lot of different enemies, villages, a disco, custom levels, and a password mode for easy replay.
+  * A multiplayer game mode where you can play with 4 players at once! This can be either human players or computer controlled players. Multiplayer mode contains lots of cool items to make sure of a real deathmatch between you and your opponents.
+  * A level editor (for Windows95 and higher!) to create your own levels for Bombaman. The editor is quite easy to use, and enables you to use all the power of the game in your own creations.
+  * Available in English, Dutch, Japanese, Portuguese, Spanish, Italian, German and French.
+  * Extensive MoonSound support with great music specially made for MoonSound, superb digital panned soundeffects and support for more than 128 kB SRAM.
+  * And more: full harddisk and DOS2 support, sound support for PSG, MSX-Music and MSX-Audio, password mode so you don't have to finish the game at once, and lots of other cool extra's to keep you busy!
+
+installdir: '\BOMBAMAN'
+files:
+  - bombaman.zip: 'https://www.teambomba.net/download/bombaman_files.zip'
+build: |
+  mkdir -p package/
+  unzip bombaman.zip
+  mv bombaman_files/diska/* package/
+  mv bombaman_files/diskb/* package/
+  mv bombaman_files/levels/* package/
+changelog: |
+    - 1.0-1 2021-04-13
+    - First release

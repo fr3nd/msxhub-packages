@@ -1,0 +1,55 @@
+---
+name: 'COMPASS'
+version: '1.2.09'
+release: 1
+summary: 'Compass MSX compiler IDE'
+author: 'Compjoetania The Next Generation'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Freeware'
+category: 'Programming'
+system: 'MSX2'
+requirements:
+  - 'MSX-DOS'
+url: 'https://github.com/turbor/compass-1.2-sources'
+description: |
+  Why another MSX-Assembler ? In the dark past many different assemblers were
+  produced for the MSX-system in addition to the already available CP/M
+  assemblers. Along with the advantages of these products, there were also a
+  lot of disadvantages.
+  Some of them had an integrated environment but weren't able of handling large
+  sources, others were very powerful but needed a separated editor causing a
+  waste of time when testing and debugging. Most of these programs didn't take
+  advantage of the new developments in the MSX-scene. Just to name a few of
+  them: Turbo R (the R800 instruction set), MemMan, DOS 2.xx (subdirectories).
+  There just wasn't an assembler which combined enough advantages to satisfy
+  almost everyone.
+
+  Compass is our attempt to create an easy-to-use, menu driven and extensive
+  package specifically designed for the MSX-system. The name "Compass" is an
+  contraption of the words "COMPjoetania ASSembler". We would like to thank
+  everybody who, one way or another, has contributed to the development of
+  Compass.
+
+  We hope you enjoy Compass.
+
+  September 1998, Compjoetania The Next Generation
+
+  * Original concept and program by Compjoetania (1995):
+    * Remo Jongeneelen
+    * David Heremans
+    * Eric van Beurden
+
+  * Compass #1.2 by Compjoetania The Next Generation (1997...)
+    * Jon De Schrijder: coding
+    * David Heremans  : manual, disklabels
+    * Wouter Vermaelen: bughunter, did a great job
+installdir: '\COMPASS'
+files:
+  - compass.zip: 'https://github.com/turbor/compass-1.2-sources/releases/download/FinnalyFree/Compass_FinallyFreeEdition.zip'
+build: |
+  mkdir -p package/
+  unzip compass.zip
+  mcopy -s -i Compass_FinallyFreeEdition.dsk :: package/
+changelog: |
+  - 2021-06-11 3.4-1
+    - First release

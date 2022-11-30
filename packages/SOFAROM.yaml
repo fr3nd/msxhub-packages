@@ -6,16 +6,16 @@ summary: 'SofaROM is an  MSX tool  designed to  launch MSX  ROM images'
 author: 'Louthrax'
 package_author: 'Carles Amigó (fr3nd)'
 license: 'CC BY-NC-ND'
-category: 'Internet'
+category: 'Tools'
 system: 'MSX'
 requirements:
   - 'MSX-DOS2'
 url: 'https://www.louthrax.net/mgr/'
 description: |
   SofaROM is an MSX tool designed to launch MSX ROM images. It supports several "ROM devices" and most ROMs and MegaROMs formats. ROMs can also be launched without any external device using "Memory mapper" or "turboR mapper".
-  
+
   Depending on the options passed, ROMs are patched on the fly to use JoyMega, Game Master 1 or 2, PSG to SCC, external SCC (for ROM devices having no integrated SCC chip) or other features.
-  
+
   SofaROM will pick the best suitable ROM device depending on the ROM type and settings chosen. You can specify a "preferred device" with the /Dx option, but if this one is not found or suitable, another device might be selected instead.
 installdir: '\SOFAROM'
 files:

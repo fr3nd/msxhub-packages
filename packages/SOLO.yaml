@@ -1,0 +1,42 @@
+---
+name: 'SOLO'
+version: '1.0'
+release: 1
+summary: 'S.O.L.O. (MSXdev''21)'
+author: 'Roolandoo'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Unknown'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2021/07/16/msxdev21-19-solo/'
+description: |
+  The droids termed as S.O.L.O. (slot one, level one) are effected by the mining of a valuable substance called Ether, which causes their circuitry and positronic minds to deterioratie. The group of robots were abandoned by humans some hundred years ago and left to their fate under an artificial intelligence called I.S.A.C.
+
+  A huge asteroid is now on its way on a collision with the planet, so it’s high time to exit stage left for the droids. Maneuver your way through the puzzles and save yourself.
+installdir: '\SOLO'
+files:
+  - solo.zip: 'https://www.msxdev.org/wp-content/uploads/2021/07/MSXdev21_S.o.l.o.Eng_v1.0.zip'
+build: |
+  mkdir -p package/
+  unzip solo.zip
+  mv "MSXdev21_S.o.l.o.Eng_v1.0.rom" package/SOLO.ROM
+  cat > package/SOLO.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM SOLO.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM SOLO.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/SOLO.BAT
+changelog: |
+    - 1.0-1 2021-07-19
+    - First release

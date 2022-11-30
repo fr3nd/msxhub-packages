@@ -1,0 +1,37 @@
+---
+name: 'MBFM'
+version: '1.03A'
+release: 1
+summary: 'MoonBlaster for MoonSound (FM)'
+author: 'Remco Schijvers'
+package_author: 'Willem Cazander'
+license: 'Unknown'
+category: 'Sound'
+system: 'MSX2'
+requirements:
+  - 'MSX-DOS2'
+  - 'OPL4'
+url: 'http://www.msx.ch/sunformsx/download/dl-moon.html'
+description: |
+  MoonBlaster for MoonSound FM Version
+installdir: '\MBFM'
+files:
+  - mbfm103a.lzh: 'http://www.msx.ch/ftp/Products/MoonSound/mbfm103a.lzh'
+build: |
+  mkdir -p package/
+  lha x mbfm103a.lzh
+  mv fmmanual.txt package/
+  mv mbfm.000 package/
+  mv mbfm.001 package/
+  mv mbfm.002 package/
+  mv mbfm.003 package/
+  mv mbfm.004 package/
+  mv mbfm.005 package/
+  mv mbfm.006 package/
+  mv mbfm.007 package/
+  mv mbfm.cfg package/
+  mv mbfm.com package/
+  mv mbfm.rev package/
+changelog: |
+  - 2021-07-06 1.03A-1
+    - First release
