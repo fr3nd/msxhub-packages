@@ -1,0 +1,42 @@
+---
+name: 'SHMUPKAI'
+version: '1.0'
+release: 1
+summary: 'SHMUP! Kai'
+author: 'Imanok'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Freeware'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'http://imanok.msxblue.com/games.html'
+description: |
+  Once again, alien forces threaten the Earth. Now it's time for you to save the planet by launching a surprise attack while they get ready for the final invasion. You control two space fighters that work in tandem. Collect enough fusion capsules to merge them into a super-fighter! Can you destroy the bulk of the enemy forces before they launch their attack?
+installdir: '\SHMUPKAI'
+files:
+  - shmupkai.zip: 'http://imanok.msxblue.com/files/shmup!kai.zip'
+build: |
+  mkdir -p package/
+  unzip shmupkai.zip
+  mv "shmupkai.rom" package/SHMUPKAI.ROM
+  mv 'Shmup!Kai_manual.txt' package/README.TXT
+  cat > package/SHMUPKAI.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM SHMUPKAI.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM SHMUPKAI.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/SHMUPKAI.BAT
+  unix2dos package/README.TXT
+changelog: |
+    - 1.0-1 2022-12-28
+    - First release
