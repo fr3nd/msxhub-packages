@@ -1,6 +1,6 @@
 ---
 name: 'SOFAROM'
-version: '2.6'
+version: '3.2'
 release: 1
 summary: 'SofaROM is an  MSX tool  designed to  launch MSX  ROM images'
 author: 'Louthrax'
@@ -22,10 +22,14 @@ files:
   - sofarom.zip: 'https://www.louthrax.net/mgr/downloads/download.php?file=sofarom.zip'
 build: |
   mkdir -p package/
+  mkdir -p package/carnirom
   unzip sofarom.zip
+  unzip CARNIROM.ZIP -d package/carnirom
   mv SROM.COM package/
   mv SROM.INI package/
   mv SROM.TXT package/
 changelog: |
+  - 3.2-1 2023-02-11
+    - Updated to 3.2
   - 2.6-1 2018-10-03
     - First release
