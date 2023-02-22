@@ -1,0 +1,61 @@
+---
+name: 'PENTACOR'
+version: '1.0'
+release: 1
+summary: 'Pentacorn Quest (MSXdev''23)'
+author: 'Robosoft'
+package_author: 'Carles Amigó (fr3nd)'
+license: 'Freeware'
+category: 'Games'
+system: 'MSX'
+requirements:
+  - 'ROM'
+url: 'https://www.msxdev.org/2022/09/10/msxdev22-17-spacecat/'
+description: |
+  Acorns… Magic acorns. In the world of Pentacorn Quest, acorns are made of solid gold, have great power and magic, and are a cause of dispute between the forces of Light and Darkness. But while these two factions went to war, the acorns mysteriously disappeared.
+
+  The objective of the game is to find the five missing acorns. It is rumoured that they are hidden in The Crack, but whoever ventured to this place came back empty-handed. It is now up to you to find the acorns and deposit them in the sacred sanctuary, solving many enigmas in between.
+
+  Pentacorn Quest is a mix of platformer and arcade adventure, with different types of enemies to avoid, countless puzzles to solve and a magical world to discover.
+
+  This game is a total remake for MSX based on the ZX-Spectrum game (with permission of the original author). It makes use of some advantages of the MSX for some improvements like
+  *	More fluent gameplay at 50 or 60 fps
+  *	Faster switch between screens
+  *	No color-clashes
+  *	Multi-colored player and colored enemies
+  *	Some animations added for water and lava
+
+  This is also my first 48KB ROM, still a lot of compression was needed to fit everything just in.
+
+  ## Controls
+
+  Use either keyboard (cursor keys) or joystick port 1 to control. First fire button (or space) is used to jump, and the second fire button (or 'm') is used to select the next entry in the inventory.
+  Use up to pick up items when standing over them, use down to either activate a trigger standing on or use the currently selected item in the inventory.
+  Note Some triggers automatically activate once stepping onto them.
+installdir: '\PENTACOR'
+files:
+  - PENTACOR.zip: 'https://www.msxdev.org/wp-content/uploads/2023/02/MSXdev23_PentacornQuest_v1.0.zip'
+build: |
+  mkdir -p package/
+  unzip PENTACOR.zip
+  mv "MSXdev23_PentacornQuest_v1.0.rom" package/PENTACOR.ROM
+  mv "MSXdev23_PentacornQuest_v1.0.txt" package/README.TXT
+  cat > package/PENTACOR.BAT << EOF
+  REM Look for SROM.COM in default dir
+  IFF EXIST %_DISK%:\SOFAROM\SROM.COM
+    %_DISK%:\SOFAROM\SROM.COM PENTACOR.ROM
+  ELSE
+    REM Try to run it from path
+    IFF EXIST SROM.COM
+      SROM.COM PENTACOR.ROM
+    ELSE
+      echo "SROM.COM not found. Install it with: 'HUB install SOFAROM'"
+      exit 1
+    ENDIFF
+  ENDIFF
+  EOF
+  unix2dos package/PENTACOR.BAT
+  unix2dos package/README.TXT
+changelog: |
+  - 1.0-1 2023-02-22
+    - First release
