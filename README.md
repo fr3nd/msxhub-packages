@@ -194,3 +194,7 @@ Once the PACKAGE.yaml file has been created, run `make PACKAGE` to build it in y
 * `make PACKAGE` (replace PACKAGE by your package name in capital letters): Test and build the specified package.
 * `make clean`: Clean all generated files.
 * `make emulator`: Run OpenMSX with the generated packages under the `\FILES` directory for testing.
+
+Optional override the OPENMSX_ARGS environment variable to define an other machine and/or extra hardware;
+
+* `OPENMSX_ARGS="-machine Philips_NMS_8250 -ext ide -ext moonsound" make emulator`
