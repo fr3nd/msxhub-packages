@@ -1,0 +1,30 @@
+---
+name: 'MOONTEST'
+version: '0.1'
+release: 1
+summary: 'MoonTest'
+author: 'Micklab, Alexey Podrezov, Volodymyr Bezobiuk'
+package_author: 'Willem Cazander'
+license: 'Unknown'
+category: 'Sound'
+system: 'MSX2'
+requirements:
+  - 'MSX-DOS2'
+  - 'OPL4'
+url: 'https://github.com/Wierzbowsky/MoonTest'
+description: |
+  This utility tests one or both RAM chips of the MSX based Moonsound or Wozblaster  
+  sound cards. The test is done 3 times in a row. To stop the test at any time please  
+  press any button.
+installdir: '\MOONTEST'
+files:
+  - moontest.com: 'https://github.com/Wierzbowsky/MoonTest/raw/master/Utility/moontest.com'
+  - readme.txt: 'https://github.com/Wierzbowsky/MoonTest/raw/master/Utility/readme.txt'
+build: |
+  mkdir -p package/
+  mv moontest.com package/
+  mv readme.txt package/
+  unix2dos package/readme.txt
+changelog: |
+  - 2023-03-23 0.1-1
+    - First release
