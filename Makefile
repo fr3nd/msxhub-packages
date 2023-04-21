@@ -5,6 +5,8 @@ OPENMSX_ARGS ?= -machine "Boosted_MSXturboR_with_IDE" -ext msxdos2
 ALL = $(subst .yaml,,$(subst packages/,,$(wildcard packages/*.yaml)))
 ALL_ZIP = $(subst .yaml,.zip,$(subst packages/,,$(wildcard packages/*.yaml)))
 
+include emulation/msxhub.mk
+
 all:
 	@echo "Please, specify one package to build:"
 	@echo $(ALL)
@@ -22,6 +24,7 @@ test:
 	$(DOCKER) pytest-3 -v
 
 emulator:
+	$(call msxhub_get_nextor,dsk)
 	openmsx $(OPENMSX_ARGS) -script emulation/boot.tcl
 
 clean:
