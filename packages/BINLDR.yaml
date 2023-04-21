@@ -1,6 +1,6 @@
 ---
 name: 'BINLDR'
-version: '1.0.1'
+version: '1.0.2'
 release: 1
 summary: 'Binary Loader'
 author: 'gdx'
@@ -10,18 +10,20 @@ category: 'System'
 system: 'MSX'
 requirements:
   - 'MSX-DOS'
-url: 'https://www.msx.org/downloads/binary-loader-v100'
+url: 'https://github.com/gdx-msx/BINLDR'
 description: |
    This command allows you to load and run binary format files under MSX-DOS 1/2. Those bin files normally start under BASIC with the BLOAD instruction.
 installdir: '\BINLDR'
 files:
-  - binldr.zip: 'https://www.msx.org/download/download/2018/10/BINLD101.ZIP'
+  - BINLDR.COM: 'https://github.com/gdx-msx/BINLDR/raw/master/BINLDR.COM'
+  - BINLDR.TXT: 'https://github.com/gdx-msx/BINLDR/raw/master/BINLDR.TXT'
 build: |
   mkdir -p package/
-  unzip binldr.zip
   mv BINLDR.COM package/
   mv BINLDR.TXT package/
   unix2dos package/BINLDR.TXT
 changelog: |
   - 1.0.1-1 2018-11-10
     - First release
+  - 1.0.2-1 2023-04-21
+    - Update to 1.02
