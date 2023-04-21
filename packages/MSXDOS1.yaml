@@ -1,7 +1,7 @@
 ---
 name: 'MSXDOS1'
 version: '1.03'
-release: 1
+release: 2
 summary: 'MSX-DOS1'
 author: 'ASCII Corporation'
 package_author: 'Willem Cazander'
@@ -12,18 +12,16 @@ requirements: []
 url: 'https://en.wikipedia.org/wiki/MSX-DOS'
 description: |
   MSXDOS1 is a disk operating system developed by Microsoft for ASCII Corporation in 1988.
-  
-  * COMMAND.COM
-  * MSXDOS.SYS
-
 installdir: '\MSXDOS1'
 files:
   - msxdos1.lzh: 'http://www.msxarchive.nl/pub/msx/utils/misc/msxdos1.lzh'
 build: |
   mkdir -p package/
   lha x msxdos1.lzh
-  mv command.com package/
-  mv msxdos.sys package/
+  mv command.com package/COMMAND.COM
+  mv msxdos.sys package/MSXDOS.SYS
 changelog: |
   - 1.03-1 2021-07-06
     - First release
+  - 1.03-2 2023-04-21
+    - To uppercase like MSXDOS2(T) packages
