@@ -1,4 +1,7 @@
 
+dsk/*.sys
+dsk/*.com
+
 # Created by https://www.gitignore.io/api/python
 
 ### Python ###
