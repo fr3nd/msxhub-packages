@@ -1,7 +1,7 @@
 ---
 name: 'HUB'
 version: '1.0.6'
-release: 2
+release: 3
 summary: 'Application to download and install software from the internet'
 author: 'Carles Amigó (fr3nd) and Oduvaldo Pavan Junior (Ducasp)'
 package_author: 'Carles Amigó (fr3nd)'
@@ -34,6 +34,8 @@ build: |
   mv HUBG/MANUAL.TXT package/HUBG.TXT
   mv HUBG/HUBG.COM package/
 changelog: |
+  - 1.0.6-3 2023-04-22
+    - New release to fix hub.com not working
   - 1.0.6-1 2022-11-30
     - New release
     - HUBG updated to 0.90
