@@ -56,15 +56,20 @@ all:
 .PHONY: clean
 clean:
 	$(MH_RMDIR) dsk/files
+	$(MH_RMDIR) dsk/SOFAROM
+	$(MH_RM) tools/omsxctl.tcl
+	$(MH_RM) dsk/omsxctl.com
+	$(MH_RM) dsk/command2.com
+	$(MH_RM) dsk/nextor.sys
 	$(MH_RM) DSK.dsk
 
 %:
+	$(MH_RMDIR) package
 	$(MH_MKDIR) dsk/files
 	$(MH_RMDIR) dsk/files/$(@)
 	$(DOCKER) $(DOCKER_ARGS) pytest-3 -k packages/$(@).yaml
 	$(DOCKER) $(DOCKER_ARGS) build packages/$(@).yaml dsk/files
 	$(MH_RMDIR) package
-	$(MH_RMDIR) dsk/files/$(@)/package
 	$(MH_LS) dsk/files/$(@)
 	$(LIST_MD5)
 
