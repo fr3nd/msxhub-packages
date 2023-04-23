@@ -1,4 +1,4 @@
-rem Generated autoexec.bat for msxhub-packages
+rem Managed autoexec.bat for msxhub-packages
 echo Set mode 80.
 mode 80
 echo Enabling throttling;
