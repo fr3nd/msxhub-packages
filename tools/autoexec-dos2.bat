@@ -2,7 +2,7 @@ rem Managed autoexec.bat for msxhub-packages
 mode 80
 ver
 echo Extending search path;
-PATH + A:\ A:\SOFAROM
+PATH + A:\UTILS
 PATH
 echo Enabling renderer;
 omsxctl set renderer SDL

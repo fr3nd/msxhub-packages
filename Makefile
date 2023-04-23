@@ -75,11 +75,11 @@ clean:
 dsk:
 	$(MH_MKDIR) dsk/
 	$(MH_MKDIR) dsk/files
-	$(MH_MKDIR) dsk/SOFAROM
-	$(MH_COPY) tools/shutdown.bat dsk/
-	$(call msxhub_file,dsk/SOFAROM,SOFAROM/3.2-1/get/SOFAROM/SROM.COM)
-	$(call msxhub_file,dsk/SOFAROM,SOFAROM/3.2-1/get/SOFAROM/SROM.INI)
-	$(call msxhub_file,dsk,OMSXCTL/1.0-1/get/OMSXCTL/omsxctl.com)
+	$(MH_MKDIR) dsk/utils
+	$(MH_COPY) tools/shutdown.bat dsk/utils/
+	$(call msxhub_file,dsk/utils,SOFAROM/3.2-1/get/SOFAROM/SROM.COM)
+	$(call msxhub_file,dsk/utils,SOFAROM/3.2-1/get/SOFAROM/SROM.INI)
+	$(call msxhub_file,dsk/utils,OMSXCTL/1.0-1/get/OMSXCTL/omsxctl.com)
 
 # TODO: remove unneeded os.mkdir('package') from tools/build
 %: | dsk
@@ -104,7 +104,7 @@ emulator-dos1: | dsk
 	$(MH_COPY) tools/autoexec-dos1.bat dsk/autoexec.bat
 	$(call msxhub_file,dsk,MSXDOS1/1.03-2/get/MSXDOS1/MSXDOS.SYS,true)
 	$(call msxhub_file,dsk,MSXDOS1/1.03-2/get/MSXDOS1/COMMAND.COM,true)
-	$(MH_COPY) dsk/SOFAROM/* dsk/
+	$(MH_COPY) dsk/utils/* dsk/
 	-$(MH_COPY) dsk/files/*/* dsk/
 	@echo *** Please run a manual make clean before running dos2 or nextor.
 	$(call openmsx_run)
