@@ -1,7 +1,5 @@
 
-dsk/*.sys
-dsk/*.com
-dsk/SOFAROM
+dsk/
 tools/omsxctl.tcl
 
 # Created by https://www.gitignore.io/api/python
