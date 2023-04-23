@@ -1,0 +1,10 @@
+<openmsx-control>
+<!--
+When booting 'openmsx -control stdio < boot_stdio.xml'
+It starts then in power off mode and without renderer for fast booting.
+-->
+	<command>set power on</command>
+	<command>set throttle off</command>
+	<command>set speed 333</command>
+	<command>set save_settings_on_exit off</command>
+</openmsx-control>
