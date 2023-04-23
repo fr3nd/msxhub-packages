@@ -1,6 +1,7 @@
 rem Managed autoexec.bat for msxhub-packages
 mode 80
 ver
+COLOR 15,0,0
 echo Extending search path;
 PATH + A:\UTILS
 PATH

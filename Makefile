@@ -80,7 +80,6 @@ dsk:
 	$(call msxhub_file,dsk/utils,SOFAROM/3.2-1/get/SOFAROM/SROM.COM)
 	$(call msxhub_file,dsk/utils,SOFAROM/3.2-1/get/SOFAROM/SROM.INI)
 	$(call msxhub_file,dsk/utils,OMSXCTL/1.0-1/get/OMSXCTL/omsxctl.com)
-	$(call msxhub_file,dsk/utils,MSXDOS2T/1.0-1/get/MSXDOS2T/LS.COM)
 	$(call msxhub_file,dsk/utils,MSXDOS2T/1.0-1/get/MSXDOS2T/MORE.COM)
 	$(call msxhub_file,dsk/utils,MSXDOS2T/1.0-1/get/MSXDOS2T/DUMP.COM)
 
