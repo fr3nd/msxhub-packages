@@ -76,6 +76,7 @@ dsk:
 	$(MH_MKDIR) dsk/
 	$(MH_MKDIR) dsk/files
 	$(MH_MKDIR) dsk/utils
+	$(MH_COPY) tools/mouse.bat dsk/utils/
 	$(MH_COPY) tools/shutdown.bat dsk/utils/
 	$(call msxhub_file,dsk/utils,SOFAROM/3.2-1/get/SOFAROM/SROM.COM)
 	$(call msxhub_file,dsk/utils,SOFAROM/3.2-1/get/SOFAROM/SROM.INI)
