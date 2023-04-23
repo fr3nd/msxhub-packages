@@ -76,6 +76,7 @@ dsk:
 	$(MH_MKDIR) dsk/
 	$(MH_MKDIR) dsk/files
 	$(MH_MKDIR) dsk/SOFAROM
+	$(MH_COPY) tools/shutdown.bat dsk/
 	$(call msxhub_file,dsk/SOFAROM,SOFAROM/3.2-1/get/SOFAROM/SROM.COM)
 	$(call msxhub_file,dsk/SOFAROM,SOFAROM/3.2-1/get/SOFAROM/SROM.INI)
 	$(call msxhub_file,dsk,OMSXCTL/1.0-1/get/OMSXCTL/omsxctl.com)
@@ -104,7 +105,7 @@ emulator-dos1: | dsk
 	$(call msxhub_file,dsk,MSXDOS1/1.03-2/get/MSXDOS1/MSXDOS.SYS,true)
 	$(call msxhub_file,dsk,MSXDOS1/1.03-2/get/MSXDOS1/COMMAND.COM,true)
 	$(MH_COPY) dsk/SOFAROM/* dsk/
-	$(MH_COPY) dsk/files/*/* dsk/
+	-$(MH_COPY) dsk/files/*/* dsk/
 	@echo *** Please run a manual make clean before running dos2 or nextor.
 	$(call openmsx_run)
 
@@ -119,7 +120,7 @@ emulator-dos2: | dsk
 .PHONY: emulator-nextor
 emulator-nextor: | dsk
 	$(call msxdos_clean)
-	$(MH_COPY) tools/autoexec-nextor.bat dsk/autoexec.bat
+	$(MH_COPY) tools/autoexec-dos2.bat dsk/autoexec.bat
 	$(call msxhub_file,dsk,NEXTOR/2.1.0-1/get/NEXTOR/NEXTOR.SYS,true)
 	$(call msxhub_file,dsk,NEXTOR/2.1.0-1/get/NEXTOR/COMMAND2.COM,true)
 	$(call openmsx_run)
