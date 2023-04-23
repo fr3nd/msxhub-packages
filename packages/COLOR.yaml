@@ -1,0 +1,28 @@
+---
+name: 'COLOR'
+version: '1.0'
+release: 1
+summary: 'COLOR for MSX-DOS'
+author: 'gdx'
+package_author: 'Willem Cazander'
+license: 'GPL-3.0'
+category: 'Tools'
+system: 'MSX'
+requirements:
+  - 'MSX-DOS'
+url: 'https://github.com/gdx-msx/COLOR'
+description: |
+  This is a command for MSX-DOS1/2 that allows you to change  
+  colors under MSX-DOS similarly to COLOR instruction from Basic.
+installdir: '\COLOR'
+files:
+  - COLOR.COM: 'https://github.com/gdx-msx/COLOR/raw/master/COLOR.COM'
+  - COLOR.TXT: 'https://github.com/gdx-msx/COLOR/raw/master/COLOR.TXT'
+build: |
+  mkdir -p package/
+  mv COLOR.COM package/
+  mv COLOR.TXT package/
+  unix2dos package/COLOR.TXT
+changelog: |
+  - 1.0-1 2023-04-24
+    - First release
