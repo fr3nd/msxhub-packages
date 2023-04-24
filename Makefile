@@ -68,6 +68,7 @@ all:
 
 .PHONY: clean
 clean:
+	$(MH_RMDIR) files/
 	$(MH_RMDIR) dsk/
 	$(MH_RM) DSK.dsk
 	$(MH_RM) tools/omsxctl.tcl
