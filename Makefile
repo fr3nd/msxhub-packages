@@ -148,6 +148,7 @@ emulator-dos1: | dsk-dep
 	$(call msxhub_file,dsk,MSXDOS1/1.03-2/get/MSXDOS1/MSXDOS.SYS,true)
 	$(call msxhub_file,dsk,MSXDOS1/1.03-2/get/MSXDOS1/COMMAND.COM,true)
 	$(MH_COPY) dsk/utils/* dsk/
+	$(MH_COPY) dsk/sofarom/* dsk/
 	-$(MH_COPY) dsk/files/*/* dsk/
 	@echo *** Please run a manual make clean before running dos2 or nextor.
 	$(call openmsx_run)
