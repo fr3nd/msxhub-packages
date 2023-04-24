@@ -108,13 +108,13 @@ dsk/sofarom/srom.ini: | dsk/sofarom
 	$(call msxhub_file,dsk/sofarom,SOFAROM/3.2-1/get/SOFAROM/SROM.INI)
 
 .PHONY: dsk-dep-bat
-dsk-dep: | dsk/utils/shutdown.bat dsk/utils/mouse.bat
+dsk-dep-bat: | dsk/utils/shutdown.bat dsk/utils/mouse.bat
 
 .PHONY: dsk-dep-utils
-dsk-dep: | dsk/utils/omsxctl.com dsk/utils/more.com dsk/utils/dump.com
+dsk-dep-utils: | dsk/utils/omsxctl.com dsk/utils/more.com dsk/utils/dump.com
 
 .PHONY: dsk-dep-srom
-dsk-dep: | dsk/sofarom/srom.com dsk/sofarom/srom.ini
+dsk-dep-srom: | dsk/sofarom/srom.com dsk/sofarom/srom.ini
 
 .PHONY: dsk-dep
 dsk-dep: | dsk/files dsk-dep-bat dsk-dep-utils dsk-dep-srom
