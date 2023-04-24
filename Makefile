@@ -11,7 +11,7 @@ ifeq ($(OS),Windows_NT)
 	MH_RM = del /F /Q
 	MH_RMDIR = rmdir /S /Q
 	MH_MKDIR = mkdir
-	MH_COPY = copy
+	MH_COPY = xcopy /s /q /y /i
 	MH_LS = dir
 	MH_FETCH=_fetch_ps
 	MSXHUB_CACHE ?=%LOCALAPPDATA%/msxhub/repro-v0
@@ -21,12 +21,12 @@ else
 	MH_RM = rm -f
 	MH_RMDIR = rm -rf
 	MH_MKDIR = mkdir -p
-	MH_COPY = cp
+	MH_COPY = cp -r
 	MH_LS = ls -l
 	MH_FETCH=_fetch_wget
 	MSXHUB_CACHE ?=~/.cache/msxhub/repro-v0
 	DOCKER_ARGS= run -it --rm -u $$(id -u) -v $$(pwd):/usr/src fr3nd/msxhub-packages:6
-	LIST_MD5= find dsk/files/$(@) -type f -exec md5sum '{}' \;
+	LIST_MD5= find files/$(@) -type f -exec md5sum '{}' \;
 endif
 define _fetch_ps
 	powershell.exe $ProgressPreference = 'SilentlyContinue'; Invoke-WebRequest $(1) -OutFile $(2)
@@ -72,14 +72,16 @@ clean:
 	$(MH_RM) DSK.dsk
 	$(MH_RM) tools/omsxctl.tcl
 
+# TODO: remove sofarom folder after: https://github.com/fr3nd/msxhub-packages/issues/92
 dsk:
 	$(MH_MKDIR) dsk/
 	$(MH_MKDIR) dsk/files
 	$(MH_MKDIR) dsk/utils
+	$(MH_MKDIR) dsk/sofarom
 	$(MH_COPY) tools/mouse.bat dsk/utils/
 	$(MH_COPY) tools/shutdown.bat dsk/utils/
-	$(call msxhub_file,dsk/utils,SOFAROM/3.2-1/get/SOFAROM/SROM.COM)
-	$(call msxhub_file,dsk/utils,SOFAROM/3.2-1/get/SOFAROM/SROM.INI)
+	$(call msxhub_file,dsk/sofarom,SOFAROM/3.2-1/get/SOFAROM/SROM.COM)
+	$(call msxhub_file,dsk/sofarom,SOFAROM/3.2-1/get/SOFAROM/SROM.INI)
 	$(call msxhub_file,dsk/utils,OMSXCTL/1.0-1/get/OMSXCTL/omsxctl.com)
 	$(call msxhub_file,dsk/utils,MSXDOS2T/1.0-1/get/MSXDOS2T/MORE.COM)
 	$(call msxhub_file,dsk/utils,MSXDOS2T/1.0-1/get/MSXDOS2T/DUMP.COM)
@@ -88,10 +90,14 @@ dsk:
 %: | dsk
 	-$(MH_RMDIR) package
 	$(MH_RMDIR) dsk/files/$(@)
+	$(MH_RMDIR) files/$(@)
 	$(DOCKER) $(DOCKER_ARGS) pytest-3 -k packages/$(@).yaml
-	$(DOCKER) $(DOCKER_ARGS) build packages/$(@).yaml dsk/files
+	$(DOCKER) $(DOCKER_ARGS) build packages/$(@).yaml files
 	-$(MH_RMDIR) package
-	$(MH_LS) dsk/files/$(@)
+	-$(MH_RMDIR) files/$(@)/package
+	$(MH_MKDIR) dsk/files/$(@)
+	$(MH_COPY) files/$(@)/* dsk/files/$(@)
+	$(MH_LS) files/$(@)
 	$(LIST_MD5)
 
 .PHONY: test
