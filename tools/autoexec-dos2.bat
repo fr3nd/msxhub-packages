@@ -1,12 +1,10 @@
 rem Managed autoexec.bat for msxhub-packages
 mode 80
-ver
 COLOR 15,0,0
+ver
 echo Extending search path;
 PATH + A:\UTILS
 PATH
-echo Enabling renderer;
-omsxctl set renderer SDL
-echo Enabling throttling;
-omsxctl set throttle on
+echo Display openMSX;
+omsxctl after time 2 enable_gui
 echo BOOT COMPLETED

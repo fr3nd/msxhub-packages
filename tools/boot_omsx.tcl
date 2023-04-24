@@ -20,3 +20,11 @@ if {[info exists ::env(SPEED)] && ([string trim $::env(SPEED)] != "")} {
 		exit 1
 	}
 }
+
+# Enabled openMSX gui from inside
+proc enable_gui {} {
+	global renderer
+	global throttle
+	set renderer SDL
+	set throttle on
+}
