@@ -5,6 +5,8 @@ ver
 echo Extending search path;
 PATH + A:\UTILS
 PATH
+dir files
 echo Display openMSX;
 omsxctl after time 2 enable_gui
 echo BOOT COMPLETED
+cd files
