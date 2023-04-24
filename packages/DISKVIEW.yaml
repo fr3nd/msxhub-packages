@@ -1,0 +1,26 @@
+---
+name: 'DISKVIEW'
+version: '2.1'
+release: 1
+summary: 'DiskView'
+author: 'Steven van Loef & MSX Software Team'
+package_author: 'Willem Cazander'
+license: 'Proprietary'
+category: 'Editors'
+system: 'MSX2'
+requirements:
+  - 'MSX-DOS'
+url: 'https://www.msx.org/wiki/DiskView_(Steven_van_Loef)'
+description: |
+  It's a disk editor for MSX2 and only FAT12 is supported by this utility.
+installdir: '\DISKVIEW'
+files:
+  - diskview.lzh: 'http://msx.fi/nyyrikki/files/diskview.lzh'
+build: |
+  mkdir -p package/
+  lha x diskview.lzh
+  mv dv_inst.bas package/
+  mv diskview.com package/
+changelog: |
+  - 2.1-1 2023-04-24
+    - First release
