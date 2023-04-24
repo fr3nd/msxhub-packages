@@ -73,7 +73,6 @@ clean:
 	$(MH_RM) DSK.dsk
 	$(MH_RM) tools/omsxctl.tcl
 
-
 dsk:
 	$(MH_MKDIR) dsk/
 
