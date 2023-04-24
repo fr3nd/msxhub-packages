@@ -73,22 +73,55 @@ clean:
 	$(MH_RM) DSK.dsk
 	$(MH_RM) tools/omsxctl.tcl
 
-# TODO: remove sofarom folder after: https://github.com/fr3nd/msxhub-packages/issues/92
+
 dsk:
 	$(MH_MKDIR) dsk/
+
+dsk/files: | dsk
 	$(MH_MKDIR) dsk/files
-	$(MH_MKDIR) dsk/utils
+
+# TODO: remove sofarom folder after: https://github.com/fr3nd/msxhub-packages/issues/92
+dsk/sofarom: | dsk
 	$(MH_MKDIR) dsk/sofarom
-	$(MH_COPY) tools/mouse.bat dsk/utils/
+
+dsk/utils: | dsk
+	$(MH_MKDIR) dsk/utils
+
+dsk/utils/shutdown.bat: | dsk/utils
 	$(MH_COPY) tools/shutdown.bat dsk/utils/
-	$(call msxhub_file,dsk/sofarom,SOFAROM/3.2-1/get/SOFAROM/SROM.COM)
-	$(call msxhub_file,dsk/sofarom,SOFAROM/3.2-1/get/SOFAROM/SROM.INI)
+
+dsk/utils/mouse.bat: | dsk/utils
+	$(MH_COPY) tools/mouse.bat dsk/utils/
+
+dsk/utils/omsxctl.com: | dsk/utils
 	$(call msxhub_file,dsk/utils,OMSXCTL/1.0-1/get/OMSXCTL/omsxctl.com)
+
+dsk/utils/more.com: | dsk/utils
 	$(call msxhub_file,dsk/utils,MSXDOS2T/1.0-1/get/MSXDOS2T/MORE.COM)
+
+dsk/utils/dump.com: | dsk/utils
 	$(call msxhub_file,dsk/utils,MSXDOS2T/1.0-1/get/MSXDOS2T/DUMP.COM)
 
+dsk/sofarom/srom.com: | dsk/sofarom
+	$(call msxhub_file,dsk/sofarom,SOFAROM/3.2-1/get/SOFAROM/SROM.COM)
+
+dsk/sofarom/srom.ini: | dsk/sofarom
+	$(call msxhub_file,dsk/sofarom,SOFAROM/3.2-1/get/SOFAROM/SROM.INI)
+
+.PHONY: dsk-dep-bat
+dsk-dep: | dsk/utils/shutdown.bat dsk/utils/mouse.bat
+
+.PHONY: dsk-dep-utils
+dsk-dep: | dsk/utils/omsxctl.com dsk/utils/more.com dsk/utils/dump.com
+
+.PHONY: dsk-dep-srom
+dsk-dep: | dsk/sofarom/srom.com dsk/sofarom/srom.ini
+
+.PHONY: dsk-dep
+dsk-dep: | dsk/files dsk-dep-bat dsk-dep-utils dsk-dep-srom
+
 # TODO: remove unneeded os.mkdir('package') from tools/build
-%: | dsk
+%: | dsk-dep
 	-$(MH_RMDIR) package
 	$(MH_RMDIR) dsk/files/$(@)
 	$(MH_RMDIR) files/$(@)
@@ -109,7 +142,7 @@ test:
 # As MF-DOS and misix and 103+Himem all did not work.
 # It currently does work, but makes a mess of the dsk folder.
 .PHONY: emulator-dos1
-emulator-dos1: | dsk
+emulator-dos1: | dsk-dep
 	$(call msxdos_clean)
 	$(MH_COPY) tools/autoexec-dos1.bat dsk/autoexec.bat
 	$(call msxhub_file,dsk,MSXDOS1/1.03-2/get/MSXDOS1/MSXDOS.SYS,true)
@@ -120,7 +153,7 @@ emulator-dos1: | dsk
 	$(call openmsx_run)
 
 .PHONY: emulator-dos2
-emulator-dos2: | dsk
+emulator-dos2: | dsk-dep
 	$(call msxdos_clean)
 	$(MH_COPY) tools/autoexec-dos2.bat dsk/autoexec.bat
 	$(call msxhub_file,dsk,MSXDOS2/2.20-1/get/MSXDOS2/MSXDOS2.SYS,true)
@@ -128,7 +161,7 @@ emulator-dos2: | dsk
 	$(call openmsx_run)
 
 .PHONY: emulator-nextor
-emulator-nextor: | dsk
+emulator-nextor: | dsk-dep
 	$(call msxdos_clean)
 	$(MH_COPY) tools/autoexec-dos2.bat dsk/autoexec.bat
 	$(call msxhub_file,dsk,NEXTOR/2.1.0-1/get/NEXTOR/NEXTOR.SYS,true)
