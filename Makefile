@@ -92,6 +92,9 @@ dsk/utils/shutdown.bat: | dsk/utils
 dsk/utils/mouse.bat: | dsk/utils
 	$(MH_COPY) tools/mouse.bat dsk/utils/
 
+dsk/utils/z80.bat: | dsk/utils
+	$(MH_COPY) tools/z80.bat dsk/utils/
+
 dsk/utils/omsxctl.com: | dsk/utils
 	$(call msxhub_file,dsk/utils,OMSXCTL/1.0-1/get/OMSXCTL/omsxctl.com)
 
@@ -101,6 +104,9 @@ dsk/utils/more.com: | dsk/utils
 dsk/utils/dump.com: | dsk/utils
 	$(call msxhub_file,dsk/utils,MSXDOS2T/1.0-1/get/MSXDOS2T/DUMP.COM)
 
+dsk/utils/turbo.com: | dsk/utils
+	$(call msxhub_file,dsk/utils,TURBO/2.1-1/get/TURBO/turbo.com)
+
 dsk/sofarom/srom.com: | dsk/sofarom
 	$(call msxhub_file,dsk/sofarom,SOFAROM/3.2-1/get/SOFAROM/SROM.COM)
 
@@ -108,10 +114,10 @@ dsk/sofarom/srom.ini: | dsk/sofarom
 	$(call msxhub_file,dsk/sofarom,SOFAROM/3.2-1/get/SOFAROM/SROM.INI)
 
 .PHONY: dsk-dep-bat
-dsk-dep-bat: | dsk/utils/shutdown.bat dsk/utils/mouse.bat
+dsk-dep-bat: | dsk/utils/shutdown.bat dsk/utils/mouse.bat dsk/utils/z80.bat
 
 .PHONY: dsk-dep-utils
-dsk-dep-utils: | dsk/utils/omsxctl.com dsk/utils/more.com dsk/utils/dump.com
+dsk-dep-utils: | dsk/utils/omsxctl.com dsk/utils/more.com dsk/utils/dump.com dsk/utils/turbo.com
 
 .PHONY: dsk-dep-srom
 dsk-dep-srom: | dsk/sofarom/srom.com dsk/sofarom/srom.ini
