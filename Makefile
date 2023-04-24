@@ -119,24 +119,6 @@ dsk-dep-srom: | dsk/sofarom/srom.com dsk/sofarom/srom.ini
 .PHONY: dsk-dep
 dsk-dep: | dsk/files dsk-dep-bat dsk-dep-utils dsk-dep-srom
 
-# TODO: remove unneeded os.mkdir('package') from tools/build
-%: | dsk/files
-	-$(MH_RMDIR) package
-	$(MH_RMDIR) dsk/files/$(@)
-	$(MH_RMDIR) files/$(@)
-	$(DOCKER) $(DOCKER_ARGS) pytest-3 -k packages/$(@).yaml
-	$(DOCKER) $(DOCKER_ARGS) build packages/$(@).yaml files
-	-$(MH_RMDIR) package
-	-$(MH_RMDIR) files/$(@)/package
-	$(MH_MKDIR) dsk/files/$(@)
-	$(MH_COPY) files/$(@)/* dsk/files/$(@)
-	$(MH_LS) files/$(@)
-	$(LIST_MD5)
-
-.PHONY: test
-test:
-	$(DOCKER) pytest-3 -v
-
 # TODO: Find "CD.COM" and remove the flattening copies.
 # As MF-DOS and misix and 103+Himem all did not work.
 # It currently does work, but makes a mess of the dsk folder.
@@ -170,6 +152,24 @@ emulator-nextor: | dsk-dep
 
 .PHONY: emulator
 emulator: | emulator-nextor
+
+# TODO: remove unneeded os.mkdir('package') from tools/build
+%: | dsk/files
+	-$(MH_RMDIR) package
+	$(MH_RMDIR) dsk/files/$(@)
+	$(MH_RMDIR) files/$(@)
+	$(DOCKER) $(DOCKER_ARGS) pytest-3 -k packages/$(@).yaml
+	$(DOCKER) $(DOCKER_ARGS) build packages/$(@).yaml files
+	-$(MH_RMDIR) package
+	-$(MH_RMDIR) files/$(@)/package
+	$(MH_MKDIR) dsk/files/$(@)
+	$(MH_COPY) files/$(@)/* dsk/files/$(@)
+	$(MH_LS) files/$(@)
+	$(LIST_MD5)
+
+.PHONY: test
+test:
+	$(DOCKER) $(DOCKER_ARGS) pytest-3 -v
 
 # vim:ft=make
 #
