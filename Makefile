@@ -120,7 +120,7 @@ dsk-dep-srom: | dsk/sofarom/srom.com dsk/sofarom/srom.ini
 dsk-dep: | dsk/files dsk-dep-bat dsk-dep-utils dsk-dep-srom
 
 # TODO: remove unneeded os.mkdir('package') from tools/build
-%: | dsk-dep
+%: | dsk/files
 	-$(MH_RMDIR) package
 	$(MH_RMDIR) dsk/files/$(@)
 	$(MH_RMDIR) files/$(@)
