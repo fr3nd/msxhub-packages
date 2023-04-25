@@ -13,14 +13,14 @@ ifeq ($(OS),Windows_NT)
 	MH_MKDIR = mkdir
 	MH_COPY = xcopy /s /q /y /i
 	MSXHUB_CACHE ?=%LOCALAPPDATA%/msxhub/repro-v0
-	DOCKER_ARGS= run -it --rm -v "%cd%":/usr/src fr3nd/msxhub-packages:4
+	DOCKER_ARGS = run -it --rm -v "%cd%":/usr/src fr3nd/msxhub-packages:4
 else
 	MH_RM = rm -f
 	MH_RMDIR = rm -rf
-	MH_MKDIR = mkdir -p
+	MH_MKDIR = mkdir
 	MH_COPY = cp -r
 	MSXHUB_CACHE ?=~/.cache/msxhub/repro-v0
-	DOCKER_ARGS= run -it --rm -u $$(id -u) -v $$(pwd):/usr/src fr3nd/msxhub-packages:6
+	DOCKER_ARGS = run -it --rm -u $$(id -u) -v $$(pwd):/usr/src fr3nd/msxhub-packages:6
 endif
 
 define _mh_lowercase
