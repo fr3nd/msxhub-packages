@@ -149,6 +149,10 @@ emulator-nextor: | dsk-dep
 .PHONY: emulator
 emulator: | emulator-nextor
 
+.PHONY: test
+test:
+	$(DOCKER) $(DOCKER_ARGS) pytest-3 -v
+
 %: | dsk/files
 	-$(MH_RMDIR) dsk/files/$(call _mh_lowercase,$(@))
 	-$(MH_RMDIR) dsk/files/$(@)
@@ -160,10 +164,6 @@ emulator: | emulator-nextor
 	$(DOCKER) $(DOCKER_ARGS) python3 tools/build/dir-tolower.py dsk/files/$(@)
 	$(DOCKER) $(DOCKER_ARGS) ls -l files/$(@)
 	$(DOCKER) $(DOCKER_ARGS) find files/$(@) -type f -exec md5sum '{}' \;
-
-.PHONY: test
-test:
-	$(DOCKER) $(DOCKER_ARGS) pytest-3 -v
 
 # vim:ft=make
 #
