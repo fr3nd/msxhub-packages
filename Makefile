@@ -55,8 +55,8 @@ define msxdos_clean
 	-$(MH_RM) dsk/command2.com
 endef
 define openmsx_run
-	$(call msxhub_file,tools,OMSXCTL/1.0-1/get/OMSXCTL/omsxctl.tcl)
-	SPEED=$(OPENMSX_SPEED) $(OPENMSX) $(OPENMSX_ARGS) -script tools/omsxctl.tcl -script tools/boot_omsx.tcl -control stdio < tools/boot_stdio.xml
+	$(call msxhub_file,tools/openmsx,OMSXCTL/1.0-1/get/OMSXCTL/omsxctl.tcl)
+	SPEED=$(OPENMSX_SPEED) $(OPENMSX) $(OPENMSX_ARGS) -script tools/openmsx/omsxctl.tcl -script tools/openmsx/init.tcl -control stdio < tools/openmsx/stdio.xml
 endef
 
 .SUFFIXES:
@@ -71,7 +71,7 @@ clean:
 	$(MH_RMDIR) files/
 	$(MH_RMDIR) dsk/
 	$(MH_RM) DSK.dsk
-	$(MH_RM) tools/omsxctl.tcl
+	$(MH_RM) tools/openmsx/omsxctl.tcl
 
 dsk:
 	$(MH_MKDIR) dsk/
@@ -87,13 +87,13 @@ dsk/utils: | dsk
 	$(MH_MKDIR) dsk/utils
 
 dsk/utils/shutdown.bat: | dsk/utils
-	$(MH_COPY) tools/shutdown.bat dsk/utils/
+	$(MH_COPY) tools/emulator/shutdown.bat dsk/utils/
 
 dsk/utils/mouse.bat: | dsk/utils
-	$(MH_COPY) tools/mouse.bat dsk/utils/
+	$(MH_COPY) tools/emulator/mouse.bat dsk/utils/
 
 dsk/utils/z80.bat: | dsk/utils
-	$(MH_COPY) tools/z80.bat dsk/utils/
+	$(MH_COPY) tools/emulator/z80.bat dsk/utils/
 
 dsk/utils/omsxctl.com: | dsk/utils
 	$(call msxhub_file,dsk/utils,OMSXCTL/1.0-1/get/OMSXCTL/omsxctl.com)
@@ -131,7 +131,7 @@ dsk-dep: | dsk/files dsk-dep-bat dsk-dep-utils dsk-dep-srom
 .PHONY: emulator-dos1
 emulator-dos1: | dsk-dep
 	$(call msxdos_clean)
-	$(MH_COPY) tools/autoexec-dos1.bat dsk/autoexec.bat
+	$(MH_COPY) tools/emulator/autoexec-dos1.bat dsk/autoexec.bat
 	$(call msxhub_file,dsk,MSXDOS1/1.03-2/get/MSXDOS1/MSXDOS.SYS,true)
 	$(call msxhub_file,dsk,MSXDOS1/1.03-2/get/MSXDOS1/COMMAND.COM,true)
 	$(MH_COPY) dsk/utils/* dsk/
@@ -143,7 +143,7 @@ emulator-dos1: | dsk-dep
 .PHONY: emulator-dos2
 emulator-dos2: | dsk-dep
 	$(call msxdos_clean)
-	$(MH_COPY) tools/autoexec-dos2.bat dsk/autoexec.bat
+	$(MH_COPY) tools/emulator/autoexec-dos2.bat dsk/autoexec.bat
 	$(call msxhub_file,dsk,MSXDOS2/2.20-1/get/MSXDOS2/MSXDOS2.SYS,true)
 	$(call msxhub_file,dsk,MSXDOS2/2.20-1/get/MSXDOS2/COMMAND2.COM,true)
 	$(call openmsx_run)
@@ -151,7 +151,7 @@ emulator-dos2: | dsk-dep
 .PHONY: emulator-nextor
 emulator-nextor: | dsk-dep
 	$(call msxdos_clean)
-	$(MH_COPY) tools/autoexec-dos2.bat dsk/autoexec.bat
+	$(MH_COPY) tools/emulator/autoexec-dos2.bat dsk/autoexec.bat
 	$(call msxhub_file,dsk,NEXTOR/2.1.0-1/get/NEXTOR/NEXTOR.SYS,true)
 	$(call msxhub_file,dsk,NEXTOR/2.1.0-1/get/NEXTOR/COMMAND2.COM,true)
 	$(call openmsx_run)
@@ -160,17 +160,16 @@ emulator-nextor: | dsk-dep
 emulator: | emulator-nextor
 
 %: | dsk/files
-	$(MH_RMDIR) dsk/files/$(@)
-	$(MH_RMDIR) files/$(@)
+	-$(MH_RMDIR) dsk/files/$(call _mh_lowercase,$(@))
+	-$(MH_RMDIR) dsk/files/$(@)
+	-$(MH_RMDIR) files/$(@)
 	$(DOCKER) $(DOCKER_ARGS) pytest-3 -k packages/$(@).yaml
-	$(DOCKER) $(DOCKER_ARGS) python3 tools/build.py packages/$(@).yaml files
+	$(DOCKER) $(DOCKER_ARGS) python3 tools/build/bundle-pkg.py packages/$(@).yaml files
 	$(MH_MKDIR) dsk/files/$(@)
 	$(MH_COPY) files/$(@)/* dsk/files/$(@)
-	$(DOCKER) $(DOCKER_ARGS) python3 tools/dir-to-lower.py dsk/files/$(@)
+	$(DOCKER) $(DOCKER_ARGS) python3 tools/build/dir-tolower.py dsk/files/$(@)
 	$(MH_LS) files/$(@)
 	$(LIST_MD5)
-
-#-$(MH_RMDIR) files/$(@)/package
 
 .PHONY: test
 test:

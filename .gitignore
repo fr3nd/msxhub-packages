@@ -3,10 +3,10 @@
 #
 
 # Local project ignores
+DSK.dsk
 dsk/
 files/
-tools/omsxctl.tcl
-DSK.dsk
+tools/openmsx/omsxctl.tcl
 
 # Created by https://www.gitignore.io/api/python
 
