@@ -17,7 +17,7 @@ ifeq ($(OS),Windows_NT)
 else
 	MH_RM = rm -f
 	MH_RMDIR = rm -rf
-	MH_MKDIR = mkdir
+	MH_MKDIR = mkdir -p
 	MH_COPY = cp -r
 	MSXHUB_CACHE ?=~/.cache/msxhub/repro-v0
 	DOCKER_ARGS = run -it --rm -u $$(id -u) -v $$(pwd):/usr/src fr3nd/msxhub-packages:6
@@ -28,7 +28,9 @@ $(subst A,a,$(subst B,b,$(subst C,c,$(subst D,d,$(subst E,e,$(subst F,f,$(subst 
 endef
 define _msxhub_file_fetch
 	$(if $(wildcard $(dir $(MSXHUB_CACHE)/$(subst $(MSXHUB_API)/,,$(1)))),,$(MH_MKDIR) $(dir $(MSXHUB_CACHE)/$(subst $(MSXHUB_API)/,,$(1))))
-	$(if $(wildcard $(MSXHUB_CACHE)/$(subst $(MSXHUB_API)/,,$(1))),,$(DOCKER) $(DOCKER_ARGS) curl -o $(MSXHUB_CACHE)/$(subst $(MSXHUB_API)/,,$(1)) $(1))
+	$(if $(wildcard $(MSXHUB_CACHE)/$(subst $(MSXHUB_API)/,,$(1))),,$(DOCKER) $(DOCKER_ARGS) curl -o files/download $(1))
+	$(MH_COPY) files/download $(MSXHUB_CACHE)/$(subst $(MSXHUB_API)/,,$(1))
+	$(MH_RM) files/download
 endef
 define msxhub_file 
 	$(if $(wildcard $(MSXHUB_CACHE)/$(2)),,$(call _msxhub_file_fetch,$(MSXHUB_API)/$(2)))
