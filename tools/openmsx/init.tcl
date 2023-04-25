@@ -13,7 +13,7 @@ if {[catch {diskmanipulator import hda ./dsk/} err_msg]} {
 	exit 1
 }
 
-# Export harddisk
+# Export harddisk (note openmsx converts all to lower case)
 after quit {
 	if {[catch {diskmanipulator chdir hda \\} err_msg]} {
 		puts stderr "error: chdir $err_msg"
