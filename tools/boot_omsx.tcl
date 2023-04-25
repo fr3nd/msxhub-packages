@@ -1,5 +1,5 @@
 
-# Below 16mb is for msxdos1 support.
+# Import harddisk (note max 16mb for msxdos1)
 if {[catch {diskmanipulator create DSK.dsk 15m} err_msg]} {
 	puts stderr "error: create $err_msg"
 	exit 1
@@ -11,6 +11,18 @@ if {[catch {hda DSK.dsk} err_msg]} {
 if {[catch {diskmanipulator import hda ./dsk/} err_msg]} {
 	puts stderr "error: import $err_msg"
 	exit 1
+}
+
+# Export harddisk
+after quit {
+	if {[catch {diskmanipulator chdir hda \\} err_msg]} {
+		puts stderr "error: chdir $err_msg"
+		exit 1
+	}
+	if {[catch {diskmanipulator export hda ./dsk/} err_msg]} {
+		puts stderr "error: export $err_msg"
+		exit 1
+	}
 }
 
 # Dynamic override of msx throttled speed.

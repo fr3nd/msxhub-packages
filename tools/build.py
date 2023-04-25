@@ -28,11 +28,6 @@ if len(sys.argv) <= 2:
 
 with open(sys.argv[1], 'r') as stream:
     package_info = yaml.load(stream)
-    try:
-        os.mkdir('package')
-    except FileExistsError:
-        print("*** ERROR: Package directory already exists: package/")
-        sys.exit(1)
 
     with tempfile.TemporaryDirectory() as tmpdirname:
         print("- Created tmp directory: %s" % (tmpdirname))

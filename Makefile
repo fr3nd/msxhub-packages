@@ -159,19 +159,18 @@ emulator-nextor: | dsk-dep
 .PHONY: emulator
 emulator: | emulator-nextor
 
-# TODO: remove unneeded os.mkdir('package') from tools/build
 %: | dsk/files
-	-$(MH_RMDIR) package
 	$(MH_RMDIR) dsk/files/$(@)
 	$(MH_RMDIR) files/$(@)
 	$(DOCKER) $(DOCKER_ARGS) pytest-3 -k packages/$(@).yaml
-	$(DOCKER) $(DOCKER_ARGS) build packages/$(@).yaml files
-	-$(MH_RMDIR) package
-	-$(MH_RMDIR) files/$(@)/package
+	$(DOCKER) $(DOCKER_ARGS) python3 tools/build.py packages/$(@).yaml files
 	$(MH_MKDIR) dsk/files/$(@)
 	$(MH_COPY) files/$(@)/* dsk/files/$(@)
+	$(DOCKER) $(DOCKER_ARGS) python3 tools/dir-to-lower.py dsk/files/$(@)
 	$(MH_LS) files/$(@)
 	$(LIST_MD5)
+
+#-$(MH_RMDIR) files/$(@)/package
 
 .PHONY: test
 test:
