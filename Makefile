@@ -158,7 +158,7 @@ emulator: | emulator-nextor
 	$(MH_MKDIR) dsk/files/$(@)
 	$(MH_COPY) files/$(@)/* dsk/files/$(@)
 	$(DOCKER) $(DOCKER_ARGS) python3 tools/build/dir-tolower.py dsk/files/$(@)
-	$(DOCKER) $(DOCKER_ARGS) ls -l
+	$(DOCKER) $(DOCKER_ARGS) ls -l files/$(@)
 	$(DOCKER) $(DOCKER_ARGS) find files/$(@) -type f -exec md5sum '{}' \;
 
 .PHONY: test
