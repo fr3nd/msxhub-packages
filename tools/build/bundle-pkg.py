@@ -37,6 +37,9 @@ with open(sys.argv[1], 'r') as stream:
             print("- Downloading %s to %s..." % (url, file_name))
             headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
             r = requests.get(url, allow_redirects=True, headers=headers)
+            if not r.ok:
+                print("ERROR: HTTP status: %i" % (r.status_code))
+                sys.exit(1)
             open(tmpdirname + "/" + file_name, 'wb').write(r.content)
         with tempfile.NamedTemporaryFile() as script_file:
             print(script_file.name)
