@@ -27,6 +27,7 @@ define _mh_lowercase
 $(subst A,a,$(subst B,b,$(subst C,c,$(subst D,d,$(subst E,e,$(subst F,f,$(subst G,g,$(subst H,h,$(subst I,i,$(subst J,j,$(subst K,k,$(subst L,l,$(subst M,m,$(subst N,n,$(subst O,o,$(subst P,p,$(subst Q,q,$(subst R,r,$(subst S,s,$(subst T,t,$(subst U,u,$(subst V,v,$(subst W,w,$(subst X,x,$(subst Y,y,$(subst Z,z,$(1)))))))))))))))))))))))))))
 endef
 define _msxhub_file_fetch
+	$(if $(wildcard files),,$(MH_MKDIR) files)
 	$(if $(wildcard $(dir $(MSXHUB_CACHE)/$(subst $(MSXHUB_API)/,,$(1)))),,$(MH_MKDIR) $(dir $(MSXHUB_CACHE)/$(subst $(MSXHUB_API)/,,$(1))))
 	$(if $(wildcard $(MSXHUB_CACHE)/$(subst $(MSXHUB_API)/,,$(1))),,$(DOCKER) $(DOCKER_ARGS) curl -o files/download $(1))
 	$(MH_COPY) files/download $(MSXHUB_CACHE)/$(subst $(MSXHUB_API)/,,$(1))
