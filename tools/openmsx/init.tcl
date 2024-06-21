@@ -33,6 +33,14 @@ if {[info exists ::env(SPEED)] && ([string trim $::env(SPEED)] != "")} {
 	}
 }
 
+# Debug override to select SDL renderer for boot process.
+if {[info exists ::env(RENDERER)] && ([string trim $::env(RENDERER)] != "")} {
+	if {[catch {set renderer [string trim $::env(RENDERER)]} err_msg]} {
+		puts stderr "error: env.RENDERER value $err_msg"
+		exit 1
+	}
+}
+
 # Enabled openMSX gui from inside
 proc enable_gui {} {
 	global renderer
