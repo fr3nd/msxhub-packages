@@ -1,0 +1,42 @@
+---
+name: 'BRICKS'
+version: '1.01'
+release: 1
+summary: 'Entry 13 at the MSXdev23. A game about a cat, Sam, his friend, Joe and bricks.'
+author: 'MoltSXlats'
+package_author: 'Sergi Garcia Besora (sergarbes)'
+license: 'CC BY-NC'
+category: 'Games'
+system: 'MSX2'
+requirements:
+  - 'MSX-DOS2'
+  - 'MSX-MUSIC'
+url: 'https://moltsxalats.wixsite.com/fusionc/bricks'
+description: |
+  This game is set in the backyard of Joe and Sam, where they play ball. Just hanging out, having fun, their quality time together suddenly gets interrupted by falling debris caused by a nearby construction side. Goes again to show, that builders should always be careful where they put their tools and equipment. When they get sloppy, bricks start falling off scaffolds with big trouble as a result. Luckily, Joe is a young, agile sport who doesn’t mind jumping a bit to avoid such terrible accidents to happen. Reach the friendly cat friend Sam to save him from horror.
+installdir: '\bricks'
+files:
+  - bricks.zip: 'https://moltsxalats.gitlab.io/bricks/bricks.zip'
+build: |
+  mkdir -p package/
+  unzip bricks.zip
+  mv sergialf.s05  package/
+  mv sc7brick.com  package/
+  mv pep.mbm  package/
+  mv pantinic.bmo  package/
+  mv pantfin.bmo  package/
+  mv level.mbm  package/
+  mv imatge.sc7  package/
+  mv image.pl7  package/
+  mv im_lost.mbm  package/
+  mv final_3.sc7  package/
+  mv final_3.pl7  package/
+  mv final_2.sc7  package/
+  mv final_2.pl7  package/
+  mv final_1.sc7  package/
+  mv final_1.pl7  package/
+  mv bricks.afb  package/
+  mv badend1.mbm  package/
+changelog: |
+  - 2023-08-21 1.0-1
+    - First release
