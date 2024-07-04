@@ -99,7 +99,7 @@ def uri_validator(x):
 @pytest.mark.parametrize("package", glob.glob('packages/*.yaml'))
 def test_package(package):
     with open(package, 'r') as stream:
-        package_info = yaml.load(stream)
+        package_info = yaml.safe_load(stream)
 
         # Package name should have name and be 8 characters or less
         assert len(package_info['name']) <= 8
