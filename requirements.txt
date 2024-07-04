@@ -1,2 +1,2 @@
-pytest==3.8.0
-PyYAML==5.1
+pytest==8.2.2
+PyYAML==6.0.1
