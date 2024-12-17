@@ -1,0 +1,43 @@
+---
+name: 'OCMINFO'
+version: '0.9.7'
+release: 1
+summary: 'Tool for information and management of OCM-PLD FPGA-based machines MSX++ compatibles'
+author: 'NataliaPC'
+package_author: 'NataliaPC'
+license: 'MIT'
+category: 'Tools'
+system: 'MSX2'
+requirements:
+  - 'MSX-DOS2'
+url: 'https://github.com/nataliapc/msx_ocminfo'
+description: |
+  This program aims to be a helpful tool for configuring and maintaining MSX++ (OCM-PLD) FPGA-based systems.
+  
+  Currently supported devices: 1ChipMSX, Zemmix Neo, SX-1, SM-X, MCP2, SX-2, SM-X Mini, SM-X HB, DE0CV, SX-E, SX-Lite.
+  
+  The program is using the sdcc_msxconio library as a git submodule. It is based in the old 'conio' library from Turbo C.
+  
+  The core can be found at the official MSX++ repository maintained by @KdL.
+installdir: '\OCMINFO'
+files:
+  - ocminfo.zip: 'https://www.eslamejor.com/ocmInfo_%VERSION%.zip'
+build: |
+  mkdir -p package/
+  unzip ocminfo.zip
+  mv OCMINFO.COM package/
+  mv LICENSE package/LICENSE.TXT
+  mv README.md package/README.TXT
+changelog: |
+  - 0.9.7 2024-12-17
+      - ocmInfo 0.9.7 released
+  - 0.9.6 2024-11-10
+      - ocmInfo 0.9.6 released
+  - 0.9.5 2024-09-19
+      - ocmInfo 0.9.5 released
+  - 0.9.4 2024-08-29
+      - ocmInfo 0.9.5 released
+  - 0.9.2 2024-08-25
+      - ocmInfo 0.9.2 released
+  - 0.9.1 2024-08-24
+      - ocmInfo 0.9.1 first release
