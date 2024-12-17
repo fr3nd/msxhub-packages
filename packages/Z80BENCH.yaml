@@ -1,0 +1,39 @@
+---
+name: 'Z80BENCH'
+version: '1.2'
+release: 1
+summary: 'Tool to watch and set the CPU Clock speed (Z80, R800, Z280)'
+author: 'NataliaPC'
+package_author: 'NataliaPC'
+license: 'MIT'
+category: 'Tools'
+system: 'MSX2'
+requirements:
+  - 'MSX-DOS'
+url: 'https://github.com/nataliapc/msx_z80bench'
+description: |
+  Z80BENCH program allows you to measure and manage your MSX CPU speed.
+  
+  It has been created with not only Panasonic MSX with TurboPana and MSX TurboR machines in mind, but also FPGA machines OCM/MSX++, and MSX based on boards and hardware developments like Tides-Rider and Taka-Nami that allow different CPU speeds.
+  
+  The measurement is approximate and is based on the number of VDP interrupts that occur during a test loop in IM2 mode.
+  
+  This means that for low clock frequencies the precision is higher and as the speed increases the margin of error also increases.
+  
+  With longer test loops and longer duration, the margin of error would be reduced, but a compromise between precision and usability has been chosen.
+  
+  The available options vary depending on which MSX machine you run the program on.
+  
+  The visual presentation and operation is based on similar programs that were developed for old PCs under MS-DOS.
+installdir: '\Z80BENCH'
+files:
+  - z80bench.zip: 'https://www.eslamejor.com/z80bench_%VERSION%.zip'
+build: |
+  mkdir -p package/
+  unzip z80bench.zip
+  mv Z80BENCH.COM package/
+  mv LICENSE package/LICENSE.TXT
+  mv README.md package/README.TXT
+changelog: |
+  - v1.2 (2024-12-17)
+      - First release
